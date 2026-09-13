@@ -1,0 +1,13 @@
+# Lái Xe Nhàn
+
+> Ứng dụng học kỹ năng lái xe thực tế, ngắn gọn và an toàn cho người lái tại Việt Nam.
+
+## Nội dung
+
+- Bài học về lùi chuồng, đường hẹp, cao tốc, đèo dốc và mưa ngập.
+- Checklist trước khi lái và trước khi rời xe.
+- Tra cứu đèn cảnh báo trên táp-lô.
+
+## Ghi chú
+
+Nội dung nhằm hỗ trợ ôn luyện và không thay thế đào tạo lái xe chính quy hoặc hướng dẫn của nhà sản xuất.
