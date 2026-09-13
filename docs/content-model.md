@@ -110,3 +110,59 @@ xe được ưu tiên.
 3. Nếu là bài học mới, khai báo trong `lessonMeta` của `src/content/topics.ts`.
 4. Thêm hồ sơ duyệt vào `src/content/reviews.ts` và đặt `reviewStatus: 'approved'` khi đã được duyệt.
 5. Chạy `npm run test`, `npm run lint`, `npm run build`.
+
+## 10. Chuyên đề thực hành (Phase 3): quick check, ôn tập ngắt quãng, lộ trình học
+
+Theo `.github/detailed-plan-3.md`, mỗi thẻ có thêm bộ **tự kiểm nhanh** (`quickCheck`) và ứng
+dụng cung cấp lịch **ôn tập ngắt quãng**, **lộ trình học theo kinh nghiệm**, và ba **chế độ hiển thị**.
+
+### 10.1 Quick check trên mỗi thẻ
+
+```
+Card
+└── quickCheck[3]   đúng 3 câu tự kiểm (QuickCheckQuestion)
+    ├── prompt         câu hỏi ngắn
+    ├── options[]      2–4 phương án
+    ├── correctIndex   chỉ số đáp án đúng
+    └── isStopCondition  đánh dấu câu về điều kiện dừng bắt buộc
+```
+
+- Sinh id qua `defineCard()`: `<cardId>-qc1/qc2/qc3`.
+- Cổng **biên tập** (`validation.ts`) buộc đúng 3 câu, ≥2 phương án, `correctIndex` hợp lệ.
+- Cổng **an toàn** buộc mọi thẻ `risk: 'high'` có ít nhất một câu `isStopCondition: true`.
+- Ngưỡng đạt: trả lời đúng ≥ 70% (`QUICK_CHECK_PASS_THRESHOLD` trong
+  `src/services/spaced-repetition/index.ts`).
+- UI: `src/features/learning-cards/QuickCheckPanel.vue`, hiển thị ở cuối `LessonView.vue`.
+
+### 10.2 Ôn tập ngắt quãng (spaced repetition)
+
+`src/services/spaced-repetition/index.ts` là logic thuần, không phụ thuộc UI:
+
+- 4 giai đoạn (`ReviewStage` 0–3), tương ứng chu kỳ ôn **1 → 3 → 7 → 14 ngày**
+  (`REVIEW_INTERVALS_DAYS`).
+- Trả lời đạt quick check → tăng giai đoạn (tối đa 3); trả lời không đạt → quay về giai đoạn 0.
+- `scheduleNextReview()` tính lịch tiếp theo; `dueEntries()` lọc và sắp xếp thẻ đến hạn.
+- Store (`src/stores/app.ts`) giữ `reviewSchedule: Record<cardId, ReviewScheduleEntry>`
+  (persist ở `localStorage`, khoá `lxn-review-schedule`) và action `recordQuickCheck()`.
+- Giao diện `src/views/ReviewView.vue` (route `/review`) liệt kê thẻ đến hạn; huy hiệu số ở
+  mục "Ôn tập" trên thanh điều hướng dưới hiển thị số thẻ đến hạn.
+
+### 10.3 Lộ trình học theo kinh nghiệm
+
+`src/content/learning-paths.ts` khai báo 3 `LearningPath` (mới lái, đã đi phố cơ bản, đã chạy
+thường xuyên) với thứ tự chuyên đề khuyến nghị. Người dùng chọn lộ trình ở
+`src/views/LearningPathView.vue` (route `/learning-path`, truy cập từ trang danh sách chuyên đề);
+lựa chọn lưu ở store (`experienceLevel`, khoá `lxn-experience-level`).
+
+### 10.4 Chế độ hiển thị bài học
+
+`DisplayMode` gồm `learn` (đầy đủ), `quick` (ẩn lỗi thường gặp/cách chữa/sơ đồ biến thể để ôn
+nhanh) và `handsfree` (tự động đọc to toàn bộ kịch bản khi mở thẻ). Lưu ở store (`displayMode`,
+khoá `lxn-display-mode`); chuyển đổi bằng nhóm nút ở đầu `LessonView.vue`.
+
+### 10.5 Mức độ đạt bài học ("đạt module")
+
+`getLessonMastery()` trong `src/content/index.ts` tính mức đạt của một bài học: cần **≥ 80%** thẻ
+đã đánh dấu hoàn thành **và** **≥ 70%** thẻ có lần quick check gần nhất đạt. `TopicView.vue`
+hiển thị huy hiệu "🏅 Đạt module" khi đạt cả hai tiêu chí.
+

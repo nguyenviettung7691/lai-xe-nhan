@@ -10,6 +10,8 @@ import {
 } from '../services/offline-cache'
 import { syncEngine, type SyncEngineState } from '../services/sync-engine'
 import { analytics } from '../services/analytics'
+import { dueEntries, passedQuickCheck, scheduleNextReview } from '../services/spaced-repetition'
+import type { DisplayMode, ExperienceLevel, ReviewScheduleEntry } from '../types'
 
 const read = <T>(key: string, fallback: T): T => {
   try {
@@ -23,11 +25,24 @@ export const useAppStore = defineStore('app', () => {
   const completed = ref<string[]>(read('lxn-completed', []))
   const checked = ref<Record<string, boolean>>(read('lxn-checklist', {}))
   const theme = ref<'dark' | 'light'>(read('lxn-theme', 'dark'))
+  const reviewSchedule = ref<Record<string, ReviewScheduleEntry>>(read('lxn-review-schedule', {}))
+  const displayMode = ref<DisplayMode>(read('lxn-display-mode', 'learn'))
+  const experienceLevel = ref<ExperienceLevel | null>(read('lxn-experience-level', null))
   const isOnline = ref(typeof navigator !== 'undefined' ? navigator.onLine : true)
   const syncState = ref<SyncEngineState>(syncEngine.getState())
   const isInitialized = ref(false)
 
   const progress = computed(() => completed.value.length)
+
+  /** ID các thẻ có lần quick check gần nhất đạt (dùng để tính mức độ đạt bài học). */
+  const passedCardIds = computed(() =>
+    Object.values(reviewSchedule.value)
+      .filter((entry) => entry.lastResult === 'pass')
+      .map((entry) => entry.cardId)
+  )
+
+  /** Danh sách thẻ đến hạn ôn lại, sắp xếp theo hạn gần nhất trước. */
+  const dueReviewCards = computed(() => dueEntries(reviewSchedule.value))
 
   // Initialize offline storage and sync engine
   const init = async () => {
@@ -101,6 +116,25 @@ export const useAppStore = defineStore('app', () => {
     theme.value = theme.value === 'dark' ? 'light' : 'dark'
   }
 
+  /** Ghi nhận kết quả quick check của một thẻ và đặt lịch ôn lại tiếp theo. */
+  const recordQuickCheck = (cardId: string, correctCount: number, totalQuestions: number) => {
+    const passed = passedQuickCheck(correctCount, totalQuestions)
+    const entry = scheduleNextReview({ cardId, passed, previous: reviewSchedule.value[cardId] })
+    reviewSchedule.value = { ...reviewSchedule.value, [cardId]: entry }
+    analytics.track('quick_check_result', { cardId, correctCount, totalQuestions, passed })
+    return entry
+  }
+
+  const setDisplayMode = (mode: DisplayMode) => {
+    displayMode.value = mode
+    analytics.track('display_mode_change', { mode })
+  }
+
+  const setExperienceLevel = (level: ExperienceLevel) => {
+    experienceLevel.value = level
+    analytics.track('experience_level_selected', { level })
+  }
+
   watch(
     completed,
     (value) => localStorage.setItem('lxn-completed', JSON.stringify(value)),
@@ -124,6 +158,22 @@ export const useAppStore = defineStore('app', () => {
     { immediate: true }
   )
 
+  watch(
+    reviewSchedule,
+    (value) => localStorage.setItem('lxn-review-schedule', JSON.stringify(value)),
+    { deep: true }
+  )
+
+  watch(
+    displayMode,
+    (value) => localStorage.setItem('lxn-display-mode', JSON.stringify(value))
+  )
+
+  watch(
+    experienceLevel,
+    (value) => localStorage.setItem('lxn-experience-level', JSON.stringify(value))
+  )
+
   if (typeof window !== 'undefined') {
     window.addEventListener('online', () => {
       isOnline.value = true
@@ -141,15 +191,23 @@ export const useAppStore = defineStore('app', () => {
     completed,
     checked,
     theme,
+    reviewSchedule,
+    displayMode,
+    experienceLevel,
     isOnline,
     syncState,
     progress,
+    passedCardIds,
+    dueReviewCards,
     isInitialized,
     init,
     toggleComplete,
     toggleCheck,
     resetChecklist,
-    toggleTheme
+    toggleTheme,
+    recordQuickCheck,
+    setDisplayMode,
+    setExperienceLevel
   }
 })
 

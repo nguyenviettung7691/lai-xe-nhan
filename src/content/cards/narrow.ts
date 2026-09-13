@@ -30,6 +30,11 @@ export const narrowCards: Card[] = [
     safety: 'Trẻ nhỏ và xe máy có thể xuất hiện đột ngột từ cửa nhà hai bên ngõ.',
     mnemonic: { text: 'Bò đều, nhìn xa, tay giữ vững vô-lăng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
+    quickCheck: [
+      { prompt: 'Khi bò chậm qua ngõ hẹp, chân phải nên đặt ở đâu?', options: ['Luôn sẵn sàng trên bàn đạp phanh', 'Đặt hẳn lên chân ga', 'Để nghỉ ngoài bàn đạp'], correctIndex: 0 },
+      { prompt: 'Điểm nhìn phù hợp khi đi trong ngõ hẹp là gì?', options: ['Nhìn sát đầu xe', 'Nhìn xa khoảng mười mét phía trước', 'Chỉ nhìn vào gương chiếu hậu'], correctIndex: 1 },
+      { prompt: 'Khi không nhìn rõ khoảng trống phía trước trong ngõ, bạn nên?', options: ['Đi tiếp và quan sát sau', 'Dừng lại ngay', 'Tăng tốc để vượt qua nhanh'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.1.0',
     updatedAt: '2026-09-10',
@@ -65,6 +70,11 @@ export const narrowCards: Card[] = [
     safety: 'Gập gương làm mất một phần tầm nhìn phía sau nên chỉ dùng ở tốc độ bò.',
     mnemonic: { text: 'Gương thấy thân xe, khoảng trống mới thật.', rhythm: 'doi-ve' },
     checklistId: 'pre_drive',
+    quickCheck: [
+      { prompt: 'Gương nên được chỉnh thế nào khi đi trong ngõ hẹp?', options: ['Chỉ thấy đường phía sau', 'Thấy một phần thân xe ở mép trong', 'Chỉnh hướng lên trời'], correctIndex: 1 },
+      { prompt: 'Nên liếc gương theo nhịp như thế nào?', options: ['Nhìn gương liên tục không rời mắt', 'Liếc đều hai bên, mỗi lần dưới một giây', 'Chỉ nhìn một bên suốt hành trình'], correctIndex: 1 },
+      { prompt: 'Trong ngõ cực hẹp, khi cần thêm hỗ trợ quan sát, bạn nên?', options: ['Gập gương và nhờ người đi cùng quan sát ngoài xe', 'Tháo gương ra', 'Nhắm mắt đi chậm'], correctIndex: 0 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -97,6 +107,11 @@ export const narrowCards: Card[] = [
     safety: 'Bấm còi ngắn khi vào cua khuất tầm nhìn và sẵn sàng dừng cho xe máy đi ngược chiều.',
     mnemonic: { text: 'Ra rộng, vào muộn, bánh sau theo sau.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
+    quickCheck: [
+      { prompt: 'Khi vào cua vuông góc trong ngõ, nên đi sát bên nào trước khi vào cua?', options: ['Mép trong của ngõ', 'Mép ngoài của ngõ', 'Chính giữa ngõ'], correctIndex: 1 },
+      { prompt: 'Vì sao bánh sau dễ cắt vào góc tường nếu đánh lái quá sớm?', options: ['Vì bánh sau đi theo quỹ đạo hẹp hơn đầu xe', 'Vì bánh sau lớn hơn bánh trước', 'Vì gương không phản chiếu bánh sau'], correctIndex: 0 },
+      { prompt: 'Khi vào cua khuất tầm nhìn trong ngõ, nên làm gì?', options: ['Tăng tốc để qua nhanh', 'Bấm còi ngắn và sẵn sàng dừng', 'Không cần tín hiệu gì thêm'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -129,6 +144,11 @@ export const narrowCards: Card[] = [
     safety: 'Ưu tiên nhường cho xe cứu thương, xe cứu hỏa và xe công vụ ưu tiên theo quy định.',
     mnemonic: { text: 'Dừng sớm, tìm chỗ tránh, ra hiệu rõ ràng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
+    quickCheck: [
+      { prompt: 'Khi gặp xe ngược chiều trong ngõ một làn, nên dừng lại từ khoảng cách nào?', options: ['Sát ngay trước mũi xe đối diện', 'Ít nhất mười mét', 'Không cần dừng, cứ đi tiếp'], correctIndex: 1 },
+      { prompt: 'Sau khi thống nhất tín hiệu nhường đường, bên lùi nên làm gì?', options: ['Lùi nhanh cho xong', 'Lùi chậm, giữ khoảng cách với tường', 'Lùi mà không cần nhìn gương'], correctIndex: 1 },
+      { prompt: 'Trong tình huống nhường đường, ai luôn được ưu tiên đi trước?', options: ['Xe cứu thương, cứu hỏa, xe công vụ ưu tiên', 'Xe đến trước theo thứ tự', 'Xe to hơn'], correctIndex: 0 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -161,6 +181,11 @@ export const narrowCards: Card[] = [
     safety: 'Luôn nhường người đi bộ tại nơi có vạch sang đường, kể cả khi bạn đã dừng đúng vị trí.',
     mnemonic: { text: 'Nhô từng chút, phanh đều, không lái gấp.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
+    quickCheck: [
+      { prompt: 'Khi ra khỏi ngõ tại ngã ba đông xe máy, nên nhô đầu xe như thế nào?', options: ['Nhô hết cả xe ra một lần', 'Nhô từng đoạn ngắn để người khác nhìn thấy', 'Không cần giảm tốc trước khi nhô'], correctIndex: 1 },
+      { prompt: 'Khi có xe máy tạt đầu bất ngờ, phản ứng đúng là gì?', options: ['Đánh lái gấp sang làn ngược chiều', 'Phanh đều và giữ hướng thẳng', 'Bấm còi thật to và tăng tốc'], correctIndex: 1 },
+      { prompt: 'Khi nào bạn phải nhường và không nên ra khỏi ngõ dù đã quan sát?', options: ['Khi có người đi bộ đang qua vạch sang đường', 'Khi ngõ có bóng đèn màu vàng', 'Khi xe máy đi rất chậm phía xa'], correctIndex: 0, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',

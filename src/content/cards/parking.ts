@@ -31,6 +31,11 @@ export const parkingCards: Card[] = [
     safety: 'Có người hoặc xe máy cắt ngang phía sau thì dừng ngay, chờ đường trống rồi mới lùi tiếp.',
     mnemonic: { text: 'Chậm, thẳng, đủ góc rồi mới đánh lái.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Khi nào nên bắt đầu đánh hết lái khi lùi vào ô đỗ?', options: ['Ngay khi vừa cài số R', 'Khi vai xe vượt qua mép ô đỗ', 'Khi đã lùi được nửa xe'], correctIndex: 1 },
+      { prompt: 'Trước khi lùi, bạn cần làm gì với gương và tầm nhìn?', options: ['Chỉ cần xem camera lùi', 'Quét đủ ba gương và ngoái nhìn qua vai', 'Nhìn thẳng phía trước là đủ'], correctIndex: 1 },
+      { prompt: 'Có xe máy cắt ngang phía sau khi đang lùi, bạn nên làm gì?', options: ['Đạp phanh dừng ngay, chờ đường trống', 'Đánh lái nhanh để tránh', 'Tăng tốc lùi cho nhanh xong'], correctIndex: 0 }
+    ],
     reviewStatus: 'approved',
     version: '1.1.0',
     updatedAt: '2026-09-10',
@@ -66,6 +71,11 @@ export const parkingCards: Card[] = [
     safety: 'Không mở cửa khi chưa quan sát xe máy đang chạy dọc lối đi trong hầm.',
     mnemonic: { text: 'Gương trái, gương phải, đều vạch mới tắt máy.', rhythm: 'ba-nhip' },
     checklistId: 'post_park',
+    quickCheck: [
+      { prompt: 'Cách đúng để căn thân xe song song vạch là gì?', options: ['Ước lượng bằng cảm giác', 'So hai khoảng cách trong gương trái và phải', 'Chỉ nhìn vạch phía trước xe'], correctIndex: 1 },
+      { prompt: 'Khi nào nên trả lái về thẳng trong bước căn xe?', options: ['Khi chênh lệch hai bên dưới 10 cm', 'Ngay khi bắt đầu lùi', 'Sau khi đã tắt máy'], correctIndex: 0 },
+      { prompt: 'Trước khi mở cửa xuống xe, bạn cần quan sát gì?', options: ['Không cần vì đã đỗ xong', 'Xe máy đang chạy dọc lối đi trong hầm', 'Chỉ cần nhìn gương chiếu hậu trong xe'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -98,6 +108,11 @@ export const parkingCards: Card[] = [
     safety: 'Dừng hẳn nếu cảm biến báo liên tục hoặc có người đi bộ phía sau xe.',
     mnemonic: { text: 'Lệch thì tiến ra, trả thẳng rồi lùi lại.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Khi đuôi xe lệch quá 20 cm so với trục ô đỗ, nên làm gì trước tiên?', options: ['Đánh lái mạnh hơn khi đang lùi', 'Về D, tiến ra rồi trả lái thẳng', 'Tiếp tục lùi và sửa dần'], correctIndex: 1 },
+      { prompt: 'Vì sao không nên sửa lái khi xe đang đứng yên?', options: ['Vì tốn thời gian hơn', 'Vì hướng xe không đổi mà lốp bị mòn', 'Vì máy sẽ tắt'], correctIndex: 1 },
+      { prompt: 'Nếu đã sửa hai lần mà ô đỗ vẫn quá hẹp, bạn nên?', options: ['Cố ghép thêm lần nữa', 'Chọn ô đỗ khác', 'Đỗ lấn sang ô bên cạnh'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -131,6 +146,11 @@ export const parkingCards: Card[] = [
     safety: 'Không ghép ngang ở nơi có biển cấm dừng, cấm đỗ hoặc ngay trước lối ra vào của nhà dân.',
     mnemonic: { text: 'Ngang xe trước, lùi chậm, trả lái đúng lúc.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Khoảng trống tối thiểu để ghép ngang an toàn là bao nhiêu so với chiều dài xe?', options: ['Bằng đúng chiều dài xe', 'Dài hơn khoảng 1,5 mét', 'Ngắn hơn xe cũng ghép được'], correctIndex: 1 },
+      { prompt: 'Khi nào nên trả lái thẳng trong lúc ghép ngang?', options: ['Khi đầu xe mình ngang đuôi xe trước', 'Ngay khi bắt đầu lùi', 'Sau khi đã đỗ xong'], correctIndex: 0 },
+      { prompt: 'Trước khi mở cửa sau khi ghép ngang xong, cần chú ý gì?', options: ['Không cần vì đã đỗ sát lề', 'Quan sát xe máy phía bên trái', 'Chỉ cần tắt máy ngay'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -164,6 +184,11 @@ export const parkingCards: Card[] = [
     safety: 'Không lùi khi mặt dốc đọng nước, tầm nhìn bị che hoặc có người đứng phía sau xe.',
     mnemonic: { text: 'Giữ phanh, nhìn gương, lùi đều từng nhịp.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Khi lùi trên dốc hầm, nên nhả phanh bao nhiêu để xe bò xuống?', options: ['Nhả hết phanh cho xe tự trôi', 'Nhả khoảng một phần ba hành trình phanh', 'Không nhả phanh, chỉ dùng ga'], correctIndex: 1 },
+      { prompt: 'Dấu hiệu nào cho thấy xe đang bị trôi ngoài ý muốn trên dốc?', options: ['Xe tăng tốc dù không đạp ga', 'Vô-lăng nhẹ hơn bình thường', 'Đèn pha sáng hơn'], correctIndex: 0 },
+      { prompt: 'Bạn không nên tiếp tục lùi trên dốc hầm khi nào?', options: ['Khi mặt dốc đọng nước hoặc tầm nhìn bị che khuất', 'Khi hầm hơi tối một chút', 'Khi có một xe khác đỗ cách xa phía trước'], correctIndex: 0, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.1.0',
     updatedAt: '2026-09-10',
@@ -200,6 +225,11 @@ export const parkingCards: Card[] = [
     safety: 'Hầm quá tối thì chọn ô đỗ gần lối bộ hành để giảm thời gian lùi và tăng khả năng được nhìn thấy.',
     mnemonic: { text: 'Tối thì chậm, dừng nhiều nhịp, nghe kỹ.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Khi hầm thiếu sáng, bạn nên dựa vào đâu nhiều hơn để lùi an toàn?', options: ['Chỉ dựa vào camera lùi', 'Mốc canh và âm thanh xung quanh', 'Tốc độ bò nhanh hơn bình thường'], correctIndex: 1 },
+      { prompt: 'Nên lùi theo cách nào trong điều kiện thiếu sáng?', options: ['Lùi một mạch cho nhanh', 'Từng đoạn 50 cm rồi dừng kiểm tra', 'Nhắm mắt ước lượng khoảng cách'], correctIndex: 1 },
+      { prompt: 'Khi không chắc khoảng cách trong hầm tối, bạn nên?', options: ['Cứ lùi tiếp và hy vọng', 'Dừng lại, bật đèn cảnh báo và xuống xe quan sát', 'Bấm còi liên tục rồi lùi nhanh'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -232,6 +262,11 @@ export const parkingCards: Card[] = [
     safety: 'Kích thước ô đỗ mỗi hầm mỗi khác; luôn quan sát thực tế thay vì áp dụng máy móc các con số trong thẻ.',
     mnemonic: { text: 'Xa cột một chút, còn chỗ mở cửa.', rhythm: 'doi-ve' },
     checklistId: 'pre_reverse',
+    quickCheck: [
+      { prompt: 'Vì sao không nên canh khoảng cách tới cột chỉ bằng camera?', options: ['Vì camera luôn chính xác', 'Vì chân cột có thể nằm ngoài khung hình camera', 'Vì camera không hoạt động khi lùi'], correctIndex: 1 },
+      { prompt: 'Quỹ đạo lùi nên lệch bao nhiêu so với phía có cột?', options: ['Lệch khoảng 20 cm về phía xa cột', 'Áp sát cột để chừa chỗ xe bên cạnh', 'Không cần chỉnh quỹ đạo'], correctIndex: 0 },
+      { prompt: 'Khi cảm biến báo liên tục lúc gần cột, bạn nên?', options: ['Tiếp tục lùi thêm một chút', 'Dừng hẳn và kiểm tra khoảng cách thực tế', 'Tắt cảm biến vì hay báo nhầm'], correctIndex: 1 }
+    ],
     reviewStatus: 'draft',
     version: '0.1.0',
     updatedAt: '2026-09-12',

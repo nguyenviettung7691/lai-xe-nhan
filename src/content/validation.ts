@@ -81,6 +81,16 @@ export const validateEditorial = (input: ValidationInput): ValidationIssue[] => 
     if (card.changelog.at(-1)?.version !== card.version) {
       issues.push(issue('editorial', 'warning', 'card', card.id, 'Phiên bản mới nhất trong nhật ký không khớp phiên bản thẻ.'))
     }
+    if (card.quickCheck.length !== 3) {
+      issues.push(issue('editorial', 'error', 'card', card.id, 'Cần đúng 3 câu tự kiểm (quick check).'))
+    }
+    card.quickCheck.forEach((question) => {
+      if (question.options.length < 2) issues.push(issue('editorial', 'error', 'card', card.id, `Câu tự kiểm ${question.id} cần ít nhất 2 phương án.`))
+      if (question.correctIndex < 0 || question.correctIndex >= question.options.length) {
+        issues.push(issue('editorial', 'error', 'card', card.id, `Câu tự kiểm ${question.id} có đáp án đúng không hợp lệ.`))
+      }
+      if (question.prompt.trim().length === 0) issues.push(issue('editorial', 'error', 'card', card.id, `Câu tự kiểm ${question.id} thiếu nội dung câu hỏi.`))
+    })
 
     card.steps.forEach((step, index) => {
       if (step.stepNo !== index + 1) issues.push(issue('editorial', 'error', 'step', step.id, 'Số thứ tự bước không liên tục.'))
@@ -196,6 +206,9 @@ export const validateSafety = (input: ValidationInput): ValidationIssue[] => {
     }
     if (card.risk === 'high' && !/không|tránh|dừng|chờ|quay đầu/i.test(card.safety)) {
       issues.push(issue('safety', 'warning', 'card', card.id, 'Thẻ rủi ro cao nên nêu rõ điều kiện dừng hoặc từ bỏ thao tác.'))
+    }
+    if (card.risk === 'high' && !card.quickCheck.some((question) => question.isStopCondition)) {
+      issues.push(issue('safety', 'error', 'card', card.id, 'Thẻ rủi ro cao cần ít nhất một câu tự kiểm về điều kiện dừng.'))
     }
   }
 

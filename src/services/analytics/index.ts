@@ -11,6 +11,9 @@ export type AnalyticsEventType =
   | 'sync_failed'
   | 'pwa_installed'
   | 'app_loaded'
+  | 'quick_check_result'
+  | 'display_mode_change'
+  | 'experience_level_selected'
 
 export interface AnalyticsEvent {
   id: string

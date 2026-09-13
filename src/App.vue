@@ -16,6 +16,10 @@ const title = computed(() =>
     ? 'Đèn cảnh báo'
     : route.path.includes('checklist')
     ? 'Checklist an toàn'
+    : route.path.includes('review')
+    ? 'Ôn tập ngắt quãng'
+    : route.path.includes('learning-path')
+    ? 'Lộ trình học'
     : 'Kho bài học'
 )
 </script>
@@ -63,6 +67,10 @@ const title = computed(() =>
       </RouterLink>
       <RouterLink to="/checklist" :class="{ active: route.path === '/checklist' }">
         <span>✓</span>Checklist
+      </RouterLink>
+      <RouterLink to="/review" :class="{ active: route.path === '/review' }">
+        <span>⟳</span>Ôn tập
+        <sup v-if="store.dueReviewCards.length > 0" class="nav-badge">{{ store.dueReviewCards.length }}</sup>
       </RouterLink>
       <RouterLink to="/lights" :class="{ active: route.path === '/lights' }">
         <span>!</span>Đèn xe

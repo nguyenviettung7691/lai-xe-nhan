@@ -8,7 +8,9 @@ export const router = createRouter({
     { path: '/topics/:id', component: () => import('./views/TopicView.vue') },
     { path: '/lessons/:id', component: () => import('./views/LessonView.vue') },
     { path: '/checklist', component: () => import('./views/ChecklistView.vue') },
-    { path: '/lights', component: () => import('./views/LightsView.vue') }
+    { path: '/lights', component: () => import('./views/LightsView.vue') },
+    { path: '/review', component: () => import('./views/ReviewView.vue') },
+    { path: '/learning-path', component: () => import('./views/LearningPathView.vue') }
   ],
   scrollBehavior: () => ({ top: 0 })
 })

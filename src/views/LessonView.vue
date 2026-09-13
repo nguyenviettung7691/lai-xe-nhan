@@ -14,6 +14,8 @@ import { useAppStore } from '../stores/app'
 import { speak } from '../services/speech'
 import { analytics } from '../services/analytics'
 import TTSPlayer from '../features/tts/TTSPlayer.vue'
+import QuickCheckPanel from '../features/learning-cards/QuickCheckPanel.vue'
+import type { DisplayMode } from '../types'
 
 const store = useAppStore()
 const route = useRoute()
@@ -27,6 +29,13 @@ const review = computed(() => (card.value ? getReview(card.value.id) : undefined
 const riskLabel = computed(() =>
   card.value?.risk === 'high' ? 'Cần chú ý' : card.value?.risk === 'medium' ? 'Thực hành' : 'Cơ bản'
 )
+
+const displayModes: { value: DisplayMode; label: string }[] = [
+  { value: 'learn', label: 'Học kỹ' },
+  { value: 'quick', label: 'Ôn nhanh' },
+  { value: 'handsfree', label: 'Rảnh tay' }
+]
+const setMode = (mode: DisplayMode) => store.setDisplayMode(mode)
 
 // Find next card for prefetching
 const currentIndex = computed(() =>
@@ -74,12 +83,18 @@ const trackView = () => {
 
 onMounted(() => {
   trackView()
+  if (store.displayMode === 'handsfree' && fullScript.value) {
+    speak(fullScript.value)
+  }
 })
 
 watch(
   () => card.value?.id,
   () => {
     trackView()
+    if (store.displayMode === 'handsfree' && fullScript.value) {
+      speak(fullScript.value)
+    }
   }
 )
 
@@ -99,6 +114,20 @@ const complete = () => {
       <span>{{ card.minutes }} phút</span>
       <span>Độ khó {{ card.difficulty }}/5</span>
       <span v-if="review" class="review-chip" :title="review.notes">✓ Đã thẩm định</span>
+    </div>
+
+    <div class="mode-toggle" role="radiogroup" aria-label="Chế độ hiển thị bài học">
+      <button
+        v-for="mode in displayModes"
+        :key="mode.value"
+        role="radio"
+        :aria-checked="store.displayMode === mode.value"
+        class="mode-btn"
+        :class="{ active: store.displayMode === mode.value }"
+        @click="setMode(mode.value)"
+      >
+        {{ mode.label }}
+      </button>
     </div>
 
     <h1>{{ card.title }}</h1>
@@ -154,7 +183,7 @@ const complete = () => {
       </ol>
     </section>
 
-    <figure v-if="variantAsset" class="card-figure">
+    <figure v-if="variantAsset && store.displayMode !== 'quick'" class="card-figure">
       <img
         :src="variantAsset.url"
         :alt="variantAsset.alt"
@@ -166,7 +195,7 @@ const complete = () => {
       <figcaption>{{ variantAsset.caption }}</figcaption>
     </figure>
 
-    <div class="info-grid">
+    <div v-if="store.displayMode !== 'quick'" class="info-grid">
       <div class="info-box warning">
         <span>!</span>
         <div>
@@ -189,6 +218,8 @@ const complete = () => {
       <strong>Ưu tiên an toàn</strong>
       <p>{{ card.safety }}</p>
     </div>
+
+    <QuickCheckPanel :key="card.id" :card="card" />
 
     <RouterLink
       v-if="checklist"
@@ -223,6 +254,30 @@ const complete = () => {
 </template>
 
 <style scoped>
+.mode-toggle {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  min-height: var(--min-tap-target, 44px);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-full, 9999px);
+  border: 1px solid var(--border-medium, rgba(255, 255, 255, 0.16));
+  background: var(--bg-surface, #14211e);
+  color: var(--text-primary, #f0fdf4);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: var(--accent-primary, #10b981);
+  color: #0e1715;
+  border-color: var(--accent-primary, #10b981);
+}
+
 .next-card-btn {
   margin-top: 0.75rem;
   text-decoration: none;

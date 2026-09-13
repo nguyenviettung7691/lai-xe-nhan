@@ -82,6 +82,19 @@ export interface CardChange {
   author: string
 }
 
+/** Một câu tự kiểm (quick check) gắn với thẻ học — dùng để ôn nhanh và xếp lịch lặp lại. */
+export interface QuickCheckQuestion {
+  id: string
+  cardId: string
+  questionNo: number
+  prompt: string
+  /** 2–4 phương án, chỉ một đáp án đúng. */
+  options: string[]
+  correctIndex: number
+  /** Câu hỏi về điều kiện dừng bắt buộc — mọi thẻ rủi ro cao phải có ít nhất một câu loại này. */
+  isStopCondition?: boolean
+}
+
 export interface Card {
   id: string
   lessonId: string
@@ -104,6 +117,8 @@ export interface Card {
   mnemonic: Mnemonic
   checklistId: ChecklistScope
   assetIds: string[]
+  /** Đúng 3 câu tự kiểm theo chuẩn nội dung. */
+  quickCheck: readonly [QuickCheckQuestion, QuickCheckQuestion, QuickCheckQuestion]
   reviewStatus: ReviewStatus
   version: string
   updatedAt: string
@@ -132,6 +147,31 @@ export interface Topic {
   isActive: boolean
   lessons: Lesson[]
 }
+
+/** Ba mức năng lực để gợi ý thứ tự học theo lộ trình (mục 7 kế hoạch chuyên đề). */
+export type ExperienceLevel = 'beginner' | 'intermediate' | 'experienced'
+
+export interface LearningPath {
+  level: ExperienceLevel
+  title: string
+  summary: string
+  goal: string
+  /** Thứ tự chuyên đề khuyến nghị cho mức năng lực này. */
+  topicOrder: string[]
+}
+
+/** Giai đoạn lặp lại ngắt quãng: 0 → 1 ngày, 1 → 3 ngày, 2 → 7 ngày, 3 → 14 ngày. */
+export type ReviewStage = 0 | 1 | 2 | 3
+
+export interface ReviewScheduleEntry {
+  cardId: string
+  stage: ReviewStage
+  dueAt: string
+  lastResult: 'pass' | 'fail' | null
+  updatedAt: string
+}
+
+export type DisplayMode = 'learn' | 'quick' | 'handsfree'
 
 export interface ChecklistItem {
   id: string

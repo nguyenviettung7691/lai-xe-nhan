@@ -9,7 +9,10 @@ import {
   disclaimer,
   getCardById,
   getChecklist,
+  getLearningPath,
+  getLessonMastery,
   getReview,
+  learningPaths,
   publishedCards,
   topics,
   CONTENT_VERSION
@@ -78,5 +81,39 @@ describe('gói nội dung offline', () => {
     const editorialCards = allTopics.flatMap(topic => topic.lessons).flatMap(lesson => lesson.cards)
     expect(editorialCards).toHaveLength(allCards.length)
     expect(editorialCards.some(card => card.reviewStatus === 'draft')).toBe(true)
+  })
+
+  it('mỗi thẻ có đúng 3 câu tự kiểm hợp lệ', () => {
+    for (const card of publishedCards) {
+      expect(card.quickCheck).toHaveLength(3)
+      for (const question of card.quickCheck) {
+        expect(question.options.length).toBeGreaterThanOrEqual(2)
+        expect(question.correctIndex).toBeGreaterThanOrEqual(0)
+        expect(question.correctIndex).toBeLessThan(question.options.length)
+      }
+    }
+  })
+
+  it('mọi thẻ rủi ro cao có ít nhất một câu tự kiểm điều kiện dừng', () => {
+    for (const card of publishedCards.filter(card => card.risk === 'high')) {
+      expect(card.quickCheck.some(question => question.isStopCondition)).toBe(true)
+    }
+  })
+
+  it('lộ trình học phủ đủ ba mức năng lực và tăng dần số chuyên đề', () => {
+    expect(learningPaths).toHaveLength(3)
+    expect(getLearningPath('beginner')?.topicOrder).toEqual(['parking', 'narrow'])
+    expect(getLearningPath('experienced')?.topicOrder).toHaveLength(4)
+  })
+
+  it('tính đúng mức độ đạt bài học theo tỷ lệ hoàn thành và quick check', () => {
+    const lesson = topics[0].lessons[0]
+    const allCardIds = lesson.cards.map(card => card.id)
+    const achieved = getLessonMastery(lesson, allCardIds, allCardIds)
+    expect(achieved.achieved).toBe(true)
+
+    const notStarted = getLessonMastery(lesson, [], [])
+    expect(notStarted.achieved).toBe(false)
+    expect(notStarted.completedRatio).toBe(0)
   })
 })

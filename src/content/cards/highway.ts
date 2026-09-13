@@ -31,6 +31,11 @@ export const highwayCards: Card[] = [
     safety: 'Làn dừng khẩn cấp chỉ dùng khi thật sự cần; không dừng đỗ để nghỉ hoặc nghe điện thoại.',
     mnemonic: { text: 'Xi-nhan, tăng tốc, nhìn gương rồi nhập làn.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Khi nhập làn cao tốc, nên tăng tốc đến mức nào?', options: ['Chậm hơn dòng xe nhiều để an toàn', 'Bám theo tốc độ của dòng xe trên làn ngoài', 'Giữ nguyên tốc độ đường phố'], correctIndex: 1 },
+      { prompt: 'Khoảng trống tối thiểu để chuyển làn nhập vào cao tốc là bao lâu?', options: ['Một giây', 'Ba giây', 'Không cần tính bằng thời gian'], correctIndex: 1 },
+      { prompt: 'Nếu hết làn tăng tốc mà chưa có khoảng trống an toàn, bạn nên làm gì?', options: ['Dừng hẳn giữa làn tăng tốc để chờ', 'Đi tiếp vào làn dừng khẩn cấp, giữ thẳng lái chờ khe hở', 'Tạt đầu xe đang chạy để có chỗ'], correctIndex: 1, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.1.0',
     updatedAt: '2026-09-10',
@@ -67,6 +72,11 @@ export const highwayCards: Card[] = [
     safety: 'Nếu không kịp vào làn ra an toàn, đi tiếp tới lối ra kế tiếp; không cắt làn hoặc phanh gấp trên làn chính.',
     mnemonic: { text: 'Ra sớm từng làn, giảm tốc trong làn ra.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Nên đọc biển báo lối ra từ khoảng cách nào để chuẩn bị?', options: ['Ngay sát lối ra', 'Khoảng hai ki-lô-mét trước', 'Không cần đọc biển báo'], correctIndex: 1 },
+      { prompt: 'Cách chuyển làn ra khỏi cao tốc đúng là gì?', options: ['Cắt chéo nhiều làn cùng lúc khi gần tới lối ra', 'Chuyển từng làn một, cách nhau vài giây', 'Phanh gấp trên làn chính rồi rẽ'], correctIndex: 1 },
+      { prompt: 'Nếu lỡ mất lối ra mong muốn, bạn nên làm gì?', options: ['Lùi xe lại trên làn chính', 'Đi tiếp tới lối ra kế tiếp', 'Dừng khẩn cấp trên làn chính để quay lại'], correctIndex: 1, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -99,6 +109,11 @@ export const highwayCards: Card[] = [
     safety: 'Quy định tốc độ và làn đường theo Luật Trật tự, an toàn giao thông đường bộ và biển báo tại chỗ luôn được ưu tiên.',
     mnemonic: { text: 'Biển nói gì, chân ga nghe nấy.', rhythm: 'doi-ve' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Nếu đang chạy chậm hơn dòng xe, bạn nên đi ở làn nào?', options: ['Làn trong cùng bên trái', 'Làn bên phải', 'Làn nào cũng được'], correctIndex: 1 },
+      { prompt: 'Giới hạn tốc độ trên cao tốc có thể thay đổi khi nào?', options: ['Chỉ ở đầu tuyến', 'Tại mỗi nút giao, cần quan sát biển báo liên tục', 'Không bao giờ thay đổi'], correctIndex: 1 },
+      { prompt: 'Sau khi vượt xong một xe khác, bạn nên làm gì?', options: ['Giữ nguyên làn trái', 'Trở lại làn bên phải', 'Bật đèn cảnh báo'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -131,6 +146,11 @@ export const highwayCards: Card[] = [
     safety: 'Khoảng cách an toàn tối thiểu theo tốc độ được quy định trong luật giao thông đường bộ hiện hành.',
     mnemonic: { text: 'Đếm ba giây, mưa thì đếm năm.', rhythm: 'doi-ve' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Cách đơn giản để giữ khoảng cách an toàn là gì?', options: ['Ước lượng bằng mét', 'Đếm thời gian từ khi xe trước qua một mốc cố định', 'Nhìn theo cảm giác'], correctIndex: 1 },
+      { prompt: 'Khoảng cách an toàn tối thiểu trong điều kiện thường là bao nhiêu?', options: ['Một giây', 'Ba giây', 'Mười giây'], correctIndex: 1 },
+      { prompt: 'Khi trời mưa hoặc đường ướt, nên tăng khoảng cách lên bao nhiêu?', options: ['Giữ nguyên ba giây', 'Bốn đến năm giây', 'Giảm xuống hai giây'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -164,6 +184,11 @@ export const highwayCards: Card[] = [
     safety: 'Không vượt ở nơi có vạch liền, tầm nhìn hạn chế hoặc biển cấm vượt.',
     mnemonic: { text: 'Vượt nhanh, thoát điểm mù, về làn phải.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Vì sao nên tránh đi song song lâu bên cạnh xe tải dài?', options: ['Vì tốn xăng hơn', 'Vì đó là vùng điểm mù rộng của xe tải', 'Vì luật cấm đi cạnh xe tải'], correctIndex: 1 },
+      { prompt: 'Trước khi chuyển làn để vượt xe tải, cần quan sát gì?', options: ['Chỉ cần bật xi-nhan là đủ', 'Làn trái phải trống hẳn qua gương', 'Không cần quan sát nếu đường vắng'], correctIndex: 1 },
+      { prompt: 'Khi nào không nên thực hiện việc vượt xe tải?', options: ['Khi trời mưa lớn và bụi nước che kín tầm nhìn', 'Khi xe tải đi hơi chậm', 'Khi đường có ba làn'], correctIndex: 0, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -196,6 +221,11 @@ export const highwayCards: Card[] = [
     safety: 'Không tranh chấp trên đường; ghi nhớ biển số và báo cơ quan chức năng nếu bị đe dọa.',
     mnemonic: { text: 'Giữ đều, giãn trước, nhường phải, đi tiếp.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
+    quickCheck: [
+      { prompt: 'Khi bị xe sau bám sát và nháy đèn, phản ứng đúng là gì?', options: ['Đạp phanh cảnh cáo', 'Giữ tốc độ ổn định, tránh phản ứng đột ngột', 'Tăng tốc bỏ chạy'], correctIndex: 1 },
+      { prompt: 'Nên làm gì để tạo điều kiện cho xe sau vượt an toàn?', options: ['Bám sát xe phía trước hơn', 'Bật xi-nhan phải, chuyển làn khi có khoảng trống', 'Giảm tốc đột ngột giữa làn'], correctIndex: 1 },
+      { prompt: 'Nếu xe phía sau tiếp tục bám sát và có dấu hiệu đe dọa, bạn nên?', options: ['Tấp vào trạm dừng nghỉ gần nhất và chờ', 'Dừng hẳn giữa cao tốc để tranh cãi', 'Tăng tốc tối đa để bỏ xa'], correctIndex: 0, isStopCondition: true }
+    ],
     reviewStatus: 'needs_revision',
     version: '0.9.0',
     updatedAt: '2026-09-12',

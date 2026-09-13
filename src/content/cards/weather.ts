@@ -31,6 +31,11 @@ export const weatherCards: Card[] = [
     safety: 'Điểm cứu nạn trên đèo được thiết kế để dừng xe mất phanh; hãy ghi nhớ vị trí khi đi qua.',
     mnemonic: { text: 'Số thấp giữ đèo, phanh chỉ điểm xuyết.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
+    quickCheck: [
+      { prompt: 'Khi đổ đèo dài, nên dùng phanh như thế nào?', options: ['Rà phanh liên tục suốt đoạn dốc', 'Về số thấp, dùng phanh động cơ là chính', 'Về số N cho xe trôi nhẹ nhàng'], correctIndex: 1 },
+      { prompt: 'Dấu hiệu nào cho thấy phanh đang quá nhiệt?', options: ['Vô-lăng nhẹ hơn', 'Ngửi thấy mùi khét hoặc phanh mềm', 'Đồng hồ tốc độ nhảy số'], correctIndex: 1 },
+      { prompt: 'Khi phát hiện dấu hiệu phanh quá nhiệt trên đèo, bạn nên?', options: ['Tiếp tục đi nhanh cho hết dốc', 'Tấp vào điểm dừng an toàn để phanh nguội', 'Đạp phanh gấp liên tục'], correctIndex: 1, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.1.0',
     updatedAt: '2026-09-10',
@@ -66,6 +71,11 @@ export const weatherCards: Card[] = [
     safety: 'Giữ khoảng cách ít nhất một thân xe khi dừng trên dốc để có không gian xử lý.',
     mnemonic: { text: 'Có lực kéo rồi mới nhả phanh tay.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
+    quickCheck: [
+      { prompt: 'Trước khi khởi hành ngang dốc, cần giữ xe đứng yên bằng gì?', options: ['Chỉ giữ ga', 'Đạp phanh và kéo phanh tay', 'Để số N'], correctIndex: 1 },
+      { prompt: 'Nên nhả phanh tay khi nào?', options: ['Ngay khi vừa cài số D', 'Khi cảm nhận xe đã có lực kéo từ chân ga', 'Sau khi xe đã trôi lùi'], correctIndex: 1 },
+      { prompt: 'Nếu xe bắt đầu trôi ngược khi khởi hành ngang dốc, bạn phải làm gì ngay?', options: ['Tiếp tục đệm ga chờ xe tự cân bằng', 'Đạp phanh dứt khoát, kéo phanh tay và làm lại từ đầu', 'Nhả hết phanh tay để xe dễ đi'], correctIndex: 1, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -99,6 +109,11 @@ export const weatherCards: Card[] = [
     safety: 'Mỗi dòng xe có ký hiệu và giới hạn khác nhau; đọc sách hướng dẫn của nhà sản xuất trước khi áp dụng.',
     mnemonic: { text: 'Nhả ga, về một cấp, nghe máy hãm.', rhythm: 'ba-nhip' },
     checklistId: 'bad_weather',
+    quickCheck: [
+      { prompt: 'Trước khi chuyển sang số tay hoặc chế độ L, nên làm gì?', options: ['Đạp ga thêm', 'Nhả ga hoàn toàn', 'Đánh lái gấp'], correctIndex: 1 },
+      { prompt: 'Nên về số như thế nào khi xe đang chạy nhanh?', options: ['Về liền hai đến ba cấp cùng lúc', 'Về từng cấp một', 'Không cần về số'], correctIndex: 1 },
+      { prompt: 'Khi nào nên trở lại chế độ D?', options: ['Ngay giữa đoạn dốc', 'Khi hết đoạn dốc', 'Không bao giờ cần chuyển lại'], correctIndex: 1 }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -132,6 +147,11 @@ export const weatherCards: Card[] = [
     safety: 'Nước chảy xiết chỉ cần sâu ba mươi xăng-ti-mét đã có thể cuốn trôi ô tô; quay đầu luôn là lựa chọn an toàn.',
     mnemonic: { text: 'Nước quá nửa bánh, quay đầu tìm đường khác.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
+    quickCheck: [
+      { prompt: 'Cách xác định mức nước ngập trước khi quyết định đi qua là gì?', options: ['Nhìn màu nước', 'Quan sát mức nước ngập tới đâu trên bánh xe đi trước', 'Hỏi người đi đường'], correctIndex: 1 },
+      { prompt: 'Khi đi qua vùng ngập, nên giữ ga như thế nào?', options: ['Ga đều, không dừng giữa vùng ngập', 'Tăng giảm ga liên tục', 'Dừng lại giữa chừng để quan sát'], correctIndex: 0 },
+      { prompt: 'Khi nào bạn nên quay đầu thay vì đi qua vùng ngập?', options: ['Khi nước cao quá nửa bánh xe hoặc chảy xiết', 'Khi có vài chiếc xe máy đã đi qua', 'Khi nước chỉ ngập mặt đường mỏng'], correctIndex: 0, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',
@@ -165,6 +185,11 @@ export const weatherCards: Card[] = [
     safety: 'Dừng nghỉ khi mưa quá lớn là lựa chọn hợp lý; bật đèn cảnh báo và đỗ ngoài phần đường xe chạy.',
     mnemonic: { text: 'Chậm hơn, xa hơn, sáng đèn, giữ thẳng.', rhythm: 'ba-nhip' },
     checklistId: 'bad_weather',
+    quickCheck: [
+      { prompt: 'Khi lái xe trong mưa lớn, nên điều chỉnh tốc độ như thế nào?', options: ['Giữ nguyên tốc độ bình thường', 'Giảm tốc ít nhất hai mươi phần trăm so với ngày khô', 'Tăng tốc để nhanh thoát khỏi mưa'], correctIndex: 1 },
+      { prompt: 'Dấu hiệu nào cho thấy xe đang trượt nước?', options: ['Vô-lăng bỗng nhẹ hẫng', 'Đèn pha sáng hơn', 'Tiếng động cơ êm hơn'], correctIndex: 0 },
+      { prompt: 'Khi không còn nhìn rõ vạch kẻ đường vì mưa quá lớn, bạn nên?', options: ['Tiếp tục chạy chậm hơn một chút', 'Tấp vào nơi an toàn và bật đèn cảnh báo', 'Bật đèn pha để nhìn xa hơn'], correctIndex: 1, isStopCondition: true }
+    ],
     reviewStatus: 'approved',
     version: '1.0.0',
     updatedAt: '2026-09-11',

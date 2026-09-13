@@ -1,4 +1,4 @@
-import type { Card, CardChange, CardStep, CardTags, ChecklistScope, CueType, Difficulty, ReviewStatus, RhythmStyle, Risk } from '../types'
+import type { Card, CardChange, CardStep, CardTags, ChecklistScope, CueType, Difficulty, QuickCheckQuestion, ReviewStatus, RhythmStyle, Risk } from '../types'
 
 interface StepInput {
   instruction: string
@@ -6,6 +6,13 @@ interface StepInput {
   cueText: string
   speedHint?: string
   steeringHint?: string
+}
+
+export interface QuickCheckInput {
+  prompt: string
+  options: string[]
+  correctIndex: number
+  isStopCondition?: boolean
 }
 
 export interface CardInput {
@@ -25,6 +32,8 @@ export interface CardInput {
   safety: string
   mnemonic: { text: string; rhythm: RhythmStyle }
   checklistId: ChecklistScope
+  /** Đúng 3 câu tự kiểm; thẻ rủi ro cao nên có ít nhất một câu điều kiện dừng. */
+  quickCheck: readonly [QuickCheckInput, QuickCheckInput, QuickCheckInput]
   reviewStatus: ReviewStatus
   version: string
   updatedAt: string
@@ -39,6 +48,16 @@ const toStep = (cardId: string) => (step: StepInput, index: number): CardStep =>
   cueText: step.cueText,
   ...(step.speedHint ? { speedHint: step.speedHint } : {}),
   ...(step.steeringHint ? { steeringHint: step.steeringHint } : {})
+})
+
+const toQuickCheck = (cardId: string) => (question: QuickCheckInput, index: number): QuickCheckQuestion => ({
+  id: `${cardId}-qc${index + 1}`,
+  cardId,
+  questionNo: index + 1,
+  prompt: question.prompt,
+  options: question.options,
+  correctIndex: question.correctIndex,
+  ...(question.isStopCondition ? { isStopCondition: true } : {})
 })
 
 /** Chuẩn hóa một thẻ học: sinh id bước, id khẩu quyết và id asset theo quy ước chung. */
@@ -60,6 +79,7 @@ export const defineCard = (input: CardInput): Card => ({
   mnemonic: { id: `${input.id}-mn`, cardId: input.id, text: input.mnemonic.text, rhythm: input.mnemonic.rhythm },
   checklistId: input.checklistId,
   assetIds: [`${input.id}-main`, `${input.id}-var`],
+  quickCheck: input.quickCheck.map(toQuickCheck(input.id)) as unknown as Card['quickCheck'],
   reviewStatus: input.reviewStatus,
   version: input.version,
   updatedAt: input.updatedAt,
