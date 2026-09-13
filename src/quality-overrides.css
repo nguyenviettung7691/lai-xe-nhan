@@ -1,0 +1,11 @@
+/* Keep progress animation composited and the callout accent understated. */
+.progress-track span {
+  width: 100%;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 0.3s ease;
+}
+
+.mnemonic {
+  border-left: 0;
+  border-top: 2px solid var(--accent);
+}

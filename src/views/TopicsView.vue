@@ -1,0 +1,2 @@
+<script setup lang="ts">import { RouterLink } from 'vue-router'; import { topics } from '../content'</script>
+<template><div class="topic-grid"><RouterLink v-for="(topic, index) in topics" :key="topic.id" :to="`/topics/${topic.id}`" class="topic-card large" :style="{ '--accent': topic.color }"><span class="topic-number">0{{ index + 1 }}</span><span class="topic-icon">{{ topic.icon }}</span><h2>{{ topic.title }}</h2><p>{{ topic.description }}</p><small>{{ topic.lessons.length }} bài học · 2–4 phút/bài</small><span class="card-arrow">↗</span></RouterLink></div></template>
