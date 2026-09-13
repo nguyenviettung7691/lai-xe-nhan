@@ -4,9 +4,15 @@
 
 ## Nội dung
 
-- Bài học về lùi chuồng, đường hẹp, cao tốc, đèo dốc và mưa ngập.
-- Checklist trước khi lái và trước khi rời xe.
+- 4 chuyên đề: lùi chuồng & đỗ xe, đường hẹp trong phố, cao tốc, thời tiết xấu (mưa lớn, ngập, sương mù, đèo dốc).
+- 23 thẻ học tình huống, mỗi thẻ gồm bối cảnh, mục tiêu, các bước có mốc canh, lỗi thường gặp, cách chữa và cảnh báo an toàn.
+- Sơ đồ vector tự tạo cho từng thẻ, hoạt động offline.
+- Checklist theo ngữ cảnh (trước khi lái, trước khi rời xe, trước chuyến dài, trước khi vào cao tốc, khi trời mưa).
 - Tra cứu đèn cảnh báo trên táp-lô.
+
+## Chất lượng
+
+Nội dung được biên tập theo phiên bản, qua hàng rào kiểm tra tự động (biên tập, kỹ thuật, an toàn) và chỉ phát hành thẻ đã được thẩm định chuyên môn.
 
 ## Ghi chú
 

@@ -1,8 +1,85 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { checklists, disclaimer } from '../content'
 import { useAppStore } from '../stores/app'
+
 const store = useAppStore()
-const items = [{ id: 'seat', label: 'Ghế chỉnh đúng tư thế' }, { id: 'mirrors', label: 'Gương trái, phải và giữa' }, { id: 'belt', label: 'Dây an toàn đã cài' }, { id: 'brake', label: 'Phanh tay và trạng thái số' }, { id: 'fuel', label: 'Nhiên liệu đủ cho hành trình' }, { id: 'warning', label: 'Không có đèn cảnh báo bất thường' }]
-const done = computed(() => items.filter(item => store.checked[item.id]).length)
+const route = useRoute()
+const router = useRouter()
+const isChecklistId = (value: unknown): value is typeof checklists[number]['id'] =>
+  typeof value === 'string' && checklists.some((checklist) => checklist.id === value)
+
+const active = computed({
+  get: () => (isChecklistId(route.query.scope) ? route.query.scope : checklists[0].id),
+  set: (scope) => router.replace({ query: { ...route.query, scope } })
+})
+
+const doneCount = (id: string) => {
+  const checklist = checklists.find((item) => item.id === id)
+  return checklist ? checklist.items.filter((item) => store.checked[item.id]).length : 0
+}
 </script>
-<template><section class="checklist-card"><div class="checklist-top"><div><p class="eyebrow">MỖI LẦN TRƯỚC KHI LÁI</p><h2>Trước khi nổ máy</h2></div><div class="completion"><b>{{ done }}</b><span>/ {{ items.length }}</span></div></div><div class="progress-track"><span :style="{ '--progress': `${done / items.length}` }" /></div><label v-for="item in items" :key="item.id" class="check-row"><input type="checkbox" :checked="store.checked[item.id]" @change="store.toggleCheck(item.id)" /><span class="fake-check">✓</span><span>{{ item.label }}</span></label><button class="text-button" @click="store.resetChecklist(items.map(item => item.id))">↻ Đặt lại checklist</button></section><section class="checklist-card secondary"><p class="eyebrow">TRƯỚC KHI RỜI XE</p><h2>Đỗ xe an toàn</h2><p class="muted">Một thói quen nhỏ giúp chuyến đi sau bắt đầu nhẹ nhàng hơn.</p><div class="mini-checks"><span>✓ Về P</span><span>✓ Kéo phanh tay</span><span>✓ Tắt máy & khóa cửa</span></div></section></template>
+
+<template>
+  <div class="checklist-view">
+    <div class="filters" role="tablist" aria-label="Chọn checklist">
+      <button
+        v-for="checklist in checklists"
+        :key="checklist.id"
+        role="tab"
+        :aria-selected="active === checklist.id"
+        :class="{ selected: active === checklist.id }"
+        @click="active = checklist.id"
+      >
+        {{ checklist.title }}
+      </button>
+    </div>
+
+    <section
+      v-for="checklist in checklists"
+      v-show="active === checklist.id"
+      :key="checklist.id"
+      class="checklist-card"
+    >
+      <div class="checklist-top">
+        <div>
+          <p class="eyebrow">
+            {{ checklist.scope === 'pre_drive' ? 'MỖI LẦN TRƯỚC KHI LÁI' : 'DÙNG KHI CẦN' }}
+          </p>
+          <h2>{{ checklist.title }}</h2>
+        </div>
+        <div class="completion">
+          <b>{{ doneCount(checklist.id) }}</b>
+          <span>/ {{ checklist.items.length }}</span>
+        </div>
+      </div>
+      <p class="muted">{{ checklist.description }}</p>
+      <div class="progress-track">
+        <span :style="{ '--progress': `${doneCount(checklist.id) / checklist.items.length}` }" />
+      </div>
+      <label v-for="item in checklist.items" :key="item.id" class="check-row">
+        <input
+          type="checkbox"
+          :checked="store.checked[item.id]"
+          @change="store.toggleCheck(item.id, checklist.id)"
+        />
+        <span class="fake-check">✓</span>
+        <span>
+          {{ item.label }}
+          <small v-if="item.criticalLevel === 'must'" class="must-tag">bắt buộc</small>
+          <small v-if="item.hint" class="cue">{{ item.hint }}</small>
+        </span>
+      </label>
+      <button
+        class="text-button"
+        @click="store.resetChecklist(checklist.items.map((item) => item.id), checklist.id)"
+      >
+        ↻ Đặt lại checklist
+      </button>
+    </section>
+
+    <p class="content-meta muted">{{ disclaimer.short }}</p>
+  </div>
+</template>
+
