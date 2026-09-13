@@ -40,6 +40,26 @@ Chi tiết mô hình dữ liệu, quy trình duyệt và cách thêm thẻ mới
 - **Hands-free TTS**: Web Speech API (`src/services/speech.ts` & `src/features/tts/`) với tùy chọn tốc độ 0.9x / 1.0x / 1.1x và đọc từng bước thao tác.
 - **Observability**: Ghi nhận sự kiện học tập và đo đạc Web Vitals (`LCP`, `CLS`, `FCP`).
 
+## Tính năng hữu dụng (Pha 4)
+
+- **Checklist tương tác** (`src/views/ChecklistView.vue`, `src/services/checklist/`): tick một chạm với
+  haptic nhẹ, thanh tiến độ `n/N`, nút đặt lại và **lịch sử hoàn tất** (thời điểm + thời gian hoàn tất).
+  Trạng thái lưu ngay vào `localStorage` + IndexedDB; mỗi lượt hoàn tất được đẩy vào hàng đợi đồng bộ
+  (`checklist_session` → bảng `sync_audit_logs`) và gửi lên cloud khi online, có đăng nhập.
+- **Đọc to (TTS)** (`src/services/speech.ts`, `src/features/tts/`): đọc cả thẻ hoặc **từng bước** với
+  khoảng nghỉ 0,7 giây, play/pause/stop, bước trước/bước sau, tốc độ 0.9x / 1.0x / 1.1x. Khi thiết bị
+  không có giọng đọc tiếng Việt, app tự chuyển sang **chế độ chữ to**. Chế độ “Rảnh tay” phóng to nút
+  điều khiển và ẩn bớt nội dung phụ.
+- **Night mode + tương phản cao** (`src/services/theme/`, `src/styles/tokens.css`): mặc định theo
+  giao diện hệ thống, cho phép ép Ban đêm/Ban ngày và bật chế độ tương phản cao. Toàn bộ màn hình đạt
+  tương phản chữ WCAG AA ở cả bốn tổ hợp sáng/tối × thường/tương phản cao.
+- **Tra cứu đèn cảnh báo** (`src/content/lights.ts`, `src/views/LightsView.vue`): 24 đèn phổ biến với
+  màu đèn, mức độ (khẩn cấp / cảnh báo / theo dõi), 3 bước xử lý ngay, điều không nên làm và mốc gọi
+  cứu hộ. Tìm kiếm không dấu (“ac quy”, “dong co”), lọc theo mức độ và màu, đèn khẩn cấp xếp lên đầu.
+- **Đo đạc & offline**: các sự kiện `checklist_started/completed`, `tts_started/completed/step_skipped`,
+  `light_search_used`, `light_detail_viewed`, `night_mode_enabled` được ghi vào hàng đợi cục bộ
+  (`src/services/analytics/`), giữ lại khi mất mạng và gửi lại qua `analytics.setTransport()` khi online.
+
 ## Kiểm tra
 
 ```bash

@@ -2,12 +2,19 @@
 import { computed, ref } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import { useAppStore } from './stores/app'
+import { THEME_LABEL } from './services/theme'
 import SyncStatusBadge from './features/auth/SyncStatusBadge.vue'
 import AuthModal from './features/auth/AuthModal.vue'
 
 const store = useAppStore()
 const route = useRoute()
 const showAuthModal = ref(false)
+
+const themeIcon = computed(() =>
+  store.themePreference === 'system' ? '◑' : store.themePreference === 'dark' ? '☾' : '☼'
+)
+
+const themeLabel = computed(() => `Giao diện: ${THEME_LABEL[store.themePreference]}`)
 
 const title = computed(() =>
   route.path === '/'
@@ -39,10 +46,21 @@ const title = computed(() =>
         />
         <button
           class="icon-button"
-          :aria-label="store.theme === 'dark' ? 'Chuyển sang sáng' : 'Chuyển sang tối'"
+          :title="themeLabel"
+          :aria-label="`${themeLabel}. Chạm để đổi.`"
           @click="store.toggleTheme"
         >
-          {{ store.theme === 'dark' ? '☼' : '☾' }}
+          {{ themeIcon }}
+        </button>
+        <button
+          class="icon-button"
+          :class="{ active: store.isHighContrast }"
+          :aria-pressed="store.isHighContrast"
+          :title="store.isHighContrast ? 'Tắt tương phản cao' : 'Bật tương phản cao'"
+          aria-label="Chế độ tương phản cao"
+          @click="store.toggleContrast"
+        >
+          ◐
         </button>
       </div>
     </header>

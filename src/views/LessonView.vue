@@ -11,7 +11,8 @@ import {
   publishedCards
 } from '../content'
 import { useAppStore } from '../stores/app'
-import { speak } from '../services/speech'
+import { speak, speechService } from '../services/speech'
+import type { TTSStep } from '../services/speech'
 import { analytics } from '../services/analytics'
 import TTSPlayer from '../features/tts/TTSPlayer.vue'
 import QuickCheckPanel from '../features/learning-cards/QuickCheckPanel.vue'
@@ -71,6 +72,28 @@ const fullScript = computed(() => {
   ].join('. ')
 })
 
+/** Kịch bản đọc từng bước: mỗi bước bắt đầu bằng "Bước n" kèm mốc canh. */
+const ttsSteps = computed<TTSStep[]>(() => {
+  if (!card.value) return []
+  return [
+    {
+      id: `${card.value.id}-mnemonic`,
+      label: 'Khẩu quyết',
+      text: `Khẩu quyết: ${card.value.mnemonic.text}`
+    },
+    ...card.value.steps.map((step) => ({
+      id: step.id,
+      label: `Bước ${step.stepNo}`,
+      text: `Bước ${step.stepNo}: ${step.instruction}. Mốc canh: ${step.cueText}`
+    })),
+    {
+      id: `${card.value.id}-safety`,
+      label: 'An toàn',
+      text: `An toàn: ${card.value.safety}`
+    }
+  ]
+})
+
 const trackView = () => {
   if (card.value) {
     analytics.track('card_view', {
@@ -81,20 +104,22 @@ const trackView = () => {
   }
 }
 
+/** Chế độ rảnh tay: tự đọc lần lượt từng bước khi mở thẻ. */
+const autoPlayHandsfree = () => {
+  if (store.displayMode !== 'handsfree' || ttsSteps.value.length === 0) return
+  speechService.speakSequence(ttsSteps.value, { source: card.value?.id })
+}
+
 onMounted(() => {
   trackView()
-  if (store.displayMode === 'handsfree' && fullScript.value) {
-    speak(fullScript.value)
-  }
+  autoPlayHandsfree()
 })
 
 watch(
   () => card.value?.id,
   () => {
     trackView()
-    if (store.displayMode === 'handsfree' && fullScript.value) {
-      speak(fullScript.value)
-    }
+    autoPlayHandsfree()
   }
 )
 
@@ -149,11 +174,14 @@ const complete = () => {
       <figcaption>{{ mainAsset.caption }}</figcaption>
     </figure>
 
-    <!-- Enhanced Accessible TTS Toolbar with Speeds 0.9x / 1.0x / 1.1x -->
+    <!-- Bộ đọc: cả bài, từng bước, tốc độ 0.9x / 1.0x / 1.1x và chế độ chữ to -->
     <TTSPlayer
       title="Nghe hướng dẫn bài học"
       subtitle="Chế độ rảnh tay khi đang vần vô-lăng"
       :script-text="fullScript"
+      :steps="ttsSteps"
+      :driving-mode="store.displayMode === 'handsfree'"
+      :source="card.id"
     />
 
     <section>
@@ -274,7 +302,7 @@ const complete = () => {
 
 .mode-btn.active {
   background: var(--accent-primary, #10b981);
-  color: #0e1715;
+  color: var(--accent-ink, #0e1715);
   border-color: var(--accent-primary, #10b981);
 }
 

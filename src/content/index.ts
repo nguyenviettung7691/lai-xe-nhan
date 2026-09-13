@@ -3,7 +3,15 @@ import { CONTENT_GENERATED_AT, CONTENT_LOCALE, CONTENT_VERSION, contentReleases 
 import { disclaimer } from './disclaimer'
 import { allCards, allTopics, buildTopics } from './topics'
 import { checklists } from './checklists'
-import { dashboardLights } from './lights'
+import {
+  dashboardLights,
+  findLights,
+  getLightById,
+  normalizeKeyword,
+  LIGHT_COLOR_LABEL,
+  SEVERITY_LABEL,
+  SEVERITY_SHORT_LABEL
+} from './lights'
 import { expertReviews } from './reviews'
 import { assetManifest, assets, getAsset, getCardAssets, offlineSizeKb } from './assets'
 import { errorsOf, validateContent, warningsOf } from './validation'
@@ -100,9 +108,15 @@ export {
   dashboardLights,
   disclaimer,
   expertReviews,
+  findLights,
   getAsset,
   getCardAssets,
   getLearningPath,
+  getLightById,
   learningPaths,
-  offlineSizeKb
+  normalizeKeyword,
+  offlineSizeKb,
+  LIGHT_COLOR_LABEL,
+  SEVERITY_LABEL,
+  SEVERITY_SHORT_LABEL
 }

@@ -39,7 +39,7 @@ và id asset (`<cardId>-main`, `<cardId>-var`).
 
 - 4 chuyên đề, 8 bài học, 23 thẻ (21 thẻ đã duyệt, 1 nháp, 1 cần sửa).
 - 46 sơ đồ SVG tự tạo, tổng ~118 KB.
-- 5 checklist theo ngữ cảnh, 8 đèn cảnh báo táp-lô.
+- 5 checklist theo ngữ cảnh, 24 đèn cảnh báo táp-lô.
 
 ## 3. Chỉ nội dung đã duyệt được phát hành
 

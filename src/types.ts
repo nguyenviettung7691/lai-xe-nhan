@@ -189,16 +189,42 @@ export interface Checklist {
   items: ChecklistItem[]
 }
 
+/** Màu đèn trên táp-lô: đỏ (dừng sớm), vàng (cảnh báo), xanh (thông báo). */
+export type LightColor = 'red' | 'amber' | 'green'
+
 export interface DashboardLight {
   id: string
   icon: string
   name: string
   english: string
+  color: LightColor
   severity: Severity
   description: string
-  actions: string[]
+  /** Từ khóa tiếng Việt không dấu/có dấu để tra cứu nhanh ("phanh", "ac quy"…). */
+  keywords: string[]
+  /** Đúng 3 bước xử lý tức thời, ưu tiên hành động trước giải thích. */
+  actions: readonly [string, string, string]
   avoid: string
+  /** Khi nào cần gọi cứu hộ hoặc vào gara. */
+  callHelp: string
 }
+
+/** Một lượt sử dụng checklist, dùng cho lịch sử và đồng bộ (mục 3.4). */
+export interface ChecklistSession {
+  id: string
+  scope: ChecklistScope
+  startedAt: string
+  completedAt: string
+  /** Thời gian hoàn tất toàn bộ checklist, tính bằng mili giây. */
+  durationMs: number
+  completedItems: number
+  totalItems: number
+}
+
+/** Nguồn quyết định giao diện sáng/tối: theo hệ thống hoặc do người dùng ép. */
+export type ThemePreference = 'system' | 'dark' | 'light'
+export type ThemeMode = 'dark' | 'light'
+export type ContrastPreference = 'normal' | 'high'
 
 export interface ContentDisclaimer {
   short: string

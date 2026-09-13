@@ -314,7 +314,7 @@ const handleForceSync = async () => {
 
 .action-button.primary {
   background: var(--accent-primary, #10b981);
-  color: #0e1715;
+  color: var(--accent-ink, #0e1715);
 }
 
 .action-button.secondary {

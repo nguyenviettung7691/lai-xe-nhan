@@ -159,15 +159,30 @@ export const ChecklistSchema = z.object({
   items: z.array(ChecklistItemSchema).min(1)
 })
 
+export const LightColorSchema = z.enum(['red', 'amber', 'green'])
+
 export const DashboardLightSchema = z.object({
   id: z.string().min(1),
   icon: z.string().min(1),
   name: z.string().min(2),
   english: z.string().min(2),
+  color: LightColorSchema,
   severity: SeveritySchema,
   description: z.string(),
-  actions: z.array(z.string()).min(1),
-  avoid: z.string()
+  keywords: z.array(z.string()).min(1),
+  actions: z.tuple([z.string(), z.string(), z.string()]),
+  avoid: z.string(),
+  callHelp: z.string()
+})
+
+export const ChecklistSessionSchema = z.object({
+  id: z.string().min(1),
+  scope: ChecklistScopeSchema,
+  startedAt: z.string(),
+  completedAt: z.string(),
+  durationMs: z.number().nonnegative(),
+  completedItems: z.number().int().nonnegative(),
+  totalItems: z.number().int().positive()
 })
 
 export const ContentDisclaimerSchema = z.object({
@@ -217,6 +232,7 @@ export const SyncEventTypeSchema = z.enum([
   'progress_update',
   'checklist_toggle',
   'checklist_reset',
+  'checklist_session',
   'feedback_submit'
 ])
 
@@ -244,6 +260,7 @@ export const FeedbackSchema = z.object({
 export type ZCard = z.infer<typeof CardSchema>
 export type ZTopic = z.infer<typeof TopicSchema>
 export type ZContentPack = z.infer<typeof ContentPackSchema>
+export type ZChecklistSession = z.infer<typeof ChecklistSessionSchema>
 export type ZUserProgress = z.infer<typeof UserProgressSchema>
 export type ZUserChecklistState = z.infer<typeof UserChecklistStateSchema>
 export type ZSyncEvent = z.infer<typeof SyncEventSchema>

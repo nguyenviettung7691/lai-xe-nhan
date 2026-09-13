@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { analytics } from './index'
 
 describe('Analytics & Web Vitals Service', () => {
@@ -30,5 +30,53 @@ describe('Analytics & Web Vitals Service', () => {
 
     const clsPoor = vitals.find((v) => v.name === 'CLS' && v.value === 0.3)
     expect(clsPoor?.rating).toBe('poor')
+  })
+
+  it('ghi nhận đủ sự kiện lõi của nhóm tính năng hữu dụng', () => {
+    analytics.reset()
+    analytics.track('checklist_started', { scope: 'pre_drive' })
+    analytics.track('checklist_completed', { scope: 'pre_drive', durationMs: 18000 })
+    analytics.track('tts_started', { mode: 'sequence' })
+    analytics.track('tts_step_skipped', { direction: 'next' })
+    analytics.track('tts_completed', { mode: 'sequence' })
+    analytics.track('light_search_used', { keyword: 'phanh' })
+    analytics.track('light_detail_viewed', { lightId: 'brake' })
+    analytics.track('night_mode_enabled', { preference: 'system' })
+
+    const types = analytics.getEvents().map((event) => event.type)
+    for (const expected of [
+      'checklist_started',
+      'checklist_completed',
+      'tts_started',
+      'tts_step_skipped',
+      'tts_completed',
+      'light_search_used',
+      'light_detail_viewed',
+      'night_mode_enabled'
+    ] as const) {
+      expect(types).toContain(expected)
+    }
+  })
+
+  it('giữ hàng đợi khi offline và gửi lại khi có mạng', async () => {
+    analytics.reset()
+
+    const failing = vi.fn().mockResolvedValue(false)
+    analytics.setTransport(failing)
+    analytics.track('offline_mode_used', { scope: 'pre_drive' })
+    analytics.track('checklist_completed', { scope: 'pre_drive' })
+
+    await vi.waitFor(() => expect(failing).toHaveBeenCalled())
+    expect(analytics.getPendingEvents()).toHaveLength(2)
+
+    const sender = vi.fn().mockResolvedValue(true)
+    analytics.setTransport(sender)
+
+    await vi.waitFor(() => expect(analytics.getPendingEvents()).toHaveLength(0))
+    expect(sender).toHaveBeenCalled()
+    expect(sender.mock.calls[0][0]).toHaveLength(2)
+
+    analytics.setTransport(null)
+    analytics.reset()
   })
 })

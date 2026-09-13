@@ -1,9 +1,9 @@
 import { openDB, type IDBPDatabase } from 'idb'
-import type { ContentPack } from '../../types'
+import type { ChecklistSession, ContentPack } from '../../types'
 import { ContentPackSchema, type ZSyncEvent } from '../../lib/schema'
 
 const DB_NAME = 'lxn-offline-store'
-const DB_VERSION = 1
+const DB_VERSION = 3
 
 interface OfflineDBSchema {
   content_packs: {
@@ -28,6 +28,18 @@ interface OfflineDBSchema {
       scope: string
       checked: Record<string, boolean>
       updatedAt: number
+    }
+  }
+  checklist_sessions: {
+    key: string
+    value: ChecklistSession
+    indexes: { 'by-scope': string; 'by-completed-at': string }
+  }
+  checklist_active: {
+    key: string
+    value: {
+      scope: string
+      startedAt: string
     }
   }
   sync_queue: {
@@ -59,6 +71,14 @@ function getDB(): Promise<IDBPDatabase<OfflineDBSchema> | null> {
         }
         if (!db.objectStoreNames.contains('checklist_states')) {
           db.createObjectStore('checklist_states', { keyPath: 'scope' })
+        }
+        if (!db.objectStoreNames.contains('checklist_sessions')) {
+          const sessionStore = db.createObjectStore('checklist_sessions', { keyPath: 'id' })
+          sessionStore.createIndex('by-scope', 'scope')
+          sessionStore.createIndex('by-completed-at', 'completedAt')
+        }
+        if (!db.objectStoreNames.contains('checklist_active')) {
+          db.createObjectStore('checklist_active', { keyPath: 'scope' })
         }
         if (!db.objectStoreNames.contains('sync_queue')) {
           const syncStore = db.createObjectStore('sync_queue', { keyPath: 'id' })
@@ -134,7 +154,8 @@ export async function saveProgressToIDB(userId = 'local', completed: string[]): 
       updatedAt: Date.now()
     })
     return true
-  } catch {
+  } catch (err) {
+    console.warn('[IndexedDB] Không lưu được tiến độ:', err)
     return false
   }
 }
@@ -165,7 +186,8 @@ export async function saveChecklistToIDB(
       updatedAt: Date.now()
     })
     return true
-  } catch {
+  } catch (err) {
+    console.warn('[IndexedDB] Không lưu được trạng thái checklist:', err)
     return false
   }
 }
@@ -198,14 +220,86 @@ export async function getAllChecklistsFromIDB(): Promise<Record<string, boolean>
   }
 }
 
-/** Đưa một sự kiện vào hàng đợi đồng bộ (Sync Queue) */
-export async function enqueueSyncEvent(event: ZSyncEvent): Promise<boolean> {
+/** Lưu thời điểm bắt đầu checklist đang dở để không mất thời lượng khi reload. */
+export async function saveActiveChecklistToIDB(
+  scope: string,
+  startedAt: string
+): Promise<boolean> {
+  const db = await getDB()
+  if (!db) return false
+  try {
+    await db.put('checklist_active', { scope, startedAt })
+    return true
+  } catch (err) {
+    console.warn('[IndexedDB] Không lưu được checklist đang dở:', err)
+    return false
+  }
+}
+
+/** Lấy các checklist đang dở từ IndexedDB. */
+export async function getActiveChecklistsFromIDB(): Promise<Record<string, string>> {
+  const db = await getDB()
+  if (!db) return {}
+  try {
+    const all = await db.getAll('checklist_active')
+    return Object.fromEntries(all.map((item) => [item.scope, item.startedAt]))
+  } catch {
+    return {}
+  }
+}
+
+/** Xóa checklist đang dở sau khi hoàn tất hoặc reset. */
+export async function deleteActiveChecklistFromIDB(scope: string): Promise<boolean> {
+  const db = await getDB()
+  if (!db) return false
+  try {
+    await db.delete('checklist_active', scope)
+    return true
+  } catch (err) {
+    console.warn('[IndexedDB] Không xóa được checklist đang dở:', err)
+    return false
+  }
+}
+
+/** Lưu một lượt checklist đã hoàn tất vào lịch sử offline */
+export async function saveChecklistSessionToIDB(session: ChecklistSession): Promise<boolean> {
+  const db = await getDB()
+  if (!db) return false
+  try {
+    await db.put('checklist_sessions', session)
+    return true
+  } catch (err) {
+    console.warn('[IndexedDB] Không lưu được lịch sử checklist:', err)
+    return false
+  }
+}
+
+/** Lấy lịch sử checklist, mới nhất trước; có thể lọc theo loại checklist */
+export async function getChecklistSessionsFromIDB(
+  scope?: string,
+  limit = 20
+): Promise<ChecklistSession[]> {
+  const db = await getDB()
+  if (!db) return []
+  try {
+    const all = await db.getAll('checklist_sessions')
+    return all
+      .filter((session) => (scope ? session.scope === scope : true))
+      .sort((a, b) => b.completedAt.localeCompare(a.completedAt))
+      .slice(0, limit)
+  } catch {
+    return []
+  }
+}
+
+/** Đưa một sự kiện vào hàng đợi đồng bộ (Sync Queue) */export async function enqueueSyncEvent(event: ZSyncEvent): Promise<boolean> {
   const db = await getDB()
   if (!db) return false
   try {
     await db.put('sync_queue', event)
     return true
-  } catch {
+  } catch (err) {
+    console.warn('[IndexedDB] Không đưa được sự kiện vào hàng đợi đồng bộ:', err)
     return false
   }
 }

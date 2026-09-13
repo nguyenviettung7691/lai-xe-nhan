@@ -7,3 +7,263 @@
 .bottom-nav a{position:relative}
 @media(max-width:700px){.app-shell{padding:0 16px 95px}.topbar{height:68px}.status{display:none}.hero{grid-template-columns:1fr;min-height:0;padding:36px 24px 0}.hero h1{font-size:48px}.hero-art{height:190px}.road{height:300px;top:-10px;left:38%}.car{top:78px}.topic-grid,.topic-grid.compact,.quick-row,.info-grid{grid-template-columns:1fr}.topic-card.large{min-height:205px}.section-head{margin-top:40px}.bottom-nav{width:calc(100% - 24px);justify-content:space-around;bottom:8px}.bottom-nav a{padding:7px 10px;flex:1}.lesson-detail h1{font-size:40px}.light-grid{grid-template-columns:repeat(2,1fr)}.light-card{padding:15px}.checklist-card{padding:22px}.page-heading{margin-bottom:20px}}
 
+/* ============================================================
+   Pha 4 — Night mode theo hệ thống, tương phản cao và cỡ chữ liếc nhanh
+   `--accent`      : nền nhấn
+   `--accent-text` : màu chữ nhấn trên nền trang
+   `--accent-ink`  : màu chữ nằm trên nền nhấn
+   ============================================================ */
+:root {
+  color-scheme: dark;
+  --accent-text: var(--accent);
+  --accent-ink: #0e1715;
+  --focus-ring: #b7f36b;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --muted: #51605a;
+  --accent: #1f7a45;
+  --accent-text: #146034;
+  --accent-ink: #ffffff;
+  --focus-ring: #146034;
+}
+
+/* Tương phản cao: viền rõ, chữ đậm, nền không dùng đen tuyệt đối. */
+:root[data-contrast='high'] {
+  --surface: #08120f;
+  --surface-2: #0e1b18;
+  --text: #ffffff;
+  --muted: #d3ede1;
+  --line: #7fa294;
+  --accent: #c8ff7a;
+  --accent-text: #c8ff7a;
+  --accent-ink: #06120b;
+  --focus-ring: #ffffff;
+}
+
+:root[data-theme='light'][data-contrast='high'] {
+  --surface: #ffffff;
+  --surface-2: #eef3ee;
+  --text: #000000;
+  --muted: #1d2b24;
+  --line: #4b5b53;
+  --accent: #0f5c33;
+  --accent-text: #0b4527;
+  --accent-ink: #ffffff;
+  --focus-ring: #000000;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* Cỡ chữ tối thiểu để liếc nhanh trên giá đỡ: body 16px, tiêu đề >= 20px. */
+.lesson-row h2,
+.checklist-card h2,
+.section-head h2 {
+  font-size: max(20px, 1.25rem);
+}
+
+.muted,
+.lead,
+.topic-intro p {
+  font-size: 15px;
+}
+
+.light-card strong {
+  font-size: 15px;
+}
+
+.light-card small,
+.light-detail p,
+.light-detail li {
+  font-size: 13px;
+}
+
+.check-row {
+  min-height: var(--min-tap-target, 44px);
+}
+
+/* Bộ lọc phải đủ lớn để bấm nhanh bằng ngón cái. */
+.filters button {
+  min-height: 40px;
+  font-size: 14px;
+  padding: 8px 14px;
+}
+
+/* Màu nhấn dùng làm chữ trên nền trang. */
+.brand b,
+.hero h1 em,
+.text-link,
+.back-link,
+.topic-icon,
+.card-arrow,
+.quick-card > span:last-child,
+.progress-note b,
+.lesson-index,
+.lesson-state,
+.completion b,
+.steps li > span,
+.info-box.recovery > span,
+.review-chip,
+.checklist-link,
+.spark {
+  color: var(--accent-text);
+}
+
+/* Màu chữ nằm trên nền nhấn. */
+.button.primary,
+.brand-mark,
+.filters button.selected,
+.bottom-nav a.active,
+.tts-bar,
+.check-row input:checked ~ .fake-check {
+  color: var(--accent-ink);
+}
+
+.quick-icon.green {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.icon-button.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.light-symbol {
+  border: 2px solid transparent;
+}
+
+/* Đèn phân biệt bằng cả màu lẫn kiểu viền để không phụ thuộc thị giác màu. */
+.light-symbol.color-red {
+  background: #5d2a24;
+  color: #ffb3a7;
+  border-style: solid;
+  border-color: #ff8a75;
+}
+
+.light-symbol.color-amber {
+  background: #4f3c1a;
+  color: #ffd98a;
+  border-style: dashed;
+  border-color: #ffc247;
+}
+
+.light-symbol.color-green {
+  background: #1c3b30;
+  color: #9df0c0;
+  border-style: dotted;
+  border-color: #6ee7a8;
+}
+
+:root[data-theme='light'] .light-symbol.color-red {
+  background: #ffe3dd;
+  color: #8f2413;
+  border-color: #b3341d;
+}
+
+:root[data-theme='light'] .light-symbol.color-amber {
+  background: #fdeecd;
+  color: #6d4a06;
+  border-color: #9a6a08;
+}
+
+:root[data-theme='light'] .light-symbol.color-green {
+  background: #d9f2e3;
+  color: #10532f;
+  border-color: #17693d;
+}
+
+.severity-label {
+  color: var(--muted);
+}
+
+.severity-label.critical {
+  color: #ff806f;
+}
+
+.severity-label.warn {
+  color: #ffc66d;
+}
+
+:root[data-theme='light'] .severity-label.critical {
+  color: #a42a15;
+}
+
+:root[data-theme='light'] .severity-label.warn {
+  color: #7a5405;
+}
+
+:root[data-theme='light'] .safety {
+  background: #fdf3e0;
+  color: #5a3d09;
+}
+
+:root[data-theme='light'] .info-box > span {
+  color: #b3341d;
+}
+
+:root[data-theme='light'] .risk {
+  background: #dff0cd;
+  color: #2f4a19;
+}
+
+:root[data-theme='light'] .risk.high {
+  background: #ffe0d9;
+  color: #7c2513;
+}
+
+:root[data-theme='light'] .bottom-nav {
+  background: #ffffffdd;
+  border-color: var(--line);
+}
+
+:root[data-theme='light'] .bottom-nav a:not(.active) {
+  color: #4a5a53;
+}
+
+:root[data-theme='light'] .bottom-nav a.active {
+  color: var(--accent-ink);
+}
+
+[data-contrast='high'] .topic-card,
+[data-contrast='high'] .lesson-row,
+[data-contrast='high'] .light-card,
+[data-contrast='high'] .quick-card,
+[data-contrast='high'] .checklist-card,
+[data-contrast='high'] .light-detail {
+  border: 1px solid var(--line);
+}
+
+[data-contrast='high'] .muted,
+[data-contrast='high'] .light-card small,
+[data-contrast='high'] .light-detail p,
+[data-contrast='high'] .light-detail li,
+[data-contrast='high'] .topic-card small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+[data-contrast='high'] .fake-check {
+  border-color: var(--line);
+  border-width: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+

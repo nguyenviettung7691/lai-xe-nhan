@@ -8,6 +8,7 @@ import {
 import {
   isSupabaseConfigured,
   getCurrentUser,
+  logSyncEvent,
   syncProgressToCloud,
   syncChecklistToCloud,
   fetchProgressFromCloud,
@@ -155,6 +156,14 @@ class SyncEngine {
           if (event.type === 'progress_update') {
             const cardIds = (event.payload.completedCardIds as string[]) || []
             success = await syncProgressToCloud(user.id, cardIds)
+          } else if (event.type === 'checklist_session') {
+            // Lịch sử checklist đi vào nhật ký đồng bộ để phân tích thói quen an toàn.
+            success = await logSyncEvent(
+              user.id,
+              'checklist_session',
+              event.payload,
+              new Date(event.timestamp).toISOString()
+            )
           } else if (event.type === 'checklist_toggle' || event.type === 'checklist_reset') {
             const scope = (event.payload.scope as string) || 'pre_drive'
             const checkedItems = (event.payload.checkedItems as Record<string, boolean>) || {}

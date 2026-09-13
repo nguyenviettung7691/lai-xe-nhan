@@ -171,8 +171,28 @@ export async function fetchChecklistsFromCloud(userId: string): Promise<Record<s
   }
 }
 
-/** Gửi phản hồi người dùng */
-export async function submitFeedback(feedback: z.infer<typeof FeedbackSchema>): Promise<boolean> {
+/** Ghi nhật ký đồng bộ: lịch sử checklist và sự kiện đo đạc gom khi offline */
+export async function logSyncEvent(
+  userId: string,
+  eventType: string,
+  payload: Record<string, unknown>,
+  clientTimestamp = new Date().toISOString()
+): Promise<boolean> {
+  if (!supabase) return false
+  try {
+    const { error } = await supabase.from('sync_audit_logs').insert({
+      user_id: userId,
+      event_type: eventType,
+      client_timestamp: clientTimestamp,
+      payload
+    })
+    return !error
+  } catch {
+    return false
+  }
+}
+
+/** Gửi phản hồi người dùng */export async function submitFeedback(feedback: z.infer<typeof FeedbackSchema>): Promise<boolean> {
   if (!supabase) return false
   try {
     const { error } = await supabase.from('user_feedback').insert({

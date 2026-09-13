@@ -1,11 +1,25 @@
 export type AnalyticsEventType =
   | 'card_view'
   | 'card_complete'
+  | 'checklist_started'
   | 'checklist_item_checked'
+  | 'checklist_completed'
   | 'checklist_reset'
   | 'tts_play'
+  | 'tts_started'
+  | 'tts_paused'
+  | 'tts_resumed'
+  | 'tts_completed'
+  | 'tts_step_skipped'
   | 'tts_stop'
   | 'tts_speed_change'
+  | 'tts_fallback_shown'
+  | 'light_search_used'
+  | 'light_detail_viewed'
+  | 'light_action_acknowledged'
+  | 'night_mode_enabled'
+  | 'theme_preference_changed'
+  | 'high_contrast_toggled'
   | 'offline_mode_used'
   | 'sync_success'
   | 'sync_failed'
@@ -21,6 +35,8 @@ export interface AnalyticsEvent {
   properties: Record<string, unknown>
   timestamp: number
   isOffline: boolean
+  /** Đã gửi lên hệ thống thu thập hay chưa; sự kiện offline được gửi lại khi có mạng. */
+  synced?: boolean
 }
 
 export interface WebVitalMetric {
@@ -30,14 +46,25 @@ export interface WebVitalMetric {
   timestamp: number
 }
 
+/** Hàm gửi sự kiện lên hệ thống thu thập; trả về false để giữ lại hàng đợi. */
+export type AnalyticsTransport = (events: AnalyticsEvent[]) => Promise<boolean> | boolean
+
+const STORAGE_KEY = 'lxn-analytics-queue'
+
 class AnalyticsService {
   private eventsQueue: AnalyticsEvent[] = []
   private vitals: WebVitalMetric[] = []
   private maxQueueSize = 100
+  private transport: AnalyticsTransport | null = null
+  private isFlushing = false
 
   constructor() {
+    this.restoreQueue()
     if (typeof window !== 'undefined') {
       this.initWebVitals()
+      window.addEventListener('online', () => {
+        void this.flush()
+      })
     }
   }
 
@@ -48,18 +75,25 @@ class AnalyticsService {
       type,
       properties,
       timestamp: Date.now(),
-      isOffline: typeof navigator !== 'undefined' ? !navigator.onLine : false
+      isOffline: typeof navigator !== 'undefined' && navigator.onLine === false,
+      synced: false
     }
 
     this.eventsQueue.push(event)
     if (this.eventsQueue.length > this.maxQueueSize) {
       this.eventsQueue.shift()
     }
+    this.persistQueue()
 
     if (import.meta.env.DEV) {
       console.log(`[Analytics] [${event.type}]`, event.properties)
     }
+
+    if (!event.isOffline) {
+      void this.flush()
+    }
   }
+
 
   /** Ghi nhận Web Vitals */
   public recordWebVital(name: WebVitalMetric['name'], value: number) {
@@ -92,9 +126,85 @@ class AnalyticsService {
     return [...this.eventsQueue]
   }
 
+  /** Sự kiện chưa gửi được (ghi khi offline hoặc gửi thất bại) */
+  public getPendingEvents(): AnalyticsEvent[] {
+    return this.eventsQueue.filter((event) => !event.synced)
+  }
+
+  /** Cấu hình nơi nhận sự kiện; chưa cấu hình thì hàng đợi nằm lại trên máy. */
+  public setTransport(transport: AnalyticsTransport | null) {
+    this.transport = transport
+    if (transport) void this.flush()
+  }
+
+  /** Gửi các sự kiện đang chờ khi có mạng; giữ nguyên hàng đợi nếu thất bại. */
+  public async flush(): Promise<number> {
+    if (this.isFlushing || !this.transport) return 0
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) return 0
+
+    const pending = this.getPendingEvents()
+    if (pending.length === 0) return 0
+
+    this.isFlushing = true
+    try {
+      const delivered = await this.transport(pending)
+      if (!delivered) return 0
+      const deliveredIds = new Set(pending.map((event) => event.id))
+      for (const event of this.eventsQueue) {
+        if (deliveredIds.has(event.id)) event.synced = true
+      }
+      this.persistQueue()
+      return pending.length
+    } catch {
+      return 0
+    } finally {
+      this.isFlushing = false
+    }
+  }
+
+  /** Xoá hàng đợi (dùng cho kiểm thử và khi người dùng đăng xuất). */
+  public reset() {
+    this.eventsQueue = []
+    this.persistQueue()
+  }
+
   /** Lấy danh sách Web Vitals */
   public getVitals(): WebVitalMetric[] {
     return [...this.vitals]
+  }
+
+  private storage(): Storage | null {
+    try {
+      return typeof localStorage === 'undefined' ? null : localStorage
+    } catch {
+      return null
+    }
+  }
+
+  /** Nạp lại hàng đợi sau khi đóng app khi đang offline. */
+  private restoreQueue() {
+    const store = this.storage()
+    if (!store) return
+    try {
+      const raw = store.getItem(STORAGE_KEY)
+      if (!raw) return
+      const parsed = JSON.parse(raw) as AnalyticsEvent[]
+      if (Array.isArray(parsed)) {
+        this.eventsQueue = parsed.slice(-this.maxQueueSize)
+      }
+    } catch {
+      // Dữ liệu hỏng: bỏ qua để không chặn khởi động app.
+    }
+  }
+
+  private persistQueue() {
+    const store = this.storage()
+    if (!store) return
+    try {
+      store.setItem(STORAGE_KEY, JSON.stringify(this.eventsQueue))
+    } catch {
+      // Hết dung lượng: giữ hàng đợi trong bộ nhớ.
+    }
   }
 
   /** Khởi tạo đo đạc Performance Web Vitals bằng PerformanceObserver */
