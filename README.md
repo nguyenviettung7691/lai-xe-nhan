@@ -76,6 +76,33 @@ Khi cấu hình Supabase, bạn có thể:
 
 ---
 
+## 🌐 Deploy lên Github Pages
+
+Repository đã có workflow `.github/workflows/deploy-pages.yml` để build và deploy tự động khi push lên nhánh `main`.
+
+### 1) Bật GitHub Pages
+
+Vào **Settings → Pages** và đặt **Source = GitHub Actions**.
+
+### 2) Push code lên `main`
+
+Workflow sẽ:
+- Cài dependencies bằng `npm ci`
+- Build bằng `npm run build` với `VITE_BASE_PATH=/lai-xe-nhan/`
+- Deploy thư mục `dist` lên GitHub Pages
+
+### 3) Truy cập trang
+
+URL mặc định:
+
+```
+https://nguyenviettung7691.github.io/lai-xe-nhan/
+```
+
+> ⚠️ Nếu bạn fork repository với tên khác, hãy đổi `VITE_BASE_PATH` trong workflow thành `/<ten-repo>/`.
+
+---
+
 ## 📂 Cấu trúc dữ liệu
 
 ### Mô hình nội dung
