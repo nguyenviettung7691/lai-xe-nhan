@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
           icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }]
         },
         workbox: {
-          navigateFallback: `${basePath}index.html`,
+          navigateFallback: 'index.html',
           runtimeCaching: [
             {
               urlPattern: ({ request }) => request.destination === 'image',
