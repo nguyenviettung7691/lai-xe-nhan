@@ -21,8 +21,6 @@ export default defineConfig(({ mode }) => {
           background_color: '#0e1715',
           display: 'standalone',
           lang: 'vi',
-          start_url: basePath,
-          scope: basePath,
           icons: [{ src: 'favicon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }]
         },
         workbox: {

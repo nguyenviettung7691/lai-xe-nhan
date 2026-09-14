@@ -76,7 +76,7 @@ Khi cấu hình Supabase, bạn có thể:
 
 ---
 
-## 🌐 Deploy lên Github Pages
+## 🌐 Deploy lên GitHub Pages
 
 Repository đã có workflow `.github/workflows/deploy-pages.yml` để build và deploy tự động khi push lên nhánh `main`.
 
