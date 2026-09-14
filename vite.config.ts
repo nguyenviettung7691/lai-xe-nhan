@@ -4,7 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const basePath = env.VITE_BASE_PATH || '/'
+  const rawBasePath = env.VITE_BASE_PATH || '/'
+  const basePath = rawBasePath === '/' ? '/' : `/${rawBasePath.replace(/^\/+|\/+$/g, '')}/`
 
   return {
     base: basePath,
