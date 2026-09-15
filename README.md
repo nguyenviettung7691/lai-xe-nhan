@@ -60,19 +60,78 @@ Mở trình duyệt tại `http://localhost:5173`. Ứng dụng hoạt động n
 
 ### Kết nối Supabase (tùy chọn)
 
-Tạo file `.env.local`:
+Khi cấu hình Supabase, bạn có thể:
+- Đăng nhập bằng Email OTP (magic link) hoặc OAuth (Google, Apple)
+- Đồng bộ tiến độ học và trạng thái checklist giữa các thiết bị
+- Ghi nhận nhật ký đồng bộ và phản hồi người dùng lên cloud
+
+> 💡 **Lưu ý**: Ứng dụng hoạt động 100% offline ngay cả khi bỏ qua toàn bộ phần này.
+
+#### Bước 1 — Tạo project Supabase
+
+1. Đăng nhập [supabase.com](https://supabase.com) và bấm **New project**.
+2. Chọn tên project, mật khẩu database và khu vực (nên chọn Singapore để có độ trễ thấp từ Việt Nam).
+3. Chờ project khởi tạo xong (khoảng 1–2 phút).
+
+#### Bước 2 — Áp dụng schema database
+
+Repo đã có sẵn migration và seed data tại `supabase/migrations/` và `supabase/seed.sql`. Có hai cách áp dụng:
+
+**Cách A — Dùng Supabase CLI (khuyến nghị)**
+
+```bash
+# Cài Supabase CLI nếu chưa có
+npm install -g supabase
+
+# Đăng nhập và liên kết project
+supabase login
+supabase link --project-ref your-project-ref
+
+# Áp dụng migration + seed data
+supabase db push
+```
+
+**Cách B — Copy/paste thủ công trên Dashboard**
+
+1. Vào **SQL Editor** trên Supabase Dashboard.
+2. Copy toàn bộ nội dung [`supabase/migrations/20260913000000_init_schema.sql`](supabase/migrations/20260913000000_init_schema.sql) và chạy.
+3. (Tùy chọn) Copy nội dung [`supabase/seed.sql`](supabase/seed.sql) và chạy để có dữ liệu mẫu.
+
+Migration này tạo các bảng: `content_metadata` (đọc công khai), `user_progress`, `user_checklists`, `sync_audit_logs`, `user_feedback` (chỉ chủ sở hữu truy cập được nhờ **Row Level Security**).
+
+#### Bước 3 — Bật phương thức đăng nhập
+
+Trong Dashboard, vào **Authentication → Providers**:
+
+- **Email OTP**: bật **Email** provider, giữ **Confirm email** theo nhu cầu. Ứng dụng dùng magic link nên không cần cấu hình SMTP riêng để test (Supabase cung cấp email miễn phí giới hạn cho môi trường dev).
+- **Google / Apple (tùy chọn)**: bật provider tương ứng và điền `Client ID` / `Client Secret` theo hướng dẫn của Supabase cho từng nhà cung cấp.
+
+Vào **Authentication → URL Configuration** và thêm:
+- **Site URL**: `http://localhost:5173` (dev) và domain thật khi deploy.
+- **Redirect URLs**: thêm cả hai URL trên để magic link/OAuth callback hoạt động đúng.
+
+#### Bước 4 — Lấy API keys
+
+Vào **Project Settings → API**, lấy:
+- **Project URL** → `VITE_SUPABASE_URL`
+- **anon public** key → `VITE_SUPABASE_ANON_KEY`
+
+#### Bước 5 — Cấu hình biến môi trường local
+
+Sao chép `.env.example` thành `.env.local` rồi điền giá trị vừa lấy:
+
+```bash
+cp .env.example .env.local
+```
 
 ```env
 VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
 ```
 
-Khi cấu hình Supabase, bạn có thể:
-- Đăng nhập với email hoặc OAuth
-- Đồng bộ tiến độ giữa các thiết bị
-- Ghi nhận sự kiện phân tích chi tiết
+Khởi động lại `npm run dev` để Vite nạp biến môi trường mới. Mở nút đồng bộ (biểu tượng trạng thái trên header) để đăng nhập thử.
 
-> 💡 **Lưu ý**: Ứng dụng hoạt động 100% offline ngay cả khi bỏ qua bước này.
+> ⚠️ Không commit `.env.local` lên git — file này đã nằm trong `.gitignore`. Chỉ dùng **anon public key**, tuyệt đối không đưa **service role key** vào mã nguồn frontend.
 
 ---
 
