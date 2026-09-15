@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      VITE_BASE_PATH: /lai-xe-nhan/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
