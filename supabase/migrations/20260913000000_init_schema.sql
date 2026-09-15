@@ -2,12 +2,9 @@
 -- Lái Xe Nhàn - Supabase Database Schema (Phase 2: Tech Stack & BaaS)
 -- =============================================================================
 
--- Enable UUID extension
-create extension if not exists "uuid-ossp";
-
 -- 1. CONTENT METADATA TABLE (Read-heavy, public)
 create table if not exists public.content_metadata (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     version text not null unique,
     locale text not null default 'vi-VN',
     release_date timestamptz not null default now(),
@@ -26,7 +23,7 @@ create policy "Allow public read access to content metadata"
 
 -- 2. USER PROGRESS TABLE (Private, RLS protected)
 create table if not exists public.user_progress (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     user_id uuid references auth.users(id) on delete cascade not null,
     completed_card_ids jsonb not null default '[]'::jsonb,
     updated_at timestamptz not null default now(),
@@ -52,7 +49,7 @@ create policy "Users can update their own progress"
 
 -- 3. USER CHECKLIST STATE TABLE (Private, RLS protected)
 create table if not exists public.user_checklists (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     user_id uuid references auth.users(id) on delete cascade not null,
     scope text not null,
     checked_items jsonb not null default '{}'::jsonb,
@@ -79,7 +76,7 @@ create policy "Users can update their own checklist states"
 
 -- 4. USER FEEDBACK TABLE (RLS protected)
 create table if not exists public.user_feedback (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     user_id uuid references auth.users(id) on delete set null,
     card_id text,
     feedback_type text not null check (feedback_type in ('bug', 'content_issue', 'suggestion', 'praise')),
@@ -101,7 +98,7 @@ create policy "Users can view their own feedback"
 
 -- 5. SYNC AUDIT LOG TABLE (Optional, lightweight)
 create table if not exists public.sync_audit_logs (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     user_id uuid references auth.users(id) on delete cascade not null,
     event_type text not null,
     client_timestamp timestamptz not null,
