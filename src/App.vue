@@ -35,7 +35,7 @@ const title = computed(() =>
   <div class="app-shell">
     <header class="topbar">
       <RouterLink to="/" class="brand">
-        <span class="brand-mark">↗</span>
+        <span class="brand-mark"><img src="/favicon.svg" alt="" aria-hidden="true" /></span>
         <span>Lái Xe <b>Nhàn</b></span>
       </RouterLink>
       <div class="top-actions">
@@ -105,4 +105,3 @@ const title = computed(() =>
     />
   </div>
 </template>
-

@@ -36,10 +36,10 @@ interface TopicMeta {
 }
 
 const topicMeta: TopicMeta[] = [
-  { id: 'parking', slug: 'do-xe-hep', title: 'Đỗ xe không gian hẹp', description: 'Lùi chuồng, ghép ngang và xử lý hầm gửi xe chật.', icon: '↙', color: '#b7f36b' },
-  { id: 'narrow', slug: 'ngo-hep', title: 'Ngõ hẹp & tránh xe', description: 'Đi chậm, canh gương và nhường đường trong ngõ.', icon: '↪', color: '#ffc66d' },
-  { id: 'highway', slug: 'cao-toc', title: 'Nhập làn cao tốc', description: 'Vào làn, giữ khoảng cách, vượt xe và rời cao tốc.', icon: '→', color: '#77d7ff' },
-  { id: 'weather', slug: 'doc-va-mua', title: 'Đổ đèo & mưa ngập', description: 'Phanh động cơ, khởi hành ngang dốc và đường ngập.', icon: '⌁', color: '#d49cff' }
+  { id: 'parking', slug: 'do-xe-hep', title: 'Đỗ xe không gian hẹp', description: 'Lùi chuồng, ghép ngang và xử lý hầm gửi xe chật.', icon: 'P', color: '#b7f36b' },
+  { id: 'narrow', slug: 'ngo-hep', title: 'Ngõ hẹp & tránh xe', description: 'Đi chậm, canh gương và nhường đường trong ngõ.', icon: '↔', color: '#ffc66d' },
+  { id: 'highway', slug: 'cao-toc', title: 'Nhập làn cao tốc', description: 'Vào làn, giữ khoảng cách, vượt xe và rời cao tốc.', icon: '⇢', color: '#77d7ff' },
+  { id: 'weather', slug: 'doc-va-mua', title: 'Đổ đèo & mưa ngập', description: 'Phanh động cơ, khởi hành ngang dốc và đường ngập.', icon: '☔', color: '#d49cff' }
 ]
 
 const buildLessons = (topicId: string, cards: Card[]): Lesson[] =>
