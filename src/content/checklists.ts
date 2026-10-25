@@ -25,11 +25,12 @@ export const checklists: Checklist[] = [
     title: 'Trước khi lùi',
     description: 'Áp dụng ngay trước mỗi lần lùi chuồng hoặc ghép ngang.',
     items: [
-      { id: 'reverse-space', itemNo: 1, label: 'Ô đỗ đủ rộng và không có vật cản thấp', criticalLevel: 'must' },
-      { id: 'reverse-people', itemNo: 2, label: 'Không có người hoặc xe máy phía sau', criticalLevel: 'must' },
-      { id: 'reverse-mirrors', itemNo: 3, label: 'Đã quét đủ ba gương và điểm mù', criticalLevel: 'must' },
-      { id: 'reverse-camera', itemNo: 4, label: 'Camera và cảm biến hoạt động bình thường', criticalLevel: 'should', hint: 'Camera và cảm biến chỉ hỗ trợ; kết hợp gương và quan sát trực tiếp, dừng nếu chưa rõ khoảng trống.' },
-      { id: 'reverse-speed', itemNo: 5, label: 'Sẵn sàng giữ tốc độ dưới 5 km/h', criticalLevel: 'must', hint: 'Đây là giới hạn, không phải tốc độ mục tiêu; bò chậm hơn khi cần, luôn dừng được ngay.' }
+      { id: 'reverse-space', itemNo: 1, label: 'Đã kiểm tra toàn bộ đường lùi, khoảng trống và vật cản', criticalLevel: 'must', hint: 'Xem cả vật thấp, vật nhô cao, lối xe sẽ đi ra và khoảng sáng phía trên; không lùi nếu chưa chắc xe lọt qua.' },
+      { id: 'reverse-people', itemNo: 2, label: 'Đã quan sát người và phương tiện quanh vùng lùi', criticalLevel: 'must', hint: 'Quan sát trực tiếp trước khi lùi và tiếp tục theo dõi; người đi bộ, trẻ em hoặc xe máy có thể đi vào đường xe bất cứ lúc nào.' },
+      { id: 'reverse-mirrors', itemNo: 3, label: 'Đã quan sát quanh xe và các điểm mù', criticalLevel: 'must', hint: 'Dùng gương, nhìn trực tiếp qua vai/kính và quan sát lại khi xe dịch chuyển; không chỉ nhìn một gương hoặc màn hình.' },
+      { id: 'reverse-camera', itemNo: 4, label: 'Nếu có camera/cảm biến, đã kiểm tra và chỉ dùng để hỗ trợ', criticalLevel: 'should', hint: 'Màn hình có thể có vùng khuất, méo khoảng cách hoặc không báo vật thấp; kết hợp quan sát trực tiếp và dừng nếu chưa rõ.' },
+      { id: 'reverse-speed', itemNo: 5, label: 'Có thể lùi thật chậm và dừng ngay khi cần', criticalLevel: 'must', hint: 'Không có một tốc độ số phù hợp mọi chỗ đỗ; chỉ di chuyển khi còn quan sát được và xe có thể dừng trong khoảng trống đã kiểm tra.' },
+      { id: 'reverse-spotter', itemNo: 6, label: 'Đã có phương án an toàn nếu tầm nhìn bị che khuất', criticalLevel: 'must', hint: 'Chọn vị trí khác hoặc nhờ người hướng dẫn thống nhất tín hiệu và luôn nằm trong tầm nhìn; dừng ngay khi mất dấu người hướng dẫn hoặc có người đi vào đường xe.' }
     ]
   },
   {

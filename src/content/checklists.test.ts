@@ -25,4 +25,13 @@ describe('nội dung checklist thực tế', () => {
     expect(preDrive?.items.find((item) => item.id === 'load-secure')?.hint).toMatch(/che tầm nhìn/i)
     expect(preDrive?.description).not.toMatch(/20 giây/i)
   })
+
+  it('yêu cầu quan sát liên tục và dừng khi lùi không còn an toàn', () => {
+    const preReverse = checklists.find((checklist) => checklist.id === 'pre_reverse')
+    expect(preReverse).toBeDefined()
+    expect(preReverse?.items.find((item) => item.id === 'reverse-speed')?.hint).toMatch(/không có một tốc độ số/i)
+    expect(preReverse?.items.find((item) => item.id === 'reverse-people')?.hint).toMatch(/tiếp tục theo dõi/i)
+    expect(preReverse?.items.find((item) => item.id === 'reverse-camera')?.hint).toMatch(/vùng khuất/i)
+    expect(preReverse?.items.find((item) => item.id === 'reverse-spotter')?.hint).toMatch(/dừng ngay/i)
+  })
 })
