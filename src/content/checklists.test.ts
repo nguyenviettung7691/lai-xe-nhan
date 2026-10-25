@@ -55,4 +55,15 @@ describe('nội dung checklist thực tế', () => {
     expect(preHighway?.items.find((item) => item.id === 'hw-phone')?.hint).toMatch(/xe đang đỗ/i)
     expect(preHighway?.items.find((item) => item.id === 'hw-load')?.hint).toMatch(/văng vào người/i)
   })
+
+  it('hướng dẫn thời tiết xấu khi đã dừng, không hứa an toàn bằng ngưỡng cố định', () => {
+    const badWeather = checklists.find((checklist) => checklist.id === 'bad_weather')
+    expect(badWeather).toBeDefined()
+    expect(badWeather?.description).toMatch(/dừng ở nơi an toàn/i)
+    expect(badWeather?.items.find((item) => item.id === 'bw-visibility')?.criticalLevel).toBe('must')
+    expect(badWeather?.items.find((item) => item.id === 'bw-lights')?.hint).toMatch(/đèn hậu/i)
+    expect(badWeather?.items.find((item) => item.id === 'bw-speed')?.hint).toMatch(/không có tỷ lệ giảm tốc chung/i)
+    expect(badWeather?.items.find((item) => item.id === 'bw-stop')?.hint).toMatch(/không tự băng qua nước/i)
+    expect(badWeather?.items.find((item) => item.id === 'bw-flood')?.hint).toMatch(/không.*vượt rào chắn/i)
+  })
 })
