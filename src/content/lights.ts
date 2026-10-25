@@ -233,15 +233,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'ESP / VSC off',
     color: 'amber',
     severity: 'warn',
-    description: 'Hệ thống chống trượt đang tắt hoặc bị lỗi, xe dễ văng đuôi hơn.',
+    description: 'Hình xe trượt kèm OFF báo một phần hoặc toàn bộ ESC/chống trượt đã tắt tùy xe/chế độ. Riêng chữ OFF không chứng minh hệ thống bị lỗi.',
     keywords: ['esp off', 'tắt cân bằng', 'vsc off', 'chống trượt tắt'],
     actions: [
-      'Kiểm tra nút ESP OFF trên táp-lô, bật lại nếu đã lỡ tắt.',
-      'Giảm tốc, lái mượt, tránh cua gấp khi đường trơn.',
-      'Nếu bật lại không được, đặt lịch kiểm tra sớm.'
+      'Giảm tốc và giữ khoảng cách vì hỗ trợ chống trượt có thể bị hạn chế.',
+      'Khi dừng an toàn, kiểm tra chế độ lái/nút ESC OFF; bật lại theo sổ tay nếu không còn lý do đặc biệt phải tắt.',
+      'Nếu không bật lại được hoặc có cảnh báo khác, đọc thông báo và kiểm tra tại xưởng; kèm phanh đỏ thì không đi tiếp.'
     ],
-    avoid: 'Không tắt cân bằng điện tử khi trời mưa hoặc đường trơn.',
-    callHelp: 'Vào gara sớm khi đèn sáng cùng đèn ABS hoặc phanh.'
+    avoid: 'Không tắt ESC khi chạy đường thông thường để thử trượt; thao tác thoát lầy chỉ theo sổ tay và bật lại ngay khi thoát.',
+    callHelp: 'Không cần cứu hộ chỉ vì đã chủ động tắt; cần xưởng khi không bật lại được, cứu hộ khi kèm phanh đỏ hoặc xe không kiểm soát được.'
   },
   {
     id: 'immobilizer',
