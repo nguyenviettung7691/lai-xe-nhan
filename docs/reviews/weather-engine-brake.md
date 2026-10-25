@@ -75,4 +75,48 @@ isolated Chrome context; no other browser profiles/processes were modified.
 
 ## Implementation and verification
 
-Pending.
+- Analysis and mitigation plan committed first as `159d944`, before lesson
+  implementation. Card is now **1.1.0**, content pack **2026.10.21**.
+  Preserved card/lesson/asset/checklist/quiz identities, original six step IDs,
+  initial changelog and release history; added two steps for complete
+  abnormal-response and conditional normal-mode return coverage.
+- Rewrote context/objective, all steps/cues, mistakes, recovery, safety,
+  mnemonic and quizzes coherently. Raised risk to **high** intentionally
+  because incorrect downhill control can lead to loss of braking/control.
+  Removed only this card's sample approval; the rendered independent-review
+  warning is visible. No independent instructor approval is claimed.
+- Main illustration reuses the corrected downhill geometry without changing
+  the prior lesson's output. The caption/alt now describe what is actually
+  shown, not a nonexistent cockpit/paddle-location view. Removed the old
+  slope helper because its only remaining uses were these replaced scenes.
+- Replaced the fixed gear ladder with a three-stage process. Its arrows show
+  reading order only, not gear ratios, vehicle motion or pedal timing.
+- Added **13 focused regressions** covering identities/history, actual correct
+  quiz decisions, model-specific restrictions, refused requests, RPM limits,
+  normal/emergency braking, faults and quick/audio safety sources. Geometry
+  tests verify transformed wheel tangency, front-to-forward-arrow placement,
+  unchanged shared-scene output, process order and gap-only connectors.
+- **69/69 tests passed** across this lesson, both previously revised slope
+  lessons, general content, asset and validation suites. `npm run lint` and
+  `npm run build` passed, including TypeScript and PWA generation. The build
+  retained two non-blocking annotation warnings in installed Zod files;
+  there were no application build errors.
+- Repeated generation produced identical manifest and engine-brake SVG
+  hashes. Git confirmed **only this lesson's two SVGs changed** among all 46.
+  Checksums and size tests pass; complete SVG pack is **178.85 KB**, within
+  the existing budget. Shared checklist, renderer and other cards are unchanged.
+- Inspected both new images at desktop and mobile sizes in isolated Chrome.
+  Both decoded successfully. Browser measurements found **no text outside
+  either 320 x 200 SVG canvas**, and all process-stage text fits inside its
+  own box. No horizontal page overflow at **360, 390 or 1440 px**.
+- Quick mode retained the main image, eight steps and essential ABS/runaway
+  safety instructions. Learning mode displayed both images. Verified TTS
+  large-text output contains slippery-road restrictions, rejected-request
+  handling, RPM limits, emergency braking, safe-stop and regen limitations.
+  Actual synthesized voice quality/availability was not certified.
+- Browser quiz checks: wrong choices scored **0/3**, retry enabled all choices,
+  correct choices scored **3/3 (100%), pass**. A final clean reload had **no
+  console warnings or errors** and displayed the unverified-review notice.
+- `git diff --check` passed. Stopped the temporary preview server and closed
+  only the isolated Chrome page created for this review. Vehicle-specific
+  instruction/practice and independent instructor review remain necessary.

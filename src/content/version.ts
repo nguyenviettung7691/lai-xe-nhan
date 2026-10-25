@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.20'
+export const CONTENT_VERSION = '2026.10.21'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -157,5 +157,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa weather-uphill-start: chuyển chân theo trang bị, giới hạn hỗ trợ giữ dốc, quan sát và dừng khi trôi; thay hai sơ đồ và bỏ thẩm định mẫu.',
     cardIds: ['weather-uphill-start']
+  },
+  {
+    version: '2026.10.21',
+    date: '2026-10-25',
+    summary: 'Sửa weather-engine-brake: chọn chế độ theo xe và độ bám, giới hạn vòng tua, phối hợp phanh và xử lý lỗi; thay hai sơ đồ và bỏ thẩm định mẫu.',
+    cardIds: ['weather-engine-brake']
   }
 ]

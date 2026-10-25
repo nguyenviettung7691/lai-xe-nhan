@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.20",
+  "contentVersion": "2026.10.21",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 176.45,
+  "totalSizeKb": 178.85,
   "assets": [
     {
       "id": "parking-start-main",
@@ -572,11 +572,11 @@
       "url": "/content/svg/weather-engine-brake-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.79,
-      "checksum": "sha256-7acab332133189f6affe86da092a33b16cc90c467a3ff89c574102b8664611e6",
+      "sizeKb": 3.11,
+      "checksum": "sha256-5eccc45f576814966360ab83e1d69e580efbdb87b2135cddbc723c5bd3fb6537",
       "offlinePack": "core",
-      "caption": "Lẫy số sau vô-lăng",
-      "alt": "Sơ đồ cắt ngang: vị trí lẫy số dùng để hãm tốc bằng động cơ."
+      "caption": "Hãm theo sách xe và độ bám; phanh động cơ không thay phanh chân",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ: cao bên trái, thấp bên phải; đầu xe có đèn bên phải hướng xuống dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và xuống song song dốc, chỉ chiều tiến, không phải quỹ đạo hay lực hãm bảo đảm. Hình không mô tả vị trí lẫy, cấp số hoặc tốc độ chuẩn; chọn chế độ theo sách xe, tuân thủ hạn chế trên đường trơn và dùng phanh chân khi cần."
     },
     {
       "id": "weather-engine-brake-var",
@@ -586,11 +586,11 @@
       "url": "/content/svg/weather-engine-brake-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.81,
-      "checksum": "sha256-7f041b43319f3077dd05847bddab076200163ea8930f7d68d246a65303731350",
+      "sizeKb": 2.89,
+      "checksum": "sha256-e6d98e80f0ab7af098c1157f37db3508518835ae84b36b3c75b0b8f4cffce755",
       "offlinePack": "core",
-      "caption": "Giảm số từng cấp",
-      "alt": "Sơ đồ cắt ngang: trình tự giảm số D về 3 rồi về 2 khi đổ đèo."
+      "caption": "Giảm tốc, chọn mức được phép, kiểm tra phản hồi; không có chuỗi số chung",
+      "alt": "Sơ đồ quy trình ba khung đọc từ trên xuống: giảm tốc theo biển, độ bám và tầm nhìn; chọn mức được phép theo sách xe, không ép số hoặc quá tua; kiểm tra phản hồi, nếu không nhận thì dừng bấm trừ và dùng phanh giảm tốc. Hai mũi tên xanh chỉ thứ tự kiểm tra, không phải hướng xe chạy, quỹ đạo, chuỗi D về 3 rồi 2, mức vòng tua hay thời gian, nhịp đạp phanh."
     },
     {
       "id": "weather-flood-cross-main",

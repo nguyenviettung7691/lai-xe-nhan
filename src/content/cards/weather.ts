@@ -95,38 +95,43 @@ export const weatherCards: Card[] = [
     lessonId: 'weather-slope',
     topicId: 'weather',
     title: 'Dùng phanh động cơ đúng cách',
-    context: 'Nhiều xe số tự động có chế độ số tay hoặc chế độ L. Biết dùng đúng lúc giúp phanh nguội và xe ổn định hơn khi xuống dốc.',
-    objective: 'Chọn cấp số phù hợp để động cơ giữ tốc độ thay cho phanh.',
-    risk: 'medium',
+    context: 'Bạn lái xe số tự động dùng động cơ đốt trong xuống dốc dài; chọn chế độ hãm phù hợp có thể giảm tải phanh chân, không thay thế phanh hoặc bảo đảm xe tự giữ tốc độ. Cách chọn số, giới hạn tốc độ và vòng tua khác nhau theo xe, đặc biệt khi mặt đường trơn.',
+    objective: 'Chọn chế độ hãm theo sách xe và điều kiện đường, kiểm tra phản hồi thực tế, phối hợp phanh chân và dừng khi không còn kiểm soát an toàn.',
+    risk: 'high',
     difficulty: 3,
-    minutes: 4,
+    minutes: 6,
     tags: { speedRange: 'suburban', spaceConstraint: 'open', visibility: 'good', stress: 'moderate' },
     steps: [
-      { instruction: 'Nhả ga hoàn toàn trước khi chuyển sang chế độ số tay.', cueType: 'feel', cueText: 'Chân rời hẳn chân ga' },
-      { instruction: 'Chuyển cần số sang chế độ số tay hoặc vị trí L.', cueType: 'marker', cueText: 'Ký hiệu M hoặc L trên cần số' },
-      { instruction: 'Về từng cấp số một và nghe tiếng máy tăng lên.', cueType: 'sound', cueText: 'Tiếng máy tăng đều' },
-      { instruction: 'Giữ vòng tua trong vùng an toàn ghi trên đồng hồ.', cueType: 'marker', cueText: 'Kim tua trong vùng an toàn' },
-      { instruction: 'Đạp phanh thêm từng nhịp ngắn nếu tốc độ vẫn tăng.', cueType: 'feel', cueText: 'Tốc độ vẫn tăng dần' },
-      { instruction: 'Trở lại chế độ D khi hết đoạn dốc.', cueType: 'marker', cueText: 'Hết đoạn dốc' }
+      { instruction: 'Đọc sách hướng dẫn trước hành trình để biết chế độ hãm, giới hạn tốc độ, vòng tua và chức năng lẫy trên xe; M, L, B hoặc dải số không có cùng ý nghĩa trên mọi xe. Kiểm tra phanh trước dốc; không vào dốc nếu phanh bất thường hoặc chưa biết kiểm soát xe.', cueType: 'marker', cueText: 'Xe điện, hybrid có thể dùng lẫy để chỉnh tái sinh thay vì đổi số' },
+      { instruction: 'Giảm tốc trước dốc và trước cua theo biển, tải xe, độ bám và tầm nhìn; giữ cự ly theo quy định và tăng thêm khi mưa, trơn. Tuân thủ hạn chế phanh động cơ của xe trên đường trơn, không chủ động về số để hãm nếu sách xe cấm trong điều kiện đó.', cueType: 'sign', cueText: 'Nhả ga đơn thuần không bảo đảm đã đủ chậm để về số', speedHint: 'theo biển và điều kiện, luôn dừng được trong phần đường nhìn rõ' },
+      { instruction: 'Nhả ga và chọn chế độ hãm được phép theo sách xe khi tốc độ đã phù hợp, giữ hướng ổn định, không đổi số đột ngột giữa cua. Giữ số truyền động, không về N, không giữ côn cho xe trôi và không tắt máy khi xe đang chạy.', cueType: 'marker', cueText: 'Không mặc định phải chuyển sang M hoặc kéo về L' },
+      { instruction: 'Chọn lệnh giảm một cấp rồi kiểm tra số hiển thị và phản hồi nếu xe cho phép chọn từng cấp; chỉ yêu cầu tiếp khi tốc độ, vòng tua và độ bám cho phép. Nếu xe từ chối lệnh hoặc tự đổi số, không bấm trừ liên tục hay ép số; màn hình có thể chỉ dải số chứ không phải số đang gài.', cueType: 'marker', cueText: 'Không có chuỗi D về 3 rồi 2 hoặc số thấp nhất chung cho mọi dốc' },
+      { instruction: 'Quan sát tốc độ thực tế, chỉ liếc ngắn đồng hồ vòng tua rồi nhìn lại đường; tiếng máy lớn không chứng minh đã hãm đúng. Nếu vòng tua gần giới hạn, dừng yêu cầu số thấp hơn, dùng phanh chân giảm tốc và chỉ yêu cầu số cao hơn khi sách xe cho phép; không chờ vào vùng đỏ, không mặc định hộp số luôn tự bảo vệ.', cueType: 'marker', cueText: 'Giới hạn theo sách xe, không có mức vòng tua an toàn chung' },
+      { instruction: 'Phanh chân sớm, tăng lực êm khi cần giảm thêm; nhả khi đã giảm đủ và còn kiểm soát được tốc độ, không rà suốt dốc hoặc nhấp theo nhịp cố định. Khi có nguy hiểm tức thời, vẫn phanh ngay; khẩn cấp với ABS thì đạp mạnh và giữ lực, không nhấp nhả, lái tránh trong khoảng trống an toàn.', cueType: 'feel', cueText: 'Phanh động cơ chỉ hỗ trợ; ABS không bảo đảm dừng ngắn hơn' },
+      { instruction: 'Dừng an toàn ngoài dòng xe và gọi hỗ trợ kiểm tra nếu đã vượt giới hạn vòng tua, phanh giảm hiệu lực, có mùi khét, tiếng bất thường, giật mạnh hoặc cảnh báo động cơ, hộp số; không cố về số thêm để chữa lỗi. Nếu không khống chế được tốc độ, cảnh báo, giữ hướng lái, dùng phanh còn hiệu lực và đường cứu nạn có biển nếu tiếp cận an toàn; không chọn P, R hoặc tắt máy khi đang chạy, giữ chắc xe sau khi dừng.', cueType: 'feel', cueText: 'Không chờ có mùi khét mới xử lý; phanh nguội không chứng minh hết lỗi' },
+      { instruction: 'Trở lại D hoặc chế độ đi bình thường theo sách xe khi không còn cần lực hãm và điều kiện cho phép, không chỉ vì vừa qua chân dốc. Với xe điện, hybrid, kiểm tra giới hạn tái sinh khi pin đầy, quá nóng hoặc lạnh và dùng phanh chân khi cần; không coi lẫy trừ luôn là lệnh về số hoặc bảo đảm xe tự giảm tốc.', cueType: 'marker', cueText: 'Chế độ và chức năng lẫy có thể đổi theo xe, chế độ lái' }
     ],
     mistakes: [
-      'Về liền hai đến ba cấp số khi xe đang chạy nhanh.',
-      'Giữ vòng tua quá cao trong thời gian dài.',
-      'Chuyển sang số tay khi đang ôm cua gấp.'
+      'Ép về số thấp khi đang nhanh hoặc đường trơn, bấm trừ liên tục dù xe từ chối và coi D về 3 rồi 2 là công thức chung.',
+      'Chỉ nghe tiếng máy, nhìn chằm chằm đồng hồ hoặc tin hộp số luôn ngăn quá tua; tiếp tục đi dù phanh hoặc hệ truyền động bất thường.',
+      'Cho xe trôi số N, giữ côn, tắt máy hoặc coi phanh động cơ thay phanh chân và nhấp nhả ABS khi khẩn cấp.'
     ],
-    recovery: 'Nếu vòng tua vượt vùng an toàn, lên lại một cấp số rồi giảm tốc bằng nhịp phanh ngắn trước khi về số thấp.',
-    safety: 'Mỗi dòng xe có ký hiệu và giới hạn khác nhau; đọc sách hướng dẫn của nhà sản xuất trước khi áp dụng.',
-    mnemonic: { text: 'Nhả ga, về một cấp, nghe máy hãm.', rhythm: 'ba-nhip' },
+    recovery: 'Nếu lệnh bị từ chối, xe tự đổi số hoặc lực hãm chưa đủ, dừng bấm trừ, quan sát đường và giảm tốc bằng phanh chân còn hiệu lực; chỉ chọn lại khi đáp ứng sách xe, không ép số. Vòng tua gần giới hạn: không yêu cầu số thấp hơn, giảm tốc và chỉ yêu cầu số cao hơn theo hướng dẫn; nếu đã vượt giới hạn hoặc có tiếng bất thường, giật mạnh, cảnh báo thì dừng an toàn và gọi hỗ trợ kiểm tra, không tự thử lại. Phanh giảm hiệu lực hoặc có mùi khét: dừng ngoài dòng xe nếu còn kiểm soát; không khống chế được tốc độ thì cảnh báo, giữ hướng lái, dùng phanh còn hiệu lực và đường cứu nạn có biển nếu tiếp cận an toàn. Không chọn P, R hay tắt máy khi đang chạy; giữ chắc xe sau khi dừng, không rời vị trí lái khi xe chưa được giữ chắc.',
+    safety: 'Phanh động cơ giảm tải, không thay phanh chân; tốc độ thực tế và khả năng dừng mới là cơ sở kiểm soát, không phải tiếng máy hay vòng tua ổn định. Theo sách xe về chế độ, giới hạn và hạn chế trên đường trơn; không ép số hoặc tin xe luôn chặn quá tua. Không về N, giữ côn cho xe trôi, chọn P, R hoặc tắt máy khi đang chạy. Khẩn cấp với ABS: đạp mạnh, giữ lực, không nhấp nhả; không chờ về số mới phanh. Phanh giảm hiệu lực, mùi khét hoặc cảnh báo: dừng an toàn và gọi hỗ trợ nếu còn kiểm soát; không khống chế được tốc độ thì cảnh báo và dùng đường cứu nạn có biển nếu tiếp cận an toàn, giữ chắc xe sau khi dừng. Xe điện, hybrid có thể hạn chế tái sinh khi pin đầy, quá nóng hoặc lạnh; chức năng lẫy theo xe và chế độ lái, vẫn dùng phanh chân khi cần.',
+    mnemonic: { text: 'Chậm trước, chọn đúng, kiểm tra; phanh vẫn cần.', rhythm: 'ba-nhip' },
     checklistId: 'bad_weather',
     quickCheck: [
-      { prompt: 'Trước khi chuyển sang số tay hoặc chế độ L, nên làm gì?', options: ['Đạp ga thêm', 'Nhả ga hoàn toàn', 'Đánh lái gấp'], correctIndex: 1 },
-      { prompt: 'Nên về số như thế nào khi xe đang chạy nhanh?', options: ['Về liền hai đến ba cấp cùng lúc', 'Về từng cấp một', 'Không cần về số'], correctIndex: 1 },
-      { prompt: 'Khi nào nên trở lại chế độ D?', options: ['Ngay giữa đoạn dốc', 'Khi hết đoạn dốc', 'Không bao giờ cần chuyển lại'], correctIndex: 1 }
+      { prompt: 'Trước khi chọn chế độ hãm xuống dốc trên xe tự động, cần làm gì?', options: ['Chỉ nhả ga rồi kéo ngay về L vì mọi xe giống nhau', 'Giảm tốc phù hợp trước dốc, chọn chế độ theo sách xe và độ bám; không về số để hãm nếu sách xe cấm trên đường trơn', 'Luôn chọn số thấp nhất để khỏi cần phanh chân'], correctIndex: 1 },
+      { prompt: 'Nếu lệnh giảm số bị từ chối hoặc vòng tua gần giới hạn, bạn nên?', options: ['Bấm trừ liên tục cho đến khi xe nhận vì hộp số luôn bảo vệ động cơ', 'Dừng yêu cầu số thấp hơn, giảm tốc bằng phanh chân, chỉ chọn lại hoặc yêu cầu số cao hơn khi sách xe cho phép; kiểm tra số hiển thị và phản hồi', 'Về N để tiếng máy dịu lại trong khi xe vẫn xuống dốc'], correctIndex: 1 },
+      { prompt: 'Phanh giảm hiệu lực hoặc hệ truyền động có cảnh báo khi xuống dốc, nên làm gì?', options: ['Về thêm hai cấp số rồi tiếp tục vì động cơ thay được phanh', 'Còn kiểm soát thì dừng an toàn, giữ chắc xe và gọi hỗ trợ kiểm tra; không khống chế được tốc độ thì cảnh báo, dùng đường cứu nạn có biển nếu tiếp cận an toàn', 'Tắt máy hoặc chọn P ngay khi xe đang chạy'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới giải thích cách dùng phanh động cơ.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới giải thích cách dùng phanh động cơ.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Sửa chọn chế độ theo xe, tốc độ và độ bám, giới hạn vòng tua, phanh chân và xử lý bất thường; thay hai sơ đồ, nâng mức rủi ro và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'weather-flood-cross',
