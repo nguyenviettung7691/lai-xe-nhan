@@ -34,4 +34,15 @@ describe('nội dung checklist thực tế', () => {
     expect(preReverse?.items.find((item) => item.id === 'reverse-camera')?.hint).toMatch(/vùng khuất/i)
     expect(preReverse?.items.find((item) => item.id === 'reverse-spotter')?.hint).toMatch(/dừng ngay/i)
   })
+
+  it('bao quát rời xe an toàn mà không mặc định hộp số tự động', () => {
+    const postPark = checklists.find((checklist) => checklist.id === 'post_park')
+    expect(postPark).toBeDefined()
+    expect(postPark?.items.find((item) => item.id === 'park-gear')?.label).not.toMatch(/về P/i)
+    expect(postPark?.items.find((item) => item.id === 'park-gear')?.hint).toMatch(/số sàn/i)
+    expect(postPark?.items.find((item) => item.id === 'park-occupants')?.criticalLevel).toBe('must')
+    expect(postPark?.items.find((item) => item.id === 'park-occupants')?.hint).toMatch(/vật nuôi/i)
+    expect(postPark?.items.find((item) => item.id === 'park-door')?.hint).toMatch(/xe đạp/i)
+    expect(postPark?.items.find((item) => item.id === 'park-lock')).toBeDefined()
+  })
 })

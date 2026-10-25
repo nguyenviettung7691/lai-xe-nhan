@@ -37,13 +37,15 @@ export const checklists: Checklist[] = [
     id: 'post_park',
     scope: 'post_park',
     title: 'Trước khi rời xe',
-    description: 'Một thói quen nhỏ giúp chuyến đi sau bắt đầu nhẹ nhàng hơn.',
+    description: 'Xác nhận xe đã được đỗ an toàn và không bỏ quên người hay vật nuôi trong xe.',
     items: [
-      { id: 'park-gear', itemNo: 1, label: 'Về P sau khi xe đã đứng hẳn', criticalLevel: 'must' },
-      { id: 'park-handbrake', itemNo: 2, label: 'Kéo phanh tay, nhất là khi đỗ dốc', criticalLevel: 'must' },
-      { id: 'park-lights', itemNo: 3, label: 'Tắt đèn và tắt máy', criticalLevel: 'should' },
-      { id: 'park-window', itemNo: 4, label: 'Đóng kín cửa kính và cửa sổ trời', criticalLevel: 'should' },
-      { id: 'park-door', itemNo: 5, label: 'Quan sát xe máy trước khi mở cửa', criticalLevel: 'must', hint: 'Mở cửa bằng tay xa để tự nhìn về phía sau.' }
+      { id: 'park-gear', itemNo: 1, label: 'Xe đã đứng hẳn; đã chọn P hoặc số theo hướng dẫn xe', criticalLevel: 'must', hint: 'Không chọn P khi xe còn lăn. Xe số sàn không có P; dùng số và quy trình được nhà sản xuất hướng dẫn.' },
+      { id: 'park-handbrake', itemNo: 2, label: 'Đã kích hoạt phanh đỗ và xác nhận xe được giữ', criticalLevel: 'must', hint: 'Dùng phanh tay hoặc phanh đỗ điện tử theo hướng dẫn xe; đặc biệt xác nhận xe được giữ chắc trên dốc.' },
+      { id: 'park-occupants', itemNo: 3, label: 'Đã kiểm tra mọi người, trẻ em và vật nuôi rời xe', criticalLevel: 'must', hint: 'Kiểm tra đủ các hàng ghế trước khi khóa xe; không để trẻ em hoặc vật nuôi một mình trong xe.' },
+      { id: 'park-lights', itemNo: 4, label: 'Đã đưa xe về trạng thái tắt/đỗ đúng hướng dẫn', criticalLevel: 'should', hint: 'Kiểm tra đèn và phụ tải; chế độ tự động có thể khác nhau giữa các xe.' },
+      { id: 'park-window', itemNo: 5, label: 'Đã đóng cửa kính và cửa sổ trời', criticalLevel: 'should' },
+      { id: 'park-door', itemNo: 6, label: 'Đã kiểm tra dòng xe trước khi mở cửa ra đường', criticalLevel: 'must', hint: 'Quan sát gương rồi nhìn trực tiếp cả xe máy, xe đạp và người đi bộ; chờ đường trống, mở hé trước. Dùng tay xa giúp quay người nhưng không thay thế việc quan sát.' },
+      { id: 'park-lock', itemNo: 7, label: 'Đã khóa xe và cất đồ giá trị khỏi tầm nhìn', criticalLevel: 'should', hint: 'Giữ chìa khóa bên mình và xác nhận xe đã khóa theo cách dùng của mẫu xe.' }
     ]
   },
   {
