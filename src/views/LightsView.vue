@@ -8,6 +8,7 @@ import {
 } from '../content'
 import { analytics } from '../services/analytics'
 import type { DashboardLight, LightColor, Severity } from '../types'
+import DashboardLightIcon from '../features/dashboard-lights/DashboardLightIcon.vue'
 
 const query = ref('')
 const severity = ref<Severity | 'all'>('all')
@@ -27,7 +28,8 @@ const colorFilters: { value: LightColor | 'all'; label: string }[] = [
   { value: 'all', label: 'Mọi màu' },
   { value: 'red', label: 'Đỏ' },
   { value: 'amber', label: 'Vàng' },
-  { value: 'green', label: 'Xanh' }
+  { value: 'green', label: 'Xanh lá' },
+  { value: 'blue', label: 'Xanh dương' }
 ]
 
 const filtered = computed(() =>
@@ -86,7 +88,13 @@ const setColor = (value: LightColor | 'all') => {
 
 <template>
   <div class="lights-view">
-    <p class="muted">Chạm vào biểu tượng đang sáng trên táp-lô để biết ngay việc cần làm.</p>
+    <p class="muted">Dừng xe an toàn trước khi tra cứu. Chạm vào biểu tượng để xem việc cần làm.</p>
+    <p class="muted signal-guidance">
+      Hình và màu là mẫu nhận diện, có thể khác theo hãng xe. Đèn sáng ngắn khi bật nguồn có thể là
+      tự kiểm tra; sáng dai dẳng hoặc nhấp nháy cần đối chiếu thông báo và sổ tay đúng mẫu xe.
+      Không suy mức nguy hiểm chỉ từ màu đèn. Có cảnh báo đỏ, mất phanh/lái, khói hoặc mùi khét:
+      ưu tiên dừng an toàn và gọi hỗ trợ.
+    </p>
 
     <input
       v-model="query"
@@ -130,7 +138,7 @@ const setColor = (value: LightColor | 'all') => {
         @click="openLight(light)"
       >
         <span class="light-symbol" :class="[light.severity, `color-${light.color}`]" aria-hidden="true">
-          {{ light.icon }}
+          <DashboardLightIcon :name="light.icon" />
         </span>
         <strong>{{ light.name }}</strong>
         <small>{{ light.english }}</small>
@@ -155,7 +163,7 @@ const setColor = (value: LightColor | 'all') => {
       >
         <button class="close" aria-label="Đóng" @click="acknowledge">×</button>
         <span class="light-symbol large" :class="[selected.severity, `color-${selected.color}`]" aria-hidden="true">
-          {{ selected.icon }}
+          <DashboardLightIcon :name="selected.icon" />
         </span>
         <p class="eyebrow">{{ selected.english.toUpperCase() }}</p>
         <h2>{{ selected.name }}</h2>

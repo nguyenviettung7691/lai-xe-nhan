@@ -161,6 +161,13 @@ body {
   border-color: #6ee7a8;
 }
 
+.light-symbol.color-blue {
+  background: #182f59;
+  color: #a6d3ff;
+  border-style: double;
+  border-color: #82bfff;
+}
+
 :root[data-theme='light'] .light-symbol.color-red {
   background: #ffe3dd;
   color: #8f2413;
@@ -177,6 +184,12 @@ body {
   background: #d9f2e3;
   color: #10532f;
   border-color: #17693d;
+}
+
+:root[data-theme='light'] .light-symbol.color-blue {
+  background: #e1edff;
+  color: #12448c;
+  border-color: #225ba4;
 }
 
 .severity-label {

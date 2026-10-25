@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { isDashboardIconName } from '../../content/light-icons'
 
 export const RiskSchema = z.enum(['low', 'medium', 'high'])
 export const SeveritySchema = z.enum(['info', 'warn', 'critical'])
@@ -159,11 +160,13 @@ export const ChecklistSchema = z.object({
   items: z.array(ChecklistItemSchema).min(1)
 })
 
-export const LightColorSchema = z.enum(['red', 'amber', 'green'])
+export const LightColorSchema = z.enum(['red', 'amber', 'green', 'blue'])
 
 export const DashboardLightSchema = z.object({
   id: z.string().min(1),
-  icon: z.string().min(1),
+  icon: z.custom<import('../../content/light-icons').DashboardIconName>(isDashboardIconName, {
+    message: 'Unknown dashboard signal drawing'
+  }),
   name: z.string().min(2),
   english: z.string().min(2),
   color: LightColorSchema,

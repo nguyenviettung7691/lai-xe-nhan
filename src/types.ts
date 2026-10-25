@@ -189,12 +189,12 @@ export interface Checklist {
   items: ChecklistItem[]
 }
 
-/** Màu đèn trên táp-lô: đỏ (dừng sớm), vàng (cảnh báo), xanh (thông báo). */
-export type LightColor = 'red' | 'amber' | 'green'
+/** Màu nhận diện; mức độ xử lý còn tùy trạng thái và thông báo của xe. */
+export type LightColor = 'red' | 'amber' | 'green' | 'blue'
 
 export interface DashboardLight {
   id: string
-  icon: string
+  icon: import('./content/light-icons').DashboardIconName
   name: string
   english: string
   color: LightColor

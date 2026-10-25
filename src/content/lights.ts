@@ -7,7 +7,7 @@ import type { DashboardLight, LightColor, Severity } from '../types'
 export const dashboardLights: DashboardLight[] = [
   {
     id: 'brake',
-    icon: '(!)',
+    icon: 'brake',
     name: 'Hệ thống phanh',
     english: 'Brake system',
     color: 'red',
@@ -24,7 +24,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'oil',
-    icon: '◔',
+    icon: 'oil',
     name: 'Áp suất dầu',
     english: 'Oil pressure',
     color: 'red',
@@ -41,7 +41,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'temperature',
-    icon: '♨',
+    icon: 'temperature',
     name: 'Nhiệt độ động cơ',
     english: 'Coolant temperature',
     color: 'red',
@@ -58,7 +58,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'transmission',
-    icon: '⚙',
+    icon: 'transmission',
     name: 'Hộp số tự động',
     english: 'Transmission warning',
     color: 'red',
@@ -75,7 +75,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'battery',
-    icon: '▭',
+    icon: 'battery',
     name: 'Ắc quy và hệ thống sạc',
     english: 'Battery / charging',
     color: 'red',
@@ -92,7 +92,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'airbag',
-    icon: '✹',
+    icon: 'airbag',
     name: 'Túi khí',
     english: 'Airbag / SRS',
     color: 'red',
@@ -109,7 +109,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'seatbelt',
-    icon: '⛓',
+    icon: 'seatbelt',
     name: 'Dây an toàn',
     english: 'Seat belt reminder',
     color: 'red',
@@ -126,7 +126,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'door',
-    icon: '⊐',
+    icon: 'door',
     name: 'Cửa chưa đóng kín',
     english: 'Door ajar',
     color: 'red',
@@ -143,7 +143,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'engine',
-    icon: '⌁',
+    icon: 'engine',
     name: 'Động cơ',
     english: 'Check engine',
     color: 'amber',
@@ -160,7 +160,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'abs',
-    icon: '◉',
+    icon: 'abs',
     name: 'ABS',
     english: 'Anti-lock braking',
     color: 'amber',
@@ -177,7 +177,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'tpms',
-    icon: '◎',
+    icon: 'tpms',
     name: 'Áp suất lốp',
     english: 'Tire pressure (TPMS)',
     color: 'amber',
@@ -194,7 +194,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'eps',
-    icon: '⊛',
+    icon: 'eps',
     name: 'Trợ lực lái',
     english: 'EPS / Power steering',
     color: 'amber',
@@ -211,7 +211,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'esp-active',
-    icon: '⚡',
+    icon: 'esp-active',
     name: 'Cân bằng điện tử đang can thiệp',
     english: 'ESP / VSC active',
     color: 'amber',
@@ -228,7 +228,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'esp-off',
-    icon: '⊘',
+    icon: 'esp-off',
     name: 'Cân bằng điện tử đã tắt',
     english: 'ESP / VSC off',
     color: 'amber',
@@ -245,7 +245,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'immobilizer',
-    icon: '⚿',
+    icon: 'immobilizer',
     name: 'Chìa khóa và chống trộm',
     english: 'Immobilizer / Key',
     color: 'amber',
@@ -262,7 +262,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'dpf',
-    icon: '☁',
+    icon: 'dpf',
     name: 'Lọc muội than (máy dầu)',
     english: 'Diesel particulate filter',
     color: 'amber',
@@ -279,7 +279,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'glow-plug',
-    icon: '϶',
+    icon: 'glow-plug',
     name: 'Sấy nóng buồng đốt (máy dầu)',
     english: 'Glow plug',
     color: 'amber',
@@ -296,7 +296,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'service',
-    icon: '⚒',
+    icon: 'service',
     name: 'Đến hạn bảo dưỡng',
     english: 'Service reminder',
     color: 'amber',
@@ -313,7 +313,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'fuel-low',
-    icon: '⛽',
+    icon: 'fuel-low',
     name: 'Sắp hết nhiên liệu',
     english: 'Low fuel',
     color: 'amber',
@@ -330,7 +330,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'washer-fluid',
-    icon: '⛆',
+    icon: 'washer-fluid',
     name: 'Nước rửa kính',
     english: 'Washer fluid low',
     color: 'amber',
@@ -347,7 +347,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'high-beam',
-    icon: '≣',
+    icon: 'high-beam',
     name: 'Đèn pha (chiếu xa)',
     english: 'High beam',
     color: 'green',
@@ -364,7 +364,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'fog-light',
-    icon: '≋',
+    icon: 'fog-light',
     name: 'Đèn sương mù',
     english: 'Fog light',
     color: 'green',
@@ -381,7 +381,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'cruise',
-    icon: '⊙',
+    icon: 'cruise',
     name: 'Ga tự động (Cruise control)',
     english: 'Cruise control',
     color: 'green',
@@ -398,7 +398,7 @@ export const dashboardLights: DashboardLight[] = [
   },
   {
     id: 'lane-assist',
-    icon: '⇅',
+    icon: 'lane-assist',
     name: 'Cảnh báo lệch làn',
     english: 'Lane departure warning',
     color: 'green',
@@ -433,7 +433,8 @@ export const SEVERITY_SHORT_LABEL: Record<Severity, string> = {
 export const LIGHT_COLOR_LABEL: Record<LightColor, string> = {
   red: 'Đèn đỏ',
   amber: 'Đèn vàng',
-  green: 'Đèn xanh'
+  green: 'Đèn xanh lá',
+  blue: 'Đèn xanh dương'
 }
 
 /** Bỏ dấu tiếng Việt để tra cứu được cả khi gõ không dấu. */
