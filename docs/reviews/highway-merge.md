@@ -1,0 +1,65 @@
+# Review and mitigation plan: `highway-merge`
+
+Date: 2026-10-25. Scope: the complete Vietnamese lesson, steps/cues, speed and
+steering hints, mistakes, recovery, safety, mnemonic, three quizzes, both SVGs,
+captions/alt text, release/review metadata, checklist and learning/quick/audio
+consumers. This is an editorial and technical review, not instructor certification.
+
+## Analysis before implementation
+
+| Priority | Surface | Finding and real-world consequence | Mitigation |
+| --- | --- | --- | --- |
+| High | Recovery and third quiz | Explicitly teaches continuing onto the emergency shoulder when the acceleration lane runs out. This is not a normal merging option and contradicts Vietnamese motorway rules. | Plan and yield early within the acceleration lane. If necessary, slow and stop before its end rather than force entry; never extend acceleration onto the shoulder, reverse or turn around. Distinguish a forced stop from routine waiting and obtain assistance if stranded. |
+| High | Gap selection and second quiz | Treats a three-second hole between two existing vehicles as sufficient space to insert another vehicle. It does not account for vehicle length, front and rear clearance or the closing speed of the following vehicle. | Evaluate both clearances and relative speed; do not make another vehicle brake hard or swerve. Separate following-distance guidance from permission to merge; follow distance signs and speed/condition-dependent requirements. No universal merge-gap countdown. |
+| High | Priority and observation | No explicit duty to yield, no renewed blind-spot check immediately before moving, and speed matching comes before traffic assessment. A signal could be mistaken for priority. | Read signs/markings, identify the rightmost receiving lane and a gap early, signal, adjust speed legally, recheck mirrors/blind spot briefly while maintaining forward observation, and yield. Avoid dwelling in a truck's blind spot. |
+| High | Main SVG | Rendered inspection shows a path across the rightmost lane toward the middle lane. The road edge runs through the merging area; the approach car is outside the drawn carriageway. No clear taper or permitted crossing boundary. | Draw a dedicated right-side acceleration lane and taper, a dashed merge boundary, solid outer edges, consistent rightward car headings and traffic arrows. Route the ego arrow from its front into only the adjacent rightmost lane, with clear space ahead/behind. |
+| Medium | Variant SVG | Ego sits in the middle lane; a single bracket ahead is labelled three seconds. No rear-clearance or approach-speed explanation. | Show a post-merge snapshot in the rightmost lane with separate bumper-to-bumper front/rear brackets, front/rear vehicles, direction arrow and no numerical safe-gap claim. Explicitly state that geometry is not to scale. |
+| Medium | Speed and context | A fixed 30 km/h speed difference and deadline imply racing to merge. The speed quiz omits limits and conditions. | Use a right-side entry example, no universal acceleration target, obey limits, visibility/grip and congestion, and never chase an unsafe gap. Include the extra-lane case. |
+| Medium | Approval | A sample reviewer incorrectly endorses the unsafe shoulder advice and universal gap rule as certified. | Remove only this sample review and publish the revised card as `published_unverified`. Move the generic stale-review fixture to another unchanged, approved card. |
+
+## References and interpretation
+
+- [Vietnam Government: Law 36/2024/QH15, Article 25](https://xaydungchinhsach.chinhphu.vn/toan-van-luat-trat-tu-an-toan-giao-thong-duong-bo-119240909105718285.htm),
+  read directly: signal before joining, yield to motorway traffic, observe
+  following traffic, enter the lane nearest the right only with safe clearance,
+  and use an acceleration lane if provided. Do not drive on the emergency lane
+  or shoulder. Article 25(2) distinguishes prescribed stopping places from
+  technical failure/force-majeure stops and requires emergency signalling and
+  assistance. A forced stop before a ramp ends is a last-resort collision
+  avoidance measure, not a designated waiting/parking place.
+- [UK Highway Code, rule 259](https://www.gov.uk/guidance/the-highway-code/motorways-253-to-273),
+  read directly: yield, match speed safely, do not cross solid white lines or
+  use the shoulder, and remain in the entry lane if it becomes an additional
+  motorway lane. Its left-driving geometry is **not** copied to Vietnam.
+- The lesson will refer to posted and speed-dependent safe distances without
+  asserting that a fixed number of seconds legally or physically authorizes
+  insertion. A static, not-to-scale picture cannot certify a safe gap.
+
+The existing `pre_highway` checklist covers vehicle/driver readiness and route
+planning, not merge authorization; no checklist change is needed. The renderer
+derives visual and spoken guidance from the card. Quick mode hides recovery and
+the variant, while whole-lesson audio reads instructions and safety but not cues;
+essential yielding/no-shoulder/last-resort guidance must be in those sources too.
+Only the two SVG diagrams are attached: no separate photos, charts or animations.
+
+## Implementation plan
+
+1. Commit this analysis and plan before implementing the revision.
+2. Rewrite the complete lesson and all three quizzes coherently. Preserve stable
+   card/lesson/asset/checklist/quiz IDs and historical changelog entries.
+3. Replace only this lesson's two generated scenes and captions/alt text. Use
+   semantic SVG groups for receiving lane, acceleration lane, vehicle poses,
+   merge path, traffic direction and both gap brackets; test actual geometry.
+4. Bump card and pack versions, regenerate assets deterministically, remove the
+   sample endorsement and relocate the stale-review fixture.
+5. Add focused regression tests for safe decisions, answer semantics, metadata,
+   right-lane-only entry, car/arrow directions, taper boundaries, front/rear gaps
+   and non-numerical descriptions. Run focused content tests, lint and build.
+6. Inspect rendered diagrams, SVG text bounds, desktop/mobile layout, quick mode
+   and quiz behaviour. Confirm unrelated SVGs are unchanged. Record actual
+   verification and commit the coherent implementation.
+
+## Baseline
+
+Clean worktree. Baseline content, assets and validation suites: **31 tests passed**.
+Both original SVGs inspected in the rendered lesson before editing.
