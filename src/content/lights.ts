@@ -267,15 +267,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Diesel particulate filter',
     color: 'amber',
     severity: 'warn',
-    description: 'Bộ lọc muội than trên xe máy dầu đang đầy và cần được đốt sạch.',
+    description: 'Hình bộ lọc có chấm muội báo DPF cần xử lý/tái sinh hoặc có lỗi. Đèn nháy, thông báo kiểm tra khí thải hay kèm MIL có thể cần xưởng, không phải cứ chạy nhanh là sạch.',
     keywords: ['dpf', 'máy dầu', 'diesel', 'muội than', 'lọc khí thải'],
     actions: [
-      'Chạy đều ga 15–20 phút ở tốc độ ngoài đô thị nếu an toàn.',
-      'Tránh dừng máy liên tục trong quá trình xe tự làm sạch.',
-      'Nếu đèn không tắt sau chuyến đi dài, hẹn gara xử lý.'
+      'Đọc sổ tay và thông báo: chỉ thực hiện chuyến tái sinh khi xe cho phép, không có lỗi kèm và có tuyến đường phù hợp.',
+      'Tuân thủ đúng điều kiện tốc độ, số, vòng tua và thời gian của mẫu xe, trong giới hạn pháp luật; không có cách chạy chung cho mọi xe.',
+      'Nếu đèn nháy, có MIL, giảm công suất hoặc tái sinh không hết: liên hệ xưởng; xe chạy bất thường thì dừng an toàn và gọi hỗ trợ.'
     ],
-    avoid: 'Không tiếp tục chạy quãng ngắn liên tục trong phố khi đèn đang sáng.',
-    callHelp: 'Vào gara khi đèn DPF sáng cùng đèn động cơ hoặc xe mất lực kéo.'
+    avoid: 'Không ép tái sinh bằng ga tại chỗ, trong nhà hay gần cỏ khô/vật dễ cháy; khí xả rất nóng, không tự dùng hóa chất/xóa lỗi.',
+    callHelp: 'Cần xưởng nếu nháy, kèm MIL hoặc không hoàn tất quy trình đúng sổ tay; cứu hộ nếu xe mất lực, quá nhiệt hay không thể đi an toàn.'
   },
   {
     id: 'glow-plug',
