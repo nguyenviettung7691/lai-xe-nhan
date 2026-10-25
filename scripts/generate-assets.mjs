@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.13'
+const CONTENT_VERSION = '2026.10.14'
 
 const W = 320
 const H = 200
@@ -394,6 +394,41 @@ const mergeScene = inserted => [
     label(160, 166, 'LÀN TĂNG TỐC', { size: 8, fill: C.ego, anchor: 'middle' }),
     label(198, 95, 'LÀN PHẢI', { size: 8, fill: C.ego, anchor: 'middle' }),
     note('Không theo tỷ lệ. Nhường xe làn chính; đủ hở trước và sau mới nhập.')
+  ])
+]
+
+const exitScene = missed => [
+  rect(0, 0, W, 180, C.kerb),
+  `<g id="exit-main-road">${rect(0, 34, W, 88, C.asphalt)}</g>`,
+  `<g id="exit-deceleration-lane"><path d="M32 122L206 122L320 142L320 174L206 166L88 166Z" fill="${C.asphalt}"/></g>`,
+  line(0, 34, W, 34, C.bay, 2),
+  `<g id="exit-main-divider">${line(0, 78, W, 78, C.bay, 1.8, '12 10')}</g>`,
+  `<g id="exit-entry-boundary">${line(32, 122, 194, 122, C.bay, 1.8, '8 6')}</g>`,
+  `<g id="exit-solid-separation">${line(194, 122, W, 122, C.bay, 2)}${line(206, 122, W, 142, C.bay, 2)}</g>`,
+  `<g id="exit-gore"><path d="M206 122L320 122L320 142Z" fill="${C.kerb}"/>` +
+    line(228, 123, 238, 126, C.bay, 1.4) +
+    line(252, 123, 274, 133, C.bay, 1.4) +
+    line(282, 123, 309, 139, C.bay, 1.4) + '</g>',
+  `<g id="exit-outer-edge"><path d="M0 122L32 122L88 166L206 166L320 174" fill="none" stroke="${C.bay}" stroke-width="2"/></g>`,
+  label(16, 20, missed ? 'QUÁ MUỘN: ĐI TIẾP' : 'LỐI RA BÊN PHẢI', { size: 9, fill: C.ego }),
+  label(16, 58, 'CHIỀU ĐI', { size: 8 }),
+  `<g id="exit-traffic-direction">${arrow(94, 55, 140, 55)}${arrow(248, 55, 294, 55)}</g>`,
+  `<g id="exit-branch-direction">${arrow(246, 149, 298, 155)}</g>`,
+  label(274, 168, 'NHÁNH RA', { size: 8, anchor: 'middle' }),
+  `<g id="exit-ego-car">${car(missed ? 222 : 40, 100, 90, C.ego, 18, 32)}</g>`,
+  ...(missed ? [
+    `<g id="exit-safe-continuation">${trail('M240 100L302 100')}</g>`,
+    `<g id="exit-forbidden-path"><path d="M240 104L284 148" fill="none" stroke="${C.hazard}" stroke-width="2.4" stroke-dasharray="4 4"/></g>`,
+    `<g id="exit-prohibition">${line(258, 122, 274, 138, C.hazard, 3)}${line(274, 122, 258, 138, C.hazard, 3)}</g>`,
+    label(124, 101, 'GIỮ LÀN', { size: 8, fill: C.ego, anchor: 'middle' }),
+    label(142, 149, 'KHÔNG CẮT', { size: 8, fill: C.hazard, anchor: 'middle' }),
+    note('Không theo tỷ lệ. Lỡ lối ra: giữ làn, đi tiếp.')
+  ] : [
+    `<g id="exit-entry-path">${trail('M58 100C102 100 112 144 158 144L182 144')}</g>`,
+    label(16, 88, 'XE MÌNH', { size: 8, fill: C.ego }),
+    label(150, 96, 'LÀN PHẢI', { size: 8 }),
+    label(144, 161, 'LÀN GIẢM TỐC', { size: 8, fill: C.ego, anchor: 'middle' }),
+    note('Không theo tỷ lệ. Đủ hở mới vào; giảm tốc sớm nếu phía trước có nguy hiểm.')
   ])
 ]
 
@@ -785,23 +820,8 @@ const templates = {
     const scenes = {
       merge: () => mergeScene(false),
       'merge-gap': () => mergeScene(true),
-      exit: () => [
-        highwayLot(),
-        `<path d="M200 144L320 176" fill="none" stroke="${C.bay}" stroke-width="2" stroke-dasharray="10 8"/>`,
-        rect(226, 6, 82, 20, '#2f6b3f', 3),
-        label(267, 20, 'LỐI RA 500m', { size: 8, fill: '#d8ffd0', anchor: 'middle' }),
-        car(120, 136, 90, C.ego),
-        trail('M146 140C190 146 240 160 288 172'),
-        note('Về làn phải sớm 1 km, giảm tốc sau khi vào làn giảm tốc.')
-      ],
-      'exit-miss': () => [
-        highwayLot(),
-        car(150, 98, 90, C.ego),
-        `<path d="M176 104L244 148" stroke="${C.hazard}" stroke-width="2.4" stroke-dasharray="4 4" fill="none"/>`,
-        `<g stroke="${C.hazard}" stroke-width="3"><path d="M244 126L268 150"/><path d="M268 126L244 150"/></g>`,
-        tag(16, 166, 'Không cắt ngang gấp'),
-        note('Lỡ lối ra thì đi tiếp tới nút kế, tuyệt đối không lùi.')
-      ],
+      exit: () => exitScene(false),
+      'exit-miss': () => exitScene(true),
       signs: () => [
         highwayLot(),
         rect(28, 4, 88, 24, '#2a4b8d', 3),
@@ -986,7 +1006,7 @@ const specs = [
   ['narrow-yield', 'alley', ['yield', 'Hai xe dừng đánh giá; chỗ tránh phía trước bên phải xe bạn, không mặc định phải lùi.', 'Sơ đồ không theo tỷ lệ trên nền bằng: xe bạn màu xanh hướng lên, xe đối diện hướng xuống, cả hai dừng; chỗ tránh mở về phía trước bên phải xe bạn. Không vẽ quỹ đạo đánh lái.'], ['yield-pocket', 'Xe bạn giữ yên trong chỗ tránh; chờ hết xe và người, kiểm tra lại trước khi ra.', 'Sơ đồ không theo tỷ lệ: toàn xe bạn và gương nằm trong chỗ tránh bên phải, đầu hướng lên và đang dừng; xe đối diện hướng xuống với mũi tên cùng chiều. Hai trạng thái không phải quỹ đạo bảo đảm xe lọt.']],
   ['narrow-cutoff', 'alley', ['cutoff', 'Dừng trước vùng xe máy cắt ngang tại ngã ba, không nhô đầu dò vùng khuất', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: ngõ nhánh từ dưới nối đường chính hai chiều ở trên. Đầu ô tô hướng lên, gương mở; xe đang dừng trước vùng cắt ngang tô đỏ, không có mũi tên chuyển động của ô tô. Xe máy hướng sang phải trên phần đường gần miệng ngõ; mũi tên đỏ nét đứt chỉ hướng xe máy, không phải lệnh đánh lái hay khoảng cách phanh bảo đảm.'], ['cutoff-stop', 'Một xe vừa qua: vẫn giữ xe, kiểm tra xe đi tiếp và cả hai hướng', 'Sơ đồ không theo tỷ lệ, cùng ngã ba và vị trí ô tô đang dừng, đầu hướng lên. Xe máy đầu đã sang phải qua miệng ngõ nhưng còn xe đi tiếp từ trái và xe từ hướng đối diện trên phần đường xa hơn. Các mũi tên đỏ nét đứt khớp hướng đầu xe máy; ô tô không có mũi tên chuyển động. Giữ xe, quan sát lại cả hai hướng và người qua đường; không có mốc một thân xe máy hay khoảng trống bảo đảm để đi.']],
   ['highway-merge', 'highway', ['merge', 'Từ làn tăng tốc bên phải, chỉ nhập một làn khi đủ hở', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: các xe hướng đầu sang phải; làn tăng tốc nằm dưới làn sát bên phải cao tốc và thu hẹp ở cuối. Mũi tên xanh từ trước đầu xe mình đi qua vạch đứt vào đúng làn sát bên phải, không sang làn trái; xe trên làn chính có quyền ưu tiên. Đây là hướng nhập minh họa, không phải quỹ đạo hoặc khoảng cách bảo đảm.'], ['merge-gap', 'Sau khi nhập cần đủ khoảng hở cả trước và sau, xét tốc độ tương đối', 'Sơ đồ không theo tỷ lệ: ba xe cùng hướng sang phải trên làn sát bên phải cao tốc; xe mình ở giữa. Hai ngoặc nét đứt đo khoảng hở từ đầu xe sau tới đuôi xe mình và từ đầu xe mình tới đuôi xe trước, không phải mũi tên chuyển động hay mốc giây cố định. Hình không chứng minh khe an toàn; cần xét xe sau đến gần nhanh, không ép xe khác phanh gấp hoặc đánh lái tránh.']],
-  ['highway-exit', 'highway', ['exit', 'Thoát làn đúng lối ra', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vào làn giảm tốc trước lối ra cao tốc.'], ['exit-miss', 'Lỡ lối ra', 'Sơ đồ nhìn từ trên xuống: thao tác cắt ngang gấp bị gạch bỏ khi lỡ lối ra.']],
+  ['highway-exit', 'highway', ['exit', 'Từ làn phải vào làn giảm tốc qua vạch đứt, chỉ khi đủ khoảng hở', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe mình hướng đầu sang phải trong làn sát bên phải cao tốc. Mũi tên xanh từ trước đầu xe đi qua vạch đứt xuống làn giảm tốc bên phải, ổn định trước nhánh ra; đường nhánh và chiều đi nối liền, vùng gạch chéo nằm giữa nhánh và làn chính sau đoạn được phép vào. Đây không phải quỹ đạo lái chính xác hay mốc khoảng cách, tốc độ; vẫn giảm tốc hoặc phanh sớm khi có nguy hiểm, kể cả trên làn chính.'], ['exit-miss', 'Đã quá đoạn được phép vào: giữ làn đi tiếp, không cắt vùng gạch chéo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu sang phải, đã qua đoạn vạch đứt vào lối ra. Mũi tên xanh đi thẳng trong làn chính tới lối ra phù hợp tiếp theo. Nét đỏ cắt qua vạch liền và vùng gạch chéo sang nhánh ra bị dấu X đỏ cấm, không phải hướng nên đi. Không lùi, quay đầu, dừng để quay lại hoặc dùng làn dừng khẩn cấp hay lề đường; nếu đã vào đường nhánh thì tiếp tục theo biển, không cắt ngược về làn chính.']],
   ['highway-signs', 'highway', ['signs', 'Biển gộp làn', 'Sơ đồ nhìn từ trên xuống: biển báo gộp làn và quỹ đạo nhập làn tương ứng.'], ['signs-speed', 'Biển đổi tốc độ', 'Sơ đồ nhìn từ trên xuống: biển giới hạn tốc độ 60 km/h và quãng giảm tốc trước biển.']],
   ['highway-gap', 'highway', ['gap', 'Khoảng cách ba giây', 'Sơ đồ nhìn từ trên xuống: cách đếm ba giây so với xe phía trước.'], ['gap-rain', 'Khoảng cách khi trời mưa', 'Sơ đồ nhìn từ trên xuống: khoảng cách bốn đến năm giây khi mặt đường ướt.']],
   ['highway-overtake-truck', 'highway', ['overtake', 'Vượt xe tải bên trái', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vượt xe tải bằng làn bên trái.'], ['overtake-return', 'Thời điểm về làn', 'Sơ đồ nhìn từ trên xuống: thời điểm về làn phải khi đã thấy đầu xe tải trong gương.']],

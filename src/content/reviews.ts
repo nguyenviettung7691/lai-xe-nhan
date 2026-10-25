@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('highway-exit', 'safety', 'Nguyên tắc chỉ phanh trong làn giảm tốc rất quan trọng, đã kiểm chứng.', 5, '2026-09-12'),
   review('highway-signs', 'safety', 'Cách diễn đạt về làn và tốc độ bám sát quy định hiện hành.', 4, '2026-09-12'),
   review('highway-gap', 'safety', 'Quy tắc đếm ba giây dễ nhớ và an toàn hơn ước lượng theo mét.', 5, '2026-09-12'),
   review('highway-overtake-truck', 'safety', 'Yêu cầu thoát nhanh khỏi vùng điểm mù là điểm mấu chốt.', 4, '2026-09-12'),

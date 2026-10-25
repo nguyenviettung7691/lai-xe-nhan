@@ -75,3 +75,46 @@ No shared renderer change is needed.
 Clean worktree. Content, asset and validation suites: **31 tests passed**.
 Both original SVGs inspected in the running lesson; main car/arrow pavement
 errors and absent exit context in the variant confirmed visually.
+
+## Implementation and verification results
+
+- Analysis/plan committed before implementation as `196055b`.
+- Card **1.1.0**, content pack **2026.10.14**. Revised context/objective,
+  eight instructions and cues/hints, all three mistakes, recovery, safety,
+  mnemonic and all three questions together. Retained stable identities and
+  the original card/release history.
+- Removed only this lesson's sample endorsement. UI now displays
+  **Chưa thẩm định độc lập**. Independent instructor review remains outstanding;
+  this revision does not assert certification.
+- Normal exit slowing is separated from necessary earlier braking for queues,
+  hazards, short deceleration lanes and poor conditions. Included exits without
+  a separate deceleration lane, blind-spot rechecks, branch speed perception,
+  curves, queues and safe missed-exit recovery without shoulder shortcuts.
+- Replaced both diagrams with connected paved geometry. Main path leaves the
+  car nose, crosses only the dashed permitted boundary and settles inside the
+  right-side deceleration lane. Variant places the whole car beyond permitted
+  entry, points straight ahead and crosses out the actual solid-line/gore
+  shortcut. Car heading, traffic arrows and branch arrows agree.
+- Added **12 focused regression tests** for decisions, actual correct answers,
+  publication history, lane geometry, car extents, sampled entry curve and
+  clearance, arrow directions, positive straight continuation, forbidden-path
+  intersection, red X placement and accessible descriptions.
+- Focused lesson/content/assets/validation run: **43 tests passed**. All content
+  regressions, including earlier lesson reviews: **192 tests passed in 17 files**.
+  Lint, Vue/TypeScript checking, production build and whitespace checks passed.
+  Build emitted only Zod/Rollup dependency-annotation warnings.
+- Desktop **1280 x 900** and mobile **390 x 844**: visually inspected both final
+  diagrams. Images loaded, captions wrapped and no horizontal text/page overflow
+  was found. Measured SVG text bounds: no clipping or text-to-text overlap after
+  shortening the variant footer.
+- Browser quizzes verified wrong answers as **0/3**, retry and correct answers
+  as **3/3**. Quick mode retained all eight instructions and essential braking
+  guidance while hiding the variant/recovery as intended.
+- Inspected all ten entries in the large-text sequential-audio transcript.
+  Captured full-lesson and individual-step speech requests with browser speech
+  output stubbed: both include necessary earlier-braking guidance; full-lesson
+  output includes missed-exit prohibitions. Audible pronunciation/device voice
+  quality was not tested.
+- Repeated generation was byte-identical across all 46 SVGs and the manifest.
+  Only the two `highway-exit` SVGs changed; unrelated lesson illustrations and
+  shared rendering/checklist behaviour were preserved.

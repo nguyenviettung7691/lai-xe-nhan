@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.13",
+  "contentVersion": "2026.10.14",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 149.9,
+  "totalSizeKb": 154.37,
   "assets": [
     {
       "id": "parking-start-main",
@@ -376,11 +376,11 @@
       "url": "/content/svg/highway-exit-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.17,
-      "checksum": "sha256-b6e900390e0ac01c9d10849256fea50ef08a1261a831426cb732c3c895f05831",
+      "sizeKb": 4.42,
+      "checksum": "sha256-8745cc6e6d326ab73b1ae014d6064fc42b0970d83fc132a7b3c83500afeb02a0",
       "offlinePack": "core",
-      "caption": "Thoát làn đúng lối ra",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo vào làn giảm tốc trước lối ra cao tốc."
+      "caption": "Từ làn phải vào làn giảm tốc qua vạch đứt, chỉ khi đủ khoảng hở",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe mình hướng đầu sang phải trong làn sát bên phải cao tốc. Mũi tên xanh từ trước đầu xe đi qua vạch đứt xuống làn giảm tốc bên phải, ổn định trước nhánh ra; đường nhánh và chiều đi nối liền, vùng gạch chéo nằm giữa nhánh và làn chính sau đoạn được phép vào. Đây không phải quỹ đạo lái chính xác hay mốc khoảng cách, tốc độ; vẫn giảm tốc hoặc phanh sớm khi có nguy hiểm, kể cả trên làn chính."
     },
     {
       "id": "highway-exit-var",
@@ -390,11 +390,11 @@
       "url": "/content/svg/highway-exit-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.14,
-      "checksum": "sha256-88eb64b78ddcd4eab08f757c057fa16402e260979803f46d1bd6703372c42830",
+      "sizeKb": 4.36,
+      "checksum": "sha256-f084e6d1920a760d4a6aeff9fdf6185e3ebcbe1e4135b182c201080d1944340a",
       "offlinePack": "core",
-      "caption": "Lỡ lối ra",
-      "alt": "Sơ đồ nhìn từ trên xuống: thao tác cắt ngang gấp bị gạch bỏ khi lỡ lối ra."
+      "caption": "Đã quá đoạn được phép vào: giữ làn đi tiếp, không cắt vùng gạch chéo",
+      "alt": "Sơ đồ không theo tỷ lệ: xe mình hướng đầu sang phải, đã qua đoạn vạch đứt vào lối ra. Mũi tên xanh đi thẳng trong làn chính tới lối ra phù hợp tiếp theo. Nét đỏ cắt qua vạch liền và vùng gạch chéo sang nhánh ra bị dấu X đỏ cấm, không phải hướng nên đi. Không lùi, quay đầu, dừng để quay lại hoặc dùng làn dừng khẩn cấp hay lề đường; nếu đã vào đường nhánh thì tiếp tục theo biển, không cắt ngược về làn chính."
     },
     {
       "id": "highway-signs-main",

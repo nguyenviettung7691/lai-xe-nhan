@@ -52,38 +52,43 @@ export const highwayCards: Card[] = [
     lessonId: 'highway-entry',
     topicId: 'highway',
     title: 'Rời cao tốc đúng lối ra',
-    context: 'Biển báo lối ra xuất hiện khi bạn còn ở làn trong cùng và dòng xe khá dày. Nhiều vụ va chạm xảy ra do tài xế đổi làn gấp ở phút chót.',
-    objective: 'Chuyển dần ra làn ngoài và giảm tốc đúng trong làn giảm tốc.',
+    context: 'Bạn cần rời cao tốc qua lối ra bên phải nhưng còn ở làn bên trái và dòng xe khá dày. Cần chuẩn bị sớm theo biển, vạch thực tế; nếu không còn đủ khoảng trống để ra an toàn thì chấp nhận đi tiếp.',
+    objective: 'Chuyển từng làn an toàn về bên phải, dùng làn giảm tốc nếu có và chọn tốc độ phù hợp trước đường nhánh; bỏ lối ra khi đã quá muộn.',
     risk: 'high',
     difficulty: 3,
-    minutes: 4,
+    minutes: 5,
     tags: { speedRange: 'highway', spaceConstraint: 'medium', visibility: 'good', stress: 'moderate' },
     steps: [
-      { instruction: 'Đọc biển báo lối ra từ khoảng cách hai ki-lô-mét.', cueType: 'sign', cueText: 'Biển báo cách 2 km' },
-      { instruction: 'Chuyển từng làn một, mỗi lần cách nhau vài giây.', cueType: 'timing', cueText: 'Mỗi làn cách nhau vài giây' },
-      { instruction: 'Bật xi-nhan phải trước lối ra ít nhất ba trăm mét.', cueType: 'marker', cueText: 'Xi-nhan trước 300 m' },
-      { instruction: 'Giữ nguyên tốc độ cho đến khi bánh xe vào làn giảm tốc.', cueType: 'marker', cueText: 'Bánh xe đã vào làn giảm tốc' },
-      { instruction: 'Giảm tốc đều trong làn giảm tốc, không phanh trên làn chính.', cueType: 'feel', cueText: 'Phanh chỉ trong làn giảm tốc' },
-      { instruction: 'Nhìn đồng hồ tốc độ trước khi vào đường nhánh.', cueType: 'marker', cueText: 'Tốc độ theo biển đường nhánh' }
+      { instruction: 'Đọc trước thông tin lối ra của hành trình; đọc sớm biển chỉ dẫn và vạch phân làn thực tế, chuyển dần về làn sát bên phải khi còn đủ đường và khoảng trống.', cueType: 'sign', cueText: 'Theo biển, vạch tại chỗ; không chờ một mốc ki-lô-mét cố định hay làm theo dẫn đường trái biển' },
+      { instruction: 'Bật xi-nhan phải báo trước mỗi lần chuyển làn; kiểm tra gương trong, gương phải và khoảng hở phía trước, phía sau, hai bên; nhường xe đang ở làn định vào.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền ưu tiên; chú ý xe sau đến nhanh' },
+      { instruction: 'Kiểm tra lại điểm mù bên phải ngay trước khi dịch ngang, chỉ liếc ngắn rồi nhìn lại phía trước; qua vạch đứt ở nơi cho phép vào một làn liền kề, ổn định xe rồi quan sát lại trước lần chuyển tiếp.', cueType: 'mirror', cueText: 'Không đếm vài giây để mặc nhiên chuyển tiếp; không cắt vạch liền hoặc vùng gạch chéo', steeringHint: 'dịch ngang êm, không cắt chéo nhiều làn' },
+      { instruction: 'Báo hiệu phải kịp thời khi tới làn sát bên phải và quan sát làn giảm tốc, xe phía trước cùng hàng xe chờ ở đường nhánh; chỉ vào làn giảm tốc qua đoạn vạch cho phép khi đủ khoảng hở.', cueType: 'marker', cueText: 'Không dùng làn dừng khẩn cấp hoặc lề đường làm làn ra' },
+      { instruction: 'Đưa toàn bộ xe ổn định trong làn giảm tốc nếu có, rồi giảm tốc đều cho lối ra khi điều kiện cho phép. Nếu làn giảm tốc ngắn hoặc có ùn tắc, chướng ngại hay điều kiện xấu, phải giảm tốc hoặc phanh sớm để an toàn, kể cả trên làn chính; không cố giữ tốc độ.', cueType: 'feel', cueText: 'Không phanh gấp chỉ để bắt kịp lối ra; vẫn phanh khi cần tránh va chạm', speedHint: 'theo biển báo, dòng xe, tầm nhìn và độ bám' },
+      { instruction: 'Giảm tốc từ từ trên làn dẫn ra phù hợp điều kiện nếu không có làn giảm tốc riêng; theo biển và vạch dẫn vào lối ra, báo hiệu sớm và quan sát xe sau, không phanh đột ngột chỉ vì sắp lỡ lối ra.', cueType: 'sign', cueText: 'Không giả định lối ra nào cũng có làn giảm tốc' },
+      { instruction: 'Liếc ngắn đồng hồ tốc độ rồi nhìn lại đường; sau khi chạy cao tốc lâu, cảm giác có thể đánh giá tốc độ thấp hơn thực tế. Giảm tốc trước đoạn cong và hàng xe chờ, tuân thủ biển tốc độ đường nhánh, giảm thêm khi mưa trơn hoặc khuất tầm nhìn; giữ tín hiệu qua thao tác rời làn và tắt khi hoàn tất.', cueType: 'marker', cueText: 'Không đợi tới giữa cua mới giảm tốc; không mặc định đường nhánh đang trống' },
+      { instruction: 'Giữ làn đi tiếp tới lối ra phù hợp tiếp theo nếu không đủ khoảng hở hoặc đã qua đoạn được phép vào lối ra; không cắt vạch liền hay vùng gạch chéo, không lùi, quay đầu, dừng để quay lại hoặc chạy trên làn dừng khẩn cấp hay lề đường.', cueType: 'timing', cueText: 'Bỏ lối ra, không bỏ an toàn; chỉ chỉnh dẫn đường khi an toàn' }
     ],
     mistakes: [
-      'Cắt chéo nhiều làn khi đã tới sát lối ra.',
-      'Phanh gấp trên làn chính vì sợ lỡ lối ra.',
-      'Giữ tốc độ cao khi đã vào đường nhánh cong.'
+      'Cắt chéo nhiều làn hoặc cắt vạch liền, vùng gạch chéo để cố bắt lối ra.',
+      'Phanh gấp chỉ vì sợ lỡ lối ra, hoặc cố giữ tốc độ dù phía trước đang ùn tắc vì nghĩ không được phanh trên làn chính.',
+      'Chỉ dựa vào cảm giác tốc độ sau khi chạy cao tốc lâu, vào cua đường nhánh quá nhanh hoặc không thấy hàng xe chờ.'
     ],
-    recovery: 'Lỡ lối ra thì đi tiếp tới lối ra kế tiếp. Không lùi, không dừng trên làn chính để chờ quay lại.',
-    safety: 'Nếu không kịp vào làn ra an toàn, đi tiếp tới lối ra kế tiếp; không cắt làn hoặc phanh gấp trên làn chính.',
-    mnemonic: { text: 'Ra sớm từng làn, giảm tốc trong làn ra.', rhythm: 'ba-nhip' },
+    recovery: 'Nếu khe chuyển làn đóng lại, hoãn chuyển và giữ làn, điều chỉnh tốc độ theo xe trước, không ép xe khác nhường. Nếu quá muộn thì đi tiếp tới lối ra phù hợp tiếp theo; không lùi, quay đầu, dừng để quay lại, cắt vùng gạch chéo hay dùng làn dừng khẩn cấp hoặc lề đường. Nếu đã ở đường nhánh, tiếp tục theo biển, không cắt ngược về làn chính. Để dẫn đường tính lại, chỉ thao tác thiết bị khi đã dừng ở nơi được phép và an toàn hoặc nhờ hành khách; lỡ lối ra không phải tình huống cho phép dừng khẩn cấp.',
+    safety: 'Chuẩn bị sớm, báo hiệu và quan sát gương, điểm mù trước mỗi lần chuyển một làn; chỉ chuyển ở nơi cho phép khi đủ khoảng hở. Giảm tốc thông thường khi toàn bộ xe đã ổn định trong làn giảm tốc nếu có, nhưng phải giảm tốc hoặc phanh sớm nếu làn giảm tốc ngắn hoặc có ùn tắc, chướng ngại hay điều kiện xấu, kể cả trên làn chính. Nếu không đủ điều kiện vào lối ra, giữ làn đi tiếp; không cắt vạch liền hoặc vùng gạch chéo, không lùi, quay đầu, dừng để quay lại hay chạy trên làn dừng khẩn cấp hoặc lề đường. Chọn tốc độ theo biển và điều kiện, giảm trước cua và hàng xe chờ.',
+    mnemonic: { text: 'Nhìn sớm, chuyển từng làn; quá muộn, đi tiếp.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Nên đọc biển báo lối ra từ khoảng cách nào để chuẩn bị?', options: ['Ngay sát lối ra', 'Khoảng hai ki-lô-mét trước', 'Không cần đọc biển báo'], correctIndex: 1 },
-      { prompt: 'Cách chuyển làn ra khỏi cao tốc đúng là gì?', options: ['Cắt chéo nhiều làn cùng lúc khi gần tới lối ra', 'Chuyển từng làn một, cách nhau vài giây', 'Phanh gấp trên làn chính rồi rẽ'], correctIndex: 1 },
-      { prompt: 'Nếu lỡ mất lối ra mong muốn, bạn nên làm gì?', options: ['Lùi xe lại trên làn chính', 'Đi tiếp tới lối ra kế tiếp', 'Dừng khẩn cấp trên làn chính để quay lại'], correctIndex: 1, isStopCondition: true }
+      { prompt: 'Còn ở làn bên trái, bạn chuẩn bị ra khỏi cao tốc thế nào?', options: ['Đợi đúng mốc 300 m rồi cắt chéo sang phải', 'Đọc biển sớm; báo hiệu, kiểm tra gương và điểm mù, đủ hở mới chuyển từng làn nơi cho phép, ổn định rồi quan sát lại', 'Bật xi-nhan để các xe ở làn phải bắt buộc nhường'], correctIndex: 1 },
+      { prompt: 'Phía trước đang ùn lại khi bạn chưa vào hết làn giảm tốc, phải làm gì?', options: ['Giữ nguyên tốc độ vì không được phanh trên làn chính', 'Chỉ phanh sau khi một bánh xe qua vạch', 'Giảm tốc hoặc phanh sớm để an toàn, kể cả trên làn chính; khi bình thường, giảm tốc cho lối ra sau khi toàn bộ xe ổn định trong làn giảm tốc'], correctIndex: 2 },
+      { prompt: 'Đã qua đoạn vạch cho phép vào lối ra hoặc không còn khe an toàn, bạn làm gì?', options: ['Cắt vùng gạch chéo hoặc chạy trên lề để kịp rẽ', 'Giữ làn đi tiếp tới lối ra phù hợp tiếp theo; không lùi, quay đầu, dừng để quay lại hay dùng làn dừng khẩn cấp', 'Dừng trên làn chính chờ tìm khe quay lại'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng rời cao tốc.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng rời cao tốc.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ mốc cố định, làm rõ quan sát từng làn, phanh theo nguy hiểm và bỏ lối ra quá muộn; thay hai sơ đồ làn giảm tốc và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'highway-signs',
