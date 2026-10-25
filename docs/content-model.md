@@ -39,7 +39,28 @@ và id asset (`<cardId>-main`, `<cardId>-var`).
 
 - 4 chuyên đề, 8 bài học, 23 thẻ (21 thẻ đã duyệt, 1 nháp, 1 cần sửa).
 - 46 sơ đồ SVG tự tạo, tổng ~118 KB.
-- 5 checklist theo ngữ cảnh, 24 đèn cảnh báo táp-lô.
+- 5 checklist theo ngữ cảnh, 43 tín hiệu táp-lô và 43 hình SVG nhận diện riêng.
+
+### Tín hiệu táp-lô
+
+`src/content/lights.ts` giữ mã đèn cũ, bổ sung các đèn thông dụng của xe xăng,
+diesel, hybrid và EV. `icon` là khóa có kiểu trong `src/content/light-icons.ts`,
+được schema kiểm tra, không còn là ký tự/emoji phụ thuộc phông chữ.
+`DashboardLightIcon.vue` dựng SVG trực tiếp bằng nét vẽ và chữ cố định; hình
+được đóng gói trong JavaScript nên không cần tải ảnh từ mạng, không phụ thuộc
+đường dẫn gốc khi triển khai ở thư mục con. Các hình này không thuộc manifest
+46 sơ đồ bài học hoặc trình sinh `scripts/generate-assets.mjs`.
+
+Màu nhận diện gồm `red`, `amber`, `green`, `blue`; đèn pha chiếu xa là xanh
+dương, chiếu gần/sương mù trước xanh lá, sương mù sau vàng. Màu và mức xử lý
+không đồng nghĩa: P đỏ có thể chỉ là đang giữ phanh đỗ. Mỗi đèn có đúng ba
+hành động, điều cần tránh và mốc hỗ trợ; trạng thái sáng/nháy, tự kiểm tra,
+cảnh báo kết hợp và biến thể theo xe được giải thích khi có liên quan.
+Lọc màu dùng màu mẫu hiển thị, không liệt kê mọi màu biến thể của mọi hãng.
+
+Đây là rà soát biên tập/kỹ thuật, không phải chứng nhận độc lập hay danh mục
+đầy đủ mọi tín hiệu theo hãng. Xem
+[phân tích, nguồn đối chiếu và kết quả kiểm tra](reviews/dashboard-signals.md).
 
 ## 3. Chỉ nội dung có trạng thái công bố được phát hành
 

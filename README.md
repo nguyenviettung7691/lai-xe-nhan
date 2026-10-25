@@ -13,8 +13,8 @@
 ### 📚 Nội dung học tập
 - **23 thẻ học** được cấu trúc với bối cảnh, mục tiêu, 5-8 bước có mốc canh, 3 lỗi thường gặp, cách chữa, cảnh báo an toàn và khẩu quyết
 - **Checklist tương tác** với tiến độ trực quan, lịch sử hoàn tất và haptic feedback
-- **Tra cứu 24 loại đèn cảnh báo** với 3 bước xử lý ngay, biện pháp phòng tránh và mốc gọi cứu hộ
-- Tất cả nội dung được **duyệt chuyên môn** với hồ sơ thẩm định rõ ràng
+- **Tra cứu 43 tín hiệu táp-lô** với SVG tự vẽ, 3 bước xử lý, điều cần tránh và mốc gọi hỗ trợ; phân biệt trạng thái, đèn nháy và lỗi
+- Trạng thái thẩm định được công bố theo từng thẻ; tra cứu táp-lô là hướng dẫn tham khảo, không thay sổ tay đúng mẫu xe
 
 ### 📱 Offline-First & PWA
 - **Hoạt động hoàn toàn offline** mà không cần cấu hình Supabase
@@ -177,7 +177,8 @@ Chuyên đề → Bài học → Thẻ học
 | `src/content/cards/*.ts` | 23 thẻ học với cấu trúc: bối cảnh, mục tiêu, bước thao tác, lỗi thường gặp, cảnh báo, khẩu quyết |
 | `src/content/reviews.ts` | Hồ sơ duyệt chuyên môn - chỉ thẻ `approved` mới hiển thị |
 | `src/content/checklists.ts` | Checklist theo ngữ cảnh (khởi động, quanh xe, lái xe, dừng/đỗ) |
-| `src/content/lights.ts` | 24 loại đèn cảnh báo với xử lý và cách khắc phục |
+| `src/content/lights.ts` | 43 tín hiệu táp-lô, phân biệt trạng thái/lỗi và cách xử lý |
+| `src/content/light-icons.ts` | 43 hình SVG nguyên bản, dùng chung cho lưới và chi tiết |
 | `src/content/validation.ts` | Hàng rào chất lượng: biên tập, kỹ thuật, chuyên gia, an toàn |
 | `src/content/version.ts` | Phiên bản nội dung và metadata |
 

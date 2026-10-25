@@ -92,11 +92,35 @@ describe('tra cứu đèn cảnh báo táp-lô', () => {
     }
   })
 
+  it.each([
+    ['high-beam', 'blue'], ['low-beam', 'green'], ['fog-light', 'green'],
+    ['rear-fog', 'amber'], ['parking-brake', 'red'], ['epb', 'amber'],
+    ['oil', 'red'], ['oil-level', 'amber'], ['battery', 'red'], ['ev-battery-low', 'amber']
+  ] as const)('%s uses its reviewed representative colour %s', (id, color) => {
+    expect(getLightById(id)?.color).toBe(color)
+    expect(findLights({ color }).map((light) => light.id)).toContain(id)
+  })
+
+  it('prioritizes pressure, heat, braking and charging stop warnings', () => {
+    for (const id of ['brake', 'oil', 'temperature', 'transmission', 'battery', 'regen-brake']) {
+      expect(getLightById(id)?.severity, id).toBe('critical')
+    }
+    expect(getLightById('parking-brake')?.severity).toBe('info')
+    expect(getLightById('hazard')?.severity).toBe('info')
+  })
+
   it('tìm được theo từ khóa có dấu lẫn không dấu', () => {
     expect(findLights({ query: 'phanh' }).some((light) => light.id === 'brake')).toBe(true)
     expect(findLights({ query: 'ac quy' }).some((light) => light.id === 'battery')).toBe(true)
     expect(findLights({ query: 'dong co' }).some((light) => light.id === 'engine')).toBe(true)
     expect(findLights({ query: 'khong-co-dau-nay' })).toHaveLength(0)
+    for (const [query, id] of [
+      ['suong mu truoc', 'fog-light'], ['suong mu sau', 'rear-fog'], ['xi nhan', 'turn-signal'],
+      ['phanh tai sinh', 'regen-brake'], ['adblue', 'adblue'], ['rua', 'power-limited'],
+      ['cap sac', 'charge-connector'], ['ready', 'ready']
+    ]) {
+      expect(findLights({ query }).map((light) => light.id), query).toContain(id)
+    }
   })
 
   it('lọc theo mức độ và màu đèn', () => {

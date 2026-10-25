@@ -8,6 +8,7 @@ import { DashboardLightSchema } from '../lib/schema'
 
 describe('original dashboard SVG illustrations', () => {
   it('every catalogue entry resolves to a real drawing, never a font glyph', () => {
+    expect(dashboardLights.map((light) => light.icon).sort()).toEqual(Object.keys(lightIcons).sort())
     for (const light of dashboardLights) {
       expect(isDashboardIconName(light.icon), light.id).toBe(true)
       const drawing = getLightDrawing(light.icon)
@@ -57,10 +58,37 @@ describe('original dashboard SVG illustrations', () => {
     ['door', ['car', 'openDoors']],
     ['tpms', ['tyre', 'exclamation']],
     ['eps', ['steering', 'exclamation']],
+    ['brake', ['brakeCircle', 'exclamation']],
+    ['transmission', ['gear', 'exclamation']],
+    ['engine', ['engine']],
+    ['abs', ['brackets']],
+    ['immobilizer', ['car', 'key']],
     ['dpf', ['filter', 'soot']],
+    ['glow-plug', ['coil']],
+    ['service', ['wrench', 'handleHole']],
+    ['fuel-low', ['pump', 'hose']],
     ['esp-active', ['car', 'skidTracks']],
+    ['esp-off', ['car', 'skidTracks']],
     ['washer-fluid', ['windscreen', 'spray']],
-    ['power-limited', ['turtle', 'shell']]
+    ['cruise', ['speedometer', 'arrow']],
+    ['lane-assist', ['car', 'lanes']],
+    ['parking-brake', ['brakeCircle']],
+    ['epb', ['brackets']],
+    ['position-light', ['lamps', 'rays']],
+    ['turn-signal', ['arrows']],
+    ['hazard', ['outerTriangle', 'innerTriangle']],
+    ['master', ['triangle', 'exclamation']],
+    ['oil-level', ['oilCan', 'drop', 'level']],
+    ['water-in-fuel', ['filter', 'water']],
+    ['adblue', ['tank', 'drop']],
+    ['auto-hold', []],
+    ['forward-safety', ['car', 'impact', 'obstacle']],
+    ['ready', []],
+    ['ev-battery-low', ['battery', 'lowCharge']],
+    ['power-limited', ['turtle', 'shell']],
+    ['ev-system', ['car', 'exclamation']],
+    ['charge-connector', ['plug']],
+    ['regen-brake', ['brakeCircle', 'exclamation']]
   ] as const)('%s contains its identifying features', (name, parts) => {
     expect(Object.keys(getLightDrawing(name).paths)).toEqual(parts)
   })
