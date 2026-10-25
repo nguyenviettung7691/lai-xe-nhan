@@ -399,19 +399,19 @@ export const dashboardLights: DashboardLight[] = [
   {
     id: 'lane-assist',
     icon: 'lane-assist',
-    name: 'Cảnh báo lệch làn',
-    english: 'Lane departure warning',
+    name: 'Cảnh báo / hỗ trợ giữ làn',
+    english: 'Lane departure / keeping assist',
     color: 'green',
     severity: 'info',
-    description: 'Hệ thống giữ làn đang hoạt động và theo dõi vạch kẻ đường.',
-    keywords: ['lệch làn', 'giữ làn', 'lane', 'vạch kẻ đường'],
+    description: 'Hình xe giữa vạch làn: xanh lá thường là đã nhận làn/đủ điều kiện hỗ trợ, trắng/xám là chờ; vàng hoặc nháy có thể cảnh báo/lỗi tùy xe. LDW chỉ cảnh báo, không nhất thiết tự đánh lái như LKA/LFA.',
+    keywords: ['lệch làn', 'giữ làn', 'lane', 'ldw', 'lka', 'lfa', 'vạch kẻ đường'],
     actions: [
-      'Giữ xe giữa làn, đánh lái mượt.',
-      'Bật xi-nhan trước mỗi lần chuyển làn để hệ thống không báo nhầm.',
-      'Vẫn tự quan sát gương và điểm mù, không phụ thuộc cảm biến.'
+      'Tự giữ hướng, tay trên vô-lăng và mắt quan sát; nếu xe lệch làn thì chỉnh êm sau khi kiểm tra an toàn.',
+      'Trước chuyển làn, kiểm tra gương/điểm mù và bật xi-nhan; tín hiệu không tự bảo đảm khoảng trống.',
+      'Nếu đèn vàng/thông báo không khả dụng, đọc sổ tay khi dừng; vạch mờ, mưa hay camera bẩn có thể làm mất hỗ trợ.'
     ],
-    avoid: 'Không coi cảnh báo lệch làn là tính năng tự lái.',
-    callHelp: 'Không cần hỗ trợ; đi kiểm tra nếu hệ thống báo sai liên tục.'
+    avoid: 'Không coi LDW/LKA là tự lái, không buông tay để thử hoặc trông chờ hệ thống xử lý mọi cua/vạch/công trường.',
+    callHelp: 'Trạng thái nhận làn bình thường không cần cứu hộ; kiểm tra nếu lỗi dai dẳng sau vệ sinh đúng cách, dừng an toàn nếu can thiệp lái bất thường.'
   }
 ]
 
