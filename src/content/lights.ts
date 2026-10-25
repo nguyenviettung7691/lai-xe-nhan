@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'ev-battery-low',
+    icon: 'ev-battery-low',
+    name: 'Pin kéo cao áp sắp cạn',
+    english: 'Traction battery low',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Hình pin mức thấp minh họa cảnh báo pin kéo EV/hybrid, khác bình điện 12 V có dấu +/−. Xe có thể hạn chế công suất khi mức pin thấp; số km còn lại không được bảo đảm.',
+    keywords: ['pin yếu', 'pin cao áp', 'pin kéo', 'soc', 'traction battery', 'ev battery low', 'hết điện'],
+    actions: [
+      'Đọc mức pin/thông báo, tìm điểm sạc tương thích trong tầm di chuyển an toàn; nhờ người đi cùng hoặc dừng để tra.',
+      'Giảm tải không thiết yếu nhưng giữ khử mờ/đèn cần thiết; không cố tới trạm xa dựa trên số km ước tính.',
+      'Nếu có rùa, mất lực hoặc không tới trạm an toàn, tìm nơi dừng và gọi hỗ trợ; hybrid xử lý mức pin theo đúng sổ tay.'
+    ],
+    avoid: 'Không mở bộ pin/cáp cao áp, không cố chạy tới cạn hoặc coi cảnh báo pin EV giống hệt đèn sạc 12 V.',
+    callHelp: 'Gọi hỗ trợ khi không thể sạc/di chuyển an toàn hoặc xe hết điện; dùng cách vận chuyển đúng sổ tay, không kéo xe tùy tiện.'
+  },
+  {
     id: 'ready',
     icon: 'ready',
     name: 'Xe điện / hybrid sẵn sàng chạy',
