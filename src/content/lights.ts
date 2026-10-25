@@ -131,15 +131,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Door ajar',
     color: 'red',
     severity: 'warn',
-    description: 'Một cửa, cốp sau hoặc nắp capo chưa đóng chặt.',
+    description: 'Hình xe với cửa mở báo cửa chưa chốt; cốp hoặc capo có thể có hình riêng trên từng xe. Đọc vị trí trên màn hình, không mặc định mọi nắp đã được cảm biến theo dõi.',
     keywords: ['cửa', 'cốp', 'capo', 'door', 'chưa đóng'],
     actions: [
-      'Giảm tốc và dừng ở nơi an toàn, không mở cửa giữa dòng xe.',
-      'Đóng lại từng cửa, cốp và capo cho đến khi đèn tắt.',
-      'Kiểm tra dây an toàn hoặc đồ vật kẹt ở mép cửa.'
+      'Giảm tốc và dừng ở nơi an toàn trước khi kiểm tra; quan sát xe/người bên ngoài trước khi mở cửa.',
+      'Kiểm tra cửa được báo và các chốt cốp/capo theo sổ tay, bỏ đồ hoặc dây bị kẹt rồi đóng đúng cách.',
+      'Xác nhận chốt đã giữ chắc và đèn tắt; không đi tiếp nếu cửa, cốp hay capo không khóa chắc.'
     ],
-    avoid: 'Không vừa chạy vừa với tay kéo cửa đang hé.',
-    callHelp: 'Vào gara nếu đèn vẫn sáng khi mọi cửa đã đóng — công tắc cửa có thể hỏng.'
+    avoid: 'Không vừa chạy vừa với tay kéo cửa, không chỉ tắt cảnh báo hoặc dùng dây buộc thay cho chốt an toàn.',
+    callHelp: 'Gọi hỗ trợ nếu không chốt chắc được; nếu chốt đều chắc nhưng đèn còn sáng, cần kiểm tra cảm biến và chốt tại xưởng.'
   },
   {
     id: 'engine',

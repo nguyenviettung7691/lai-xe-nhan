@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['door', ['hình riêng', 'không đi tiếp', 'không chốt chắc'], ['cho đến khi đèn tắt']],
   ['seatbelt', ['mọi người', 'qua hông', 'không dùng vị trí đó'], ['dùng chốt giả để tắt tiếng']],
   ['airbag', ['bộ căng đai', 'PASSENGER AIRBAG OFF', 'sớm nhất có thể'], ['trong vài ngày tới']],
   ['battery', ['DC-DC', 'không có quãng đường', 'Không tháo cọc'], ['Giữ máy nổ, đi thẳng']],
