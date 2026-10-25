@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'forward-safety',
+    icon: 'forward-safety',
+    name: 'Cảnh báo va chạm / phanh tự động',
+    english: 'Forward collision warning / AEB',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Hình xe và va chạm là một mẫu báo FCW/AEB. Vàng liên tục thường là tắt, bị che cảm biến hoặc lỗi; đỏ/nháy/còi khi chạy có thể là cảnh báo va chạm tức thời. Không phải lúc nào hệ thống cũng tự phanh.',
+    keywords: ['va chạm', 'phanh khẩn cấp tự động', 'aeb', 'fcw', 'fca', 'radar', 'forward collision'],
+    actions: [
+      'Có cảnh báo va chạm tức thời: quan sát, chủ động phanh/né trong khả năng an toàn, không chờ xe tự xử lý.',
+      'Đèn vàng còn sáng: tăng khoảng cách, tự kiểm soát hoàn toàn như không có hỗ trợ.',
+      'Dừng an toàn để đọc thông báo, kiểm tra cài đặt và vệ sinh vùng cảm biến đúng sổ tay; còn lỗi thì liên hệ xưởng.'
+    ],
+    avoid: 'Không thử AEB bằng cách lao tới vật cản, không tự căn chỉnh radar hoặc tin AEB phát hiện mọi người/xe/vật.',
+    callHelp: 'Lỗi hỗ trợ đơn thuần cần kiểm tra sớm; phanh/lái can thiệp bất thường, va chạm hoặc kèm cảnh báo phanh đỏ thì dừng và gọi hỗ trợ.'
+  },
+  {
     id: 'auto-hold',
     icon: 'auto-hold',
     name: 'Giữ phanh tự động',
