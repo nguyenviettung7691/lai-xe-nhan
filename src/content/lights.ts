@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'adblue',
+    icon: 'adblue',
+    name: 'AdBlue / DEF và hệ thống SCR',
+    english: 'Diesel exhaust fluid / SCR',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Có xe dùng bình/giọt DEF, chữ AdBlue/UREA hoặc hình khí xả. Báo dung dịch urê thấp, sai chất lượng hay lỗi SCR; đồng hồ đếm có thể dẫn tới không khởi động lại sau khi tắt máy.',
+    keywords: ['adblue', 'def', 'scr', 'urea', 'urê', 'khí thải diesel'],
+    actions: [
+      'Dừng an toàn đọc đúng thông báo: thiếu DEF hay lỗi SCR, có giới hạn khởi động lại không.',
+      'Nếu thiếu, bổ sung DEF đúng chuẩn và đủ lượng theo sổ tay vào đúng bình khi đã tắt máy; không pha nước.',
+      'Nếu báo lỗi/sai dung dịch, còn cảnh báo sau bổ sung hoặc gần khóa khởi động: liên hệ xưởng/hỗ trợ, không cố kéo dài hành trình.'
+    ],
+    avoid: 'Không đổ DEF vào bình nhiên liệu hoặc diesel vào bình DEF; không giữ máy chạy để lách khóa khởi động hay tự xóa lỗi.',
+    callHelp: 'Gọi hỗ trợ nếu không khởi động lại được, không có DEF phù hợp hoặc nghi đổ nhầm bình; đổ nhầm thì không khởi động và cần cứu hộ.'
+  },
+  {
     id: 'water-in-fuel',
     icon: 'water-in-fuel',
     name: 'Nước trong lọc nhiên liệu diesel',
