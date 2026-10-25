@@ -32,6 +32,10 @@ surfaces. This is an editorial/technical review, not instructor certification.
 - [UK Highway Code, rules 200–203](https://www.gov.uk/guidance/the-highway-code/using-the-road-159-to-203):
   choose a suitable manoeuvring location, check all around, reverse slowly,
   account for front swing and seek a guide if visibility is inadequate.
+- [Ford owner's manual: automatic transmission](https://www.fordservicecontent.com/Ford_Content/vdirsnet/OwnerManual/Home/Content?variantid=8493&languageCode=en&countryCode=USA&Uid=G1940018&ProcUid=G1939951&vFilteringEnabled=False&buildtype=web),
+  read directly: cold-engine idle increases creep tendency; P and R are selected
+  only when stationary. This is a vehicle-specific example, not a universal
+  pedal-travel, creep-speed or mirror-folding specification.
 
 The pre-drive checklist is preparatory, not an alley-clearance checklist; keep
 it unchanged and put the specific checks in the card. The renderer derives
@@ -60,3 +64,51 @@ Adjacent lessons are out of scope; their content is not certified by this review
 
 Clean worktree. Content, asset and quality-gate baseline: **31 tests passed**.
 Both SVG sources and the rendered variant were inspected before implementation.
+
+## Implementation and verification
+
+- Plan committed first as `9963dc7`, before editing lesson content.
+- Card **1.2.0**, content pack **2026.10.8**. Seven coherent steps, all cues,
+  hints, three mistakes, recovery, safety, mnemonic and three quiz questions
+  updated. Stable identifiers and all historical releases retained. Reading
+  estimate increased from three to five minutes.
+- Removed only this card's sample approval. The actual lesson displays
+  **Chưa thẩm định độc lập**; no independent instructor approval is claimed.
+  Stale-approval validation still exercises a genuinely approved fixture,
+  `narrow-mirror`. Other lessons and the shared checklist remain unchanged.
+- Both diagrams rendered and visually inspected. Main: front up, mirrors
+  protrude, parked bikes labelled, forward arrow begins ahead of front.
+  Variant: real opening in the right wall, bike faces left and its red arrow
+  enters the labelled conflict area; ego front remains before the area and
+  has no movement arrow. Captions, SVG titles and alt text match these meanings.
+- **12 focused regression tests** cover text/quiz/metadata and geometric
+  invariants: wall/mirror clearances, parked-bike separation from the straight
+  vehicle envelope, actual heading/arrow coordinates, opening dimensions,
+  conflict-zone separation and matching hazard shaft/head colour. Illustrative
+  clearances are not taught as measured or guaranteed real-world margins.
+- Focused content/asset/quality run: **43 tests passed**. Full suite:
+  **167 tests passed across 19 files**. `npm run lint` and `npm run build`
+  passed, including type checking and PWA generation.
+- Second asset generation was byte-identical across **47 files** (46 SVGs and
+  manifest). Only the two `narrow-creep` SVGs changed from baseline; other asset
+  metadata is unchanged apart from pack version/aggregate size. All checksums
+  match disk and the pack remains within the existing offline budget.
+- Browser checks at desktop width **1136 px** and mobile **390 × 844**:
+  both images load, seven steps and three questions render, and no lesson
+  element overflows horizontally on mobile. Mobile main image inspected in
+  the actual lesson, including its full note/caption. All **16 SVG text
+  elements** have bounding boxes inside the 320 × 200 viewBox.
+- Actual quiz interaction: correct first two answers plus unsafe stop answer
+  gives **2/3, Chưa đạt** with retry; retry with all safe answers gives
+  **3/3, Đạt**. Quick mode retains seven steps, essential stop/hold/no-blind-
+  reverse guidance, safety and unverified warning while hiding the variant.
+- Spoken-source audit: both full-script and per-step speech paths derive
+  instructions from the revised card; full-script safety also includes the
+  model-specific creep limits. No separate spoken copy needed changing.
+  Audio pronunciation and physical vehicle behaviour were not certified.
+- `git diff --check` passed. Browser scratch output is kept outside the
+  repository; the local verification server is stopped after checks.
+
+Real-world practice still requires the actual vehicle manual and qualified
+supervision. This revision intentionally does not certify adjacent lessons,
+actual gap measurements, sensor coverage or stopping distances.

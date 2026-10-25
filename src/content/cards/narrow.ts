@@ -8,39 +8,42 @@ export const narrowCards: Card[] = [
     lessonId: 'narrow-control',
     topicId: 'narrow',
     title: 'Bò chậm qua ngõ hẹp',
-    context: 'Ngõ rộng chưa tới ba mét, hai bên là tường và xe máy dựng sát mép. Tốc độ chỉ vài ki-lô-mét mỗi giờ nhưng sai số cho phép rất nhỏ.',
-    objective: 'Giữ xe đi đều ở tốc độ bò mà không phải phanh gấp.',
+    context: 'Ngõ có tường, xe máy dựng sát mép và cửa nhà khuất tầm nhìn; khoảng trống có thể thay đổi bất ngờ. Bài này minh họa xe số tự động trên nền bằng, chỉ đi vào khi toàn bộ xe kể cả gương còn đủ khoảng hở và có thể quan sát để dừng an toàn.',
+    objective: 'Kiểm soát xe ở tốc độ bò, quan sát liên tục và dừng trong khoảng đường nhìn rõ còn trống.',
     risk: 'medium',
     difficulty: 2,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'moderate' },
     steps: [
-      { instruction: 'Nhả phanh cho xe tự bò, giữ chân trên bàn đạp phanh.', cueType: 'feel', cueText: 'Chân luôn chờ trên phanh', speedHint: 'dưới 10 km/h' },
-      { instruction: 'Gập gương khi lối đi hẹp hơn hai mét rưỡi.', cueType: 'marker', cueText: 'Lối đi hẹp hơn 2,5 m' },
-      { instruction: 'Đặt mắt nhìn xa khoảng mười mét thay vì nhìn sát đầu xe.', cueType: 'marker', cueText: 'Điểm nhìn cách xe 10 m' },
-      { instruction: 'Giữ vô-lăng bằng hai tay và sửa lái bằng nhịp nhỏ.', cueType: 'feel', cueText: 'Hai tay ở vị trí 9 và 3 giờ', steeringHint: 'sửa nhỏ từng nhịp' },
-      { instruction: 'Dừng lại khi không nhìn rõ khoảng trống phía trước.', cueType: 'marker', cueText: 'Mất tầm nhìn thì dừng' }
+      { instruction: 'Dừng trước đoạn thắt hẹp để kiểm tra lối đi được phép, khoảng hở cho cả thân, gương, góc xe và vật cản thấp; chưa chắc đủ chỗ thì không vào, chọn đường khác.', cueType: 'marker', cueText: 'Bề rộng ngõ không tự chứng minh xe lọt; chú ý tay lái xe máy, cửa có thể mở và người hai bên' },
+      { instruction: 'Giữ gương mở để quan sát; chỉ cân nhắc gập khi xe đã dừng, theo hướng dẫn của xe và vẫn bảo đảm quan sát, khoảng hở toàn xe, nếu không thì đổi lối đi.', cueType: 'mirror', cueText: 'Không có mốc bề rộng chung để gập gương; mở lại ngay khi đủ chỗ an toàn' },
+      { instruction: 'Giữ phanh chân khi chọn D lúc xe đã đứng hẳn; với xe có chế độ tự bò, giảm lực phanh có kiểm soát bằng chân phải để đi ở tốc độ đi bộ hoặc chậm hơn, luôn dừng được trong phần đường nhìn rõ còn trống.', cueType: 'feel', cueText: 'Không đạp ga và phanh cùng lúc; xe không tự bò thì dừng, làm theo hướng dẫn của xe, không đệm ga để cố vượt chỗ hẹp', speedHint: 'tốc độ đi bộ hoặc chậm hơn; giảm nữa hoặc dừng khi tầm nhìn ngắn' },
+      { instruction: 'Quét mắt luân phiên xa và gần, hai bên cửa nhà, gương và điểm mù; theo dõi trẻ nhỏ, người đi bộ, xe máy và khoảng trống phía trước, không nhìn cố định một điểm.', cueType: 'marker', cueText: 'Không có điểm nhìn cố định 10 m; camera và cảm biến chỉ hỗ trợ' },
+      { instruction: 'Giữ vô-lăng bằng hai tay ở vị trí phù hợp với xe, sửa lái từng nhịp nhỏ và kiểm tra cả góc đầu xe, thân, gương và đường bánh sau đi qua.', cueType: 'feel', cueText: 'Không bám mắt vào một bên tường; chưa rõ khoảng hở thì dừng trước khi sửa tiếp', steeringHint: 'sửa nhỏ, tránh đánh lái gấp để lách người hoặc xe máy' },
+      { instruction: 'Đạp phanh dừng hẳn và giữ xe khi có người hoặc xe cắt ngang, mất tầm nhìn, cảnh báo va chạm hoặc chưa chắc khoảng hở; không cố lách, không tự lùi vào vùng khuất.', cueType: 'marker', cueText: 'Dừng trước vùng xung đột; không chọn P khi xe còn chuyển động' },
+      { instruction: 'Quan sát lại phía trước, hai bên, gương và điểm mù; chỉ đi tiếp khi người và xe đã qua, lối đi rõ và đủ khoảng hở, nếu không thì tiếp tục giữ xe và tìm hỗ trợ.', cueType: 'marker', cueText: 'Không tự bò theo xe máy vừa qua; không coi còi hay cảm biến im lặng là đường đã an toàn' }
     ],
     mistakes: [
-      'Đệm ga rồi rà phanh liên tục khiến xe giật cục.',
-      'Nhìn chăm chăm vào một bên tường nên xe lệch về phía đó.',
-      'Đi tiếp khi chưa chắc chắn còn đủ chỗ.'
+      'Lấy tốc độ giới hạn làm mục tiêu hoặc đệm ga để cố vượt chỗ hẹp.',
+      'Chỉ nhìn xa hoặc bám một bên tường, bỏ sót người và vật cản sát xe.',
+      'Gập gương để cố lọt hoặc tự lùi khi chưa kiểm tra an toàn phía sau.'
     ],
-    recovery: 'Dừng hẳn, hạ kính và quan sát hai bên trước khi đi tiếp. Nếu ngõ hẹp hơn dự kiến, lùi ra điểm rộng gần nhất.',
-    safety: 'Trẻ nhỏ và xe máy có thể xuất hiện đột ngột từ cửa nhà hai bên ngõ.',
-    mnemonic: { text: 'Bò đều, nhìn xa, tay giữ vững vô-lăng.', rhythm: 'ba-nhip' },
+    recovery: 'Đạp phanh dừng hẳn và giữ xe, không chọn P khi đang lăn; hạ kính chỉ hỗ trợ nghe và nhìn, không chứng minh đủ khoảng hở. Nếu cần xuống kiểm tra, giữ phanh chân, dùng phanh đỗ và P theo hướng dẫn của xe, bảo đảm xe đứng chắc và mở cửa an toàn. Nhờ người hướng dẫn đứng ngoài đường xe chạy và vùng quét của xe, không giữa xe với tường, luôn thấy nhau; mất liên lạc thì dừng. Chỉ lùi khi được phép, quan sát rõ hai bên và phía sau, có tín hiệu lùi và đường lùi an toàn; không lùi trên đường một chiều hoặc nơi tầm nhìn bị che khuất. Nếu không bảo đảm, giữ xe an toàn và gọi hỗ trợ thay vì tự lùi về chỗ rộng.',
+    safety: 'Trẻ nhỏ, người đi bộ, xe máy hoặc cửa nhà có thể xuất hiện sát xe; đi chậm đến mức dừng được trong khoảng đường nhìn rõ còn trống. Khi nguy hiểm, đạp phanh dừng hẳn và giữ xe, không đánh lái lách hay tự lùi vào vùng khuất; chỉ đi tiếp sau khi quan sát lại và đủ khoảng hở. Chế độ tự bò, Auto Hold và xe điện khác nhau theo mẫu xe, phải đọc hướng dẫn và tập ở nơi an toàn; không mặc định nhả phanh là xe bò. Bài này không thay hướng dẫn côn cho xe số sàn hoặc kiểm soát xe trên dốc.',
+    mnemonic: { text: 'Bò chậm, quét mắt, chưa rõ thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
     quickCheck: [
-      { prompt: 'Khi bò chậm qua ngõ hẹp, chân phải nên đặt ở đâu?', options: ['Luôn sẵn sàng trên bàn đạp phanh', 'Đặt hẳn lên chân ga', 'Để nghỉ ngoài bàn đạp'], correctIndex: 0 },
-      { prompt: 'Điểm nhìn phù hợp khi đi trong ngõ hẹp là gì?', options: ['Nhìn sát đầu xe', 'Nhìn xa khoảng mười mét phía trước', 'Chỉ nhìn vào gương chiếu hậu'], correctIndex: 1 },
-      { prompt: 'Khi không nhìn rõ khoảng trống phía trước trong ngõ, bạn nên?', options: ['Đi tiếp và quan sát sau', 'Dừng lại ngay', 'Tăng tốc để vượt qua nhanh'], correctIndex: 1 }
+      { prompt: 'Với xe số tự động có chế độ tự bò trên nền bằng, nên kiểm soát tốc độ thế nào?', options: ['Chân phải điều chỉnh phanh, đi bộ hoặc chậm hơn, dừng được trong phần đường nhìn rõ còn trống', 'Đạp ga và phanh cùng lúc cho xe đi đều', 'Nhả hết phanh vì xe tự bò luôn đủ chậm'], correctIndex: 0 },
+      { prompt: 'Cách quan sát và quyết định gập gương nào phù hợp trong ngõ hẹp?', options: ['Chỉ nhìn xa 10 m và gập gương khi ngõ dưới 2,5 m', 'Quét xa, gần, hai bên và gương; dừng để đánh giá toàn xe, không dùng mốc bề rộng chung để gập gương', 'Gập cả hai gương rồi dựa vào cảm biến để đi tiếp'], correctIndex: 1 },
+      { prompt: 'Khi xe máy cắt ngang hoặc không còn nhìn rõ khoảng trống, bạn nên?', options: ['Lách qua hoặc tự lùi ngay về chỗ rộng', 'Đạp phanh dừng hẳn và giữ xe; chỉ đi tiếp sau khi quan sát lại và lối đi rõ, đủ khoảng hở', 'Đi tiếp nếu cảm biến chưa báo'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.1.0',
-    updatedAt: '2026-09-10',
+    reviewStatus: 'published_unverified',
+    version: '1.2.0',
+    updatedAt: '2026-10-25',
     changelog: [
       { version: '1.0.0', date: '2026-08-20', summary: 'Bản đầu tiên của thẻ bò chậm trong ngõ.', author: 'Biên tập nội dung' },
-      { version: '1.1.0', date: '2026-09-10', summary: 'Bổ sung mốc gập gương và điểm nhìn xa cụ thể.', author: 'Biên tập nội dung' }
+      { version: '1.1.0', date: '2026-09-10', summary: 'Bổ sung mốc gập gương và điểm nhìn xa cụ thể.', author: 'Biên tập nội dung' },
+      { version: '1.2.0', date: '2026-10-25', summary: 'Bỏ mốc gập gương, tốc độ và điểm nhìn cố định; làm rõ xe tự động, điều kiện dừng, lùi an toàn và hai sơ đồ; bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
     ]
   }),
   defineCard({

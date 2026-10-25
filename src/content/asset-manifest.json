@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.7",
+  "contentVersion": "2026.10.8",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 123.88,
+  "totalSizeKb": 127.22,
   "assets": [
     {
       "id": "parking-start-main",
@@ -208,11 +208,11 @@
       "url": "/content/svg/narrow-creep-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.49,
-      "checksum": "sha256-fe50afca26bfb96b25a62c09c16d11846c3184ada92ab770088133e23087e97a",
+      "sizeKb": 3.86,
+      "checksum": "sha256-9a4c56b885566e69d34efe3121e1621cf3d54bdb566179b74b747960484aecc3",
       "offlinePack": "core",
-      "caption": "Bò đều trong hẻm",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe đi chậm trong hẻm hẹp có xe máy phía trước."
+      "caption": "Chỉ tiến khi nhìn rõ và đủ khoảng hở cả gương",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe ở trên, đuôi ở dưới, gương nhô hai bên; hai mô tô đang đỗ sát mép phía trước. Mũi tên xanh từ trước đầu xe hướng lên chỉ hướng tiến minh họa, không phải điểm nhìn hay bảo đảm xe lọt. Đi bộ hoặc chậm hơn, chỉ tiến khi quan sát rõ và đủ khoảng hở toàn xe."
     },
     {
       "id": "narrow-creep-var",
@@ -222,11 +222,11 @@
       "url": "/content/svg/narrow-creep-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.3,
-      "checksum": "sha256-5dd9ac76ff83bbd740a084663b61a630e1dd3604339bfcce6b65a39f5d991a62",
+      "sizeKb": 4.27,
+      "checksum": "sha256-ed26a59a823a80451b0376228749d8bb9819c3888ed272be93997429fcf7de12",
       "offlinePack": "core",
-      "caption": "Dừng khi có xe cắt ngang",
-      "alt": "Sơ đồ nhìn từ trên xuống: vùng nguy hiểm khi xe máy cắt ngang đầu xe."
+      "caption": "Xe dừng trước vùng xe máy từ nhánh bên phải cắt ngang",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng hướng xe: đầu ở trên, đuôi ở dưới. Xe mình đang dừng trước vùng xung đột tô đỏ, không có mũi tên chuyển động của xe mình. Xe máy hướng sang trái từ lối mở bên phải; mũi tên đỏ nét đứt chỉ hướng xe máy cắt ngang, không phải lệnh đánh lái. Giữ phanh, chờ lối đi rõ và quan sát lại trước khi đi tiếp."
     },
     {
       "id": "narrow-mirror-main",

@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('narrow-creep', 'urban', 'Điểm nhìn xa 10 m giúp học viên bớt bám sát đầu xe, nội dung chính xác.', 5, '2026-09-12'),
   review('narrow-mirror', 'urban', 'Cách chỉnh gương thấy một phần thân xe là chuẩn phổ biến khi dạy.', 4, '2026-09-12'),
   review('narrow-corner', 'urban', 'Quy tắc ra rộng vào muộn đúng với quỹ đạo bánh sau của xe con.', 5, '2026-09-12'),
   review('narrow-yield', 'safety', 'Bổ sung ưu tiên xe cứu thương là điểm cần thiết, nội dung đạt.', 4, '2026-09-12'),

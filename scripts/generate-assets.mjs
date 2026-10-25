@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.7'
+const CONTENT_VERSION = '2026.10.8'
 
 const W = 320
 const H = 200
@@ -215,6 +215,32 @@ const alleyLot = (wallGap = 108) => {
     label(W - 12, 24, 'NHÀ DÂN', { size: 8, anchor: 'end' })
   ].join('')
 }
+
+const creepLot = (crossing = false) => [
+  rect(0, 0, W, 174, C.kerb),
+  rect(120, 0, 80, 174, C.asphalt),
+  '<g id="creep-walls">',
+  line(120, 0, 120, 174, C.bay, 2),
+  ...(crossing
+    ? [
+        rect(200, 42, 120, 42, C.asphalt),
+        line(200, 0, 200, 42, C.bay, 2),
+        line(200, 84, 200, 174, C.bay, 2),
+        line(200, 42, 320, 42, C.bay, 2),
+        line(200, 84, 320, 84, C.bay, 2)
+      ]
+    : [line(200, 0, 200, 174, C.bay, 2)]),
+  '</g>',
+  `<g id="creep-car">${car(160, 128, 0, C.ego, 40, 48)}`,
+  '<g id="creep-mirrors">',
+  rect(135, 110, 5, 4, C.ego, 1),
+  rect(180, 110, 5, 4, C.ego, 1),
+  '</g></g>',
+  label(220, 108, 'ĐẦU', { size: 8, fill: C.ego }),
+  line(182, 104, 214, 104, C.ego, 1),
+  label(220, 152, 'ĐUÔI', { size: 8, fill: C.ego }),
+  line(182, 148, 214, 148, C.ego, 1)
+]
 
 const highwayLot = (lanes = 3) => {
   const parts = [rect(0, 0, W, 180, C.kerb), rect(0, 30, W, lanes * 38, C.asphalt)]
@@ -460,21 +486,32 @@ const templates = {
     ]
     const scenes = {
       creep: () => [
-        alleyLot(),
-        car(160, 120, 0, C.ego),
-        bike(124, 58, 0),
-        bike(196, 44, 0),
-        trail('M160 94L160 38'),
-        tag(16, 166, 'Dưới 10 km/h'),
-        note('Chân đặt hờ phanh, xe bò đều để luôn dừng được ngay.')
+        ...creepLot(),
+        `<g id="creep-parked-bikes">${bike(128, 48, 0)}${bike(192, 48, 0)}</g>`,
+        label(14, 28, 'MÔ TÔ ĐỖ', { size: 8, fill: C.bike }),
+        line(80, 30, 125, 39, C.bike, 1),
+        label(220, 28, 'MÔ TÔ ĐỖ', { size: 8, fill: C.bike }),
+        line(216, 30, 195, 39, C.bike, 1),
+        `<g id="creep-forward">${trail('M160 99L160 24')}</g>`,
+        label(14, 85, 'HƯỚNG TIẾN ↑', { size: 8, fill: C.ego }),
+        tag(16, 166, 'Đi bộ hoặc chậm hơn'),
+        note('Không theo tỷ lệ. Chỉ tiến khi nhìn rõ và đủ khoảng hở toàn xe.')
       ],
       'creep-stop': () => [
-        alleyLot(),
-        car(160, 126, 0, C.ego),
-        bike(146, 68, 14, C.hazard),
-        cone(160, 102, 0, 30, 56),
-        tag(16, 166, 'Dừng hẳn, nhường trước'),
-        note('Có xe máy cắt ngang thì dừng hẳn và chờ hết khoảng trống.')
+        ...creepLot(true),
+        '<defs><marker id="creep-bike-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">',
+        `<path d="M0 1L9 5L0 9Z" fill="${C.hazard}"/></marker></defs>`,
+        `<g id="creep-conflict">${rect(136, 44, 48, 38, C.hazard, 4, 0.18)}</g>`,
+        `<g id="creep-crossing-bike">${bike(238, 63, 270, C.hazard)}</g>`,
+        '<g id="creep-bike-motion">',
+        `<path d="M220 63L160 63" fill="none" stroke="${C.hazard}" stroke-width="2.4" stroke-dasharray="4 4" marker-end="url(#creep-bike-tip)"/>`,
+        '</g>',
+        label(216, 31, 'LỐI RA NHÁNH', { size: 8 }),
+        label(14, 61, 'VÙNG XUNG ĐỘT', { size: 8, fill: C.hazard }),
+        line(94, 64, 133, 64, C.hazard, 1),
+        label(14, 129, 'XE ĐANG DỪNG', { size: 8, fill: C.ego }),
+        tag(16, 166, 'Giữ phanh, chờ lối đi rõ'),
+        note('Không theo tỷ lệ. Dừng trước vùng xung đột; quan sát lại trước khi đi tiếp.')
       ],
       mirror: () => [
         alleyLot(96),
@@ -753,7 +790,7 @@ const specs = [
   ['parking-slope', 'slopeParking', ['reverse', 'Ví dụ lùi thẳng lên dốc tại ô được phép, không phải đường dốc ra vào hầm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: phía cao ở trên, thấp ở dưới; đầu xe hướng xuống, đuôi hướng lên. Mũi tên xám bên trái chỉ chiều dốc xuống; mũi tên xanh từ sau đuôi hướng lên vào cửa ô mở chỉ hướng lùi lên dốc, không phải quỹ đạo đánh lái hay mức nhả phanh chung.'], ['hold', 'Nguy cơ trôi xuống dốc về phía đầu xe dù đã cài R', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng vị trí xe và hướng dốc: cao ở trên, thấp ở dưới, đầu xe ở dưới. Mũi tên xám bên trái chỉ dốc xuống; mũi tên đỏ nét đứt trước đầu xe chỉ nguy cơ trôi xuống nếu không giữ phanh, ngược hướng lùi lên dốc ở hình chính; không phải lệnh tiến hay trạng thái đã đỗ an toàn. Đạp phanh để dừng, không dùng P khi xe đang chuyển động.']],
   ['parking-lowlight', 'bay', ['lowlight', 'Đèn hướng trước và sau khác nhau; chỉ lùi khi thấy rõ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng xuống lối đi, đuôi hướng lên cửa ô mở. Vệt vàng trước đầu xe minh họa đèn chiếu gần; vệt nhạt sau đuôi minh họa đèn lùi, không phải phạm vi nhìn rõ hay vùng cảm biến. Mũi tên xanh từ sau đuôi hướng thẳng lên ô chỉ một hướng lùi minh họa, không là chỉ dẫn đánh lái cho mọi vị trí.'], ['lowlight-mirror', 'Xe dừng, người hướng dẫn ở bên ngoài đường xe chạy', 'Sơ đồ không theo tỷ lệ, cùng hướng xe và cửa ô mở: xe đang dừng, người hỗ trợ đứng bên phải hình, ngoài hành lang lùi thẳng minh họa, không giữa xe và vật cản. Nét đứt nối bên xe với người hỗ trợ chỉ liên lạc trong tầm nhìn, không phải quỹ đạo hay vùng quan sát bảo đảm. Vị trí thực tế phải tránh cả vùng đầu xe quét, luôn nhìn thấy nhau; mất liên lạc thì dừng ngay. Không có mũi tên chuyển động.']],
   ['parking-column', 'bay', ['column', 'Ví dụ lùi thẳng cạnh cột, không phải toàn bộ quỹ đạo vào ô', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cột bên phải hình, cạnh cửa ô mở; đầu xe ở dưới, đuôi ở trên. Xe đã thẳng hướng, mũi tên từ sau đuôi hướng lên ô chỉ ví dụ lùi thẳng, không phải hướng đánh lái hay bảo đảm khoảng hở. Phải kiểm tra cả thân, gương, góc xe, hai bên và vùng đầu xe quét; chưa rõ thì dừng, không chờ cảm biến.'], ['column-gap', 'Xe đã giữ chắc; kiểm tra cửa lái và lối ra, không chỉ thân xe', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng ô và cột bên phải hình: xe đã giữ chắc, nằm trong vạch, đầu ở dưới và đuôi ở trên. Với xe tay lái trái minh họa, cửa lái ở bên phải hình; cung vàng cạnh cột chỉ khoảng quét một cánh cửa trước minh họa, không phải quỹ đạo xe hay khoảng mở bảo đảm. Kiểm tra cả hai bên, khoảng quét cửa thực tế, người xung quanh và lối ra; không chen giữa xe với cột. Không có mũi tên chuyển động.']],
-  ['narrow-creep', 'alley', ['creep', 'Bò đều trong hẻm', 'Sơ đồ nhìn từ trên xuống: xe đi chậm trong hẻm hẹp có xe máy phía trước.'], ['creep-stop', 'Dừng khi có xe cắt ngang', 'Sơ đồ nhìn từ trên xuống: vùng nguy hiểm khi xe máy cắt ngang đầu xe.']],
+  ['narrow-creep', 'alley', ['creep', 'Chỉ tiến khi nhìn rõ và đủ khoảng hở cả gương', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe ở trên, đuôi ở dưới, gương nhô hai bên; hai mô tô đang đỗ sát mép phía trước. Mũi tên xanh từ trước đầu xe hướng lên chỉ hướng tiến minh họa, không phải điểm nhìn hay bảo đảm xe lọt. Đi bộ hoặc chậm hơn, chỉ tiến khi quan sát rõ và đủ khoảng hở toàn xe.'], ['creep-stop', 'Xe dừng trước vùng xe máy từ nhánh bên phải cắt ngang', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng hướng xe: đầu ở trên, đuôi ở dưới. Xe mình đang dừng trước vùng xung đột tô đỏ, không có mũi tên chuyển động của xe mình. Xe máy hướng sang trái từ lối mở bên phải; mũi tên đỏ nét đứt chỉ hướng xe máy cắt ngang, không phải lệnh đánh lái. Giữ phanh, chờ lối đi rõ và quan sát lại trước khi đi tiếp.']],
   ['narrow-mirror', 'alley', ['mirror', 'Giữ khoảng cách gương', 'Sơ đồ nhìn từ trên xuống: khoảng cách an toàn giữa gương xe và xe máy dựng ven hẻm.'], ['mirror-fold', 'Gập gương khi hẻm quá hẹp', 'Sơ đồ nhìn từ trên xuống: hẻm hẹp dưới 2,2 m cần gập gương để đi qua.']],
   ['narrow-corner', 'alley', ['corner', 'Ôm cua rộng trong hẻm', 'Sơ đồ nhìn từ trên xuống: quỹ đạo ôm cua rộng để bánh sau không cắt góc.'], ['corner-wide', 'Lỗi bánh sau cắt góc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo sai khi vào cua sớm làm bánh sau leo lề.']],
   ['narrow-yield', 'alley', ['yield', 'Nhường đường trong hẻm', 'Sơ đồ nhìn từ trên xuống: hai xe ngược chiều và vị trí chỗ tránh trong hẻm.'], ['yield-pocket', 'Đỗ gọn trong chỗ tránh', 'Sơ đồ nhìn từ trên xuống: xe đỗ gọn trong chỗ tránh để xe ngược chiều đi qua.']],
