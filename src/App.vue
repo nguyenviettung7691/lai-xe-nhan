@@ -5,13 +5,18 @@ import { useAppStore } from './stores/app'
 import { THEME_LABEL } from './services/theme'
 import SyncStatusBadge from './features/auth/SyncStatusBadge.vue'
 import AuthModal from './features/auth/AuthModal.vue'
+import AppIcon from './features/icons/AppIcon.vue'
 
 const store = useAppStore()
 const route = useRoute()
 const showAuthModal = ref(false)
 
 const themeIcon = computed(() =>
-  store.themePreference === 'system' ? '◑' : store.themePreference === 'dark' ? '☾' : '☼'
+  store.themePreference === 'system'
+    ? 'theme-system'
+    : store.themePreference === 'dark'
+    ? 'theme-dark'
+    : 'theme-light'
 )
 
 const themeLabel = computed(() => `Giao diện: ${THEME_LABEL[store.themePreference]}`)
@@ -50,7 +55,7 @@ const title = computed(() =>
           :aria-label="`${themeLabel}. Chạm để đổi.`"
           @click="store.toggleTheme"
         >
-          {{ themeIcon }}
+          <AppIcon :name="themeIcon" />
         </button>
         <button
           class="icon-button"
@@ -60,7 +65,7 @@ const title = computed(() =>
           aria-label="Chế độ tương phản cao"
           @click="store.toggleContrast"
         >
-          ◐
+          <AppIcon name="contrast" />
         </button>
       </div>
     </header>
