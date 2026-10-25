@@ -212,19 +212,19 @@ export const dashboardLights: DashboardLight[] = [
   {
     id: 'esp-active',
     icon: 'esp-active',
-    name: 'Cân bằng điện tử đang can thiệp',
+    name: 'Cân bằng điện tử / chống trượt',
     english: 'ESP / VSC active',
     color: 'amber',
     severity: 'info',
-    description: 'Đèn nhấp nháy nghĩa là xe đang chống trượt, mặt đường trơn hoặc vào cua quá nhanh.',
+    description: 'Hình xe với vệt trượt (ESC/ESP/VSC/TCS): nhấp nháy thường là đang can thiệp giữ độ bám; sáng liên tục sau tự kiểm tra thường là lỗi hoặc hệ thống không khả dụng, cần đọc thông báo.',
     keywords: ['cân bằng điện tử', 'esp', 'vsc', 'chống trượt', 'trơn trượt'],
     actions: [
-      'Nhả bớt ga, không đánh lái gấp.',
-      'Giảm tốc về mức mà xe bám đường trở lại.',
-      'Tăng khoảng cách và đi đều ga cho đến khi mặt đường tốt hơn.'
+      'Khi đèn nháy, giảm ga êm, giữ hướng và tránh thao tác đột ngột.',
+      'Giảm tốc phù hợp mặt đường, tăng khoảng cách; vẫn phanh khẩn cấp khi cần tránh va chạm.',
+      'Đèn sáng liên tục: coi hỗ trợ có thể không hoạt động và kiểm tra sớm; kèm phanh đỏ hoặc mất kiểm soát thì dừng và gọi hỗ trợ.'
     ],
-    avoid: 'Không đạp ga hoặc phanh gấp khi đèn đang nhấp nháy.',
-    callHelp: 'Không cần cứu hộ nếu đèn chỉ nháy rồi tắt; đèn sáng liên tục thì đi kiểm tra.'
+    avoid: 'Không tăng tốc để thử độ bám, không coi ESC có thể vượt giới hạn bám đường hoặc thay việc giảm tốc.',
+    callHelp: 'Nháy ngắn rồi tắt thường không cần cứu hộ; sáng dai dẳng cần xưởng kiểm tra, mất ổn định/phanh yếu cần dừng và cứu hộ.'
   },
   {
     id: 'esp-off',

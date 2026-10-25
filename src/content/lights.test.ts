@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['esp-active', ['nhấp nháy', 'sáng liên tục', 'vẫn phanh khẩn cấp'], ['Không đạp ga hoặc phanh gấp']],
   ['eps', ['không đi tiếp', 'Không tắt nguồn khi xe còn chạy', 'đèn đỏ'], ['30 giây', 'chỉ đi chậm đoạn ngắn']],
   ['tpms', ['nháy rồi sáng', 'lốp nguội', 'hông lốp', 'không xả'], ['Bơm lại đúng áp suất ghi']],
   ['abs', ['kèm phanh đỏ', 'phân phối lực phanh', 'không đi tiếp'], ['trong vài ngày tới', 'ít nhất 4 giây']],
