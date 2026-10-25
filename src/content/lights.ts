@@ -29,15 +29,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Oil pressure',
     color: 'red',
     severity: 'critical',
-    description: 'Áp suất dầu bôi trơn xuống thấp, động cơ có thể hỏng chỉ sau vài phút.',
+    description: 'Đèn bình dầu đỏ khi động cơ đang chạy báo nguy cơ mất áp suất bôi trơn. Không phải đèn nhắc thay dầu hay chỉ báo mức dầu; động cơ có thể hỏng rất nhanh.',
     keywords: ['dầu', 'dầu nhớt', 'nhớt', 'áp suất dầu', 'oil', 'động cơ'],
     actions: [
-      'Tấp vào lề an toàn và tắt máy ngay.',
-      'Chờ máy nguội rồi kiểm tra que thăm dầu.',
-      'Châm dầu đúng loại nếu thiếu, khởi động lại và xem đèn có tắt.'
+      'Dừng ở nơi an toàn và tắt động cơ ngay khi có thể.',
+      'Trên nền phẳng, chờ theo sổ tay rồi kiểm tra mức dầu bằng que thăm hoặc hệ thống điện tử.',
+      'Nếu thiếu, bổ sung đúng loại và không quá mức; chỉ khởi động lại khi sổ tay cho phép. Không rõ nguyên nhân thì gọi hỗ trợ.'
     ],
-    avoid: 'Không chạy tiếp dù chỉ vài ki-lô-mét khi đèn dầu còn sáng.',
-    callHelp: 'Gọi cứu hộ nếu mức dầu bình thường mà đèn vẫn sáng, hoặc thấy dầu rò dưới gầm.'
+    avoid: 'Không chạy tiếp hoặc đề máy nhiều lần để thử; mức dầu đủ không chứng minh áp suất dầu bình thường.',
+    callHelp: 'Gọi cứu hộ nếu mức dầu đủ mà đã báo áp suất, có tiếng gõ/rò dầu, không có dầu đúng loại hoặc cảnh báo không hết.'
   },
   {
     id: 'temperature',
