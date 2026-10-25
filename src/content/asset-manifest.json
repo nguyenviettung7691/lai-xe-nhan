@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.18",
+  "contentVersion": "2026.10.19",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 170.63,
+  "totalSizeKb": 173.39,
   "assets": [
     {
       "id": "parking-start-main",
@@ -516,11 +516,11 @@
       "url": "/content/svg/weather-downhill-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.82,
-      "checksum": "sha256-a9c29ab5a7574f44e5cb14007f91880645e852ff436b1ae5c015f78ac2f9df71",
+      "sizeKb": 3.06,
+      "checksum": "sha256-1c3f65142bf0209132c6e4cbbfe43bb887c9c8c68c5c36477f5e70839b7213a2",
       "offlinePack": "core",
-      "caption": "Đổ dốc dài",
-      "alt": "Sơ đồ cắt ngang: xe xuống dốc dài với số thấp."
+      "caption": "Giảm tốc trước dốc; chọn chế độ theo xe và độ bám",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ: phía cao bên trái, thấp bên phải; đầu xe có đèn ở bên phải, đuôi bên trái, hai bánh tiếp xúc mặt dốc. Mũi tên xanh phía trước xe đi sang phải và xuống, song song mặt đường, chỉ chiều tiến xuống dốc, không phải quỹ đạo hay độ dốc đo được. Giảm tốc trước dốc, dùng chế độ theo sách xe và giới hạn trên đường trơn; không có cấp số chung cho mọi xe."
     },
     {
       "id": "weather-downhill-var",
@@ -530,11 +530,11 @@
       "url": "/content/svg/weather-downhill-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.56,
-      "checksum": "sha256-43de064a80c6b22ebdb48bc0731e666d00e86636ad93ad6f742ae4a32669c9a2",
+      "sizeKb": 3.08,
+      "checksum": "sha256-f41f22f6bbad101638e36c53d32ea8811fb767ec38efdd8075fd9e72f134b18f",
       "offlinePack": "core",
-      "caption": "Phanh theo nhịp",
-      "alt": "Sơ đồ cắt ngang: các nhịp phanh ngắt quãng khi đổ dốc."
+      "caption": "Phanh thường khác phanh khẩn cấp với ABS, không theo nhịp cố định",
+      "alt": "Sơ đồ hai khung chữ, không phải biểu đồ thời gian, lực phanh hay chu kỳ đạp nhả: khung trên mô tả phanh thường tăng lực êm khi cần, nhả khi đã giảm đủ và vẫn kiểm soát tốc độ; không rà suốt dốc hoặc nhấp theo nhịp. Khung dưới mô tả khẩn cấp với ABS: đạp mạnh, giữ lực, không nhấp nhả, lái tránh trong khoảng trống an toàn; ABS không bảo đảm dừng ngắn hơn."
     },
     {
       "id": "weather-uphill-start-main",

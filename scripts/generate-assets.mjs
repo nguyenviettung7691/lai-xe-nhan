@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.18'
+const CONTENT_VERSION = '2026.10.19'
 
 const W = 320
 const H = 200
@@ -601,6 +601,48 @@ const slopeLot = (down = true) => {
   ].join('')
 }
 
+const downhillScene = braking => braking ? [
+  label(16, 16, 'HAI TÌNH HUỐNG PHANH', { size: 9, fill: C.ego }),
+  '<g id="downhill-normal-braking">',
+  rect(12, 24, 296, 65, C.asphalt, 6),
+  label(22, 39, 'ĐI THƯỜNG: GIẢM TỐC KHI CẦN', { size: 8.5, fill: C.ego, weight: 700 }),
+  label(22, 54, 'Tăng lực êm; nhả khi đã giảm đủ', { size: 8.5 }),
+  label(22, 67, 'và vẫn kiểm soát được tốc độ.', { size: 8.5 }),
+  label(22, 80, 'Không rà suốt dốc, không nhấp theo nhịp.', { size: 8.5 }),
+  '</g>',
+  '<g id="downhill-abs-emergency">',
+  rect(12, 98, 296, 65, C.asphalt, 6),
+  label(22, 113, 'KHẨN CẤP VỚI ABS', { size: 8.5, fill: C.hazard, weight: 700 }),
+  label(22, 128, 'Đạp mạnh, giữ lực; không nhấp nhả.', { size: 8.5 }),
+  label(22, 141, 'Lái tránh trong khoảng trống an toàn.', { size: 8.5 }),
+  label(22, 154, 'ABS không bảo đảm dừng ngắn hơn.', { size: 8.5 }),
+  '</g>',
+  note('Phân biệt tình huống, không phải biểu đồ nhịp phanh.')
+] : [
+  label(16, 18, 'CHỌN CHẾ ĐỘ THEO SÁCH XE', { size: 9, fill: C.ego }),
+  '<g id="downhill-grade">',
+  `<path d="M32 60L292 164L292 174L32 174Z" fill="${C.asphalt}"/>`,
+  line(32, 60, 292, 164, C.bay, 2.4),
+  '</g>',
+  '<g id="downhill-car" transform="translate(133.9 83.5) rotate(21.8)">',
+  rect(-27, -11, 54, 22, C.ego, 7),
+  `<path d="M-15 -10L-10 -20L9 -20L19 -10Z" fill="${C.ego}"/>`,
+  `<path d="M2 -18L8 -18L14 -11L2 -11Z" fill="#0e1715" opacity=".55"/>`,
+  rect(22, -6, 4, 4, C.bike, 1),
+  `<circle cx="-15" cy="11" r="5" fill="#0e1715"/>`,
+  `<circle cx="15" cy="11" r="5" fill="#0e1715"/>`,
+  '</g>',
+  label(24, 49, 'CAO', { size: 8 }),
+  label(276, 151, 'THẤP', { size: 8, anchor: 'middle' }),
+  label(73, 75, 'ĐUÔI', { size: 8, fill: C.ego }),
+  line(98, 76, 109, 80, C.ego, 1),
+  label(163, 54, 'ĐẦU', { size: 8, fill: C.ego }),
+  line(174, 58, 158, 86, C.ego, 1),
+  `<g id="downhill-forward">${arrow(180, 90, 245, 116)}</g>`,
+  label(232, 85, 'ĐI XUỐNG', { size: 8, fill: C.ego, anchor: 'middle' }),
+  note('Không theo tỷ lệ. Theo sách xe; đường trơn có hạn chế.')
+]
+
 const floodLot = (depth = 44) => [
   rect(0, 0, W, 180, '#1d2a26'),
   rect(0, 118, W, 62, C.asphalt),
@@ -995,20 +1037,8 @@ const templates = {
   },
   slope: mode => {
     const scenes = {
-      downhill: () => [
-        slopeLot(true),
-        sideCar(196, 100, 24, C.ego),
-        trail('M150 92C180 104 212 120 252 140'),
-        tag(16, 56, 'Số thấp L hoặc 2'),
-        note('Chọn số thấp từ đầu dốc để động cơ hãm bớt tốc độ.')
-      ],
-      'downhill-pulse': () => [
-        slopeLot(true),
-        sideCar(178, 92, 24, C.ego),
-        `<g fill="${C.accent}"><circle cx="232" cy="120" r="4"/><circle cx="252" cy="130" r="4"/><circle cx="272" cy="140" r="4"/></g>`,
-        label(150, 170, 'Phanh ngắt quãng · nhả · lặp lại', { size: 9 }),
-        note('Phanh từng nhịp ngắn thay vì rà phanh liên tục.')
-      ],
+      downhill: () => downhillScene(false),
+      'downhill-braking': () => downhillScene(true),
       uphill: () => [
         slopeLot(false),
         sideCar(160, 104, -22, C.ego),
@@ -1113,7 +1143,7 @@ const specs = [
   ['highway-gap', 'highway', ['gap', 'Đếm đủ giây qua cùng mốc; vẫn theo biển và cự ly quy định', 'Hai thời điểm nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe trước màu xám cùng làn, đầu và mũi tên hướng sang phải. Nét dọc vàng là cùng một mốc cố định bên đường, không phải vạch dừng. Bắt đầu khi đuôi xe trước ngang mốc ở hình trên; kết thúc khi đầu xe mình ngang mốc ở hình dưới. Ít nhất ba giây chỉ là tham khảo khi khô, thuận lợi; vẫn giữ cự ly theo biển, tốc độ và điều kiện. Dấu ngoặc chỉ cự ly giữa hai cản xe, không quy đổi độ dài hình thành giây hay mét.'], ['gap-rain', 'Mưa: từ mốc ba giây khô tăng ít nhất sáu giây, có thể cần hơn', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: mưa, hai xe cùng làn hướng sang phải; xe mình màu xanh theo sau xe xám, dấu ngoặc từ đầu xe mình đến đuôi xe trước minh họa cự ly tăng, không phải quãng phanh hay số mét. Từ mốc ba giây khô tăng ít nhất sáu giây khi ướt, có thể cần hơn; tuân thủ cự ly lớn hơn biển hoặc bảng trong điều kiện xấu và giảm tốc theo độ bám, tầm nhìn. Sáu giây không bảo đảm an toàn.']],
   ['highway-overtake-truck', 'highway', ['overtake', 'Đủ điều kiện mới qua trái, không vượt giới hạn tốc độ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải, xe tải có ca-bin ở đầu bên phải nằm trọn làn phải. Xe mình màu xanh ở sau xe tải; mũi tên từ đầu xe chuyển qua vạch đứt sang làn trái rồi đi thẳng. Vùng cam trước, sau và hai bên xe tải chỉ minh họa điểm mù thay đổi theo xe và gương, không phải ranh giới chính xác hoặc vùng ngoài đó chắc chắn được nhìn thấy. Chỉ đi khi được phép, đủ hở và không vượt giới hạn tốc độ; đường vẽ không phải quỹ đạo lái chính xác.'], ['overtake-return', 'Đủ cự ly trước sau, báo hiệu và kiểm tra lại mới về phải', 'Thời điểm sau riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình đã đi hẳn lên trước trong làn trái; xe tải nằm trong làn phải, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt rồi đi thẳng giữa làn phải, không ra lề. Dấu ngoặc hở sau nối theo phương dọc từ đầu xe tải đến đuôi xe mình, không phải số mét, giây hay khoảng cách được bảo đảm. Sơ đồ không chứng minh tầm nhìn trong gương: thấy toàn bộ xe tải trong gương trong chỉ hỗ trợ; còn phải đủ cự ly với xe trước, khoảng hở sau theo tốc độ tương đối, báo hiệu và kiểm tra lại gương, điểm mù phải trước khi về làn.']],
   ['highway-tailgater', 'highway', ['tailgate', 'Giãn trước êm, không phanh cảnh cáo; vẫn phanh khi nguy hiểm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải. Xe mình màu xanh ở giữa làn trái, xe sau màu cam bám sát cùng làn, xe trước màu xám ở xa hơn phía trước. Ngoặc cam nối đầu xe sau đến đuôi xe mình là tình huống nguy hiểm, không phải cự ly chuẩn; ngoặc xanh nối đầu xe mình đến đuôi xe trước nhắc tăng khoảng trống phía trước êm theo biển, tốc độ và điều kiện, không phải số mét hay giây bảo đảm. Không phanh cảnh cáo, nhưng vẫn phanh cần thiết khi có nguy hiểm tức thời.'], ['tailgate-let', 'Chỉ nhường một làn phải khi được phép và an toàn; chưa đủ hở thì giữ làn', 'Thời điểm chuẩn bị riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe bám sau màu cam vẫn nằm trọn trong làn trái, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt sang làn phải ở phía dưới và kết thúc thẳng trong làn, không ra lề. Đây chỉ là phương án có điều kiện, không phải quỹ đạo lái chính xác hay bằng chứng làn nhận an toàn: cần được phép, báo hiệu sớm, kiểm tra gương, điểm mù phải và đủ hở trước, sau, hai bên, xét cả xe đang đi lên bên phải. Nếu đã ở làn phải ngoài cùng hoặc chưa an toàn thì giữ làn, không dùng làn dừng khẩn cấp hay lề để nhường.']],
-  ['weather-downhill', 'slope', ['downhill', 'Đổ dốc dài', 'Sơ đồ cắt ngang: xe xuống dốc dài với số thấp.'], ['downhill-pulse', 'Phanh theo nhịp', 'Sơ đồ cắt ngang: các nhịp phanh ngắt quãng khi đổ dốc.']],
+  ['weather-downhill', 'slope', ['downhill', 'Giảm tốc trước dốc; chọn chế độ theo xe và độ bám', 'Sơ đồ nhìn ngang, không theo tỷ lệ: phía cao bên trái, thấp bên phải; đầu xe có đèn ở bên phải, đuôi bên trái, hai bánh tiếp xúc mặt dốc. Mũi tên xanh phía trước xe đi sang phải và xuống, song song mặt đường, chỉ chiều tiến xuống dốc, không phải quỹ đạo hay độ dốc đo được. Giảm tốc trước dốc, dùng chế độ theo sách xe và giới hạn trên đường trơn; không có cấp số chung cho mọi xe.'], ['downhill-braking', 'Phanh thường khác phanh khẩn cấp với ABS, không theo nhịp cố định', 'Sơ đồ hai khung chữ, không phải biểu đồ thời gian, lực phanh hay chu kỳ đạp nhả: khung trên mô tả phanh thường tăng lực êm khi cần, nhả khi đã giảm đủ và vẫn kiểm soát tốc độ; không rà suốt dốc hoặc nhấp theo nhịp. Khung dưới mô tả khẩn cấp với ABS: đạp mạnh, giữ lực, không nhấp nhả, lái tránh trong khoảng trống an toàn; ABS không bảo đảm dừng ngắn hơn.']],
   ['weather-uphill-start', 'slope', ['uphill', 'Khởi hành ngang dốc', 'Sơ đồ cắt ngang: xe khởi hành trên đoạn dốc lên.'], ['uphill-hold', 'Trôi ngược khi nhả sớm', 'Sơ đồ cắt ngang: hướng trôi ngược khi nhả phanh quá sớm trên dốc.']],
   ['weather-engine-brake', 'slope', ['engine', 'Lẫy số sau vô-lăng', 'Sơ đồ cắt ngang: vị trí lẫy số dùng để hãm tốc bằng động cơ.'], ['engine-gear', 'Giảm số từng cấp', 'Sơ đồ cắt ngang: trình tự giảm số D về 3 rồi về 2 khi đổ đèo.']],
   ['weather-flood-cross', 'flood', ['cross', 'Qua điểm ngập nông', 'Sơ đồ cắt ngang: xe đi qua vùng ngập dưới 25 cm với tốc độ đều.'], ['depth', 'Mức ngập phải quay đầu', 'Sơ đồ cắt ngang: mức nước ngập quá nửa bánh xe, cần quay đầu.']],

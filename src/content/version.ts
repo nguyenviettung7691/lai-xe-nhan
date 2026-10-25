@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.18'
+export const CONTENT_VERSION = '2026.10.19'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -145,5 +145,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa highway-tailgater: giãn trước êm, nhường có điều kiện, phanh khẩn cấp, đe dọa và camera; thay hai sơ đồ, công bố chưa thẩm định độc lập.',
     cardIds: ['highway-tailgater']
+  },
+  {
+    version: '2026.10.19',
+    date: '2026-10-25',
+    summary: 'Sửa weather-downhill: hãm theo xe và độ bám, phanh thường và ABS, dừng khi phanh lỗi, hai sơ đồ và checklist thời tiết; bỏ thẩm định mẫu.',
+    cardIds: ['weather-downhill']
   }
 ]

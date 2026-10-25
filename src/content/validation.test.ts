@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Card } from '../types'
+import type { Card, ExpertReview } from '../types'
 import { validationInput } from './index'
 import {
   errorsOf,
@@ -83,10 +83,16 @@ describe('cổng chất lượng nội dung', () => {
     expect(errorsOf(validateSafety(withCard(card)))).toEqual([])
   })
 
-  it('cảnh báo khi thẻ được sửa sau lần duyệt gần nhất', () => {
-    const card = clone(validationInput.cards.find(item => item.id === 'weather-downhill')!)
+  it('chặn thẻ được sửa sau lần duyệt gần nhất', () => {
+    const card = clone(validationInput.cards[0])
+    card.reviewStatus = 'approved'
     card.updatedAt = '2099-01-01'
-    const issues = validateExpert(withCard(card))
+    const review: ExpertReview = {
+      id: 'test-stale-review', cardId: card.id, reviewer: 'Test reviewer',
+      credential: 'Test fixture only', decision: 'approved', notes: 'Test fixture only',
+      confidenceScore: 5, reviewedAt: '2026-01-01'
+    }
+    const issues = validateExpert({ ...withCard(card), reviews: [review] })
     expect(issues.some(issue => issue.severity === 'error' && issue.message.includes('duyệt lại'))).toBe(true)
   })
 })

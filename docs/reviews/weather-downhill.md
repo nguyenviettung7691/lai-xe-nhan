@@ -73,4 +73,43 @@ the instruction to repeat braking pulses.
 
 ## Implementation and verification
 
-Pending.
+- Analysis/plan committed first as `25528c5`, before lesson or asset edits.
+- Revised the entire card to **1.2.0**, pack **2026.10.19**; retained historical
+  releases, card/lesson/asset/checklist/quiz identities and the original first
+  six step IDs, adding two further steps. Removed only this card's sample
+  expert review and confirmed the visible independent-review warning.
+- Updated the shared weather checklist's spacing item and brake check, keeping
+  item IDs and order. Other cards and their illustration scenes were unchanged.
+- Added **12 focused regressions**, including transformed wheel-to-road
+  tangency, heading/forward-arrow agreement, actual correct quiz answers and
+  emergency guidance in quick/audio source fields.
+- The existing stale-review validation test depended on this lesson retaining
+  sample approval. Replaced that dependency with an explicit approved test
+  fixture, preserving the test's original enforcement of mandatory re-review.
+- **43/43 tests passed** across the new lesson regressions, general content,
+  assets and validation suites. `npm run lint` and `npm run build` passed,
+  including TypeScript checking and PWA generation. The build emitted two
+  non-blocking annotation warnings from the installed Zod dependency; no
+  application build errors.
+- Repeated asset generation produced identical manifest and downhill SVG
+  hashes. Git confirmed **only these two SVGs changed** among all 46 assets.
+  Manifest checksums and file sizes pass the existing asset tests; the complete
+  SVG pack is **173.39 KB**, within its existing budget.
+- Inspected both revised diagrams in the browser, including both at mobile
+  size. Front/rear, high/low, wheel contact, forward arrow and separate braking
+  cases agree with their captions and alt text. Browser-measured bounding
+  boxes found **no text outside either 320 x 200 SVG canvas**.
+- At **360, 390 and 1440 px** viewport widths there was no horizontal page
+  overflow. Both images decoded successfully after scrolling the lazy variant
+  into view. Quick mode showed the main figure and all eight steps with the
+  essential emergency safety text; learning mode showed both figures.
+- Verified TTS large-text output includes the slippery-road restriction,
+  maintained ABS pressure, early-stop instruction and runaway distinction.
+  Actual synthesized speech quality/voice availability was not certified.
+- Browser quiz checks: correct choices scored **3/3 (100%), pass**; incorrect
+  choices scored **0/3, fail**, and retry re-enabled all choices. A clean
+  lesson reload produced no page errors or console warnings/errors.
+- `git diff --check` passed. The temporary local preview server was stopped
+  after validation. Independent instructor review remains outstanding; this
+  revision deliberately does not claim expert certification or a complete
+  vehicle-specific brake-failure training procedure.

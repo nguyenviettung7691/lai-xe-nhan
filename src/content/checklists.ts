@@ -64,8 +64,8 @@ export const checklists: Checklist[] = [
     items: [
       { id: 'bw-lights', itemNo: 1, label: 'Bật đèn chiếu gần, không dùng đèn pha trong mưa', criticalLevel: 'must' },
       { id: 'bw-speed', itemNo: 2, label: 'Giảm tốc theo điều kiện mặt đường', criticalLevel: 'must' },
-      { id: 'bw-gap', itemNo: 3, label: 'Giãn khoảng cách lên 4–5 giây', criticalLevel: 'must' },
-      { id: 'bw-brake', itemNo: 4, label: 'Phanh còn ăn, không có mùi khét', criticalLevel: 'must', hint: 'Kiểm tra sau mỗi đoạn đổ đèo dài.' },
+      { id: 'bw-gap', itemNo: 3, label: 'Tăng cự ly theo biển, tốc độ, độ bám và tầm nhìn', criticalLevel: 'must', hint: 'Đáp ứng cự ly theo quy định và tăng thêm khi mưa, trơn; 4–5 giây không phải khoảng cách bảo đảm cho mọi điều kiện.' },
+      { id: 'bw-brake', itemNo: 4, label: 'Phanh hoạt động bình thường, không có dấu hiệu bất thường', criticalLevel: 'must', hint: 'Kiểm tra trước khi xuống dốc; phanh mềm, giảm hiệu lực hoặc có mùi khét thì dừng an toàn và gọi hỗ trợ, không chờ hết dốc.' },
       { id: 'bw-stop', itemNo: 5, label: 'Đã xác định nơi dừng an toàn gần nhất', criticalLevel: 'should' }
     ]
   }

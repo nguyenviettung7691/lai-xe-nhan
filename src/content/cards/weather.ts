@@ -8,40 +8,43 @@ export const weatherCards: Card[] = [
     lessonId: 'weather-slope',
     topicId: 'weather',
     title: 'Đổ đèo dài an toàn',
-    context: 'Đèo dài hơn mười ki-lô-mét, trời mưa nhỏ và mặt đường trơn. Rà phanh liên tục sẽ làm phanh nóng và mất tác dụng.',
-    objective: 'Dùng phanh động cơ là chính để giữ tốc độ ổn định suốt đoạn đổ đèo.',
+    context: 'Bạn lái xe động cơ đốt trong xuống đèo dài, trời mưa và độ bám giảm; phanh liên tục có thể quá nhiệt, giảm hiệu lực. Phanh động cơ hỗ trợ giảm tải phanh chân nhưng phải phù hợp xe và mặt đường, không bảo đảm tự giữ tốc độ.',
+    objective: 'Chọn tốc độ và chế độ xuống dốc phù hợp, phối hợp phanh an toàn và nhận biết lúc phải dừng, gọi hỗ trợ.',
     risk: 'high',
     difficulty: 4,
-    minutes: 5,
+    minutes: 7,
     tags: { speedRange: 'suburban', spaceConstraint: 'medium', visibility: 'reduced', stress: 'high' },
     steps: [
-      { instruction: 'Giảm tốc về mức an toàn ngay trước khi vào đoạn dốc.', cueType: 'sign', cueText: 'Biển báo dốc xuống', speedHint: 'theo biển báo' },
-      { instruction: 'Về số thấp để động cơ hãm bớt tốc độ.', cueType: 'sound', cueText: 'Tiếng máy cao hơn bình thường' },
-      { instruction: 'Giữ tốc độ ổn định bằng vòng tua thay vì đạp phanh liên tục.', cueType: 'feel', cueText: 'Vòng tua ổn định' },
-      { instruction: 'Đạp phanh thành từng nhịp ngắn khi cần giảm thêm.', cueType: 'feel', cueText: 'Từng nhịp phanh ngắn' },
-      { instruction: 'Nhìn xa vào cuối cua để chọn quỹ đạo sớm.', cueType: 'marker', cueText: 'Điểm nhìn cuối cua' },
-      { instruction: 'Tấp vào điểm dừng an toàn khi ngửi thấy mùi khét từ phanh.', cueType: 'sound', cueText: 'Mùi khét hoặc phanh mềm' }
+      { instruction: 'Kiểm tra lốp, phanh, đèn và gạt mưa trước hành trình; đọc hướng dẫn xuống dốc của xe và xác định điểm dừng, đường cứu nạn theo biển báo. Không vào dốc nếu phanh bất thường hoặc không chắc kiểm soát được xe.', cueType: 'marker', cueText: 'Không chờ hết dốc mới kiểm tra phanh' },
+      { instruction: 'Giảm tốc trước đỉnh dốc và trước cua theo biển, độ bám, tải xe và tầm nhìn; bật đèn chiếu gần khi mưa, thiếu sáng. Giữ cự ly theo quy định, tăng thêm khi mưa hoặc trơn để dừng được trong phần đường nhìn rõ.', cueType: 'sign', cueText: 'Giới hạn tốc độ không phải tốc độ mục tiêu', speedHint: 'chậm hơn khi đường trơn, cua khuất hoặc tầm nhìn giảm' },
+      { instruction: 'Chọn cấp số hoặc chế độ hãm phù hợp trước dốc theo sách hướng dẫn; giảm tốc trước khi về số, không ép số gây giật hoặc quá vòng tua. Trên đường trơn, tuân thủ hạn chế phanh động cơ của xe; không chủ động về số để hãm nếu nhà sản xuất cấm trong điều kiện này.', cueType: 'marker', cueText: 'Không có số L, 2 hay mức vòng tua chung cho mọi xe' },
+      { instruction: 'Quan sát tốc độ thực tế, nhả ga và dùng lực hãm phù hợp để giảm tải phanh chân; vòng tua không thay đồng hồ tốc độ. Giữ số truyền động, không về N, không đạp giữ côn cho xe trôi và không tắt máy khi xe đang chạy.', cueType: 'marker', cueText: 'Tốc độ vẫn có thể tăng dù vòng tua có vẻ ổn định' },
+      { instruction: 'Phanh chân sớm, tăng lực êm khi cần giảm thêm; nhả khi đã giảm đủ và vẫn kiểm soát được tốc độ, không rà suốt dốc hay nhấp theo nhịp cố định. Nếu phải phanh liên tục để giữ tốc độ, giảm tốc và chọn nơi dừng an toàn, không cố đi tiếp cho hết đèo.', cueType: 'feel', cueText: 'Phanh thường không phải bài tập đạp, nhả theo giây' },
+      { instruction: 'Nhìn xa theo phần đường thấy rõ, giữ trong làn và giảm tốc trước cua; không cắt cua hoặc về số đột ngột giữa cua. Vẫn phanh ngay khi có nguy hiểm tức thời; với ABS, đạp phanh mạnh và giữ lực, không nhấp nhả, đồng thời lái tránh trong khoảng trống an toàn.', cueType: 'marker', cueText: 'ABS có thể rung bàn đạp; không bảo đảm quãng dừng ngắn hơn' },
+      { instruction: 'Giảm tốc và dừng sớm ngoài dòng xe ở nơi an toàn nếu có mùi khét, bàn đạp mềm, hành trình tăng hoặc xe giảm tốc kém; không chờ đủ mọi dấu hiệu. Nếu phanh còn hiệu lực, báo hiệu, quan sát rồi vào chỗ dừng, giữ chắc xe theo hướng dẫn và gọi hỗ trợ kiểm tra trước khi đi tiếp.', cueType: 'feel', cueText: 'Phanh giảm hiệu lực có thể không có mùi; không chỉ là quá nhiệt' },
+      { instruction: 'Giữ hướng lái và dùng phanh còn hiệu lực nếu không khống chế được tốc độ; cảnh báo người khác, không tắt máy, không chọn P hoặc R khi đang chạy. Dùng đường cứu nạn có biển nếu tiếp cận được an toàn, không cố chạy tới bãi nghỉ; sau khi dừng, giữ chắc xe và gọi cứu hộ, cứu nạn.', cueType: 'sign', cueText: 'Đường cứu nạn dành cho tình huống mất kiểm soát, không phải chỗ nghỉ làm nguội phanh' }
     ],
     mistakes: [
       'Rà phanh liên tục suốt đoạn dốc làm phanh quá nhiệt.',
-      'Về số N để xe trôi tự do xuống dốc.',
-      'Vào cua với tốc độ cao rồi phanh gấp giữa cua.'
+      'Về N, giữ côn hoặc tắt máy cho xe trôi; ép số thấp khi đang nhanh hoặc khi sách hướng dẫn cấm hãm bằng số trên đường trơn.',
+      'Vào cua quá nhanh, nhấp nhả phanh ABS khi khẩn cấp hoặc tiếp tục đổ đèo dù phanh bất thường.'
     ],
-    recovery: 'Khi phanh có dấu hiệu mềm, về số thấp hơn, dùng phanh động cơ và tấp vào điểm lánh nạn gần nhất để phanh nguội.',
-    safety: 'Điểm cứu nạn trên đèo được thiết kế để dừng xe mất phanh; hãy ghi nhớ vị trí khi đi qua.',
-    mnemonic: { text: 'Số thấp giữ đèo, phanh chỉ điểm xuyết.', rhythm: 'doi-ve' },
+    recovery: 'Nếu còn kiểm soát được tốc độ, dùng phanh còn hiệu lực để giảm tốc và dừng ngoài dòng xe tại nơi an toàn; không dừng ngay giữa cua khuất. Nếu tốc độ không khống chế được, cảnh báo, giữ hướng lái, dùng đường cứu nạn có biển nếu tiếp cận được an toàn; không tắt máy, không chọn P hoặc R khi đang chạy. Không ép về số thấp gây mất bám hoặc quá tua; thao tác phanh đỗ khẩn cấp chỉ theo hướng dẫn riêng của xe, không giật phanh tay tùy tiện. Sau khi dừng, giữ chắc xe theo sách hướng dẫn, gọi cứu hộ; chỉ rời xe về phía tránh dòng xe nếu an toàn, không đứng phía xe có thể trôi. Không đổ nước lên phanh nóng; hết mùi hoặc phanh nguội không chứng minh đã sửa được lỗi, cần kiểm tra trước khi đi tiếp.',
+    safety: 'Phanh động cơ chỉ hỗ trợ; đường trơn phải theo giới hạn của nhà sản xuất, không ép số hoặc lấy tiếng máy làm mốc tốc độ. Với xe điện, hybrid, lực tái sinh có thể giảm khi pin đầy, quá nóng hoặc lạnh; dùng phanh chân theo hướng dẫn, không mặc định xe tự hãm. Phanh sớm, êm khi đi thường; khẩn cấp với ABS thì đạp mạnh, giữ lực, không nhấp nhả. Mùi khét, phanh mềm hoặc giảm tốc kém: dừng an toàn và gọi hỗ trợ nếu còn kiểm soát; không khống chế được tốc độ thì cảnh báo và dùng đường cứu nạn có biển nếu tiếp cận an toàn. Không tắt máy hoặc chọn P, R khi xe đang chạy; giữ chắc xe sau khi dừng và kiểm tra phanh trước khi tiếp tục.',
+    mnemonic: { text: 'Chậm trước dốc, hãm đúng xe, phanh lỗi dừng.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
     quickCheck: [
-      { prompt: 'Khi đổ đèo dài, nên dùng phanh như thế nào?', options: ['Rà phanh liên tục suốt đoạn dốc', 'Về số thấp, dùng phanh động cơ là chính', 'Về số N cho xe trôi nhẹ nhàng'], correctIndex: 1 },
-      { prompt: 'Dấu hiệu nào cho thấy phanh đang quá nhiệt?', options: ['Vô-lăng nhẹ hơn', 'Ngửi thấy mùi khét hoặc phanh mềm', 'Đồng hồ tốc độ nhảy số'], correctIndex: 1 },
-      { prompt: 'Khi phát hiện dấu hiệu phanh quá nhiệt trên đèo, bạn nên?', options: ['Tiếp tục đi nhanh cho hết dốc', 'Tấp vào điểm dừng an toàn để phanh nguội', 'Đạp phanh gấp liên tục'], correctIndex: 1, isStopCondition: true }
+      { prompt: 'Chuẩn bị xuống đèo ướt với xe động cơ đốt trong, chọn cách nào?', options: ['Luôn ép về L hoặc 2 dù xe đang nhanh và đường trơn', 'Giảm tốc trước dốc, chọn chế độ theo sách hướng dẫn và độ bám; không về số để hãm nếu xe cấm trên đường trơn', 'Về N để tránh tiếng máy lớn'], correctIndex: 1 },
+      { prompt: 'Phanh thường trên dốc khác phanh khẩn cấp với ABS như thế nào?', options: ['Cả hai đều đạp, nhả liên tục theo nhịp cố định', 'Phanh thường tăng lực êm khi cần, nhả khi đã giảm đủ và còn kiểm soát; khẩn cấp với ABS đạp mạnh, giữ lực, không nhấp nhả', 'Có phanh động cơ thì không cần phanh khi gặp nguy hiểm'], correctIndex: 1 },
+      { prompt: 'Phanh có mùi khét, mềm hoặc giảm hiệu lực khi xuống đèo, nên làm gì?', options: ['Đi tiếp khi hết mùi vì phanh chắc chắn đã phục hồi', 'Còn kiểm soát: giảm tốc, dừng an toàn và gọi hỗ trợ kiểm tra; không khống chế được tốc độ: cảnh báo, dùng đường cứu nạn có biển nếu tiếp cận an toàn', 'Luôn chạy tới đường cứu nạn dù có chỗ dừng an toàn và phanh còn hiệu lực'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.1.0',
-    updatedAt: '2026-09-10',
+    reviewStatus: 'published_unverified',
+    version: '1.2.0',
+    updatedAt: '2026-10-25',
     changelog: [
       { version: '1.0.0', date: '2026-08-20', summary: 'Bản đầu tiên của thẻ đổ đèo dài.', author: 'Biên tập nội dung' },
-      { version: '1.1.0', date: '2026-09-10', summary: 'Nhấn mạnh phanh động cơ và dấu hiệu phanh quá nhiệt.', author: 'Biên tập nội dung' }
+      { version: '1.1.0', date: '2026-09-10', summary: 'Nhấn mạnh phanh động cơ và dấu hiệu phanh quá nhiệt.', author: 'Biên tập nội dung' },
+      { version: '1.2.0', date: '2026-10-25', summary: 'Sửa hãm theo xe và độ bám, phanh thường và ABS khẩn cấp, xử lý phanh bất thường, hai sơ đồ và trạng thái chưa thẩm định độc lập.', author: 'Biên tập nội dung' }
     ]
   }),
   defineCard({
