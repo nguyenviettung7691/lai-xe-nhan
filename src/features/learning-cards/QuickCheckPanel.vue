@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../icons/AppIcon.vue'
 import { computed, reactive } from 'vue'
 import type { Card } from '../../types'
 import { useAppStore } from '../../stores/app'
@@ -53,7 +54,7 @@ const retry = () => {
       <li v-for="(question, qIndex) in card.quickCheck" :key="question.id" class="question">
         <p class="prompt">
           {{ question.prompt }}
-          <span v-if="question.isStopCondition" class="stop-badge" title="Điều kiện dừng bắt buộc">⛔ Điều kiện dừng</span>
+          <span v-if="question.isStopCondition" class="stop-badge" title="Điều kiện dừng bắt buộc"><AppIcon name="stop" /> Điều kiện dừng</span>
         </p>
         <ul class="options">
           <li v-for="(option, oIndex) in question.options" :key="option">
@@ -76,7 +77,7 @@ const retry = () => {
     </ol>
 
     <div v-if="submitted" class="result" :class="{ pass: passed, fail: !passed }">
-      <strong>{{ passed ? '✓ Đạt' : '✗ Chưa đạt' }}</strong>
+      <strong><AppIcon :name="passed ? 'check' : 'close'" /> {{ passed ? 'Đạt' : 'Chưa đạt' }}</strong>
       <span>Đúng {{ correctCount }}/{{ card.quickCheck.length }} ({{ scorePercent }}%)</span>
       <button v-if="!passed" type="button" class="button secondary" @click="retry">Làm lại</button>
     </div>

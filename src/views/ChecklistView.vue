@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { checklists, disclaimer } from '../content'
@@ -95,7 +96,7 @@ const reset = () =>
         <span :style="{ '--progress': `${summary.ratio}` }" />
       </div>
       <p class="progress-caption" aria-live="polite">
-        <template v-if="summary.isComplete">✓ Đã đánh dấu đủ {{ summary.total }}/{{ summary.total }} mục — vẫn cần đánh giá điều kiện thực tế.</template>
+        <template v-if="summary.isComplete"><AppIcon name="check" /> Đã đánh dấu đủ {{ summary.total }}/{{ summary.total }} mục — vẫn cần đánh giá điều kiện thực tế.</template>
         <template v-else>{{ summary.done }}/{{ summary.total }} mục hoàn tất<span v-if="summary.missingMust.length"> · còn {{ summary.missingMust.length }} mục bắt buộc</span></template>
       </p>
 
@@ -105,7 +106,7 @@ const reset = () =>
           :checked="store.checked[item.id]"
           @change="store.toggleCheck(item.id, activeChecklist.id)"
         />
-        <span class="fake-check">✓</span>
+        <span class="fake-check" aria-hidden="true"><AppIcon name="check" /></span>
         <span>
           {{ item.label }}
           <small v-if="item.criticalLevel === 'must'" class="must-tag">bắt buộc</small>
@@ -114,7 +115,7 @@ const reset = () =>
       </label>
 
       <div class="checklist-actions">
-        <button class="text-button" @click="reset">↻ Đặt lại checklist</button>
+        <button class="text-button" @click="reset"><AppIcon name="reset" /> Đặt lại checklist</button>
         <span class="offline-hint muted">
           {{ store.isOnline ? 'Đã lưu trên máy · sẽ đồng bộ khi đăng nhập' : 'Đang offline · đã lưu trên máy' }}
         </span>

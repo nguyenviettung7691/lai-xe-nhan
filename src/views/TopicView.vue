@@ -22,7 +22,7 @@ const mastery = (lessonId: string) => {
     <section v-for="lesson in topic.lessons" :key="lesson.id" class="lesson-group">
       <div class="section-head">
         <div><p class="eyebrow">{{ lesson.cards.length }} THẺ · {{ lesson.estMinutes }} PHÚT</p><h2>{{ lesson.title }}</h2></div>
-        <span v-if="mastery(lesson.id).achieved" class="mastery-badge" title="Đã hoàn thành ≥80% thẻ và ≥70% tự kiểm">🏅 Đạt module</span>
+        <span v-if="mastery(lesson.id).achieved" class="mastery-badge" title="Đã hoàn thành ≥80% thẻ và ≥70% tự kiểm"><AppIcon name="award" /> Đạt module</span>
       </div>
       <p class="muted">{{ lesson.summary }}</p>
       <div class="lesson-list">

@@ -140,9 +140,9 @@ const complete = () => {
       <span>{{ card.minutes }} phút</span>
       <span>Độ khó {{ card.difficulty }}/5</span>
       <span v-if="card.reviewStatus === 'published_unverified'" class="review-chip unverified" role="status">
-        ⚠ Chưa thẩm định độc lập
+        <AppIcon name="warning" /> Chưa thẩm định độc lập
       </span>
-      <span v-else-if="review" class="review-chip" :title="review.notes">✓ Đã thẩm định</span>
+      <span v-else-if="review" class="review-chip" :title="review.notes"><AppIcon name="verified" /> Đã thẩm định</span>
     </div>
 
     <div class="mode-toggle" role="radiogroup" aria-label="Chế độ hiển thị bài học">
@@ -262,7 +262,8 @@ const complete = () => {
     </RouterLink>
 
     <button class="button primary full" @click="complete">
-      {{ store.completed.includes(card.id) ? '✓ Đã nắm bài này' : 'Đánh dấu đã nắm' }}
+      <template v-if="store.completed.includes(card.id)"><AppIcon name="check" /> Đã nắm bài này</template>
+      <template v-else>Đánh dấu đã nắm</template>
     </button>
 
     <!-- Quick navigation to next card -->

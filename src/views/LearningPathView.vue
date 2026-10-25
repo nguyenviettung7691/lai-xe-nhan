@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getTopicById, learningPaths } from '../content'
@@ -35,7 +36,8 @@ const activeLevel = computed(() => store.experienceLevel)
             :class="activeLevel === path.level ? 'primary' : 'secondary'"
             @click="selectLevel(path.level)"
           >
-            {{ activeLevel === path.level ? '✓ Đang theo' : 'Chọn lộ trình này' }}
+            <template v-if="activeLevel === path.level"><AppIcon name="check" /> Đang theo</template>
+            <template v-else>Chọn lộ trình này</template>
           </button>
         </div>
         <p class="muted">{{ path.summary }}</p>
