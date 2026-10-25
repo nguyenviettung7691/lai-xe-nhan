@@ -137,38 +137,43 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-basics',
     topicId: 'parking',
     title: 'Ghép ngang giữa hai xe',
-    context: 'Đường phố trung tâm chỉ còn một khoảng trống dài hơn xe khoảng 1,5 mét. Xe máy vẫn chạy sát bên trái trong lúc bạn ghép.',
-    objective: 'Đưa xe vào sát lề trong hai nhịp lùi mà không chạm hai xe bên cạnh.',
+    context: 'Bạn cần ghép vào khoảng trống giữa hai xe sát lề phải trên đoạn đường bằng phẳng được phép đỗ và lùi. Xe máy có thể đi qua; hình chỉ minh họa, mốc canh phụ thuộc xe và khoảng trống thực tế.',
+    objective: 'Ghép xe song song lề phải, chừa khoảng trống hai đầu và chỉ thao tác khi quan sát rõ toàn bộ vùng xe sẽ đi qua.',
     risk: 'medium',
     difficulty: 3,
     minutes: 4,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'good', stress: 'moderate' },
     steps: [
-      { instruction: 'Bật xi-nhan phải và dừng song song xe phía trước, cách khoảng 80 cm.', cueType: 'marker', cueText: 'Song song xe trước, cách 80 cm' },
-      { instruction: 'Quan sát gương phải để xác định đuôi xe trước ngang vai xe mình.', cueType: 'mirror', cueText: 'Đuôi xe trước ngang vai xe mình' },
-      { instruction: 'Cài số R, đánh lái phải hết cỡ rồi lùi chậm.', cueType: 'feel', cueText: 'Xe bò khi nhả phanh', speedHint: 'dưới 5 km/h', steeringHint: 'đánh hết lái phải' },
-      { instruction: 'Trả lái thẳng khi đầu xe mình ngang đuôi xe trước.', cueType: 'marker', cueText: 'Đầu xe ngang đuôi xe trước', steeringHint: 'trả lái về thẳng' },
-      { instruction: 'Đánh lái trái khi bánh sau cách lề khoảng 30 cm.', cueType: 'marker', cueText: 'Bánh sau cách lề 30 cm', steeringHint: 'đánh lái trái' },
-      { instruction: 'Tiến lùi một nhịp ngắn để chia đều khoảng cách với hai xe.', cueType: 'feel', cueText: 'Khoảng cách hai đầu bằng nhau' }
+      { instruction: 'Chọn nơi được phép đỗ và lùi, đủ chỗ cho thân xe, gương, khoảng quét đầu xe và khoảng trống hai đầu; chọn chỗ khác nếu chưa chắc, không coi dài hơn xe một khoảng cố định là đủ.', cueType: 'marker', cueText: 'Đủ chỗ cho toàn bộ thao tác, không chỉ chiều dài xe' },
+      { instruction: 'Bật xi-nhan phải khi tiếp cận; vị trí song song xe trước, hai đuôi gần ngang nhau chỉ là ví dụ để luyện cùng giáo viên, không phải mốc bắt buộc cho mọi xe; chừa khoảng hở bên hông theo xe thực tế và không dừng chờ song song xe đang đỗ trên đường.', cueType: 'marker', cueText: 'Xi-nhan không tạo quyền ưu tiên hoặc cho phép đỗ hàng đôi' },
+      { instruction: 'Dừng hẳn, giữ phanh; quét gương, điểm mù và quan sát trực tiếp hai bên, phía sau cùng vùng đầu xe quét ra; nhường người đi bộ, xe đạp và xe máy, chỉ cài số R khi xe đứng hẳn và đường lùi đã rõ.', cueType: 'mirror', cueText: 'Camera và cảm biến chỉ hỗ trợ; có tín hiệu lùi trước khi di chuyển', speedHint: '0 km/h trước khi cài số' },
+      { instruction: 'Lùi bò chậm, chỉnh lái phải dần để đuôi xe dịch về lề phải; đầu xe sẽ quét sang trái nên liên tục quan sát cả phía giao thông và phía lề, chân sẵn trên phanh; dừng ngay khi có người, xe vào vùng thao tác hoặc không chắc khoảng cách.', cueType: 'feel', cueText: 'Đuôi về phải, đầu quét trái; quan sát liên tục', speedHint: 'tốc độ đi bộ hoặc chậm hơn', steeringHint: 'chỉnh dần theo phản ứng xe, không bắt buộc hết lái' },
+      { instruction: 'Giảm góc lái rồi chỉnh lái trái khi có đủ khoảng hở để đầu xe lọt qua đuôi xe trước và đuôi xe không chạm lề hay xe sau; tiếp tục quan sát đầu, đuôi và hai bên, dừng nếu chưa chắc thay vì dùng mốc vai xe hoặc khoảng cách bánh cố định.', cueType: 'mirror', cueText: 'Thời điểm trả và đổi lái tùy xe, góc xe và khoảng hở', steeringHint: 'lái trái để đưa đầu vào, không để đuôi ép lề' },
+      { instruction: 'Trả bánh thẳng khi thân xe song song lề; nếu cần tiến hoặc lùi để căn lại, dừng hẳn trước mỗi lần đổi chiều, kiểm tra lại đường đi và chỉ di chuyển trong khoảng trống đã rõ; không cố hoàn thành trong một số nhịp nhất định.', cueType: 'feel', cueText: 'Đứng hẳn rồi đổi chiều, kiểm tra lại trước khi đi' },
+      { instruction: 'Kiểm tra toàn bộ xe đỗ gọn, không chạm lề, còn khoảng trống an toàn với cả xe trước và xe sau, không cần chia đều tuyệt đối; trên đường phố, bánh xe gần nhất không cách lề phải quá 0,25 m và không gây cản trở, nguy hiểm.', cueType: 'marker', cueText: 'Giới hạn đỗ sát lề không phải mốc để bắt đầu đổi lái' },
+      { instruction: 'Dừng hẳn, giữ phanh chân và đỗ theo hướng dẫn của nhà sản xuất: cài phanh đỗ, chọn P với số tự động hoặc số đỗ phù hợp với số sàn, rồi tắt máy; trước khi mở cửa, nhìn phía trước, phía sau và bên mở cửa, chỉ mở khi an toàn.', cueType: 'mirror', cueText: 'Giữ xe chắc, kiểm tra cả người đi bộ và xe hai bánh' }
     ],
     mistakes: [
-      'Dừng cách xe trước quá xa nên lùi vào bị hụt chỗ.',
-      'Trả lái muộn làm đầu xe văng ra giữa đường.',
-      'Không quan sát xe máy bên trái trước khi mở cửa.'
+      'Áp dụng khoảng hở, mốc vai xe hoặc thời điểm hết lái giống nhau cho mọi xe.',
+      'Chỉ nhìn camera hoặc phía lề, bỏ quên đầu xe quét ra và người, xe đi qua.',
+      'Cố ghép đủ hai nhịp, đổi chiều khi xe còn trôi hoặc tiếp tục khi khoảng cách không rõ.'
     ],
-    recovery: 'Nếu đuôi xe chạm lề, tiến lên nửa thân xe và lùi lại với góc nhỏ hơn. Chỉ ghép khi khoảng trống dài hơn xe ít nhất 1,5 mét.',
-    safety: 'Không ghép ngang ở nơi có biển cấm dừng, cấm đỗ hoặc ngay trước lối ra vào của nhà dân.',
-    mnemonic: { text: 'Ngang xe trước, lùi chậm, trả lái đúng lúc.', rhythm: 'ba-nhip' },
+    recovery: 'Dừng hẳn, giữ phanh nếu bánh chạm lề hoặc xe mắc góc; không leo lề hay cố ép lái. Nếu nghi hỏng lốp hoặc bánh, giữ xe an toàn và nhờ hỗ trợ; chỉ ra kiểm tra sau khi đã cài phanh đỗ, chọn số đỗ phù hợp, tắt máy và quan sát để mở cửa an toàn. Chỉ tiến ra căn lại khi đã rõ khoảng trống phía trước, hai bên và vùng đuôi xe quét; nếu không đủ chỗ thì chờ hoặc bỏ chỗ đỗ khi có lối ra an toàn, không bắt buộc tiến nửa thân xe. Nếu có người hướng dẫn, họ phải đứng ngoài đường xe chạy và trong tầm nhìn; mất liên lạc thì dừng.',
+    safety: 'Dừng ngay khi người hoặc xe vào vùng thao tác, mất tầm nhìn, không chắc khoảng cách hay cảm biến cảnh báo; không đợi còi liên tục. Không lùi trên đường một chiều, khu vực cấm dừng, phần đường người đi bộ qua đường, nơi giao nhau, giao cắt đường sắt, nơi khuất tầm nhìn, hầm đường bộ hoặc cao tốc. Tuân thủ biển, vạch và quy định đỗ xe; không chặn lối ra vào, không chiếm lối đi hay đỗ hàng đôi; nếu không thể thao tác hợp pháp và an toàn thì chọn nơi khác.',
+    mnemonic: { text: 'Rõ chỗ, nhường xe, lùi chậm, chưa chắc thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Khoảng trống tối thiểu để ghép ngang an toàn là bao nhiêu so với chiều dài xe?', options: ['Bằng đúng chiều dài xe', 'Dài hơn khoảng 1,5 mét', 'Ngắn hơn xe cũng ghép được'], correctIndex: 1 },
-      { prompt: 'Khi nào nên trả lái thẳng trong lúc ghép ngang?', options: ['Khi đầu xe mình ngang đuôi xe trước', 'Ngay khi bắt đầu lùi', 'Sau khi đã đỗ xong'], correctIndex: 0 },
-      { prompt: 'Trước khi mở cửa sau khi ghép ngang xong, cần chú ý gì?', options: ['Không cần vì đã đỗ sát lề', 'Quan sát xe máy phía bên trái', 'Chỉ cần tắt máy ngay'], correctIndex: 1 }
+      { prompt: 'Xe máy đi vào vùng đầu xe đang quét ra khi bạn lùi ghép; bạn làm gì?', options: ['Tiếp tục vì đã bật xi-nhan', 'Dừng hẳn, nhường xe qua và chỉ tiếp tục khi quan sát rõ toàn bộ vùng thao tác', 'Đánh lái nhanh hơn để vào chỗ'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Mốc canh và khoảng trống nào bảo đảm ghép được với mọi xe?', options: ['Dài hơn xe một khoảng cố định là đủ', 'Hai đuôi ngang nhau thì luôn được đánh hết lái', 'Không có mốc chung bảo đảm; phải đánh giá theo xe, khoảng hở và vùng đầu xe quét'], correctIndex: 2 },
+      { prompt: 'Đỗ xong trên đường phố, lựa chọn nào đúng trước khi rời xe?', options: ['Bánh gần nhất cách lề phải không quá 0,25 m, không gây cản trở; giữ xe bằng phanh đỗ và số phù hợp, tắt máy, quan sát trước, sau và bên mở cửa', 'Chỉ cần cách đều hai xe, không cần phanh đỗ', 'Chỉ nhìn gương trái rồi mở cửa ngay'], correctIndex: 0 }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng ghép ngang trên phố.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng ghép ngang trên phố.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Sửa điều kiện ghép, quan sát, quy định sát lề và sơ đồ lề phải; bỏ mốc lái cố định và thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'parking-slope',

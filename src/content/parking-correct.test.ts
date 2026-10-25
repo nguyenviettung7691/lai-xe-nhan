@@ -31,7 +31,7 @@ describe('parking-correct: real-world content', () => {
     expect(getReview(card.id)).toBeUndefined()
     expect(card.version).toBe('1.1.0')
     expect(card.changelog.at(-1)?.version).toBe(card.version)
-    expect(contentReleases.at(-1)?.cardIds).toContain(card.id)
+    expect(contentReleases.some(release => release.cardIds.includes(card.id) && release.date === card.updatedAt)).toBe(true)
   })
 
   it('distinguishes angle from lateral position without universal measurements', () => {

@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('parking-parallel', 'urban', 'Khoảng cách 80 cm và mốc ngang đuôi xe trước phù hợp với xe hạng B.', 4, '2026-09-12'),
   review('parking-slope', 'slope', 'Cảnh báo trôi dốc và yêu cầu về P sau khi dừng là bắt buộc, nội dung đạt.', 5, '2026-09-12'),
   review('parking-lowlight', 'slope', 'Khuyến nghị khảo sát một lượt trước khi lùi rất hợp lý với hầm cũ.', 4, '2026-09-12'),
   review('narrow-creep', 'urban', 'Điểm nhìn xa 10 m giúp học viên bớt bám sát đầu xe, nội dung chính xác.', 5, '2026-09-12'),

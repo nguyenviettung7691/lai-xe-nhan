@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.3'
+export const CONTENT_VERSION = '2026.10.4'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -55,5 +55,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa nội dung, hai sơ đồ parking-correct và gợi ý checklist trước khi lùi; bỏ quy tắc cố định và hồ sơ thẩm định mẫu.',
     cardIds: ['parking-correct']
+  },
+  {
+    version: '2026.10.4',
+    date: '2026-10-25',
+    summary: 'Sửa hướng dẫn ghép ngang parking-parallel, quy định đỗ sát lề, hai sơ đồ lề phải và trạng thái chưa thẩm định độc lập.',
+    cardIds: ['parking-parallel']
   }
 ]

@@ -75,4 +75,45 @@ src/content.test.ts`: 31 tests passed before changes. The worktree was clean.
 
 ## Verification results
 
-Pending implementation.
+- Implemented card `1.1.0`, content pack `2026.10.4`. All card, asset,
+  checklist and quiz IDs are preserved. The card now has eight steps; the
+  existing shared checklist and lesson renderer did not need modification.
+- Removed this card's sample approval and verified that the rendered lesson
+  shows the independent-validation warning, without a sample reviewer.
+- Focused regression run: **63 tests passed** across six content test files.
+  Added **13 lesson-specific cases** covering stop/yield conditions, legal
+  restrictions, vehicle-dependent steering, direction changes, safe exit,
+  review metadata, actual right-curb geometry, rear-end alignment, initial
+  reverse-arrow tangent and final clearances. These geometric tests establish
+  diagram meaning, not collision-free feasibility for a real vehicle.
+- The first focused run exposed a coupled historical-release assertion in
+  `parking-correct.test.ts`; changed it to find that card's dated release
+  instead of requiring it to remain the newest release. The stale-review test
+  now uses unchanged, approved `parking-lowlight`. Both tests still exercise
+  their original requirements.
+- Full `npm test`: **116 tests passed across 15 files**.
+- `npm run lint`: passed. `npm run build`: passed, including TypeScript and
+  PWA generation. Existing Zod/Rollup annotation warnings remain non-blocking.
+- Repeated `npm run content:assets` produced identical SHA-256 hashes for
+  both revised diagrams and the manifest. Only the two parallel-parking
+  artwork/manifest entries changed; the other **44 artworks are unchanged**.
+  Offline artwork size is **121.66 KB**, within the existing budget.
+- Browser checks at **1136 px desktop** and **390 px mobile**: eight steps,
+  both images loaded in learn mode, no horizontal page overflow. Visually
+  inspected the approach and final-position diagrams, including front/rear
+  orientation, right curb, upward traffic arrow and initial rearward-right
+  arrow. The latter deliberately stops short of a complete parking path.
+- Visual inspection found a leader crossing the final scene's rear label;
+  rerouted it below that label and re-inspected at both widths. Browser
+  `getBBox()` checks found no text outside either 320 by 200 SVG viewBox.
+- Exercising the revised quiz in the browser returned **3/3 (100%)**.
+  Quick mode retains all eight steps, the main diagram and safety guidance;
+  restoring learn mode brings back the variant. No browser console errors
+  or warnings were recorded.
+- Source review confirms full-script and per-step TTS consume the same
+  revised card instructions, cues and safety text. Audio was not auditioned.
+
+Remaining limitation: independent professional validation is still required.
+The diagrams are not to scale and do not simulate the entire vehicle's swept
+envelope. The right-curb example is restricted to a legal, level manoeuvring
+site; it does not authorize double-parking or reversing at prohibited sites.

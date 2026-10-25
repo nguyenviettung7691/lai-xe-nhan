@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.3",
+  "contentVersion": "2026.10.4",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 118.34,
+  "totalSizeKb": 121.66,
   "assets": [
     {
       "id": "parking-start-main",
@@ -96,11 +96,11 @@
       "url": "/content/svg/parking-parallel-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.51,
-      "checksum": "sha256-5c759a85d7c0f434a5b67e7d0c8207d9a190c083168f2d3015ce40b565952b1c",
+      "sizeKb": 3.98,
+      "checksum": "sha256-32f296818ab42928c2fece4889870091e29e4479742029927beba026eb6797bc",
       "offlinePack": "core",
-      "caption": "Ghép ngang giữa hai xe",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe dừng song song xe trước trước khi ghép ngang."
+      "caption": "Ví dụ tiếp cận lề phải và hướng đuôi lùi ban đầu, không phải toàn quỹ đạo",
+      "alt": "Sơ đồ không theo tỷ lệ, đầu các xe hướng lên, lề phải ở bên phải hình; xe mình bên trái xe trước, hai đuôi ngang nhau chỉ là ví dụ. Mũi tên cong từ sau đuôi xe chỉ hướng lùi ban đầu xuống và sang phải về lề; đầu xe quét trái. Mũi tên thẳng bên trái chỉ chiều đi, không phải hướng lùi."
     },
     {
       "id": "parking-parallel-var",
@@ -110,11 +110,11 @@
       "url": "/content/svg/parking-parallel-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.4,
-      "checksum": "sha256-826a8f5a9e09e5196d49a0393cc454a83188548a49c782f5a2ad68f4776f85ff",
+      "sizeKb": 4.25,
+      "checksum": "sha256-7378d75d12ed18c6f2cd6ec308ea9673c29814a1ce18f21733e482d0b7155c0b",
       "offlinePack": "core",
-      "caption": "Vị trí đỗ hoàn chỉnh",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe nằm gọn giữa hai xe và cách lề khoảng 30 cm."
+      "caption": "Ví dụ xe song song lề phải, chừa khoảng hở hai đầu; không phải mốc đo",
+      "alt": "Sơ đồ không theo tỷ lệ: xe mình hướng đầu lên, song song lề phải ở bên phải hình, có khoảng hở với lề và cả xe trước, xe sau. Dấu ngoặc chỉ khoảng hở hai đầu, không phải số đo. Mũi tên bên trái chỉ chiều đi; xe đã đỗ không có mũi tên chuyển động."
     },
     {
       "id": "parking-slope-main",

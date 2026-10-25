@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.3'
+const CONTENT_VERSION = '2026.10.4'
 
 const W = 320
 const H = 200
@@ -309,25 +309,50 @@ const templates = {
     return (scenes[mode] ?? scenes.approach)()
   },
   parallel: mode => {
-    const base = [rect(0, 0, W, 180, C.asphalt), rect(0, 0, 74, 180, C.kerb), line(74, 0, 74, 180, C.bay, 2.4)]
+    const base = [
+      rect(0, 0, W, 174, C.asphalt),
+      rect(246, 0, 74, 174, C.kerb),
+      `<g id="parallel-curb">${line(246, 0, 246, 174, C.bay, 2.4)}</g>`,
+      `<g id="parallel-front">${car(226, 44, 0, C.other, 24, 44)}</g>`,
+      `<g id="parallel-rear">${car(226, 144, 0, C.other, 24, 44)}</g>`,
+      label(260, 88, 'LỀ', { size: 9 }),
+      label(260, 102, 'PHẢI', { size: 9 }),
+      `<g id="parallel-traffic">${arrow(44, 146, 44, 120)}</g>`,
+      label(16, 160, 'CHIỀU ĐI', { size: 8 })
+    ]
     const scenes = {
       enter: () => [
         ...base,
-        car(104, 40, 0, C.other),
-        car(104, 150, 0, C.other),
-        car(168, 92, 0, C.ego),
-        trail('M156 104C136 114 118 106 110 96'),
-        gap(104, 168, 66, 'Ngang xe trước'),
-        note('Dừng song song xe trước rồi mới đánh lái lùi vào.')
+        `<g id="parallel-car">${car(166, 44, 0, C.ego, 24, 44)}</g>`,
+        label(166, 15, 'ĐẦU', { size: 8, fill: C.ego, anchor: 'middle' }),
+        label(146, 65, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'end' }),
+        `<g id="parallel-alignment">${line(178, 66, 214, 66, C.line, 1, '3 3')}</g>`,
+        label(16, 27, 'ĐẦU QUÉT TRÁI', { size: 8, fill: C.hazard }),
+        line(100, 29, 148, 36, C.hazard, 1),
+        label(16, 97, 'HƯỚNG ĐUÔI LÙI', { size: 8, fill: C.ego }),
+        line(112, 94, 167, 87, C.line, 1),
+        `<g id="parallel-reverse">${trail('M166 70C166 82 183 94 198 104')}</g>`,
+        note('Không theo tỷ lệ; chỉ hướng lùi ban đầu, không phải toàn quỹ đạo hay mốc lái chung.')
       ],
       settle: () => [
         ...base,
-        car(104, 40, 0, C.other),
-        car(104, 150, 0, C.other),
-        car(104, 95, 0, C.ego),
-        gap(88, 118, 66, '30 cm'),
-        pin(140, 95, '✓'),
-        note('Căn đều hai đầu xe và cách lề khoảng 30 cm.')
+        `<g id="parallel-car">${car(226, 94, 0, C.ego, 24, 44)}</g>`,
+        label(195, 79, 'ĐẦU', { size: 8, fill: C.ego, anchor: 'end' }),
+        label(195, 113, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'end' }),
+        '<g id="parallel-end-gaps">',
+        line(204, 66, 204, 72, C.accent, 1.4),
+        line(201, 66, 207, 66, C.accent, 1.4),
+        line(201, 72, 207, 72, C.accent, 1.4),
+        line(204, 116, 204, 122, C.accent, 1.4),
+        line(201, 116, 207, 116, C.accent, 1.4),
+        line(201, 122, 207, 122, C.accent, 1.4),
+        '</g>',
+        label(16, 48, 'CHỪA CẢ HAI ĐẦU', { size: 8, fill: C.ego }),
+        line(124, 46, 204, 69, C.line, 1),
+        line(124, 50, 132, 119, C.line, 1),
+        line(132, 119, 204, 119, C.line, 1),
+        label(92, 150, 'SONG SONG, KHÔNG CHẠM LỀ', { size: 8, fill: C.ego }),
+        note('Không theo tỷ lệ; kiểm tra khoảng hở thực tế. Giới hạn sát lề không phải mốc đổi lái.')
       ]
     }
     return (scenes[mode] ?? scenes.enter)()
@@ -632,7 +657,7 @@ const specs = [
   ['parking-start', 'bay', ['approach', 'Vị trí dừng và hướng lùi minh họa', 'Sơ đồ nhìn từ trên xuống: xe dừng trước ô đỗ; mũi tên chỉ đầu xe và hướng lùi tham khảo.'], ['approach-angle', 'Góc tiếp cận thay đổi', 'Sơ đồ nhìn từ trên xuống: xe ở góc tiếp cận khác; mũi tên chỉ đầu xe và một quỹ đạo lùi minh họa.']],
   ['parking-align', 'bay', ['align', 'Phân biệt song song vạch và khoảng trống hai bên', 'Sơ đồ không theo tỷ lệ: xe lùi vào ô, đầu xe hướng ra lối đi ở dưới; thân song song hai vạch, a và b chỉ khoảng trống từ thân xe tới vạch, không phải mốc đo cố định.'], ['align-mirror', 'Hướng nhìn qua gương, không phải đường xe chạy', 'Sơ đồ nhìn từ trên xuống: đầu xe ở dưới, đuôi ở trên; nét đứt từ hai gương hướng về vạch phía sau chỉ minh họa hướng nhìn, không mô tả đầy đủ vùng thấy hay thay thế quan sát trực tiếp.']],
   ['parking-correct', 'bay', ['correct', 'Dừng để phân biệt thân nghiêng và lệch ngang', 'Sơ đồ không theo tỷ lệ: xe đang dừng, thân nghiêng so với trục ô; đuôi ở trên, đầu hướng xuống lối đi qua cửa ô mở. Nét đứt là trục ô, không phải đường xe chạy; không có mũi tên chuyển động.'], ['correct-out', 'Một đoạn tiến minh họa, không phải toàn bộ cách sửa', 'Sơ đồ không theo tỷ lệ, cùng vị trí xe đang nghiêng: đầu xe ở dưới, mũi tên thẳng hướng về phía trước qua cửa ô mở. Chỉ tiến khi đã nhường người và xe, quan sát rõ khoảng trống; không quy định quãng tiến hay hướng đánh lái cho mọi xe. Dừng hẳn trước đổi chiều.']],
-  ['parking-parallel', 'parallel', ['enter', 'Ghép ngang giữa hai xe', 'Sơ đồ nhìn từ trên xuống: xe dừng song song xe trước trước khi ghép ngang.'], ['settle', 'Vị trí đỗ hoàn chỉnh', 'Sơ đồ nhìn từ trên xuống: xe nằm gọn giữa hai xe và cách lề khoảng 30 cm.']],
+  ['parking-parallel', 'parallel', ['enter', 'Ví dụ tiếp cận lề phải và hướng đuôi lùi ban đầu, không phải toàn quỹ đạo', 'Sơ đồ không theo tỷ lệ, đầu các xe hướng lên, lề phải ở bên phải hình; xe mình bên trái xe trước, hai đuôi ngang nhau chỉ là ví dụ. Mũi tên cong từ sau đuôi xe chỉ hướng lùi ban đầu xuống và sang phải về lề; đầu xe quét trái. Mũi tên thẳng bên trái chỉ chiều đi, không phải hướng lùi.'], ['settle', 'Ví dụ xe song song lề phải, chừa khoảng hở hai đầu; không phải mốc đo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu lên, song song lề phải ở bên phải hình, có khoảng hở với lề và cả xe trước, xe sau. Dấu ngoặc chỉ khoảng hở hai đầu, không phải số đo. Mũi tên bên trái chỉ chiều đi; xe đã đỗ không có mũi tên chuyển động.']],
   ['parking-slope', 'bay', ['slope', 'Lùi chuồng trên dốc hầm', 'Sơ đồ nhìn từ trên xuống: lùi vào ô đỗ trên mặt dốc của hầm gửi xe.'], ['slope-hold', 'Giữ xe không trôi', 'Sơ đồ nhìn từ trên xuống: hướng trôi của xe khi nhả phanh trên dốc.']],
   ['parking-lowlight', 'bay', ['lowlight', 'Hầm thiếu sáng', 'Sơ đồ nhìn từ trên xuống: vùng sáng đèn xe khi lùi trong hầm thiếu sáng.'], ['lowlight-mirror', 'Quan sát bằng mắt và tai', 'Sơ đồ nhìn từ trên xuống: vùng quan sát phía sau khi hạ kính trong hầm tối.']],
   ['parking-column', 'bay', ['column', 'Ô đỗ sát cột bê tông', 'Sơ đồ nhìn từ trên xuống: ô đỗ có cột bê tông chắn tầm nhìn bên trái.'], ['column-gap', 'Chừa chỗ mở cửa', 'Sơ đồ nhìn từ trên xuống: xe đỗ lệch xa cột để còn khoảng trống mở cửa.']],
