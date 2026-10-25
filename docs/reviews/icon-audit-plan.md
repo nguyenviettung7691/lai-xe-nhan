@@ -98,3 +98,19 @@ Baseline on 2026-10-25: `npx vitest run` — 36 files, 499 tests passed.
 Validation per step: `npx vitest run` on affected tests, `vue-tsc`, visual
 check in the browser (dark, light and high-contrast). Final: full tests, lint
 and production build.
+
+## Outcome
+
+| Review | Commit | Scope |
+|---|---|---|
+| 1 | 76c637b | Icon registry + `AppIcon`, theme/contrast toggles, favicon |
+| 2 | 9d7d727 | Bottom navigation icons |
+| 3 | 984269d | Topic icons (typed, schema-validated, unique) |
+| 4 | b94ea8b | Hero artwork redrawn as a route-to-finish road scene; quick-card icons |
+| 5 | 0abb55a | Arrows and route/navigation icons |
+| 6 | c929886 | Status icons: checklist, lesson state, quick check, award |
+| 7 | 98dc841 | Audio player and info-box icons |
+| 8 | a300fff | Dashboard telltales (EV, immobilizer, seatbelt), search and close icons |
+| 9 | 3211ccc | Sync badge state icons, auth dialog icons |
+
+Verification: `vitest` 540/540, `eslint` clean, `vue-tsc` + `vite build` succeed; no emoji or Unicode pictograms remain in UI templates.
