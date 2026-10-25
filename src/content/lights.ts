@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'auto-hold',
+    icon: 'auto-hold',
+    name: 'Giữ phanh tự động',
+    english: 'Auto Hold',
+    color: 'green',
+    severity: 'info',
+    description: 'AUTO HOLD xanh lá thường là đang giữ phanh sau khi dừng; trắng là chờ, vàng có thể lỗi. Khác phanh đỗ EPB và không phải hệ thống giữ xe an toàn khi bỏ xe.',
+    keywords: ['auto hold', 'giữ phanh', 'autohold', 'phanh tự động khi dừng'],
+    actions: [
+      'Dừng hẳn bằng phanh chân, xác nhận trạng thái giữ thực sự theo sổ tay trước khi nhấc chân.',
+      'Luôn sẵn sàng đạp phanh; khi lùi/đỗ sát hoặc vào máy rửa xe, dùng chế độ phù hợp theo hướng dẫn xe.',
+      'Nếu đèn vàng hoặc xe trôi, đạp phanh giữ xe, dừng an toàn và đọc thông báo; khi rời xe dùng phanh đỗ và số phù hợp.'
+    ],
+    avoid: 'Không dựa vào Auto Hold để rời ghế, không mặc định chữ sáng trắng nghĩa là xe đã được giữ.',
+    callHelp: 'Xanh đang giữ bình thường không cần cứu hộ; kiểm tra nếu vàng/lỗi, gọi hỗ trợ nếu không thể giữ xe an toàn.'
+  },
+  {
     id: 'adblue',
     icon: 'adblue',
     name: 'AdBlue / DEF và hệ thống SCR',
