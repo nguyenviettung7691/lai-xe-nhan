@@ -33,7 +33,8 @@ const mastery = (lessonId: string) => {
             <p>{{ card.objective }}</p>
             <small><span class="risk" :class="card.risk">{{ riskLabel(card.risk) }}</span> · {{ card.minutes }} phút · {{ card.steps.length }} bước</small>
           </div>
-          <span class="lesson-state">{{ store.completed.includes(card.id) ? '✓' : '→' }}</span>
+          <span v-if="store.completed.includes(card.id)" class="lesson-state done"><AppIcon name="check" /><span class="sr-only">Đã học</span></span>
+          <span v-else class="lesson-state" aria-hidden="true"><AppIcon name="arrow-right" /></span>
         </RouterLink>
       </div>
     </section>

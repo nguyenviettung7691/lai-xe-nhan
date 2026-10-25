@@ -8,7 +8,7 @@ const cardCount = (topic: (typeof topics)[number]) => topic.lessons.reduce((sum,
 
 <template>
   <div class="topics-page">
-    <RouterLink to="/learning-path" class="text-link learning-path-link">🧭 Chọn lộ trình học theo kinh nghiệm →</RouterLink>
+    <RouterLink to="/learning-path" class="text-link learning-path-link"><AppIcon name="route" /> Chọn lộ trình học theo kinh nghiệm <AppIcon name="arrow-right" /></RouterLink>
     <div class="topic-grid">
       <RouterLink v-for="(topic, index) in topics" :key="topic.id" :to="`/topics/${topic.id}`" class="topic-card large" :style="{ '--accent': topic.color }">
         <span class="topic-number">0{{ index + 1 }}</span>
@@ -16,7 +16,7 @@ const cardCount = (topic: (typeof topics)[number]) => topic.lessons.reduce((sum,
         <h2>{{ topic.title }}</h2>
         <p>{{ topic.description }}</p>
         <small>{{ cardCount(topic) }} bài học · 3–5 phút/bài</small>
-        <span class="card-arrow">↗</span>
+        <span class="card-arrow" aria-hidden="true"><AppIcon name="arrow-right" /></span>
       </RouterLink>
     </div>
   </div>

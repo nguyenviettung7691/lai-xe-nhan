@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed, watch, onMounted } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import {
@@ -131,7 +132,7 @@ const complete = () => {
 <template>
   <div v-if="card" class="lesson-detail">
     <RouterLink :to="`/topics/${card.topicId}`" class="back-link">
-      ← Quay lại {{ topic?.title ?? 'chuyên đề' }}
+      <AppIcon name="arrow-left" /> Quay lại {{ topic?.title ?? 'chuyên đề' }}
     </RouterLink>
 
     <div class="lesson-meta">
@@ -257,7 +258,7 @@ const complete = () => {
       :to="{ path: '/checklist', query: { scope: checklist.id } }"
       class="checklist-link"
     >
-      ✓ Checklist liên quan: {{ checklist.title }} →
+      <AppIcon name="checklist" /> Checklist liên quan: {{ checklist.title }} <AppIcon name="arrow-right" />
     </RouterLink>
 
     <button class="button primary full" @click="complete">
@@ -270,7 +271,7 @@ const complete = () => {
       :to="`/lessons/${nextCard.id}`"
       class="button secondary full next-card-btn"
     >
-      Bài tiếp theo: {{ nextCard.title }} →
+      Bài tiếp theo: {{ nextCard.title }} <AppIcon name="arrow-right" />
     </RouterLink>
 
     <footer class="content-meta">

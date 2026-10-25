@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getCardById } from '../content'
@@ -43,7 +44,7 @@ const formatDue = (iso: string) => new Date(iso).toLocaleDateString('vi-VN')
           <p>Đến hạn: {{ formatDue(entry.dueAt) }}</p>
           <small>{{ entry.lastResult === 'fail' ? 'Lần trước chưa đạt — nên ôn lại sớm' : 'Ôn để giữ chu kỳ ghi nhớ' }}</small>
         </div>
-        <span class="lesson-state">→</span>
+        <span class="lesson-state" aria-hidden="true"><AppIcon name="arrow-right" /></span>
       </RouterLink>
     </div>
   </div>
