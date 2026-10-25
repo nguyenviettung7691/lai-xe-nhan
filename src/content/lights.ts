@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'ev-system',
+    icon: 'ev-system',
+    name: 'Lỗi hệ truyền động điện / hybrid',
+    english: 'EV / hybrid system warning',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Hình xe có chấm than là một mẫu cảnh báo hệ EV; xe khác dùng chữ EV, hybrid hoặc hình khác. Không phải nhắc bảo dưỡng định kỳ; có thể lỗi điều khiển, pin, motor hoặc hệ cao áp.',
+    keywords: ['lỗi xe điện', 'lỗi hybrid', 'ev system', 'check electric vehicle system', 'cao áp'],
+    actions: [
+      'Giảm tải, đọc thông báo và tìm nơi dừng an toàn; không mặc định xe còn đủ lực để tới xưởng.',
+      'Có STOP/đỏ, rùa, mất lực, khói hoặc mùi cháy: dừng, tắt nguồn khi an toàn; có nguy cơ cháy thì đưa người ra xa và gọi khẩn cấp.',
+      'Liên hệ hãng để chẩn đoán và vận chuyển đúng loại xe; không tiếp tục sạc khi có cảnh báo lỗi pin/nhiệt nghiêm trọng.'
+    ],
+    avoid: 'Không chạm cáp màu cam, tháo bộ pin hoặc đóng/ngắt cao áp để thử xóa lỗi; xe ngập/va chạm cần người có chuyên môn.',
+    callHelp: 'Liên hệ xưởng ngay khi đèn còn sáng; cứu hộ nếu có cảnh báo dừng, giảm công suất hay bất thường. Khói/cháy: gọi lực lượng khẩn cấp.'
+  },
+  {
     id: 'power-limited',
     icon: 'power-limited',
     name: 'Giới hạn công suất (rùa)',
