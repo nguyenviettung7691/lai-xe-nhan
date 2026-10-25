@@ -62,11 +62,11 @@ export const checklists: Checklist[] = [
     title: 'Khẩn cấp thời tiết xấu',
     description: 'Dùng khi gặp mưa lớn, ngập nước hoặc đổ đèo dài.',
     items: [
-      { id: 'bw-lights', itemNo: 1, label: 'Bật đèn chiếu gần, không dùng đèn pha trong mưa', criticalLevel: 'must' },
-      { id: 'bw-speed', itemNo: 2, label: 'Giảm tốc theo điều kiện mặt đường', criticalLevel: 'must' },
+      { id: 'bw-lights', itemNo: 1, label: 'Bật đèn chiếu gần, không dùng đèn pha trong mưa', criticalLevel: 'must', hint: 'Kiểm tra cả đèn hậu; không mặc định AUTO hoặc đèn ban ngày đã bật đủ đèn. Gạt mưa và sấy kính phải giúp nhìn rõ.' },
+      { id: 'bw-speed', itemNo: 2, label: 'Giảm tốc theo điều kiện mặt đường', criticalLevel: 'must', hint: 'Theo biển, độ bám và tầm nhìn để dừng trong khoảng thấy rõ; không có tỷ lệ giảm tốc chung. Tắt cruise hoặc ACC theo sách xe khi mưa trơn.' },
       { id: 'bw-gap', itemNo: 3, label: 'Tăng cự ly theo biển, tốc độ, độ bám và tầm nhìn', criticalLevel: 'must', hint: 'Đáp ứng cự ly theo quy định và tăng thêm khi mưa, trơn; 4–5 giây không phải khoảng cách bảo đảm cho mọi điều kiện.' },
       { id: 'bw-brake', itemNo: 4, label: 'Phanh hoạt động bình thường, không có dấu hiệu bất thường', criticalLevel: 'must', hint: 'Kiểm tra trước khi xuống dốc; phanh mềm, giảm hiệu lực hoặc có mùi khét thì dừng an toàn và gọi hỗ trợ, không chờ hết dốc.' },
-      { id: 'bw-stop', itemNo: 5, label: 'Đã xác định nơi dừng an toàn gần nhất', criticalLevel: 'should', hint: 'Khi có ngập, chọn nơi khô cao được phép, không chờ ở chỗ trũng hoặc cản dòng xe; đổi nơi chờ nếu nước dâng.' },
+      { id: 'bw-stop', itemNo: 5, label: 'Đã xác định nơi dừng an toàn gần nhất', criticalLevel: 'should', hint: 'Khi có ngập, chọn nơi khô cao được phép, không chờ ở chỗ trũng hoặc cản dòng xe; đổi nơi chờ nếu nước dâng. Mưa làm thiếu tầm nhìn thì tìm điểm dừng sớm, không trú mưa trên làn khẩn cấp cao tốc; không thể đi tiếp an toàn thì cảnh báo và gọi hỗ trợ khi dừng.' },
       { id: 'bw-flood', itemNo: 6, label: 'Gặp đường ngập: không vào, chọn lối khô hợp pháp', criticalLevel: 'must', hint: 'Không dựa vào nửa bánh xe trước, không lội đo hoặc vòng rào; chỉ quay đầu khi quan sát đủ và có khoảng trống an toàn.' }
     ]
   }

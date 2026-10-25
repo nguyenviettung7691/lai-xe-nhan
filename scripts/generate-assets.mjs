@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.22'
+const CONTENT_VERSION = '2026.10.23'
 
 const W = 320
 const H = 200
@@ -736,6 +736,64 @@ const floodEmergencyPanels = () => [
   note('Không đề lại hoặc bật READY; không là sơ đồ lối thoát.')
 ]
 
+const heavyRainScene = () => [
+  label(160, 18, 'GIÃN CỰ LY THEO ĐIỀU KIỆN', { size: 10, fill: C.ego, anchor: 'middle', weight: 700 }),
+  '<g id="rain-direction">',
+  label(226, 44, 'CHIỀU ĐI', { size: 9, anchor: 'end' }),
+  arrow(240, 41, 286, 41),
+  '</g>',
+  '<g id="rain-road">',
+  rect(12, 132, 296, 36, C.asphalt),
+  line(12, 132, 308, 132, C.bay),
+  '</g>',
+  `<g id="rain-ego">${sideCar(60, 116, 0)}</g>`,
+  `<g id="rain-lead">${sideCar(242, 116, 0, C.other)}</g>`,
+  '<g id="rain-lamps">',
+  rect(84, 110, 3, 5, '#fff3b0', 1),
+  rect(33, 110, 3, 5, C.hazard, 1),
+  rect(266, 110, 3, 5, '#fff3b0', 1),
+  rect(215, 110, 3, 5, C.hazard, 1),
+  '</g>',
+  '<g id="rain-following-gap">',
+  line(87, 87, 215, 87, C.ego, 1.8, '4 3'),
+  line(87, 81, 87, 93, C.ego, 1.8),
+  line(215, 81, 215, 93, C.ego, 1.8),
+  label(151, 73, 'CỰ LY GIỮA HAI XE', { size: 9, fill: C.ego, anchor: 'middle' }),
+  '</g>',
+  label(87, 101, 'ĐẦU', { size: 8, fill: C.ego }),
+  label(269, 101, 'ĐẦU', { size: 8 }),
+  label(60, 153, 'XE MÌNH', { size: 9, fill: C.ego, anchor: 'middle' }),
+  label(242, 153, 'XE TRƯỚC', { size: 9, anchor: 'middle' }),
+  note('Không theo tỷ lệ; cự ly không là quãng phanh bảo đảm.', 12)
+]
+
+const rainStopScene = () => [
+  label(160, 17, 'VÍ DỤ ĐIỂM DỪNG ĐƯỢC PHÉP', { size: 10, fill: C.ego, anchor: 'middle', weight: 700 }),
+  '<g id="rain-live-lane">',
+  rect(12, 54, 296, 44, C.asphalt),
+  line(12, 54, 308, 54, C.bay),
+  line(12, 98, 180, 98, C.bay),
+  '</g>',
+  label(94, 45, 'LÀN ĐANG CHẠY', { size: 9, anchor: 'middle' }),
+  `<g id="rain-passing-car">${car(75, 76, 90, C.other)}</g>`,
+  rect(95, 68, 3, 5, '#fff3b0', 1),
+  rect(95, 79, 3, 5, '#fff3b0', 1),
+  `<g id="rain-through-direction">${arrow(112, 76, 154, 76)}</g>`,
+  '<g id="rain-permitted-bay">',
+  rect(180, 98, 128, 66, C.kerb),
+  `<path d="M180 98L180 164L308 164L308 98" fill="none" stroke="${C.bay}" stroke-width="2"/>`,
+  label(244, 111, 'XE ĐÃ DỪNG', { size: 9, fill: C.ego, anchor: 'middle' }),
+  '</g>',
+  `<g id="rain-stopped-car">${car(244, 136, 90, C.ego)}</g>`,
+  '<g id="rain-hazard-lamps">',
+  ...[223, 265].flatMap(x => [125, 147].map(y => rect(x - 1.5, y - 1.5, 3, 3, C.bike, 1))),
+  '</g>',
+  label(20, 119, 'KHÔNG TRÚ MƯA', { size: 9, fill: C.hazard }),
+  label(20, 134, 'TRONG LÀN CHẠY', { size: 9, fill: C.hazard }),
+  label(20, 155, 'Chỉ vào khi có lối an toàn.', { size: 8.5 }),
+  note('Không là làn khẩn cấp; đèn không cho phép đỗ sai.', 12)
+]
+
 const cornerScene = risk => {
   const cx = risk ? 229 : 224
   const cy = risk ? 173 : 142
@@ -1136,24 +1194,8 @@ const templates = {
     const scenes = {
       cross: () => floodAvoidScene(),
       depth: () => floodEmergencyPanels(),
-      rain: () => [
-        rect(0, 0, W, 180, '#1b2b34'),
-        rect(0, 118, W, 62, C.asphalt),
-        `<g stroke="#8fc4e8" stroke-width="1.5" opacity=".65"><path d="M30 12L20 42"/><path d="M84 6L74 36"/><path d="M140 14L130 44"/><path d="M196 4L186 34"/><path d="M252 12L242 42"/><path d="M296 8L286 38"/></g>`,
-        sideCar(112, 126, 0, C.ego),
-        sideCar(254, 126, 0, C.other),
-        gap(142, 224, 104, 'Giãn khoảng cách'),
-        note('Bật đèn chiếu gần, giảm tốc và tăng khoảng cách khi mưa to.')
-      ],
-      'rain-stop': () => [
-        rect(0, 0, W, 180, '#1b2b34'),
-        rect(0, 118, W, 62, C.asphalt),
-        rect(0, 150, W, 30, C.kerb),
-        sideCar(220, 138, 0, C.ego),
-        `<g fill="${C.hazard}"><circle cx="196" cy="126" r="4"/><circle cx="244" cy="126" r="4"/></g>`,
-        label(16, 172, 'Đỗ sát lề an toàn · bật đèn cảnh báo', { size: 9 }),
-        note('Mưa quá lớn thì tấp vào nơi được phép dừng và bật đèn khẩn.')
-      ]
+      rain: () => heavyRainScene(),
+      'rain-stop': () => rainStopScene()
     }
     return (scenes[mode] ?? scenes.cross)()
   }
@@ -1193,7 +1235,7 @@ const specs = [
   ['weather-uphill-start', 'slope', ['uphill', 'Giữ chắc và quan sát; chỉ tiến lên khi đủ điều kiện theo sách xe', 'Sơ đồ nhìn ngang, không theo tỷ lệ: thấp bên trái, cao bên phải; đầu xe có đèn ở bên phải hướng lên dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và lên song song dốc, chỉ hướng tiến có điều kiện, không phải xe đang tự bò hay bằng chứng hỗ trợ đã giữ. HSA, Auto Hold và phanh đỗ có giới hạn, theo sách xe; hình không quy định độ dốc, mức ga, thời gian nhả hay khoảng cách an toàn.'], ['uphill-hold', 'Nguy cơ trôi xuống sau đuôi dù đã cài D: nhả ga, đạp phanh chân', 'Sơ đồ nhìn ngang, không theo tỷ lệ, cùng vị trí xe và dốc như hình chính: đầu bên phải hướng lên, đuôi bên trái, cao bên phải và thấp bên trái. Mũi tên đỏ nét đứt nằm hoàn toàn sau đuôi, hướng sang trái và xuống song song dốc, minh họa nguy cơ trôi nếu lực giữ không đủ hoặc hỗ trợ không hoạt động, không phải lệnh lùi hay lỗi chắc chắn do nhả sớm. Nhả ga, đạp phanh chân để dừng và giữ xe; không thêm ga hoặc chọn P, R khi đang trôi.']],
   ['weather-engine-brake', 'slope', ['engine', 'Hãm theo sách xe và độ bám; phanh động cơ không thay phanh chân', 'Sơ đồ nhìn ngang, không theo tỷ lệ: cao bên trái, thấp bên phải; đầu xe có đèn bên phải hướng xuống dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và xuống song song dốc, chỉ chiều tiến, không phải quỹ đạo hay lực hãm bảo đảm. Hình không mô tả vị trí lẫy, cấp số hoặc tốc độ chuẩn; chọn chế độ theo sách xe, tuân thủ hạn chế trên đường trơn và dùng phanh chân khi cần.'], ['engine-gear', 'Giảm tốc, chọn mức được phép, kiểm tra phản hồi; không có chuỗi số chung', 'Sơ đồ quy trình ba khung đọc từ trên xuống: giảm tốc theo biển, độ bám và tầm nhìn; chọn mức được phép theo sách xe, không ép số hoặc quá tua; kiểm tra phản hồi, nếu không nhận thì dừng bấm trừ và dùng phanh giảm tốc. Hai mũi tên xanh chỉ thứ tự kiểm tra, không phải hướng xe chạy, quỹ đạo, chuỗi D về 3 rồi 2, mức vòng tua hay thời gian, nhịp đạp phanh.']],
   ['weather-flood-cross', 'flood', ['cross', 'Xe dừng trên nền khô trước đường ngập; không có ngưỡng sâu an toàn', 'Sơ đồ nhìn ngang, không theo tỷ lệ: đầu xe hướng phải, bánh tiếp xúc nền khô; xe đứng yên hoàn toàn trước vạch minh họa không vào, nước che khuất đường ở bên phải. Không có mũi tên đi vào nước, số đo độ sâu hoặc quỹ đạo quay đầu; vạch đỏ không phải biển hay rào thật.'], ['depth', 'Hai tình huống cứu nạn khác nhau, không phải thứ tự bắt buộc', 'Hai bảng điều kiện, không là bản đồ hay quy trình thoát mọi xe chìm: có lối khô an toàn thì ra nơi cao; kẹt giữa dòng xiết không có lối an toàn thì ở trong xe gọi cứu nạn, nước dâng vào xe thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy. Không đề lại hay bật READY.']],
-  ['weather-heavy-rain', 'flood', ['rain', 'Mưa lớn, tầm nhìn kém', 'Sơ đồ cắt ngang: hai xe giãn khoảng cách khi trời mưa lớn.'], ['rain-stop', 'Tấp vào lề an toàn', 'Sơ đồ cắt ngang: xe tấp vào lề và bật đèn cảnh báo khi mưa quá lớn.']]
+  ['weather-heavy-rain', 'flood', ['rain', 'Cự ly theo tầm nhìn và độ bám, không có số giây bảo đảm', 'Sơ đồ nhìn ngang, không theo tỷ lệ: xe mình bên trái, xe trước bên phải, cả hai hướng đầu sang phải, bánh tiếp xúc mặt đường. Mũi tên phía trên chỉ chiều đi; ngoặc nét đứt đo khoảng trống từ đầu xe mình tới đuôi xe trước, không phải mũi tên tăng tốc hay quãng phanh bảo đảm. Đèn nhạt ở đầu và đỏ ở đuôi chỉ vị trí đèn, không phải phạm vi chiếu sáng.'], ['rain-stop', 'Ví dụ xe đã dừng trong điểm được phép ngoài làn chạy, không phải làn khẩn cấp', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: làn xe đang chạy nằm ngang ở trên; xe mình đã dừng hoàn toàn trong ô điểm dừng được phép phía dưới, cả hai xe hướng đầu sang phải. Mũi tên chỉ chiều xe trên làn chạy, không phải đường tấp vào. Bốn dấu vàng ở các góc xe dừng minh họa đèn cảnh báo khi cần theo quy định, không phải quyền đỗ sai hay yêu cầu luôn bật khi mưa; không vẽ đường chuyển làn, vị trí thực tế cần có lối vào an toàn, không ngập.']]
 ]
 
 const checksum = value => `sha256-${createHash('sha256').update(value, 'utf8').digest('hex')}`

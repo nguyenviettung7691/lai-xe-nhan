@@ -26,6 +26,14 @@ Editorial and technical review, not independent instructor certification.
   requirements include pedestrians, oncoming traffic and other stated cases.
   No imported UK visibility-distance threshold or law is presented as
   Vietnamese law.
+- [Vietnam Law 36/2024/QH15, Article 25](https://xaydungchinhsach.chinhphu.vn/toan-van-luat-trat-tu-an-toan-giao-thong-duong-bo-119240909105718285.htm):
+  motorway stopping only at designated locations; technical failure or force
+  majeure may require stopping in the same-direction emergency lane with
+  hazards. If unable to reach it, hazards, a warning sign/light at least
+  150 m behind and prompt traffic-police/road-management notification are
+  required. Explicitly distinguish this forced-stop exception from choosing
+  the shoulder as a rain rest area; do not send a learner into live traffic
+  to deploy a warning, seek assistance for safe deployment.
 - [UK Highway Code, adverse weather, rules 226-237](https://www.gov.uk/guidance/the-highway-code/driving-in-adverse-weather-conditions-226-to-237):
   wet stopping distances increase, keep back for visibility, ease off if
   steering loses response. General risk guidance, not local legal distances.
@@ -78,4 +86,72 @@ server HTTP 200; isolated Chrome context avoids touching shared browser state.
 
 ## Implementation and verification
 
-Pending.
+- Analysis and mitigation plan committed first as **`70d68cc`**. Revised
+  card **1.1.0**, pack **2026.10.23**. Preserved card/lesson/asset/checklist/
+  quiz identities, original six step IDs and original changelog/release
+  history; expanded to eight steps and retained high risk.
+- Rewrote context, objective, all steps/cues, mistakes, recovery, safety,
+  mnemonic and quizzes. Removed percentage-based speed and fixed-gap
+  guarantees, blind track-following and delayed lane-marking stop trigger.
+  Added pre-travel tires/wipers/demisting, low-beam/rear-lamp checks,
+  AUTO/DRL limitations, cruise/ACC restrictions, possible grip-loss signs,
+  smooth appropriate steering, necessary emergency ABS braking and fault
+  stopping. No promise that ABS/ESC/tires restore grip on demand.
+- Added early legal dry-refuge choice, no blind exit-seeking or routine
+  shoulder/gap-under-bridge stop. Explicitly distinguished the Vietnamese
+  motorway forced-stop exception, same-direction emergency lane if safely
+  reachable, hazards, police/road-management notification and the actual
+  150 m warning requirement when stranded outside that lane. Safety takes
+  priority over sending a learner into moving traffic to deploy warnings;
+  seek help for safe deployment. Conditional safe rejoining remains in steps.
+- Main SVG: right-facing cars with identifiable front/rear lamps; four wheel
+  circumferences tangent to one road plane. Gap bracket starts/ends at actual
+  bumper x positions; separate traffic-direction arrow points right. No
+  numeric spacing, speed or guaranteed stopping distance. Lamps are location
+  markers, not beams or guaranteed visibility.
+- Variant: top view with a right-facing through vehicle and direction arrow;
+  stationary car wholly inside an illustrative permitted bay outside the
+  live lane. Four amber marks sit at actual car corners. No entry trajectory
+  or claim that an ordinary shoulder is a rest bay; captions/alt explicitly
+  state conditions and limits.
+- Mobile SVG text bounds exposed overlap in the original 10-unit footer
+  line spacing with Vietnamese glyph metrics. Increased only these two
+  diagrams' footer spacing to **12 units**, added a regression, regenerated
+  and rechecked: no text intersections or out-of-canvas bounds. Other
+  diagrams' formatting/output were not changed.
+- Shared checklist keeps all six IDs/order and all previous spacing, brake
+  and flood checks. Added lighting, stopping-sight-distance, cruise and
+  early-refuge hints. All four previously revised weather suites pass.
+- Removed this last sample expert record and unused seed factory; retained
+  the typed real-review list and validation support. Explicit synthetic
+  `ExpertReview` fixture replaces a test's dependency on `reviews[0]`.
+  The lesson displays **unverified**, not a fictitious expert endorsement.
+- Added **15 regressions** covering history/identity, lighting/preparation,
+  speed/gap decisions, grip/recovery/emergency braking, stopping, audio/quick
+  sources, quiz grading, shared checklist, real vehicle/road/gap geometry,
+  arrow direction, refuge containment, hazard positions and accessible text.
+- **99/99 tests passed across eight files**: all five weather-card suites,
+  general content, assets and validation. `npm run lint` passed; final
+  `npm run build` passed with Vue/TypeScript checks and PWA generation.
+  Existing dependency-only Zod/Rollup annotation warnings are non-blocking.
+- Final regeneration is deterministic: identical hashes for **46 SVGs plus
+  manifest** on repeat. Only the two heavy-rain SVGs differ from the previous
+  revision; flood and all other graphics unchanged. Pack **185.17 KB**, within
+  budget; asset checksums/sizes match. `git diff --check` passed.
+- Browser checks at actual **1440 px**, **390 px** and **360 px** viewports:
+  no horizontal overflow, long quiz choices fit, both images decode at
+  320 x 200, and diagrams inspected at desktop/mobile. Titles, captions,
+  alt text, explicit dimensions and lazy variant behaviour retained.
+- Quiz workflow: wrong answers **0/3**, retry re-enables all options, correct
+  answers **3/3 (100%, pass)**. Quick mode retains main image, eight steps,
+  normal/emergency response and forced-stop details while hiding recovery
+  and variant. Large-text audio output includes lighting/tires, conditional
+  speed/space, no track-following, smooth grip recovery, ABS, early refuge,
+  forced-stop/150 m warning and rejoining observations. Actual synthesized
+  voice quality was not evaluated.
+- Final browser console: no warnings/errors. Cache-bypassing reloads used
+  after generation to inspect final rather than cached SVGs.
+
+Independent driving-instructor review remains outstanding. This iteration
+does not claim certification or replace vehicle instructions, local traffic
+control or emergency assistance.

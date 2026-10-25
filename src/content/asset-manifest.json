@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.22",
+  "contentVersion": "2026.10.23",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 181.33,
+  "totalSizeKb": 185.17,
   "assets": [
     {
       "id": "parking-start-main",
@@ -628,11 +628,11 @@
       "url": "/content/svg/weather-heavy-rain-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.28,
-      "checksum": "sha256-cfa3538c23cdc69f1ced946fc5c74200728133dad59109e5d5cd0d85eda4d6bc",
+      "sizeKb": 3.87,
+      "checksum": "sha256-dac6972a1c55cf39cf37f0f0032cfa05009a84f1063f18d9042e49640a54ca9c",
       "offlinePack": "core",
-      "caption": "Mưa lớn, tầm nhìn kém",
-      "alt": "Sơ đồ cắt ngang: hai xe giãn khoảng cách khi trời mưa lớn."
+      "caption": "Cự ly theo tầm nhìn và độ bám, không có số giây bảo đảm",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ: xe mình bên trái, xe trước bên phải, cả hai hướng đầu sang phải, bánh tiếp xúc mặt đường. Mũi tên phía trên chỉ chiều đi; ngoặc nét đứt đo khoảng trống từ đầu xe mình tới đuôi xe trước, không phải mũi tên tăng tốc hay quãng phanh bảo đảm. Đèn nhạt ở đầu và đỏ ở đuôi chỉ vị trí đèn, không phải phạm vi chiếu sáng."
     },
     {
       "id": "weather-heavy-rain-var",
@@ -642,11 +642,11 @@
       "url": "/content/svg/weather-heavy-rain-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.69,
-      "checksum": "sha256-002402b74c6e80a76c27d190c52f2a260c70247687ca7a280652071a7643fe2e",
+      "sizeKb": 3.94,
+      "checksum": "sha256-a02f975f08be6dae49efae7f2150cb321a47e622e35b7d488e9d932f45d657a0",
       "offlinePack": "core",
-      "caption": "Tấp vào lề an toàn",
-      "alt": "Sơ đồ cắt ngang: xe tấp vào lề và bật đèn cảnh báo khi mưa quá lớn."
+      "caption": "Ví dụ xe đã dừng trong điểm được phép ngoài làn chạy, không phải làn khẩn cấp",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: làn xe đang chạy nằm ngang ở trên; xe mình đã dừng hoàn toàn trong ô điểm dừng được phép phía dưới, cả hai xe hướng đầu sang phải. Mũi tên chỉ chiều xe trên làn chạy, không phải đường tấp vào. Bốn dấu vàng ở các góc xe dừng minh họa đèn cảnh báo khi cần theo quy định, không phải quyền đỗ sai hay yêu cầu luôn bật khi mưa; không vẽ đường chuyển làn, vị trí thực tế cần có lối vào an toàn, không ngập."
     }
   ]
 }

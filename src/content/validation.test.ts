@@ -65,7 +65,11 @@ describe('cổng chất lượng nội dung', () => {
     const issues = validateExpert({ ...validationInput, cards: [card], reviews: [] })
     expect(issues.filter(issue => issue.id === card.id)).toEqual([])
 
-    const staleReview = { ...validationInput.reviews[0], cardId: card.id }
+    const staleReview: ExpertReview = {
+      id: 'test-unverified-review', cardId: card.id, reviewer: 'Test reviewer',
+      credential: 'Test fixture only', decision: 'approved', notes: 'Test fixture only',
+      confidenceScore: 5, reviewedAt: '2026-01-01'
+    }
     const issuesWithReview = validateExpert({ ...validationInput, cards: [card], reviews: [staleReview] })
     expect(issuesWithReview.some(issue => issue.id === card.id && issue.message.includes('không được gắn hồ sơ duyệt'))).toBe(true)
   })

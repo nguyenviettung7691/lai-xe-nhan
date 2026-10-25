@@ -181,37 +181,42 @@ export const weatherCards: Card[] = [
     lessonId: 'weather-flood',
     topicId: 'weather',
     title: 'Lái xe trong mưa lớn',
-    context: 'Mưa rào làm gạt mưa chạy hết tốc độ vẫn không kịp, mặt đường đọng nước thành vệt dài. Nguy cơ trượt nước tăng nhanh theo tốc độ.',
-    objective: 'Giảm nguy cơ trượt nước và giữ tầm nhìn ở mức chấp nhận được.',
+    context: 'Mưa lớn, nước đọng và bụi nước từ xe khác làm giảm tầm nhìn, độ bám và tăng quãng đường dừng. Lốp có thể mất tiếp xúc mặt đường do lớp nước, kể cả khi xe có ABS, cân bằng điện tử hoặc lốp còn mới.',
+    objective: 'Điều chỉnh theo tầm nhìn và độ bám, nhận biết nguy cơ mất lái và chọn nơi dừng phù hợp trước khi không thể tiếp tục an toàn.',
     risk: 'high',
     difficulty: 3,
-    minutes: 4,
+    minutes: 7,
     tags: { speedRange: 'suburban', spaceConstraint: 'open', visibility: 'poor', stress: 'high' },
     steps: [
-      { instruction: 'Bật đèn chiếu gần để xe khác nhìn thấy mình.', cueType: 'marker', cueText: 'Đèn chiếu gần đã bật' },
-      { instruction: 'Giảm tốc xuống dưới mức bình thường ít nhất hai mươi phần trăm.', cueType: 'feel', cueText: 'Chậm hơn ngày khô rõ rệt' },
-      { instruction: 'Tăng khoảng cách với xe trước lên bốn đến năm giây.', cueType: 'timing', cueText: 'Khoảng cách bốn đến năm giây' },
-      { instruction: 'Bám theo vệt bánh xe phía trước để tránh vùng đọng nước.', cueType: 'marker', cueText: 'Vệt bánh xe khô hơn' },
-      { instruction: 'Nhả ga giữ thẳng lái nếu vô-lăng bỗng nhẹ hẫng.', cueType: 'feel', cueText: 'Vô-lăng nhẹ hẫng là trượt nước' },
-      { instruction: 'Tấp vào nơi an toàn khi không còn nhìn rõ vạch kẻ đường.', cueType: 'marker', cueText: 'Mất tầm nhìn vạch kẻ' }
+      { instruction: 'Kiểm tra dự báo, lộ trình và điểm dừng trước khi đi; kiểm tra lốp đúng áp suất theo sách xe, độ mòn, gạt mưa, nước rửa kính, đèn và sấy kính. Hoãn đi nếu mưa hoặc thiết bị không cho phép nhìn và điều khiển an toàn; không chỉnh thiết bị hay xem điện thoại làm mất tập trung khi đang lái.', cueType: 'marker', cueText: 'Kính, lốp và thiết bị tốt không bảo đảm đi được trong mọi cơn mưa' },
+      { instruction: 'Bật đèn chiếu gần và kiểm tra đèn hậu sáng khi mưa hạn chế tầm nhìn; không dùng đèn chiếu xa gây chói. Không mặc định AUTO hoặc đèn ban ngày đã bật đèn hậu; dùng gạt mưa và sấy kính theo sách xe, dừng an toàn nếu kính vẫn không rõ.', cueType: 'marker', cueText: 'Đèn ban ngày không thay bộ đèn chiếu sáng; nhìn rõ cả kính và gương' },
+      { instruction: 'Giảm tốc sớm, êm, theo biển, tầm nhìn, nước đọng, độ bám và tải xe để có thể dừng trong phần đường nhìn rõ và trống; không có tỷ lệ giảm tốc bảo đảm an toàn. Tắt cruise control hoặc ACC theo sách xe trước đoạn mưa trơn, không dựa vào hệ thống tự giữ tốc độ hay làn; giảm thêm hoặc tìm nơi dừng khi không còn đủ điều kiện.', cueType: 'feel', cueText: 'Giới hạn tốc độ không phải tốc độ an toàn trong mọi điều kiện' },
+      { instruction: 'Tăng cự ly với xe trước theo quy định và tăng thêm khi mưa, trơn hoặc bị che tầm nhìn; nhìn xa và hai bên, không chỉ nhìn đèn hậu xe trước. Bốn đến năm giây không phải khoảng cách bảo đảm cho mọi tốc độ, mặt đường hoặc tải xe; tránh tăng tốc để thoát xe bám sau.', cueType: 'timing', cueText: 'Khoảng trống phải cho phép quan sát và dừng, không có số giây chung' },
+      { instruction: 'Giữ làn và quan sát xa để giảm tốc trước vũng nước, cua hoặc bụi nước từ xe lớn; không mặc định vệt bánh xe trước khô hay an toàn, không đánh lái gấp né nước hoặc đổi làn khi chưa thấy rõ. Tránh đường ngập che mặt đường, không đi theo xe khác để thử vượt ngập; chú ý người đi bộ, xe máy và không tạt nước vào họ.', cueType: 'marker', cueText: 'Vệt bánh có thể là rãnh đọng nước; không bám theo để tìm đường' },
+      { instruction: 'Nhả ga êm nếu vô-lăng nhẹ, phản hồi kém hoặc xe chao trên nước vì đó có thể là mất bám; giữ hướng ổn định phù hợp đường, không giật lái, đạp phanh gấp hoặc về số đột ngột chỉ để thử lấy lại bám. Khi bám lại, giảm tốc và điều chỉnh êm; nếu có nguy hiểm va chạm tức thời vẫn phanh khẩn cấp, với ABS đạp mạnh và giữ lực theo sách xe, không nhấp nhả. ABS và cân bằng điện tử không tạo lại độ bám theo ý muốn.', cueType: 'feel', cueText: 'Dấu hiệu có thể là trượt nước, không phải chẩn đoán chắc chắn; bất thường kéo dài thì dừng kiểm tra' },
+      { instruction: 'Chọn nơi dừng sớm khi không thể nhìn đủ xa để dừng trong khoảng trống, không chờ mất vạch kẻ mới xử lý; kiểm tra gương, giảm tốc êm, báo rẽ và quan sát trước khi vào điểm dừng được phép, khô, ngoài dòng xe. Ưu tiên trạm nghỉ hoặc lối ra còn tiếp cận an toàn; không dừng trú mưa trên làn đang chạy, làn khẩn cấp cao tốc, dưới gầm cầu hoặc nơi trũng dễ ngập, không phanh gấp hay cắt làn để tấp vào.', cueType: 'marker', cueText: 'Chỉ chuyển vào khi thấy rõ lối và khoảng trống; làn khẩn cấp không phải bãi nghỉ' },
+      { instruction: 'Báo nguy hiểm nếu buộc phải dừng vì không thể đi tiếp an toàn; dùng đèn cảnh báo sự cố theo quy định và gọi hỗ trợ khi đã dừng, không cố chạy mù đến lối ra. Trên cao tốc, nếu bất khả kháng buộc dừng thì vào làn dừng khẩn cấp cùng chiều nếu còn tiếp cận an toàn, bật đèn khẩn cấp; nếu không vào được thì bật đèn và báo ngay CSGT hoặc đơn vị quản lý đường. Quy định yêu cầu biển hoặc đèn cảnh báo phía sau tối thiểu 150 mét khi không vào được làn khẩn cấp; nhờ hỗ trợ triển khai an toàn, không bước vào dòng xe để đặt hay tự sửa. Gọi cứu nạn nếu người gặp nguy hiểm. Khi đã ở điểm dừng an toàn, giữ chắc xe; chỉ nhập lại khi tầm nhìn, độ bám và xe đáp ứng, kiểm tra gương, điểm mù, báo rẽ và nhường xe đang chạy.', cueType: 'marker', cueText: 'Đèn cảnh báo không thay xi-nhan, đèn chiếu sáng hoặc cho phép đỗ sai; không bật chỉ vì đang lái trong mưa' }
     ],
     mistakes: [
-      'Bật đèn pha làm ánh sáng phản xạ ngược vào mắt.',
-      'Phanh gấp khi xe vừa mất bám đường.',
-      'Giữ nguyên tốc độ vì nghĩ lốp còn mới.'
+      'Coi giảm hai mươi phần trăm, giãn bốn đến năm giây hoặc lốp mới là đủ an toàn.',
+      'Bám vệt bánh xe trước, để cruise hoặc ACC tự xử lý, giật lái hay đạp phanh gấp để thử độ bám.',
+      'Chờ mất vạch mới dừng, cắt làn trú dưới cầu hoặc coi đèn cảnh báo là quyền đỗ ở bất kỳ đâu.'
     ],
-    recovery: 'Khi xe trượt nước, nhả ga, giữ vô-lăng thẳng và chờ lốp bám lại rồi mới điều chỉnh hướng.',
-    safety: 'Dừng nghỉ khi mưa quá lớn là lựa chọn hợp lý; bật đèn cảnh báo và đỗ ngoài phần đường xe chạy.',
-    mnemonic: { text: 'Chậm hơn, xa hơn, sáng đèn, giữ thẳng.', rhythm: 'ba-nhip' },
+    recovery: 'Nghi mất bám trên nước: nhả ga êm, giữ hướng ổn định phù hợp đường, tránh giật lái, phanh gấp hoặc về số đột ngột chỉ để thử lấy lại bám; khi bám lại thì điều chỉnh êm và giảm tốc. Nếu nguy hiểm va chạm tức thời, phanh khẩn cấp ngay; với ABS đạp mạnh, giữ lực theo sách xe, không nhấp nhả. Bất thường lái, phanh hoặc đèn cảnh báo kéo dài thì dừng an toàn, gọi hỗ trợ, không cố thử tiếp. Không còn đủ tầm nhìn thì tìm điểm dừng được phép nếu tiếp cận được an toàn; nếu không thể tiếp tục, cảnh báo, gọi cứu nạn hoặc quản lý đường khi đã dừng, không chạy mù hay bước vào dòng xe.',
+    safety: 'Không có tốc độ, tỷ lệ giảm hoặc số giây chung bảo đảm chống trượt nước; giữ cự ly theo quy định và tăng theo điều kiện, tránh đường ngập, không dựa vào ABS, ACC hay lốp mới. Nghi mất bám thì nhả ga êm, không giật lái; nguy hiểm va chạm tức thời vẫn phanh ngay, với ABS đạp mạnh giữ lực, không nhấp nhả. Không chờ mất vạch mới tìm điểm dừng được phép; không trú mưa trên làn chạy hay làn khẩn cấp cao tốc, không cố chạy mù. Bất khả kháng buộc dừng trên cao tốc thì vào làn khẩn cấp cùng chiều nếu còn an toàn, bật đèn khẩn cấp; nếu không vào được thì cảnh báo, báo ngay CSGT hoặc quản lý đường và nhờ hỗ trợ cảnh báo phía sau theo quy định, không bước vào dòng xe. Gọi cứu nạn nếu người gặp nguy hiểm; đèn cảnh báo không thay xi-nhan hay quyền đỗ sai.',
+    mnemonic: { text: 'Đèn gần, chậm, xa; thiếu tầm nhìn, tìm điểm dừng.', rhythm: 'ba-nhip' },
     checklistId: 'bad_weather',
     quickCheck: [
-      { prompt: 'Khi lái xe trong mưa lớn, nên điều chỉnh tốc độ như thế nào?', options: ['Giữ nguyên tốc độ bình thường', 'Giảm tốc ít nhất hai mươi phần trăm so với ngày khô', 'Tăng tốc để nhanh thoát khỏi mưa'], correctIndex: 1 },
-      { prompt: 'Dấu hiệu nào cho thấy xe đang trượt nước?', options: ['Vô-lăng bỗng nhẹ hẫng', 'Đèn pha sáng hơn', 'Tiếng động cơ êm hơn'], correctIndex: 0 },
-      { prompt: 'Khi không còn nhìn rõ vạch kẻ đường vì mưa quá lớn, bạn nên?', options: ['Tiếp tục chạy chậm hơn một chút', 'Tấp vào nơi an toàn và bật đèn cảnh báo', 'Bật đèn pha để nhìn xa hơn'], correctIndex: 1, isStopCondition: true }
+      { prompt: 'Chọn tốc độ và cự ly khi mưa lớn như thế nào?', options: ['Giảm đúng hai mươi phần trăm, giữ bốn giây là đủ', 'Theo biển, quy định, tầm nhìn và độ bám; giảm để dừng trong khoảng thấy rõ, tăng cự ly theo điều kiện', 'Giữ tốc độ nếu có lốp mới và ACC'], correctIndex: 1 },
+      { prompt: 'Vô-lăng nhẹ, xe phản hồi kém trên nước nhưng chưa có nguy hiểm va chạm tức thời, nên làm gì?', options: ['Phanh gấp và giật lái để thử lấy lại bám', 'Nhả ga êm, giữ hướng ổn định phù hợp đường, tránh thao tác gấp; điều chỉnh êm khi bám lại', 'Tăng ga và bám vệt bánh xe trước'], correctIndex: 1 },
+      { prompt: 'Không còn đủ tầm nhìn để đi tiếp an toàn, nên xử lý thế nào?', options: ['Dừng trú mưa ngay trên làn khẩn cấp hoặc dưới cầu', 'Giảm tốc êm, quan sát và báo rẽ vào điểm dừng được phép nếu tiếp cận an toàn; nếu không thể đi tiếp thì cảnh báo, gọi hỗ trợ khi dừng, không chạy mù', 'Bật cảnh báo rồi tiếp tục bám sát đèn hậu xe trước'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng lái xe trong mưa lớn.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng lái xe trong mưa lớn.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ tỷ lệ tốc độ và cự ly cố định, sửa mất bám và phanh khẩn cấp, chuẩn bị đèn kính lốp, điểm dừng theo tầm nhìn; thay hai sơ đồ và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   })
 ]
