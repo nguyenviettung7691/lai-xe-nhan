@@ -301,15 +301,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Service reminder',
     color: 'amber',
     severity: 'info',
-    description: 'Xe đã tới mốc ki-lô-mét hoặc thời gian cần bảo dưỡng định kỳ.',
+    description: 'Cờ lê kèm mốc km/ngày thường nhắc bảo dưỡng định kỳ. Trên một số hãng, cờ lê còn báo lỗi hệ truyền động; phải đọc thông báo, không kết luận chỉ cần thay dầu.',
     keywords: ['bảo dưỡng', 'service', 'thay dầu', 'định kỳ', 'cờ lê'],
     actions: [
-      'Ghi lại số ki-lô-mét hiện tại.',
-      'Đặt lịch bảo dưỡng trong vài ngày tới.',
-      'Kiểm tra nhanh dầu, nước làm mát và lốp trước chuyến đi dài.'
+      'Dừng an toàn để đọc thông báo và đối chiếu sổ tay: nhắc lịch hay lỗi đang xảy ra.',
+      'Nếu là lịch bảo dưỡng, ghi km/ngày và đặt lịch đúng hạn; kiểm tra dầu, nước làm mát khi nguội và lốp trước chuyến xa.',
+      'Nếu có thông báo lỗi, mất công suất, rung hoặc đèn đỏ, xử lý theo cảnh báo đó; dừng và gọi hỗ trợ khi xe bất thường.'
     ],
-    avoid: 'Không bỏ qua nhiều kỳ bảo dưỡng liên tiếp rồi chạy đường dài.',
-    callHelp: 'Không khẩn cấp; chỉ cần đặt lịch với gara quen.'
+    avoid: 'Không reset cờ lê trước khi thực hiện bảo dưỡng hoặc mặc định mọi đèn cờ lê đều không khẩn cấp.',
+    callHelp: 'Nhắc lịch đơn thuần: hẹn bảo dưỡng; báo lỗi hệ truyền động: liên hệ xưởng sớm, cứu hộ khi xe không chạy an toàn.'
   },
   {
     id: 'fuel-low',
