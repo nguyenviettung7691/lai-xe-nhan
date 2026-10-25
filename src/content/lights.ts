@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'oil-level',
+    icon: 'oil-level',
+    name: 'Mức dầu động cơ thấp',
+    english: 'Low engine oil level',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Bình dầu vàng, đôi khi kèm sóng/mức, có thể báo mức dầu thấp hoặc lỗi đo mức. Khác đèn áp suất dầu đỏ: đèn đỏ khi máy chạy phải dừng và tắt động cơ.',
+    keywords: ['mức dầu', 'thiếu nhớt', 'oil level', 'bình dầu vàng'],
+    actions: [
+      'Dừng an toàn trên nền phẳng, tắt máy và chờ/đo mức đúng quy trình sổ tay.',
+      'Nếu thiếu, bổ sung dầu đúng cấp từng ít một và kiểm tra lại, không vượt mức tối đa.',
+      'Nếu mức đủ, không đo được hoặc vẫn cảnh báo, liên hệ xưởng; có đèn áp suất đỏ/tiếng gõ/rò dầu thì không khởi động lại.'
+    ],
+    avoid: 'Không nhầm mức dầu với áp suất, không châm dầu tùy tiện khi chưa đo hoặc đổ quá đầy.',
+    callHelp: 'Kiểm tra sớm nếu cảnh báo mức không hết; cứu hộ khi áp suất đỏ, tiếng gõ, rò nhiều hoặc không có dầu đúng loại để xử lý.'
+  },
+  {
     id: 'master',
     icon: 'master',
     name: 'Cảnh báo tổng quát',

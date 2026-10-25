@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['oil-level', ['Khác đèn áp suất dầu đỏ', 'không vượt mức', 'không khởi động lại'], []],
   ['master', ['đọc thông báo', 'STOP', 'không xác định được nguyên nhân'], []],
   ['hazard', ['ký hiệu nút hazard', 'hai mũi tên xanh', 'tam giác có chấm than'], []],
   ['turn-signal', ['không phải xin đi thẳng', 'nháy nhanh', 'không tạo quyền ưu tiên'], []],
