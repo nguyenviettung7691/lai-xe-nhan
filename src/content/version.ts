@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.8'
+export const CONTENT_VERSION = '2026.10.9'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -85,5 +85,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa narrow-creep: quan sát và khoảng hở thực tế, kiểm soát xe tự động, dừng và lùi an toàn; thay hai sơ đồ và bỏ thẩm định mẫu.',
     cardIds: ['narrow-creep']
+  },
+  {
+    version: '2026.10.9',
+    date: '2026-10-25',
+    summary: 'Sửa narrow-mirror: giới hạn quan sát bằng gương, khoảng hở toàn xe, dừng trước va chạm và hỗ trợ an toàn; thay hai sơ đồ và bỏ thẩm định mẫu.',
+    cardIds: ['narrow-mirror']
   }
 ]

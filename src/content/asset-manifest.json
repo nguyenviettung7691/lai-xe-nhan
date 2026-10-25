@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.8",
+  "contentVersion": "2026.10.9",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 127.22,
+  "totalSizeKb": 130.79,
   "assets": [
     {
       "id": "parking-start-main",
@@ -236,11 +236,11 @@
       "url": "/content/svg/narrow-mirror-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.37,
-      "checksum": "sha256-2ad4f7a9ed0fa1763c59d8768fddc8542d66ebabc89ead63beaf4e4f574afcc1",
+      "sizeKb": 4.48,
+      "checksum": "sha256-16f9994ad232eae3bf9f9d56daf1e904b6db22ccaa0527868463904265560b45",
       "offlinePack": "core",
-      "caption": "Giữ khoảng cách gương",
-      "alt": "Sơ đồ nhìn từ trên xuống: khoảng cách an toàn giữa gương xe và xe máy dựng ven hẻm."
+      "caption": "Khoảng hở từ mép gương tới vật cản, không phải số đo hay hình phản chiếu",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng lên, đuôi ở dưới, hai gương mở nhô ngoài thân; mô tô đỗ bên phải có tay lái nhô ra. a nối tường trái với mép ngoài gương trái, b nối mép ngoài gương phải với mép gần nhất tay lái tại cùng mặt cắt; không phải số đo, mức hở an toàn chung hay vùng nhìn thấy trong gương. Không có mũi tên chuyển động."
     },
     {
       "id": "narrow-mirror-var",
@@ -250,11 +250,11 @@
       "url": "/content/svg/narrow-mirror-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.11,
-      "checksum": "sha256-802ece4bb19955bc0f863255b36df350a3e14f12bc375e6962b0c7309b04cbf1",
+      "sizeKb": 3.57,
+      "checksum": "sha256-6c6b67047cdb5b4843e0381ce83724f97d67c53df499f2c7f2f6262ce3d81b14",
       "offlinePack": "core",
-      "caption": "Gập gương khi hẻm quá hẹp",
-      "alt": "Sơ đồ nhìn từ trên xuống: hẻm hẹp dưới 2,2 m cần gập gương để đi qua."
+      "caption": "Dừng trước chỗ tường nhô khi chưa rõ khoảng hở; không gập gương để cố lọt",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cùng xe đầu hướng lên, hai gương vẫn mở; xe đang dừng trước đoạn tường trái nhô vào lối đi. Nét đứt đỏ ngang đoạn thắt chỉ khoảng hở chưa rõ, không phải hướng xe chạy hay bằng chứng xe lọt. Không có mũi tên tiến, lùi hoặc gập gương; chỉ đi tiếp sau khi kiểm tra rõ và đủ khoảng hở toàn xe."
     },
     {
       "id": "narrow-corner-main",

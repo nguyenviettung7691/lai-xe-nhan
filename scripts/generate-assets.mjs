@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.8'
+const CONTENT_VERSION = '2026.10.9'
 
 const W = 320
 const H = 200
@@ -240,6 +240,22 @@ const creepLot = (crossing = false) => [
   line(182, 104, 214, 104, C.ego, 1),
   label(220, 152, 'ĐUÔI', { size: 8, fill: C.ego }),
   line(182, 148, 214, 148, C.ego, 1)
+]
+
+const mirrorLot = () => [
+  rect(0, 0, W, 174, C.kerb),
+  rect(90, 0, 146, 174, C.asphalt),
+  '<g id="mirror-walls">',
+  line(90, 0, 90, 174, C.bay, 2),
+  line(236, 0, 236, 174, C.bay, 2),
+  '</g>',
+  `<g id="mirror-car">${car(148, 118, 0, C.ego, 40, 64)}</g>`,
+  '<g id="mirror-open">',
+  rect(122, 96, 6, 4, C.ego, 1),
+  rect(168, 96, 6, 4, C.ego, 1),
+  '</g>',
+  label(148, 80, 'ĐẦU', { size: 8, fill: C.ego, anchor: 'middle' }),
+  label(148, 162, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'middle' })
 ]
 
 const highwayLot = (lanes = 3) => {
@@ -514,18 +530,43 @@ const templates = {
         note('Không theo tỷ lệ. Dừng trước vùng xung đột; quan sát lại trước khi đi tiếp.')
       ],
       mirror: () => [
-        alleyLot(96),
-        car(154, 118, 0, C.ego),
-        bike(198, 96, 0),
-        gap(168, 198, 148, '40 cm'),
-        note('Giữ khoảng cách gương với xe máy đang dựng ven hẻm.')
+        ...mirrorLot(),
+        '<g id="mirror-parked-bike"><g transform="translate(218 108) rotate(0)">',
+        '<g id="mirror-bike-wheels">',
+        rect(-3, -25, 6, 12, C.bike, 2),
+        rect(-3, 13, 6, 12, C.bike, 2),
+        '</g>',
+        rect(-6, -12, 12, 26, C.bike, 4),
+        rect(-4, -1, 8, 12, C.kerb, 2),
+        rect(-3, -17, 6, 5, C.bay, 1),
+        '</g>',
+        `<g id="mirror-handlebar">${rect(208, 96, 20, 4, C.bike, 1)}</g></g>`,
+        label(246, 62, 'MÔ TÔ ĐỖ', { size: 8, fill: C.bike }),
+        line(246, 66, 224, 90, C.bike, 1),
+        `<g id="mirror-gap-left">${gap(90, 122, 98, 'a')}</g>`,
+        `<g id="mirror-gap-right">${gap(174, 208, 98, 'b')}</g>`,
+        label(14, 28, 'TƯỜNG', { size: 8 }),
+        label(246, 28, 'TƯỜNG', { size: 8 }),
+        label(14, 136, 'GƯƠNG MỞ', { size: 8, fill: C.ego }),
+        line(78, 132, 123, 102, C.ego, 1),
+        note('Không theo tỷ lệ. a, b: khoảng hở, không phải số đo.', 12)
       ],
-      'mirror-fold': () => [
-        alleyLot(84),
-        car(160, 112, 0, C.ego),
-        rect(120, 56, 12, 40, '#7d8f88', 3),
-        tag(16, 166, 'Gập gương khi hẻm dưới 2,2 m'),
-        note('Hẻm quá hẹp thì gập gương và nhờ người hướng dẫn bên ngoài.')
+      'mirror-stop': () => [
+        ...mirrorLot(),
+        `<g id="mirror-obstruction">${rect(90, 28, 43, 38, C.other, 2)}</g>`,
+        '<g id="mirror-uncertain-gap">',
+        line(133, 48, 236, 48, C.hazard, 1.6, '3 3'),
+        line(133, 43, 133, 53, C.hazard, 1.6),
+        line(236, 43, 236, 53, C.hazard, 1.6),
+        '</g>',
+        label(184, 40, 'CHƯA RÕ', { size: 8, fill: C.hazard, anchor: 'middle' }),
+        label(14, 20, 'TƯỜNG NHÔ', { size: 8 }),
+        line(74, 23, 108, 33, C.line, 1),
+        label(248, 112, 'XE DỪNG', { size: 8, fill: C.ego }),
+        line(240, 108, 178, 108, C.ego, 1),
+        label(14, 136, 'GƯƠNG MỞ', { size: 8, fill: C.ego }),
+        line(78, 132, 123, 102, C.ego, 1),
+        note('Không theo tỷ lệ. Chưa rõ khoảng hở thì dừng; không gập gương để cố lọt.', 12)
       ],
       corner: () => [
         ...corner,
@@ -791,7 +832,7 @@ const specs = [
   ['parking-lowlight', 'bay', ['lowlight', 'Đèn hướng trước và sau khác nhau; chỉ lùi khi thấy rõ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng xuống lối đi, đuôi hướng lên cửa ô mở. Vệt vàng trước đầu xe minh họa đèn chiếu gần; vệt nhạt sau đuôi minh họa đèn lùi, không phải phạm vi nhìn rõ hay vùng cảm biến. Mũi tên xanh từ sau đuôi hướng thẳng lên ô chỉ một hướng lùi minh họa, không là chỉ dẫn đánh lái cho mọi vị trí.'], ['lowlight-mirror', 'Xe dừng, người hướng dẫn ở bên ngoài đường xe chạy', 'Sơ đồ không theo tỷ lệ, cùng hướng xe và cửa ô mở: xe đang dừng, người hỗ trợ đứng bên phải hình, ngoài hành lang lùi thẳng minh họa, không giữa xe và vật cản. Nét đứt nối bên xe với người hỗ trợ chỉ liên lạc trong tầm nhìn, không phải quỹ đạo hay vùng quan sát bảo đảm. Vị trí thực tế phải tránh cả vùng đầu xe quét, luôn nhìn thấy nhau; mất liên lạc thì dừng ngay. Không có mũi tên chuyển động.']],
   ['parking-column', 'bay', ['column', 'Ví dụ lùi thẳng cạnh cột, không phải toàn bộ quỹ đạo vào ô', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cột bên phải hình, cạnh cửa ô mở; đầu xe ở dưới, đuôi ở trên. Xe đã thẳng hướng, mũi tên từ sau đuôi hướng lên ô chỉ ví dụ lùi thẳng, không phải hướng đánh lái hay bảo đảm khoảng hở. Phải kiểm tra cả thân, gương, góc xe, hai bên và vùng đầu xe quét; chưa rõ thì dừng, không chờ cảm biến.'], ['column-gap', 'Xe đã giữ chắc; kiểm tra cửa lái và lối ra, không chỉ thân xe', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng ô và cột bên phải hình: xe đã giữ chắc, nằm trong vạch, đầu ở dưới và đuôi ở trên. Với xe tay lái trái minh họa, cửa lái ở bên phải hình; cung vàng cạnh cột chỉ khoảng quét một cánh cửa trước minh họa, không phải quỹ đạo xe hay khoảng mở bảo đảm. Kiểm tra cả hai bên, khoảng quét cửa thực tế, người xung quanh và lối ra; không chen giữa xe với cột. Không có mũi tên chuyển động.']],
   ['narrow-creep', 'alley', ['creep', 'Chỉ tiến khi nhìn rõ và đủ khoảng hở cả gương', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe ở trên, đuôi ở dưới, gương nhô hai bên; hai mô tô đang đỗ sát mép phía trước. Mũi tên xanh từ trước đầu xe hướng lên chỉ hướng tiến minh họa, không phải điểm nhìn hay bảo đảm xe lọt. Đi bộ hoặc chậm hơn, chỉ tiến khi quan sát rõ và đủ khoảng hở toàn xe.'], ['creep-stop', 'Xe dừng trước vùng xe máy từ nhánh bên phải cắt ngang', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng hướng xe: đầu ở trên, đuôi ở dưới. Xe mình đang dừng trước vùng xung đột tô đỏ, không có mũi tên chuyển động của xe mình. Xe máy hướng sang trái từ lối mở bên phải; mũi tên đỏ nét đứt chỉ hướng xe máy cắt ngang, không phải lệnh đánh lái. Giữ phanh, chờ lối đi rõ và quan sát lại trước khi đi tiếp.']],
-  ['narrow-mirror', 'alley', ['mirror', 'Giữ khoảng cách gương', 'Sơ đồ nhìn từ trên xuống: khoảng cách an toàn giữa gương xe và xe máy dựng ven hẻm.'], ['mirror-fold', 'Gập gương khi hẻm quá hẹp', 'Sơ đồ nhìn từ trên xuống: hẻm hẹp dưới 2,2 m cần gập gương để đi qua.']],
+  ['narrow-mirror', 'alley', ['mirror', 'Khoảng hở từ mép gương tới vật cản, không phải số đo hay hình phản chiếu', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng lên, đuôi ở dưới, hai gương mở nhô ngoài thân; mô tô đỗ bên phải có tay lái nhô ra. a nối tường trái với mép ngoài gương trái, b nối mép ngoài gương phải với mép gần nhất tay lái tại cùng mặt cắt; không phải số đo, mức hở an toàn chung hay vùng nhìn thấy trong gương. Không có mũi tên chuyển động.'], ['mirror-stop', 'Dừng trước chỗ tường nhô khi chưa rõ khoảng hở; không gập gương để cố lọt', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cùng xe đầu hướng lên, hai gương vẫn mở; xe đang dừng trước đoạn tường trái nhô vào lối đi. Nét đứt đỏ ngang đoạn thắt chỉ khoảng hở chưa rõ, không phải hướng xe chạy hay bằng chứng xe lọt. Không có mũi tên tiến, lùi hoặc gập gương; chỉ đi tiếp sau khi kiểm tra rõ và đủ khoảng hở toàn xe.']],
   ['narrow-corner', 'alley', ['corner', 'Ôm cua rộng trong hẻm', 'Sơ đồ nhìn từ trên xuống: quỹ đạo ôm cua rộng để bánh sau không cắt góc.'], ['corner-wide', 'Lỗi bánh sau cắt góc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo sai khi vào cua sớm làm bánh sau leo lề.']],
   ['narrow-yield', 'alley', ['yield', 'Nhường đường trong hẻm', 'Sơ đồ nhìn từ trên xuống: hai xe ngược chiều và vị trí chỗ tránh trong hẻm.'], ['yield-pocket', 'Đỗ gọn trong chỗ tránh', 'Sơ đồ nhìn từ trên xuống: xe đỗ gọn trong chỗ tránh để xe ngược chiều đi qua.']],
   ['narrow-cutoff', 'alley', ['cutoff', 'Xe máy tạt đầu', 'Sơ đồ nhìn từ trên xuống: xe máy cắt chéo trước đầu xe trong hẻm.'], ['cutoff-stop', 'Giữ khoảng trống phía trước', 'Sơ đồ nhìn từ trên xuống: khoảng trống một thân xe máy phía trước đầu xe.']],

@@ -66,4 +66,51 @@ animations exist for this card. Adjacent lessons are outside this iteration.
 
 Clean worktree. Existing narrow-creep, asset and quality-gate tests:
 **29 passed**. Both mirror SVG sources, renderer and metadata inspected.
-Implementation and visual verification are pending.
+
+## Implementation and verification
+
+- Plan committed first as `718812a`, before lesson implementation.
+- Card **1.1.0**, content pack **2026.10.9**. Revised context, objective,
+  seven steps and cues, speed/steering hints, three mistakes, recovery, safety,
+  mnemonic and all quiz questions. Tight-space collision risk is now medium;
+  reading estimate is five minutes. All stable identifiers and history remain.
+- Removed only this card's sample approval; actual lesson displays
+  **Chưa thẩm định độc lập**. Independent instructor review remains necessary
+  before any expert-approved claim. The stale-approval regression now uses
+  the still-approved `narrow-corner` fixture; no adjacent content was edited.
+- Main diagram: front up, two open mirrors outside the body, parked motorcycle
+  with distinct wheels/seat/handlebar. Brackets join the left wall to left
+  mirror and right mirror to nearest handlebar edge at the same cross-section.
+  No 40 cm target, reflection/FOV claim or movement arrow.
+- Variant: same heading and open mirrors, entire car stopped before the
+  wall projection; red bracket spans the uncertain opening, not a path.
+  No 2.2 m threshold, folding instruction or motion arrow.
+- Both diagrams visually inspected at desktop and **390 px** mobile width.
+  Browser SVG text-bound checks found a small footer-line overlap in the
+  first revision; increased only these scenes' footer line spacing to 12 px.
+  Final checks: **no out-of-bounds text and no overlapping text pairs**.
+  Motorcycle detail was refined during visual inspection to avoid a
+  person-like silhouette.
+- Actual lesson checked at **1366 x 900** and **390 x 844**: both images load,
+  no horizontal overflow, seven steps and unverified warning visible. Quick
+  mode retains all steps, early-stop and safety guidance while hiding the
+  second diagram as intended. Quiz exercised wrong answers (**0/3**, fail),
+  retry and correct answers (**3/3**, pass), including the stop-condition badge.
+  Browser console: **zero errors or warnings**.
+- Full-script and step-TTS assembly reviewed: revised instructions, cues and
+  safety reach the existing spoken surfaces without relying on hidden
+  recovery content. Audio playback itself was not independently evaluated.
+- Added **12 focused regression tests**, covering content/quiz/metadata,
+  model-specific setup/folding, safe guide/inspection/reversing, actual car
+  orientation, mirror protrusions, bracket endpoints and stopped-car geometry.
+- Final `npm test`: **179 passed across 20 files**. `npm run lint` passed.
+  `npm run build` passed Vue/TypeScript checks and production/PWA generation;
+  Rollup emitted only third-party Zod annotation-removal notices.
+- Regenerated twice and compared SHA-256 hashes: **all 46 SVGs and manifest
+  deterministic**. Git confirms **only the two narrow-mirror SVGs changed**;
+  other asset records unchanged apart from pack version/aggregate size.
+  Whitespace diff check passed. Temporary browser/server files are not part
+  of the revision.
+
+No claim of measured safe clearance, complete mirror coverage, universally
+safe folded-mirror driving or independent professional certification is made.

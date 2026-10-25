@@ -51,37 +51,42 @@ export const narrowCards: Card[] = [
     lessonId: 'narrow-control',
     topicId: 'narrow',
     title: 'Canh khoảng cách bằng gương',
-    context: 'Trong ngõ, hai bên xe chỉ còn vài chục xăng-ti-mét nên mắt thường khó ước lượng. Gương là công cụ đo đáng tin nhất lúc này.',
-    objective: 'Dùng gương để giữ khoảng trống đều hai bên thân xe.',
-    risk: 'low',
+    context: 'Trong ngõ có tường, xe máy đỗ và cửa nhà sát lối đi, khoảng hở có thể thay đổi ngay cạnh xe. Gương chỉ hỗ trợ quan sát hai bên và phía sau, không phải thước đo hay cách nhìn hết góc xe và điểm mù.',
+    objective: 'Kết hợp gương với quan sát trực tiếp để giữ đủ khoảng hở cho toàn xe và dừng trước khi có nguy cơ va chạm.',
+    risk: 'medium',
     difficulty: 2,
-    minutes: 3,
-    tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'calm' },
+    minutes: 5,
+    tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'moderate' },
     steps: [
-      { instruction: 'Chỉnh gương sao cho thấy một phần thân xe ở mép trong.', cueType: 'mirror', cueText: 'Thấy một phần thân xe' },
-      { instruction: 'Chọn một mốc cố định trên tường làm chuẩn so sánh.', cueType: 'marker', cueText: 'Mốc cố định trên tường' },
-      { instruction: 'Liếc gương trái rồi gương phải theo nhịp đều, mỗi lần dưới một giây.', cueType: 'timing', cueText: 'Mỗi lần liếc dưới một giây' },
-      { instruction: 'Sửa lái một nhịp nhỏ khi một bên hẹp hơn bên kia rõ rệt.', cueType: 'mirror', cueText: 'Hai bên chênh lệch rõ', steeringHint: 'sửa nhỏ từng nhịp' },
-      { instruction: 'Dừng xe nếu gương chạm vật cản hoặc không còn thấy khoảng trống.', cueType: 'mirror', cueText: 'Gương mất khoảng trống' }
+      { instruction: 'Dừng trước đoạn hẹp, giữ xe và kiểm tra lối đi được phép, khoảng hở cho thân, hai gương, góc đầu xe và đường bánh sau đi qua; chưa chắc đủ chỗ thì không vào.', cueType: 'marker', cueText: 'Kiểm tra cả tay lái xe máy, cửa có thể mở, vật cản thấp hoặc nhô cao và người hai bên' },
+      { instruction: 'Chỉnh ghế và gương khi xe đứng hẳn theo hướng dẫn của xe, giữ tầm nhìn phía sau và hai bên; chỉ dùng một phần thân xe ở mép gương làm tham chiếu nếu phù hợp với xe và tư thế ngồi.', cueType: 'mirror', cueText: 'Không chỉnh khi xe đang chạy, không chúc gương xuống đến mức mất quan sát phía sau' },
+      { instruction: 'Giữ gương mở; chỉ cân nhắc gập khi đã dừng, theo hướng dẫn của xe và vẫn bảo đảm quan sát cùng khoảng hở toàn xe, nếu không thì chọn lối khác hoặc gọi hỗ trợ.', cueType: 'mirror', cueText: 'Không có mốc bề rộng ngõ chung để gập gương; mở lại ngay khi đủ chỗ an toàn' },
+      { instruction: 'Quét mắt luân phiên phía trước xa và gần, hai gương, hai bên và điểm mù bằng quan sát trực tiếp khi cần; chỉ bò khi lối đi rõ, dừng được trong phần đường nhìn rõ còn trống.', cueType: 'mirror', cueText: 'Không nhìn cố định vào gương hay mốc tường, không dùng nhịp liếc tính bằng giây; gương cầu có thể làm vật trông xa hơn thực tế', speedHint: 'tốc độ đi bộ hoặc chậm hơn; giảm nữa hoặc dừng khi tầm nhìn ngắn' },
+      { instruction: 'Kiểm tra cả hai bên, góc đầu xe, thân và đường bánh sau trước khi sửa lái từng nhịp nhỏ; nếu chưa rõ khoảng hở thì dừng trước khi sửa tiếp, không lái theo hai khoảng trống trông bằng nhau trong gương.', cueType: 'mirror', cueText: 'Khoảng hở nhìn thấy không phải số đo; gương không cho thấy hết vật cản thấp và vùng đầu xe quét', steeringHint: 'sửa nhỏ chỉ khi đường xe đi và vùng quét đều trống' },
+      { instruction: 'Đạp phanh dừng hẳn và giữ xe trước vật cản khi chưa chắc khoảng hở, mất tầm nhìn, có người hoặc cửa mở vào lối đi hay cảnh báo va chạm; không chờ gương chạm mới dừng, không lách hoặc tự lùi vào vùng khuất.', cueType: 'marker', cueText: 'Cảm biến im lặng không chứng minh xe lọt; nếu đã va chạm thì dừng, giữ xe và kiểm tra, không cố đi tiếp' },
+      { instruction: 'Quan sát lại phía trước, hai bên, gương và điểm mù; chỉ đi tiếp khi lối đi rõ, đủ khoảng hở toàn xe và không còn người trong đường xe chạy, nếu không thì tiếp tục giữ xe và tìm hỗ trợ.', cueType: 'marker', cueText: 'Người hướng dẫn phải ngoài đường xe chạy và vùng quét, không giữa xe với tường; luôn thấy nhau, mất liên lạc thì dừng' }
     ],
     mistakes: [
-      'Chỉnh gương quá hướng xuống nên không thấy phần thân xe.',
-      'Nhìn gương quá lâu làm xe lệch hướng khi đang lăn bánh.',
-      'Tin vào cảm giác thay vì hình ảnh thực trong gương.'
+      'Coi gương là thước đo, cố giữ hai khoảng trống trông bằng nhau hoặc chỉ nhìn một bên.',
+      'Chỉnh gương khi xe đang lăn, chúc gương quá thấp hoặc nhìn gương quá lâu mà bỏ sót phía trước.',
+      'Chờ gương chạm mới dừng, gập gương để cố lọt hoặc tin cảm biến im lặng là đủ an toàn.'
     ],
-    recovery: 'Dừng xe, chỉnh lại gương rồi mới đi tiếp. Trong ngõ quá hẹp, gập gương và nhờ người đi cùng quan sát bên ngoài.',
-    safety: 'Gập gương làm mất một phần tầm nhìn phía sau nên chỉ dùng ở tốc độ bò.',
-    mnemonic: { text: 'Gương thấy thân xe, khoảng trống mới thật.', rhythm: 'doi-ve' },
+    recovery: 'Đạp phanh dừng hẳn và giữ xe; nếu đã va chạm, không cố tiến hoặc lùi kéo qua vật cản, kiểm tra người và thiệt hại, gọi hỗ trợ khi cần. Nếu phải xuống kiểm tra, giữ phanh chân, dùng phanh đỗ và chế độ đỗ theo hướng dẫn của xe (P với xe có số P), bảo đảm xe đứng chắc rồi mới mở cửa an toàn. Người hướng dẫn phải đứng ngoài đường xe chạy và vùng quét, không giữa xe với tường, thống nhất tín hiệu và luôn thấy nhau; mất liên lạc thì dừng. Không mặc định gập gương hay lùi là thoát được; chỉ lùi khi được phép, quan sát rõ hai bên và phía sau, có tín hiệu lùi và đường lùi an toàn, không lùi ở đường một chiều hoặc nơi tầm nhìn bị che khuất. Nếu không bảo đảm thì giữ xe an toàn và gọi hỗ trợ.',
+    safety: 'Gương không phải thước đo: gương cầu có thể làm vật trông xa hơn thực tế, vẫn còn điểm mù và góc xe không nhìn thấy. Giữ gương mở; chỉ cân nhắc gập khi đã dừng, theo hướng dẫn của xe và vẫn đủ quan sát, khoảng hở toàn xe, nếu không thì đổi lối đi; mở lại ngay khi đủ chỗ an toàn. Khi chưa chắc khoảng hở, có người vào đường xe chạy hoặc mất tầm nhìn, đạp phanh dừng hẳn và giữ xe trước va chạm, không lách hay tự lùi vào vùng khuất; chỉ đi tiếp sau khi quan sát lại và lối đi rõ, đủ khoảng hở. Camera, cảm biến và người hướng dẫn chỉ hỗ trợ, không thay trách nhiệm quan sát của người lái.',
+    mnemonic: { text: 'Gương hỗ trợ, chưa rõ thì dừng.', rhythm: 'doi-ve' },
     checklistId: 'pre_drive',
     quickCheck: [
-      { prompt: 'Gương nên được chỉnh thế nào khi đi trong ngõ hẹp?', options: ['Chỉ thấy đường phía sau', 'Thấy một phần thân xe ở mép trong', 'Chỉnh hướng lên trời'], correctIndex: 1 },
-      { prompt: 'Nên liếc gương theo nhịp như thế nào?', options: ['Nhìn gương liên tục không rời mắt', 'Liếc đều hai bên, mỗi lần dưới một giây', 'Chỉ nhìn một bên suốt hành trình'], correctIndex: 1 },
-      { prompt: 'Trong ngõ cực hẹp, khi cần thêm hỗ trợ quan sát, bạn nên?', options: ['Gập gương và nhờ người đi cùng quan sát ngoài xe', 'Tháo gương ra', 'Nhắm mắt đi chậm'], correctIndex: 0 }
+      { prompt: 'Cách chỉnh và dùng gương nào phù hợp khi qua ngõ hẹp?', options: ['Chỉnh lúc xe đang bò và coi khoảng trống trong gương là số đo', 'Chỉnh khi xe đứng hẳn theo hướng dẫn của xe; kết hợp gương với nhìn phía trước, hai bên và điểm mù', 'Chúc cả hai gương xuống để chỉ nhìn bánh sau'], correctIndex: 1 },
+      { prompt: 'Hai khoảng trống trong gương trông khác nhau hoặc ngõ rất hẹp, bạn nên hiểu thế nào?', options: ['Phải sửa lái đến khi hình ảnh hai bên bằng nhau', 'Ngõ dưới 2,2 m thì gập gương và đi tiếp', 'Không suy ra số đo từ gương; kiểm tra khoảng hở toàn xe, dừng nếu chưa chắc và không gập gương để cố lọt'], correctIndex: 2 },
+      { prompt: 'Chưa chắc gương hoặc góc xe có qua được vật cản, bạn nên?', options: ['Đạp phanh dừng hẳn và giữ xe trước vật cản; chỉ đi tiếp sau khi quan sát lại và rõ lối đi, đủ khoảng hở toàn xe', 'Tiếp tục bò đến khi gương chạm rồi mới dừng', 'Đi tiếp nếu cảm biến không báo'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về cách canh khoảng cách bằng gương.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về cách canh khoảng cách bằng gương.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Làm rõ giới hạn của gương, khoảng hở toàn xe, dừng trước va chạm và hỗ trợ an toàn; thay hai sơ đồ, bỏ mốc gập gương và thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'narrow-corner',

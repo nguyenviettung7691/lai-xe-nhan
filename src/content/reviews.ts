@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('narrow-mirror', 'urban', 'Cách chỉnh gương thấy một phần thân xe là chuẩn phổ biến khi dạy.', 4, '2026-09-12'),
   review('narrow-corner', 'urban', 'Quy tắc ra rộng vào muộn đúng với quỹ đạo bánh sau của xe con.', 5, '2026-09-12'),
   review('narrow-yield', 'safety', 'Bổ sung ưu tiên xe cứu thương là điểm cần thiết, nội dung đạt.', 4, '2026-09-12'),
   review('narrow-cutoff', 'safety', 'Nhấn mạnh phanh đều và không đánh lái gấp phù hợp thực tế đô thị.', 5, '2026-09-12'),
