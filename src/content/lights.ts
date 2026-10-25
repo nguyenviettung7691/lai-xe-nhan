@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'water-in-fuel',
+    icon: 'water-in-fuel',
+    name: 'Nước trong lọc nhiên liệu diesel',
+    english: 'Water in fuel filter',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Hình bầu lọc có giọt nước báo nước tích tụ trong lọc dầu diesel. Không phải lọc muội DPF hay nước rửa kính; để nước đi vào bơm/kim phun có thể gây hỏng nặng.',
+    keywords: ['nước trong nhiên liệu', 'lọc dầu diesel', 'lọc nhiên liệu', 'water in fuel'],
+    actions: [
+      'Giảm tải và dừng an toàn để đọc sổ tay; liên hệ xưởng xử lý nước trong lọc sớm.',
+      'Chỉ xả nước nếu sổ tay cho phép và có đủ kỹ năng/dụng cụ; nếu không, gọi hỗ trợ.',
+      'Máy rung, khó nổ, mất công suất hoặc nghi nhiên liệu nhiễm nước: tắt máy khi đã dừng, không cố đề/chạy tiếp.'
+    ],
+    avoid: 'Không chạy nhanh để đốt nước, không tự tháo ống nhiên liệu áp suất cao hoặc đổ phụ gia không được chấp thuận.',
+    callHelp: 'Cần xưởng xả/kiểm tra lọc; cứu hộ khi xe bất thường, không thể xử lý tại chỗ hoặc sổ tay yêu cầu không đi tiếp.'
+  },
+  {
     id: 'oil-level',
     icon: 'oil-level',
     name: 'Mức dầu động cơ thấp',
