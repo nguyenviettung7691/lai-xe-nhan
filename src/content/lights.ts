@@ -165,15 +165,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Anti-lock braking',
     color: 'amber',
     severity: 'warn',
-    description: 'Chống bó cứng phanh ngừng hoạt động; phanh thường vẫn còn nhưng dễ trượt bánh.',
+    description: 'ABS vàng sáng sau tự kiểm tra báo lỗi chống bó cứng. Nếu chỉ đèn ABS, phanh cơ bản thường vẫn còn nhưng không có bảo đảm ABS/ESC hoạt động; kèm phanh đỏ có thể lỗi phân phối lực phanh.',
     keywords: ['abs', 'phanh abs', 'bó cứng phanh', 'trượt bánh'],
     actions: [
-      'Giảm tốc và tăng khoảng cách lên ít nhất 4 giây.',
-      'Phanh sớm, đều chân, tránh phanh gấp trên đường trơn.',
-      'Đặt lịch kiểm tra cảm biến ABS trong vài ngày tới.'
+      'Giảm tốc và tăng khoảng cách theo độ bám, tầm nhìn; không thử phanh gấp để kiểm tra.',
+      'Chỉ ABS sáng, pedal bình thường và sổ tay cho phép: phanh sớm, lái thận trọng đến nơi kiểm tra gần.',
+      'Kèm phanh đỏ, pedal bất thường hoặc phanh yếu: dừng an toàn và gọi cứu hộ, không đi tiếp.'
     ],
-    avoid: 'Không thử phanh gấp để kiểm tra xem ABS còn hoạt động hay không.',
-    callHelp: 'Vào gara sớm; gọi hỗ trợ nếu đèn ABS sáng cùng đèn phanh đỏ.'
+    avoid: 'Không mặc định chỉ hỏng cảm biến; tránh tốc độ cao và thao tác gấp, nhưng vẫn phanh khẩn cấp khi cần tránh va chạm.',
+    callHelp: 'Kiểm tra ABS sớm; cần cứu hộ nếu kèm phanh đỏ hoặc hiệu lực phanh giảm. Mất phanh là khẩn cấp dù không có đèn.'
   },
   {
     id: 'tpms',
