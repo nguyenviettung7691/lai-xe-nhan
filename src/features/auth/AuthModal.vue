@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../icons/AppIcon.vue'
 import { ref, onMounted } from 'vue'
 import {
   isSupabaseConfigured,
@@ -95,7 +96,7 @@ const handleForceSync = async () => {
     <div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="auth-title">
       <div class="dialog-header">
         <h2 id="auth-title">Tài khoản & Đồng bộ</h2>
-        <button class="close-btn" aria-label="Đóng" @click="$emit('close')">×</button>
+        <button class="close-btn" aria-label="Đóng" @click="$emit('close')"><AppIcon name="close" /></button>
       </div>
 
       <div class="dialog-body">
@@ -124,7 +125,7 @@ const handleForceSync = async () => {
           <p class="user-email">Đăng nhập với: <b>{{ user.email }}</b></p>
           <div class="button-row">
             <button class="action-button primary" :disabled="isLoading || !isOnline" @click="handleForceSync">
-              🔄 Đồng bộ ngay
+              <AppIcon name="sync" /> Đồng bộ ngay
             </button>
             <button class="action-button secondary" :disabled="isLoading" @click="handleSignOut">
               Đăng xuất
@@ -163,7 +164,7 @@ const handleForceSync = async () => {
             Chế độ lưu trữ cục bộ (Offline-First) đang kích hoạt. Mọi tiến độ học và checklist của bạn được bảo toàn an toàn trên thiết bị này.
           </p>
           <button class="action-button primary full" :disabled="isLoading" @click="handleForceSync">
-            🔄 Làm mới bộ nhớ đệm
+            <AppIcon name="sync" /> Làm mới bộ nhớ đệm
           </button>
         </div>
       </div>
@@ -213,8 +214,10 @@ const handleForceSync = async () => {
   background: transparent;
   border: none;
   color: var(--text-muted, #6ee7b7);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   min-width: 32px;
   min-height: 32px;

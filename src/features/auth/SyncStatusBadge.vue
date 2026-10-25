@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import AppIcon from '../icons/AppIcon.vue'
 import { computed } from 'vue'
 import type { SyncEngineState } from '../../services/sync-engine'
+import type { AppIconName } from '../icons/icons'
 
 const props = defineProps<{
   state: SyncEngineState
@@ -19,6 +21,14 @@ const badgeLabel = computed(() => {
   return 'Đã đồng bộ'
 })
 
+const badgeIcon = computed<AppIconName>(() => {
+  if (!props.isOnline) return 'cloud-off'
+  if (props.state.status === 'syncing') return 'sync'
+  if (props.state.pendingCount > 0) return 'cloud-upload'
+  if (props.state.status === 'error') return 'alert'
+  return 'cloud-check'
+})
+
 const badgeClass = computed(() => {
   if (!props.isOnline) return 'offline'
   if (props.state.status === 'syncing') return 'syncing'
@@ -35,7 +45,7 @@ const badgeClass = computed(() => {
     :aria-label="`Trạng thái đồng bộ: ${badgeLabel}. Bấm để mở tài khoản và đồng bộ.`"
     @click="$emit('click')"
   >
-    <span class="sync-dot" aria-hidden="true" />
+    <span class="sync-icon" aria-hidden="true"><AppIcon :name="badgeIcon" /></span>
     <span class="sync-text">{{ badgeLabel }}</span>
   </button>
 </template>
@@ -57,11 +67,19 @@ const badgeClass = computed(() => {
   transition: all var(--transition-fast, 150ms ease);
 }
 
-.sync-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
+.sync-icon {
+  display: grid;
+  font-size: 0.95rem;
+}
+
+.sync-badge.syncing .sync-icon {
+  animation: sync-spin 1.2s linear infinite;
+}
+
+@keyframes sync-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .sync-badge.synced {
