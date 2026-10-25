@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.1",
+  "contentVersion": "2026.10.2",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 118.11,
+  "totalSizeKb": 117.78,
   "assets": [
     {
       "id": "parking-start-main",
@@ -40,11 +40,11 @@
       "url": "/content/svg/parking-align-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.93,
-      "checksum": "sha256-185c46cbe826f070bb4d8bd5277e470a3bb515a1c07e418380068deaf68f106b",
+      "sizeKb": 3.92,
+      "checksum": "sha256-8471651d0822e7754871225c901c2b6621954c6277be35138aee5483c2f1c099",
       "offlinePack": "core",
-      "caption": "Căn đều hai bên ô đỗ",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe nằm giữa ô đỗ với khoảng cách hai bên bằng nhau."
+      "caption": "Phân biệt song song vạch và khoảng trống hai bên",
+      "alt": "Sơ đồ không theo tỷ lệ: xe lùi vào ô, đầu xe hướng ra lối đi ở dưới; thân song song hai vạch, a và b chỉ khoảng trống từ thân xe tới vạch, không phải mốc đo cố định."
     },
     {
       "id": "parking-align-var",
@@ -54,11 +54,11 @@
       "url": "/content/svg/parking-align-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.51,
-      "checksum": "sha256-c954781ccd69bea90338d9af74af768cb378f54d75e9c4eaa81017677d333598",
+      "sizeKb": 3.19,
+      "checksum": "sha256-2e4ffdc7da0dd8d2570a5fabdd1c9e4825808f44f8e50c5b918bbc08e587a4d0",
       "offlinePack": "core",
-      "caption": "Soi gương kiểm tra vạch",
-      "alt": "Sơ đồ nhìn từ trên xuống: vùng quan sát của hai gương chiếu hậu khi căn vạch."
+      "caption": "Hướng nhìn qua gương, không phải đường xe chạy",
+      "alt": "Sơ đồ nhìn từ trên xuống: đầu xe ở dưới, đuôi ở trên; nét đứt từ hai gương hướng về vạch phía sau chỉ minh họa hướng nhìn, không mô tả đầy đủ vùng thấy hay thay thế quan sát trực tiếp."
     },
     {
       "id": "parking-correct-main",

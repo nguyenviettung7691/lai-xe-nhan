@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.1'
+const CONTENT_VERSION = '2026.10.2'
 
 const W = 320
 const H = 200
@@ -123,6 +123,23 @@ const bayLot = (target, filled = [0, 3]) => {
   return parts.join('')
 }
 
+const alignmentLot = () => [
+  rect(0, 0, W, 174, C.asphalt),
+  rect(120, 24, 80, 110, '#31463f'),
+  '<g id="alignment-bay">',
+  line(120, 24, 120, 134, C.bay, 1.6),
+  line(200, 24, 200, 134, C.bay, 1.6),
+  line(120, 24, 200, 24, C.bay, 1.6),
+  '</g>',
+  car(64, 81, 180, C.other, 40, 72),
+  car(256, 81, 180, C.other, 40, 72),
+  `<g id="alignment-car">${car(160, 81, 180, C.ego, 40, 72)}</g>`,
+  rect(135, 102, 5, 4, C.ego, 1),
+  rect(180, 102, 5, 4, C.ego, 1),
+  label(160, 38, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'middle' }),
+  label(160, 130, 'ĐẦU', { size: 8, fill: C.ego, anchor: 'middle' })
+].join('')
+
 const alleyLot = (wallGap = 108) => {
   const left = (W - wallGap) / 2
   return [
@@ -182,20 +199,24 @@ const templates = {
         note('Góc tiếp cận khác nhau; dừng nếu khoảng trống chưa rõ.')
       ],
       align: () => [
-        bayLot(2),
-        car(196, 56, 180, C.ego),
-        gap(160, 182, 78, '40 cm'),
-        gap(210, 232, 78, '40 cm'),
-        pin(196, 112, '✓'),
-        note('Hai bên đều khoảng cách, thân xe song song vạch.')
+        alignmentLot(),
+        label(160, 13, 'THÂN XE SONG SONG VẠCH', { size: 9, anchor: 'middle' }),
+        '<g id="alignment-gaps">',
+        gap(120, 140, 84, 'a'),
+        gap(180, 200, 84, 'b'),
+        '</g>',
+        label(160, 153, 'So cả đầu và đuôi; chừa chỗ mở cửa', { size: 9, anchor: 'middle' }),
+        note('Minh họa, không theo tỷ lệ; a, b là khoảng trống hai bên.')
       ],
       'align-mirror': () => [
-        bayLot(2),
-        car(196, 60, 180, C.ego),
-        cone(180, 74, 160, 18, 56, C.accent),
-        cone(212, 74, 200, 18, 56, C.accent),
-        tag(110, 150, 'Quét gương hai bên'),
-        note('Soi gương hai bên để kiểm tra vạch trước khi tắt máy.')
+        alignmentLot(),
+        label(160, 13, 'GƯƠNG CHỈ HỖ TRỢ', { size: 9, anchor: 'middle' }),
+        '<g id="mirror-sightlines">',
+        line(137.5, 104, 120, 50, C.accent, 1.6, '4 4'),
+        line(182.5, 104, 200, 50, C.accent, 1.6, '4 4'),
+        '</g>',
+        label(160, 153, 'Kết hợp quan sát trực tiếp quanh xe', { size: 9, anchor: 'middle' }),
+        note('Nét đứt: hướng nhìn minh họa, không là quỹ đạo.')
       ],
       correct: () => [
         bayLot(2),
@@ -584,7 +605,7 @@ const render = ({ template, mode, title }) => [
 // Mỗi thẻ học có 1 sơ đồ chính + 1 sơ đồ biến thể (chuẩn nội dung mục 5.1).
 const specs = [
   ['parking-start', 'bay', ['approach', 'Vị trí dừng và hướng lùi minh họa', 'Sơ đồ nhìn từ trên xuống: xe dừng trước ô đỗ; mũi tên chỉ đầu xe và hướng lùi tham khảo.'], ['approach-angle', 'Góc tiếp cận thay đổi', 'Sơ đồ nhìn từ trên xuống: xe ở góc tiếp cận khác; mũi tên chỉ đầu xe và một quỹ đạo lùi minh họa.']],
-  ['parking-align', 'bay', ['align', 'Căn đều hai bên ô đỗ', 'Sơ đồ nhìn từ trên xuống: xe nằm giữa ô đỗ với khoảng cách hai bên bằng nhau.'], ['align-mirror', 'Soi gương kiểm tra vạch', 'Sơ đồ nhìn từ trên xuống: vùng quan sát của hai gương chiếu hậu khi căn vạch.']],
+  ['parking-align', 'bay', ['align', 'Phân biệt song song vạch và khoảng trống hai bên', 'Sơ đồ không theo tỷ lệ: xe lùi vào ô, đầu xe hướng ra lối đi ở dưới; thân song song hai vạch, a và b chỉ khoảng trống từ thân xe tới vạch, không phải mốc đo cố định.'], ['align-mirror', 'Hướng nhìn qua gương, không phải đường xe chạy', 'Sơ đồ nhìn từ trên xuống: đầu xe ở dưới, đuôi ở trên; nét đứt từ hai gương hướng về vạch phía sau chỉ minh họa hướng nhìn, không mô tả đầy đủ vùng thấy hay thay thế quan sát trực tiếp.']],
   ['parking-correct', 'bay', ['correct', 'Nhận biết xe bị lệch', 'Sơ đồ nhìn từ trên xuống: thân xe lệch so với vạch ô đỗ quá 20 cm.'], ['correct-out', 'Tiến ra làm lại', 'Sơ đồ nhìn từ trên xuống: quỹ đạo tiến ra lối đi để tạo lại góc lùi.']],
   ['parking-parallel', 'parallel', ['enter', 'Ghép ngang giữa hai xe', 'Sơ đồ nhìn từ trên xuống: xe dừng song song xe trước trước khi ghép ngang.'], ['settle', 'Vị trí đỗ hoàn chỉnh', 'Sơ đồ nhìn từ trên xuống: xe nằm gọn giữa hai xe và cách lề khoảng 30 cm.']],
   ['parking-slope', 'bay', ['slope', 'Lùi chuồng trên dốc hầm', 'Sơ đồ nhìn từ trên xuống: lùi vào ô đỗ trên mặt dốc của hầm gửi xe.'], ['slope-hold', 'Giữ xe không trôi', 'Sơ đồ nhìn từ trên xuống: hướng trôi của xe khi nhả phanh trên dốc.']],

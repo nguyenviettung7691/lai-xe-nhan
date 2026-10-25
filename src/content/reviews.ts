@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('parking-align', 'urban', 'Bước so hai vạch trong gương dễ thực hiện cho học viên mới.', 4, '2026-09-12'),
   review('parking-correct', 'urban', 'Nhấn mạnh tiến ra rồi lùi lại là cách sửa lệch an toàn nhất trong hầm.', 4, '2026-09-12'),
   review('parking-parallel', 'urban', 'Khoảng cách 80 cm và mốc ngang đuôi xe trước phù hợp với xe hạng B.', 4, '2026-09-12'),
   review('parking-slope', 'slope', 'Cảnh báo trôi dốc và yêu cầu về P sau khi dừng là bắt buộc, nội dung đạt.', 5, '2026-09-12'),

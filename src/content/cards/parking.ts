@@ -51,37 +51,43 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-basics',
     topicId: 'parking',
     title: 'Căn thân xe song song vạch ô đỗ',
-    context: 'Xe đã vào ô nhưng thân xe còn lệch nên dễ chạm gương xe bên cạnh khi mở cửa. Đây là lúc căn lại bằng gương thay vì cảm giác.',
-    objective: 'Đưa thân xe song song vạch và chia đều khoảng cách hai bên.',
-    risk: 'low',
+    context: 'Xe đã lùi vào ô nhưng còn nghiêng hoặc lệch về một bên. Cần phân biệt thân xe song song vạch với vị trí nằm giữa ô; hình minh họa không phải mốc đo cho mọi xe.',
+    objective: 'Căn thân xe song song vạch, nằm gọn trong ô và chừa khoảng trống phù hợp cho gương, cửa cùng vật cản thực tế.',
+    risk: 'medium',
     difficulty: 2,
     minutes: 3,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'good', stress: 'calm' },
     steps: [
-      { instruction: 'Dừng xe khi đuôi đã vào ô khoảng một nửa thân xe.', cueType: 'marker', cueText: 'Nửa thân xe đã vào ô' },
-      { instruction: 'Nhìn gương trái rồi gương phải để so khoảng cách hai vạch.', cueType: 'mirror', cueText: 'Hai vạch trong gương' },
-      { instruction: 'Trả lái về thẳng khi hai khoảng cách chênh dưới 10 cm.', cueType: 'marker', cueText: 'Chênh lệch dưới 10 cm', steeringHint: 'trả lái về thẳng' },
-      { instruction: 'Lùi tiếp đến khi bánh sau cách vạch cuối khoảng 30 cm.', cueType: 'marker', cueText: 'Bánh sau cách vạch 30 cm', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Về P, kéo phanh tay rồi kiểm tra lại hai gương trước khi tắt máy.', cueType: 'feel', cueText: 'Xe đứng hẳn mới về P' }
+      { instruction: 'Dừng hẳn và giữ phanh khi cần kiểm tra hoặc chỉnh lại vị trí trong ô.', cueType: 'feel', cueText: 'Xe đứng yên để đánh giá khoảng trống', speedHint: '0 km/h' },
+      { instruction: 'Nhìn từng gương để so phần thân xe nhìn thấy với vạch cùng bên; kết hợp quan sát trực tiếp để đánh giá dọc cả đầu và đuôi, rồi kiểm tra khoảng trống hai bên; không suy ra song song chỉ từ hai khoảng cách bằng nhau.', cueType: 'mirror', cueText: 'Gương không cho thấy toàn bộ xe; song song khác nằm giữa ô' },
+      { instruction: 'Quét gương kết hợp nhìn trực tiếp quanh xe, điểm mù, phía sau và vùng đầu xe có thể quét ra; camera và cảm biến chỉ hỗ trợ.', cueType: 'mirror', cueText: 'Rõ đường lùi, hai bên và khoảng quét đầu xe' },
+      { instruction: 'Chỉnh lái nhẹ khi xe bò chậm nếu còn đủ khoảng trống; liên tục quan sát và dừng ngay khi có người, xe vào đường đi hoặc không còn chắc về khoảng cách.', cueType: 'feel', cueText: 'Chân sẵn trên phanh, chưa chắc thì dừng', speedHint: 'tốc độ đi bộ hoặc chậm hơn', steeringHint: 'điều chỉnh theo xe và khoảng trống thực tế' },
+      { instruction: 'Trả lái thẳng khi thân xe đã song song vạch; nếu vẫn lệch về một bên, dừng để căn lại thay vì cố lùi sâu.', cueType: 'marker', cueText: 'Thân song song chưa có nghĩa là đã nằm giữa ô', steeringHint: 'bánh thẳng để lùi thẳng' },
+      { instruction: 'Lùi thẳng chỉ khi đường đi còn rõ và dừng trước khi cản sau tới tường, chặn bánh hoặc vật cản thấp; kiểm tra cả đầu xe nằm trong ô, không dùng vị trí bánh sau làm mốc dừng cố định.', cueType: 'marker', cueText: 'Toàn bộ xe gọn trong ô, cản sau còn khoảng trống' },
+      { instruction: 'Dừng hẳn, giữ phanh chân và thực hiện trình tự đỗ theo hướng dẫn của xe: cài phanh đỗ, chọn P với xe số tự động hoặc số đỗ phù hợp với xe số sàn, rồi tắt máy khi xe đã được giữ chắc.', cueType: 'feel', cueText: 'Không đổi chiều hoặc chọn P khi xe còn lăn' },
+      { instruction: 'Quan sát gương và ngoái nhìn trước khi mở cửa, nhường người đi bộ, xe đạp, xe máy và xe khác; chỉ mở khi khoảng trống bên cửa an toàn.', cueType: 'mirror', cueText: 'Kiểm tra quanh cửa trước khi rời xe' }
     ],
     mistakes: [
-      'Căn bằng cảm giác thay vì so hai vạch trong gương.',
-      'Trả lái quá muộn khiến đuôi xe ép sát một bên.',
-      'Đỗ lấn vạch làm xe bên cạnh không mở được cửa.'
+      'Coi hai khoảng cách nhìn qua gương bằng nhau là đủ chứng minh thân xe song song vạch.',
+      'Chỉ nhìn vạch hoặc camera, bỏ sót người, vật cản thấp và khoảng quét đầu xe.',
+      'Lùi theo mốc bánh sau cố định hoặc cố đỗ giữa ô dù không đủ chỗ cho gương và cửa.'
     ],
-    recovery: 'Vào số D, tiến lên nửa thân xe rồi lùi lại với góc đã sửa. Lặp lại tối đa hai lần, sau đó chọn ô đỗ khác.',
-    safety: 'Không mở cửa khi chưa quan sát xe máy đang chạy dọc lối đi trong hầm.',
-    mnemonic: { text: 'Gương trái, gương phải, đều vạch mới tắt máy.', rhythm: 'ba-nhip' },
+    recovery: 'Dừng hẳn và giữ phanh trước khi đổi chiều. Chỉ tiến để tạo lại góc khi đã nhìn rõ lối phía trước, hai bên và khoảng quét đầu xe; tiến vừa đủ trong khoảng trống đã kiểm tra, rồi dừng và quan sát lại trước khi lùi. Nếu không thể xác nhận khoảng cách hoặc ô quá chật, giữ xe an toàn và chọn ô khác khi đường đi cho phép.',
+    safety: 'Dừng ngay khi mất tầm nhìn hoặc có người, xe vào đường đi. Không cố chia đều hai bên nếu thiếu chỗ mở cửa hay vướng cột; không dựa riêng vào gương, camera hoặc cảm biến. Chỉ rời xe khi đã giữ xe chắc và quan sát an toàn quanh cửa.',
+    mnemonic: { text: 'Song song, đủ chỗ, chưa rõ thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'post_park',
     quickCheck: [
-      { prompt: 'Cách đúng để căn thân xe song song vạch là gì?', options: ['Ước lượng bằng cảm giác', 'So hai khoảng cách trong gương trái và phải', 'Chỉ nhìn vạch phía trước xe'], correctIndex: 1 },
-      { prompt: 'Khi nào nên trả lái về thẳng trong bước căn xe?', options: ['Khi chênh lệch hai bên dưới 10 cm', 'Ngay khi bắt đầu lùi', 'Sau khi đã tắt máy'], correctIndex: 0 },
-      { prompt: 'Trước khi mở cửa xuống xe, bạn cần quan sát gì?', options: ['Không cần vì đã đỗ xong', 'Xe máy đang chạy dọc lối đi trong hầm', 'Chỉ cần nhìn gương chiếu hậu trong xe'], correctIndex: 1 }
+      { prompt: 'Hai khoảng cách nhìn qua gương bằng nhau đã chứng minh xe song song vạch chưa?', options: ['Rồi, không cần kiểm tra thêm', 'Chưa, cần kết hợp gương và quan sát trực tiếp để so thân với vạch dọc cả đầu và đuôi, rồi đánh giá chỗ trống hai bên', 'Rồi, nếu camera không báo động'], correctIndex: 1 },
+      { prompt: 'Nên xác định vị trí dừng lùi trong ô bằng cách nào?', options: ['Luôn để bánh sau cách vạch cuối 30 cm', 'Lùi đến khi bánh chạm chặn bánh', 'Kiểm tra khoảng trống cản sau với vật cản và toàn bộ xe nằm gọn trong ô, theo xe thực tế'], correctIndex: 2 },
+      { prompt: 'Khi không nhìn rõ khoảng cách hoặc có người vào đường lùi, cần làm gì?', options: ['Dừng hẳn, giữ phanh và chỉ tiếp tục sau khi đã quan sát rõ, an toàn', 'Lùi tiếp vì cảm biến chưa kêu', 'Đánh lái nhanh để căn xong'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho bước căn thân xe sau khi lùi.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho bước căn thân xe sau khi lùi.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Phân biệt song song và nằm giữa ô, bỏ mốc đo cố định, bổ sung điều kiện dừng và sửa hai sơ đồ; chờ thẩm định độc lập.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'parking-correct',
