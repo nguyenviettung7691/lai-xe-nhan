@@ -148,15 +148,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Check engine',
     color: 'amber',
     severity: 'warn',
-    description: 'Động cơ hoặc hệ thống khí thải phát hiện bất thường.',
+    description: 'Hình khối động cơ vàng (MIL) báo lỗi quản lý động cơ/khí thải. Sáng liên tục và nhấp nháy có cách xử lý khác nhau; nhấp nháy thường có nguy cơ hỏng bộ xúc tác do bỏ máy.',
     keywords: ['động cơ', 'check engine', 'máy', 'khí thải', 'cá vàng'],
     actions: [
-      'Đèn sáng liên tục: giảm tốc, đi chậm đến gara gần nhất.',
-      'Đèn nhấp nháy: tấp vào lề an toàn và tắt máy.',
-      'Ghi lại hiện tượng rung, hụt ga hoặc mùi lạ để báo thợ.'
+      'Đèn sáng liên tục, xe vẫn bình thường và sổ tay cho phép: giảm tải, liên hệ xưởng để kiểm tra sớm.',
+      'Đèn nhấp nháy, rung mạnh, mất công suất, quá nhiệt hoặc mùi xăng: dừng an toàn, tắt máy và gọi hỗ trợ.',
+      'Ghi lại thông báo và hiện tượng; nếu có nắp bình nhiên liệu, chỉ kiểm tra đóng đúng lúc xe đã dừng.'
     ],
-    avoid: 'Không đạp ga mạnh hay chạy cao tốc khi đèn đang nhấp nháy.',
-    callHelp: 'Gọi cứu hộ khi xe rung mạnh, mất lực kéo hoặc có mùi xăng sống.'
+    avoid: 'Không đạp ga mạnh để thử, xóa lỗi/ngắt ắc quy để che đèn, hoặc tiếp tục chạy khi đèn nháy.',
+    callHelp: 'Gọi cứu hộ khi đèn nháy hoặc xe vận hành bất thường; sáng liên tục không triệu chứng vẫn cần chẩn đoán, không chỉ đoán do nắp xăng.'
   },
   {
     id: 'abs',
