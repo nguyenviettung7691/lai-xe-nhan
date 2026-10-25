@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'rear-fog',
+    icon: 'rear-fog',
+    name: 'Đèn sương mù sau',
+    english: 'Rear fog light',
+    color: 'amber',
+    severity: 'info',
+    description: 'Đèn vàng có tia ngang bên phải cắt qua vạch lượn đứng báo sương mù sau, khác đèn trước xanh lá hướng trái. Đèn sau rất sáng để xe khác nhận ra xe mình, không giúp soi đường phía trước.',
+    keywords: ['sương mù sau', 'đèn hậu sương mù', 'rear fog', 'fog'],
+    actions: [
+      'Chỉ bật khi tầm nhìn giảm nghiêm trọng và quy định/điều kiện cho phép.',
+      'Vẫn dùng chiếu gần và giảm tốc phù hợp; đèn sau không làm tăng quãng nhìn phía trước.',
+      'Tắt khi tầm nhìn cải thiện để không gây chói xe sau; kiểm tra riêng đèn báo trước và sau.'
+    ],
+    avoid: 'Không bật trong thời tiết quang chỉ để xe nổi bật, không nhầm là đèn cảnh báo lỗi vì có màu vàng.',
+    callHelp: 'Bật bình thường không cần hỗ trợ; không tắt được hoặc đèn không hoạt động cần sửa, dừng an toàn nếu tầm nhìn quá kém.'
+  },
+  {
     id: 'position-light',
     icon: 'position-light',
     name: 'Đèn vị trí / báo bật đèn',
