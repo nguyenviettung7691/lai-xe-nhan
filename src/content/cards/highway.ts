@@ -137,38 +137,43 @@ export const highwayCards: Card[] = [
     id: 'highway-gap',
     lessonId: 'highway-flow',
     topicId: 'highway',
-    title: 'Giữ khoảng cách ba giây',
-    context: 'Ở tốc độ tám mươi ki-lô-mét mỗi giờ, xe cần hơn năm mươi mét để dừng. Khoảng cách theo thời gian dễ áp dụng hơn ước lượng theo mét.',
-    objective: 'Giữ khoảng cách tối thiểu ba giây với xe phía trước.',
+    title: 'Giữ khoảng cách theo tốc độ và điều kiện đường',
+    context: 'Bạn theo xe trên cao tốc, có thể gặp xe chen vào, mưa hoặc dòng xe chậm lại. Đếm thời gian qua mốc cố định giúp kiểm tra cự ly, nhưng không thay thế biển báo, khoảng cách theo tốc độ hay quan sát nguy hiểm.',
+    objective: 'Dùng mốc thời gian để kiểm tra khoảng cách với xe liền trước cùng làn, đồng thời đáp ứng cự ly theo biển, tốc độ, độ bám và tầm nhìn.',
     risk: 'medium',
     difficulty: 2,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'highway', spaceConstraint: 'open', visibility: 'good', stress: 'calm' },
     steps: [
-      { instruction: 'Chọn một mốc cố định bên đường như cột biển báo.', cueType: 'marker', cueText: 'Mốc cố định bên đường' },
-      { instruction: 'Đếm từ lúc xe trước qua mốc đến khi xe mình qua mốc.', cueType: 'timing', cueText: 'Đếm một, hai, ba' },
-      { instruction: 'Nhả ga khi đếm được dưới ba giây.', cueType: 'timing', cueText: 'Dưới ba giây là quá gần' },
-      { instruction: 'Tăng lên bốn đến năm giây khi trời mưa hoặc đường ướt.', cueType: 'timing', cueText: 'Mưa thì bốn đến năm giây' },
-      { instruction: 'Kiểm tra lại khoảng cách sau mỗi lần vượt hoặc chuyển làn.', cueType: 'mirror', cueText: 'Sau mỗi lần chuyển làn' }
+      { instruction: 'Đọc và tuân thủ biển cự ly tối thiểu giữa hai xe. Khi đường khô, không trơn, thẳng, bằng phẳng và tầm nhìn tốt: đúng 60 km/h giữ ít nhất 35 m; trên 60 đến 80 km/h: 55 m; trên 80 đến 100 km/h: 70 m; trên 100 đến 120 km/h: 100 m. Dưới 60 km/h, chọn cự ly an toàn theo mật độ và tình hình thực tế, không mặc định 35 m.', cueType: 'sign', cueText: 'Thông tư 38/2024/TT-BGTVT, Điều 11; số mét không phải quãng dừng chung cho mọi xe' },
+      { instruction: 'Giữ khoảng cách trong điều kiện khô ráo, thuận lợi bằng cách dùng ít nhất ba giây làm mốc tham khảo bổ sung; luôn giữ đủ cự ly theo biển và tốc độ, chọn khoảng cách lớn hơn nếu cần. Ba giây không phải mức tối thiểu pháp luật chung hay bảo đảm dừng kịp.', cueType: 'timing', cueText: 'Ở 120 km/h, ba giây chỉ tương đương 100 m, chưa có dự phòng sai số' },
+      { instruction: 'Chọn một mốc cố định dễ thấy bên đường, như cột biển; bắt đầu đếm khi đuôi xe trước ngang mốc, kết thúc khi đầu xe mình ngang cùng mốc. Đếm đủ từng giây, không đếm ba nhịp nhanh; chỉ liếc ngắn, luôn quan sát đường phía trước, không nhìn đồng hồ hay điện thoại.', cueType: 'marker', cueText: 'Cùng một mốc: đuôi xe trước bắt đầu, đầu xe mình kết thúc' },
+      { instruction: 'Quan sát phía trước và gương khi khoảng cách thiếu, nhả ga hoặc phanh êm khi có thể để mở khoảng trống, không phanh gấp chỉ để chỉnh cự ly. Nếu xe trước phanh gấp hoặc nguy cơ va chạm xuất hiện, phanh ngay theo tình huống, không chỉ chờ nhả ga.', cueType: 'feel', cueText: 'Phanh khẩn cấp khi cần tránh va chạm; không bị quy tắc đếm giây làm chậm phản ứng' },
+      { instruction: 'Tăng khoảng cách khi mưa hoặc đường ướt: ít nhất tăng gấp đôi mốc khô đang dùng, từ ba giây thành ít nhất sáu giây, có thể cần nhiều hơn. Khi trơn, sương mù, đường quanh co, đèo dốc hoặc tầm nhìn hạn chế, giữ cự ly lớn hơn trị số trên biển hoặc bảng quy định; giảm tốc phù hợp độ bám và tầm nhìn, không coi sáu giây là đủ cho mọi tình huống.', cueType: 'timing', cueText: 'Gấp đôi là tham khảo thực hành, không phải công thức pháp luật hay giới hạn tối đa' },
+      { instruction: 'Chọn tốc độ để có thể dừng trong phần đường nhìn rõ là trống; nhìn xa qua xe trước khi có thể. Sau xe lớn che tầm nhìn, tăng khoảng cách và giảm tốc nếu cần; không dựa hoàn toàn vào đèn phanh, cảm biến hoặc ga tự động thích ứng.', cueType: 'marker', cueText: 'Đủ giây nhưng không thấy rõ đường vẫn phải giảm tốc' },
+      { instruction: 'Kiểm tra lại sau khi đổi tốc độ, vượt, chuyển làn hoặc xe khác chen vào. Giữ làn và tạo lại khoảng cách êm khi có thể, phanh ngay nếu cần tránh va chạm; không tăng tốc chặn xe chen, đánh lái đột ngột hay chạy ra làn dừng khẩn cấp hoặc lề đường.', cueType: 'mirror', cueText: 'Xe chen vào thì tạo lại khoảng trống, không tranh chỗ' }
     ],
     mistakes: [
-      'Ước lượng khoảng cách bằng mét trong khi tốc độ thay đổi liên tục.',
+      'Coi ba giây thay thế biển cự ly và số mét theo tốc độ, hoặc đếm ba nhịp nhanh thành ba giây.',
       'Bám sát xe trước để tránh bị xe khác chen vào.',
-      'Giữ nguyên ba giây khi mặt đường đã ướt.'
+      'Coi bốn đến năm giây hoặc sáu giây là luôn đủ khi mưa, tầm nhìn kém hoặc đường trơn.'
     ],
-    recovery: 'Khi bị chen ngang, nhả ga để tạo lại khoảng cách thay vì phanh gấp giữa dòng xe.',
-    safety: 'Khoảng cách an toàn tối thiểu theo tốc độ được quy định trong luật giao thông đường bộ hiện hành.',
-    mnemonic: { text: 'Đếm ba giây, mưa thì đếm năm.', rhythm: 'doi-ve' },
+    recovery: 'Nếu xe chen làm mất cự ly, nhìn đường và gương, giữ làn, nhả ga hoặc phanh êm để tạo lại khoảng cách khi có thể; không tăng tốc chặn hay đánh lái đột ngột. Nếu xe trước phanh gấp hoặc sắp va chạm, phanh ngay theo tình huống, không chờ đếm xong hay chỉ nhả ga. Không chạy ra làn dừng khẩn cấp hoặc lề đường để tránh việc giữ khoảng cách; chỉ chuyển làn khi đã quan sát gương, điểm mù, đủ khoảng hở trước sau, báo hiệu và vạch cho phép.',
+    safety: 'Tuân thủ biển cự ly tối thiểu và khoảng cách theo tốc độ tại Điều 11 Thông tư 38/2024/TT-BGTVT. Ba giây chỉ là mốc tham khảo khi khô ráo, không thay thế số mét hay bảo đảm dừng kịp. Mưa, trơn, quanh co, đèo dốc hoặc tầm nhìn hạn chế phải tăng cự ly lớn hơn trị số trên biển hoặc bảng; mưa ít nhất gấp đôi mốc khô, từ ba thành ít nhất sáu giây, có thể cần hơn và phải giảm tốc để dừng trong phần đường nhìn rõ là trống. Tạo lại cự ly êm khi có thể nhưng phanh ngay nếu cần tránh va chạm; không đánh lái đột ngột hay chạy ra làn dừng khẩn cấp hoặc lề đường.',
+    mnemonic: { text: 'Đúng biển, đủ xa; mưa tăng, khuất giảm tốc.', rhythm: 'doi-ve' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Cách đơn giản để giữ khoảng cách an toàn là gì?', options: ['Ước lượng bằng mét', 'Đếm thời gian từ khi xe trước qua một mốc cố định', 'Nhìn theo cảm giác'], correctIndex: 1 },
-      { prompt: 'Khoảng cách an toàn tối thiểu trong điều kiện thường là bao nhiêu?', options: ['Một giây', 'Ba giây', 'Mười giây'], correctIndex: 1 },
-      { prompt: 'Khi trời mưa hoặc đường ướt, nên tăng khoảng cách lên bao nhiêu?', options: ['Giữ nguyên ba giây', 'Bốn đến năm giây', 'Giảm xuống hai giây'], correctIndex: 1 }
+      { prompt: 'Đếm thời gian qua mốc cố định thế nào, và có thay thế biển cự ly không?', options: ['Đếm ba nhịp nhanh từ đầu xe trước đến đầu xe mình là luôn đủ', 'Đếm đủ giây từ đuôi xe trước đến đầu xe mình qua cùng mốc; vẫn tuân thủ biển và cự ly theo tốc độ, điều kiện đường', 'Đủ ba giây thì bỏ qua biển cự ly tối thiểu'], correctIndex: 1 },
+      { prompt: 'Bạn đang dùng mốc ba giây trên đường khô, sau đó gặp mưa; cần làm gì?', options: ['Giữ bốn đến năm giây là luôn đủ dù mưa nặng hạt', 'Tăng lên ít nhất sáu giây, có thể hơn; giữ cự ly lớn hơn biển hoặc bảng khi điều kiện xấu và giảm tốc theo độ bám, tầm nhìn', 'Chỉ tăng khoảng cách, không cần giảm tốc dù không nhìn rõ đường'], correctIndex: 1 },
+      { prompt: 'Xe chen vào trước bạn rồi phanh gấp, nguy cơ va chạm xuất hiện; xử lý thế nào?', options: ['Chỉ nhả ga để xe sau không phải phanh', 'Đánh lái ngay ra làn dừng khẩn cấp', 'Phanh ngay theo tình huống để tránh va chạm, không chờ đếm xong; giữ kiểm soát xe, không đánh lái đột ngột'], correctIndex: 2, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về quy tắc khoảng cách ba giây.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về quy tắc khoảng cách ba giây.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Làm rõ cự ly theo biển, tốc độ và điều kiện; sửa đếm giây, mưa và phanh khẩn cấp, thay hai sơ đồ và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'highway-overtake-truck',

@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('highway-gap', 'safety', 'Quy tắc đếm ba giây dễ nhớ và an toàn hơn ước lượng theo mét.', 5, '2026-09-12'),
   review('highway-overtake-truck', 'safety', 'Yêu cầu thoát nhanh khỏi vùng điểm mù là điểm mấu chốt.', 4, '2026-09-12'),
   review('highway-tailgater', 'safety', 'Cần bổ sung hướng dẫn khi bị ép xe kéo dài và cách ghi nhận bằng camera hành trình.', 3, '2026-09-12', 'needs_revision'),
   review('weather-downhill', 'slope', 'Phanh động cơ là nội dung cốt lõi, dấu hiệu phanh quá nhiệt mô tả đúng.', 5, '2026-09-12'),

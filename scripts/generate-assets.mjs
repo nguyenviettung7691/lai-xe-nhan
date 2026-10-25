@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.15'
+const CONTENT_VERSION = '2026.10.16'
 
 const W = 320
 const H = 200
@@ -359,6 +359,53 @@ const highwayLot = (lanes = 3) => {
   parts.push(line(0, 30 + lanes * 38, W, 30 + lanes * 38, C.bay, 2.4))
   return parts.join('')
 }
+
+const followingSnapshot = (id, y, egoX, leadX) => [
+  `<g id="${id}-lane">${rect(0, y - 19, W, 38, C.asphalt)}</g>`,
+  line(0, y - 19, W, y - 19, C.bay, 1.6),
+  line(0, y + 19, W, y + 19, C.bay, 1.6),
+  `<g id="${id}-marker">${line(160, y - 19, 160, y + 27, C.bike, 1.4, '2 3')}</g>`,
+  `<g id="${id}-ego">${car(egoX, y, 90, C.ego, 18, 32)}</g>`,
+  `<g id="${id}-lead">${car(leadX, y, 90, C.other, 18, 32)}</g>`,
+  `<g id="${id}-direction">`,
+  arrow(egoX + 20, y, egoX + 44, y),
+  arrow(leadX + 20, y, leadX + 40, y),
+  '</g>',
+  `<g id="${id}-clearance">${gap(egoX + 16, leadX - 16, y + 23, 'CỰ LY')}</g>`
+]
+
+const followingScene = rain => rain ? [
+  rect(0, 0, W, 180, C.kerb),
+  label(160, 15, 'MƯA / ĐƯỜNG ƯỚT', { size: 10, anchor: 'middle' }),
+  '<g id="gap-rain-cues" stroke="#8fc4e8" stroke-width="1.4" opacity=".7">',
+  '<path d="M40 24L32 40M112 24L104 40M208 24L200 40M280 24L272 40"/>',
+  '</g>',
+  `<g id="gap-rain-lane">${rect(0, 60, W, 44, '#273e46')}</g>`,
+  line(0, 60, W, 60, C.bay, 1.6),
+  line(0, 104, W, 104, C.bay, 1.6),
+  `<g id="gap-rain-ego">${car(48, 82, 90, C.ego, 18, 32)}</g>`,
+  `<g id="gap-rain-lead">${car(272, 82, 90, C.other, 18, 32)}</g>`,
+  '<g id="gap-rain-direction">',
+  arrow(68, 82, 92, 82),
+  arrow(292, 82, 312, 82),
+  '</g>',
+  `<g id="gap-rain-clearance">${gap(64, 256, 122, 'CỰ LY TĂNG')}</g>`,
+  label(48, 54, 'MÌNH', { size: 8, fill: C.ego, anchor: 'middle' }),
+  label(272, 54, 'XE TRƯỚC', { size: 8, anchor: 'middle' }),
+  label(160, 133, 'TỪ 3 s KHÔ → ÍT NHẤT 6 s', { size: 10, fill: C.ego, anchor: 'middle' }),
+  label(160, 150, 'CÓ THỂ CẦN HƠN; GIẢM TỐC KHI CẦN', { size: 8, anchor: 'middle' }),
+  note('Không theo tỷ lệ. Vẫn theo biển và cự ly quy định; sáu giây không bảo đảm an toàn.', 12)
+] : [
+  rect(0, 0, W, 180, C.kerb),
+  label(12, 14, '1. ĐUÔI QUA MỐC: BẮT ĐẦU ĐẾM', { size: 9, fill: C.ego }),
+  label(56, 32, 'MÌNH', { size: 8, fill: C.ego, anchor: 'middle' }),
+  label(160, 32, 'MỐC', { size: 8, fill: C.bike, anchor: 'middle' }),
+  label(230, 32, 'XE TRƯỚC', { size: 8, anchor: 'middle' }),
+  ...followingSnapshot('gap-start', 57, 56, 176),
+  label(12, 98, '2. ĐẦU TỚI CÙNG MỐC: ≥ 3 s (KHÔ)', { size: 9, fill: C.ego }),
+  ...followingSnapshot('gap-end', 131, 144, 264),
+  note('Không theo tỷ lệ. Đếm đủ giây; vẫn theo biển, tốc độ và điều kiện đường.', 12)
+]
 
 const speedSign = (id, x, y, value, minimum = false) =>
   `<g id="${id}">` +
@@ -868,23 +915,8 @@ const templates = {
       'exit-miss': () => exitScene(true),
       signs: () => signsScene(false),
       'signs-speed': () => signsScene(true),
-      gap: () => [
-        highwayLot(),
-        car(88, 98, 90, C.ego),
-        car(252, 98, 90, C.other),
-        gap(116, 226, 82, '3 giây'),
-        label(16, 166, 'Đếm 1-2-3 khi xe trước qua cột mốc', { size: 9 }),
-        note('Đếm ba nhịp từ lúc xe trước qua một mốc cố định.')
-      ],
-      'gap-rain': () => [
-        highwayLot(),
-        rect(0, 0, W, 180, '#1a2c3a', 0, 0.35),
-        `<g stroke="#8fc4e8" stroke-width="1.4" opacity=".6"><path d="M40 10L30 32"/><path d="M112 6L102 28"/><path d="M188 12L178 34"/><path d="M264 4L254 26"/></g>`,
-        car(68, 98, 90, C.ego),
-        car(262, 98, 90, C.other),
-        gap(96, 236, 82, 'Mưa: 4–5 giây'),
-        note('Trời mưa thì nhân đôi khoảng cách và bật đèn chiếu gần.')
-      ],
+      gap: () => followingScene(false),
+      'gap-rain': () => followingScene(true),
       overtake: () => [
         highwayLot(),
         car(150, 138, 90, C.truck, 30, 74),
@@ -1036,7 +1068,7 @@ const specs = [
   ['highway-merge', 'highway', ['merge', 'Từ làn tăng tốc bên phải, chỉ nhập một làn khi đủ hở', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: các xe hướng đầu sang phải; làn tăng tốc nằm dưới làn sát bên phải cao tốc và thu hẹp ở cuối. Mũi tên xanh từ trước đầu xe mình đi qua vạch đứt vào đúng làn sát bên phải, không sang làn trái; xe trên làn chính có quyền ưu tiên. Đây là hướng nhập minh họa, không phải quỹ đạo hoặc khoảng cách bảo đảm.'], ['merge-gap', 'Sau khi nhập cần đủ khoảng hở cả trước và sau, xét tốc độ tương đối', 'Sơ đồ không theo tỷ lệ: ba xe cùng hướng sang phải trên làn sát bên phải cao tốc; xe mình ở giữa. Hai ngoặc nét đứt đo khoảng hở từ đầu xe sau tới đuôi xe mình và từ đầu xe mình tới đuôi xe trước, không phải mũi tên chuyển động hay mốc giây cố định. Hình không chứng minh khe an toàn; cần xét xe sau đến gần nhanh, không ép xe khác phanh gấp hoặc đánh lái tránh.']],
   ['highway-exit', 'highway', ['exit', 'Từ làn phải vào làn giảm tốc qua vạch đứt, chỉ khi đủ khoảng hở', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe mình hướng đầu sang phải trong làn sát bên phải cao tốc. Mũi tên xanh từ trước đầu xe đi qua vạch đứt xuống làn giảm tốc bên phải, ổn định trước nhánh ra; đường nhánh và chiều đi nối liền, vùng gạch chéo nằm giữa nhánh và làn chính sau đoạn được phép vào. Đây không phải quỹ đạo lái chính xác hay mốc khoảng cách, tốc độ; vẫn giảm tốc hoặc phanh sớm khi có nguy hiểm, kể cả trên làn chính.'], ['exit-miss', 'Đã quá đoạn được phép vào: giữ làn đi tiếp, không cắt vùng gạch chéo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu sang phải, đã qua đoạn vạch đứt vào lối ra. Mũi tên xanh đi thẳng trong làn chính tới lối ra phù hợp tiếp theo. Nét đỏ cắt qua vạch liền và vùng gạch chéo sang nhánh ra bị dấu X đỏ cấm, không phải hướng nên đi. Không lùi, quay đầu, dừng để quay lại hoặc dùng làn dừng khẩn cấp hay lề đường; nếu đã vào đường nhánh thì tiếp tục theo biển, không cắt ngược về làn chính.']],
   ['highway-signs', 'highway', ['signs', 'Nhận diện tối đa và tối thiểu có điều kiện, không phải lệnh đổi làn', 'Bảng nhận diện minh họa, không theo tỷ lệ hay mô tả cách đặt biển: vòng đỏ nền trắng số đen 80 là tối đa 80 km/h; vòng xanh lam số trắng 60 là tối thiểu 60 km/h khi giao thông thuận lợi và an toàn. Gặp nguy hiểm cần giảm tốc, kể cả dưới mức tối thiểu. Phía dưới là xe hướng đầu sang phải và mũi tên đi thẳng trên mặt đường, không phải quỹ đạo chuyển làn.'], ['signs-speed', 'Giảm tốc trước vị trí giới hạn mới có hiệu lực, không chờ qua biển', 'Ví dụ riêng nhìn từ trên xuống, không theo tỷ lệ: xe hướng đầu sang phải, còn ở trước biển tối đa 60 km/h, không có biển phụ. Nét dọc mảnh nối vị trí biển với đường chỉ vị trí hiệu lực, không phải vạch đường hay lệnh dừng. Vùng sáng bên phải bắt đầu tại vị trí này: không vượt 60 từ đây, vẫn chậm hơn nếu cần an toàn. Mũi tên đi thẳng khớp đầu xe; giảm tốc êm từ sớm, không có quãng phanh hoặc tốc độ cao tốc chung được bảo đảm.']],
-  ['highway-gap', 'highway', ['gap', 'Khoảng cách ba giây', 'Sơ đồ nhìn từ trên xuống: cách đếm ba giây so với xe phía trước.'], ['gap-rain', 'Khoảng cách khi trời mưa', 'Sơ đồ nhìn từ trên xuống: khoảng cách bốn đến năm giây khi mặt đường ướt.']],
+  ['highway-gap', 'highway', ['gap', 'Đếm đủ giây qua cùng mốc; vẫn theo biển và cự ly quy định', 'Hai thời điểm nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe trước màu xám cùng làn, đầu và mũi tên hướng sang phải. Nét dọc vàng là cùng một mốc cố định bên đường, không phải vạch dừng. Bắt đầu khi đuôi xe trước ngang mốc ở hình trên; kết thúc khi đầu xe mình ngang mốc ở hình dưới. Ít nhất ba giây chỉ là tham khảo khi khô, thuận lợi; vẫn giữ cự ly theo biển, tốc độ và điều kiện. Dấu ngoặc chỉ cự ly giữa hai cản xe, không quy đổi độ dài hình thành giây hay mét.'], ['gap-rain', 'Mưa: từ mốc ba giây khô tăng ít nhất sáu giây, có thể cần hơn', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: mưa, hai xe cùng làn hướng sang phải; xe mình màu xanh theo sau xe xám, dấu ngoặc từ đầu xe mình đến đuôi xe trước minh họa cự ly tăng, không phải quãng phanh hay số mét. Từ mốc ba giây khô tăng ít nhất sáu giây khi ướt, có thể cần hơn; tuân thủ cự ly lớn hơn biển hoặc bảng trong điều kiện xấu và giảm tốc theo độ bám, tầm nhìn. Sáu giây không bảo đảm an toàn.']],
   ['highway-overtake-truck', 'highway', ['overtake', 'Vượt xe tải bên trái', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vượt xe tải bằng làn bên trái.'], ['overtake-return', 'Thời điểm về làn', 'Sơ đồ nhìn từ trên xuống: thời điểm về làn phải khi đã thấy đầu xe tải trong gương.']],
   ['highway-tailgater', 'highway', ['tailgate', 'Bị xe sau bám đuôi', 'Sơ đồ nhìn từ trên xuống: xe phía sau bám sát đuôi ở khoảng cách nguy hiểm.'], ['tailgate-let', 'Nhường đường cho xe sau', 'Sơ đồ nhìn từ trên xuống: chuyển sang làn phải để xe bám đuôi vượt lên.']],
   ['weather-downhill', 'slope', ['downhill', 'Đổ dốc dài', 'Sơ đồ cắt ngang: xe xuống dốc dài với số thấp.'], ['downhill-pulse', 'Phanh theo nhịp', 'Sơ đồ cắt ngang: các nhịp phanh ngắt quãng khi đổ dốc.']],

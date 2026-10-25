@@ -74,4 +74,48 @@ lane-divider overlap, absent timing reference and inconsistent rain labels.
 
 ## Implementation and verification results
 
-Pending.
+- Analysis and plan committed before implementation as `068e2ee`.
+- Card **1.1.0**, pack **2026.10.16**. Reworked the complete lesson into seven
+  action-led steps and revised all three quizzes together. Stable lesson,
+  asset, checklist and quiz IDs and the original changelog entry are retained.
+- Added the exact legal speed bands and dry-road conditions, the below-60
+  distinction and distance-sign obligations. Removed the unsupported generic
+  stopping-distance claim and the dismissal of metre-based checks.
+- Three seconds is now a qualified dry-condition reference, not a statutory
+  minimum or stopping guarantee. Wet guidance consistently doubles it to
+  **at least six seconds**, permits more and requires appropriate speed.
+  Smooth gap rebuilding does not override immediate collision-avoidance braking.
+- Removed only this card's sample endorsement. The browser displays
+  **Chưa thẩm định độc lập**, with no sample reviewer. Real independent
+  instructor review remains outstanding; publication is not certification.
+- Replaced both SVGs and descriptions. The main illustration uses two
+  sequential snapshots with the same fixed reference: lead rear at the first
+  endpoint, ego front at the second. Cars and arrows face right and remain
+  entirely inside the illustrated lane. The rain scene has a larger actual
+  bumper-to-bumper clearance, not a distance-to-pixel/time scale.
+- Added **13 focused regression tests**, including legal band endpoints,
+  conditions, timing, emergency braking, actual correct-answer semantics,
+  metadata, vehicle containment/headings, nose-aligned arrows, both marker
+  endpoints and actual bumper-to-bumper brackets. Moved the stale-review fixture
+  to unchanged `highway-overtake-truck`; the previous signs lesson now tests its
+  historical release without pinning the latest pack.
+- **216 tests passed** across all 19 content/asset/validation test files.
+  `npm run lint`, `npm run build` (including Vue/TypeScript checking) and
+  `git diff --check` passed. The build only reported existing dependency
+  annotation warnings from Zod/Rollup. Initial editorial-gate failures were
+  resolved by action-led wording, without weakening the validator.
+- Repeat generation produced the same manifest checksum. Checksums and asset
+  budgets pass; exactly the two `highway-gap` SVGs differ from the baseline,
+  with the other **44 SVGs unchanged** after normalizing line endings.
+- Browser-checked both figures at desktop and **390 px** mobile width, with
+  no horizontal overflow. Measured every SVG text bounding box: none outside
+  the viewBox and no text-to-text collisions. Visual inspection also caught
+  and fixed a rain-label/road-edge collision.
+- Quick mode retains all seven instructions and the critical legal, wet-road
+  and emergency-braking safety qualifications while hiding the variant and
+  recovery as designed. Audio sources were traced to the same revised
+  instructions and safety; speech output itself was not acoustically tested.
+- Browser quiz verification: the unsafe “only ease off” emergency answer
+  produced **2/3, Chưa đạt** and highlighted immediate braking as correct.
+  Retry with the correct choices produced **3/3, Đạt**. A fresh page load
+  after the fixes had no console warnings or errors.

@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { getCardById, getChecklist, getReview } from './index'
 import { getAsset, getCardAssets } from './assets'
-import { CONTENT_VERSION, contentReleases } from './version'
+import { contentReleases } from './version'
 
 const card = getCardById('highway-signs')!
 const instructions = card.steps.map(step => step.instruction).join(' ')
@@ -35,8 +35,7 @@ describe('highway-signs: real-world decisions', () => {
     expect(card.updatedAt).toBe('2026-10-25')
     expect(card.changelog.map(change => change.version)).toEqual(['1.0.0', '1.1.0'])
     expect(card.changelog[0].date).toBe('2026-09-11')
-    expect(CONTENT_VERSION).toBe('2026.10.15')
-    expect(contentReleases.find(release => release.version === CONTENT_VERSION)).toMatchObject({
+    expect(contentReleases.find(release => release.version === '2026.10.15')).toMatchObject({
       date: card.updatedAt, cardIds: [card.id]
     })
     expect(contentReleases.find(release => release.version === '2026.09.1')?.cardIds).toContain(card.id)

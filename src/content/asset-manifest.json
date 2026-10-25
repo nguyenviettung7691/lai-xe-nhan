@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.15",
+  "contentVersion": "2026.10.16",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 156.85,
+  "totalSizeKb": 161.34,
   "assets": [
     {
       "id": "parking-start-main",
@@ -432,11 +432,11 @@
       "url": "/content/svg/highway-gap-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.41,
-      "checksum": "sha256-9f7de3d8935deb0223a1230e47b47be3672659cb61f771ea590f2727f9e1d228",
+      "sizeKb": 5.63,
+      "checksum": "sha256-1ad6a8b5173f808409fb8f32cda3c75dbf4a26ae279e94f6032418eb6ba5a28c",
       "offlinePack": "core",
-      "caption": "Khoảng cách ba giây",
-      "alt": "Sơ đồ nhìn từ trên xuống: cách đếm ba giây so với xe phía trước."
+      "caption": "Đếm đủ giây qua cùng mốc; vẫn theo biển và cự ly quy định",
+      "alt": "Hai thời điểm nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe trước màu xám cùng làn, đầu và mũi tên hướng sang phải. Nét dọc vàng là cùng một mốc cố định bên đường, không phải vạch dừng. Bắt đầu khi đuôi xe trước ngang mốc ở hình trên; kết thúc khi đầu xe mình ngang mốc ở hình dưới. Ít nhất ba giây chỉ là tham khảo khi khô, thuận lợi; vẫn giữ cự ly theo biển, tốc độ và điều kiện. Dấu ngoặc chỉ cự ly giữa hai cản xe, không quy đổi độ dài hình thành giây hay mét."
     },
     {
       "id": "highway-gap-var",
@@ -446,11 +446,11 @@
       "url": "/content/svg/highway-gap-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.63,
-      "checksum": "sha256-6a35af6b481ace85dcd8eb3591e64651290b0a98fd1e3cc34ebb2f69e9c3d6f6",
+      "sizeKb": 3.9,
+      "checksum": "sha256-a636e75787f567f090a8238fda746a6c3c13df82785903ce98c962344877a1c7",
       "offlinePack": "core",
-      "caption": "Khoảng cách khi trời mưa",
-      "alt": "Sơ đồ nhìn từ trên xuống: khoảng cách bốn đến năm giây khi mặt đường ướt."
+      "caption": "Mưa: từ mốc ba giây khô tăng ít nhất sáu giây, có thể cần hơn",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: mưa, hai xe cùng làn hướng sang phải; xe mình màu xanh theo sau xe xám, dấu ngoặc từ đầu xe mình đến đuôi xe trước minh họa cự ly tăng, không phải quãng phanh hay số mét. Từ mốc ba giây khô tăng ít nhất sáu giây khi ướt, có thể cần hơn; tuân thủ cự ly lớn hơn biển hoặc bảng trong điều kiện xấu và giảm tốc theo độ bám, tầm nhìn. Sáu giây không bảo đảm an toàn."
     },
     {
       "id": "highway-overtake-truck-main",
