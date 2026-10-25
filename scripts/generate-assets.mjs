@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.5'
+const CONTENT_VERSION = '2026.10.6'
 
 const W = 320
 const H = 200
@@ -165,6 +165,21 @@ const correctionLot = () => [
   label(20, 153, 'LỐI ĐI', { size: 8 })
 ].join('')
 
+const lowlightLot = () => [
+  rect(0, 0, W, 174, '#14221d'),
+  rect(120, 30, 80, 56, '#253b31'),
+  '<g id="lowlight-bay">',
+  line(120, 86, 120, 30, C.bay, 1.6),
+  line(120, 30, 200, 30, C.bay, 1.6),
+  line(200, 30, 200, 86, C.bay, 1.6),
+  '</g>',
+  car(64, 59, 180, C.other, 30, 48),
+  `<g id="lowlight-car">${car(160, 112, 180, C.ego, 30, 48)}</g>`,
+  label(192, 94, 'ĐUÔI', { size: 8, fill: C.ego }),
+  label(192, 139, 'ĐẦU', { size: 8, fill: C.ego }),
+  label(16, 162, 'LỐI ĐI', { size: 8 })
+].join('')
+
 const alleyLot = (wallGap = 108) => {
   const left = (W - wallGap) / 2
   return [
@@ -259,20 +274,36 @@ const templates = {
         note('Mũi tên: tiến thẳng minh họa, không theo tỷ lệ. Dừng hẳn trước đổi chiều.')
       ],
       lowlight: () => [
-        bayLot(2, [0, 3]),
-        rect(0, 0, W, 180, '#050a08', 0, 0.42),
-        `<g opacity=".3">${cone(240, 116, 160, 26, 70, '#fff2c4')}${cone(262, 116, 200, 26, 70, '#fff2c4')}</g>`,
-        car(250, 132, 90, C.ego),
-        trail('M236 120C214 96 206 84 200 70'),
-        note('Bật đèn chiếu gần và dừng lại nếu gương bị lóa.')
+        lowlightLot(),
+        label(160, 15, 'CHỈ LÙI KHI THẤY RÕ ĐƯỜNG ĐI', { size: 9, anchor: 'middle' }),
+        `<g id="lowlight-dipped">${cone(150, 136, 180, 9, 25, '#fff2c4')}${cone(170, 136, 180, 9, 25, '#fff2c4')}</g>`,
+        `<g id="lowlight-reverse-lamps">${cone(150, 88, 0, 6, 24, '#e0f3ff')}${cone(170, 88, 0, 6, 24, '#e0f3ff')}</g>`,
+        '<g id="lowlight-reverse">',
+        arrow(160, 82, 160, 44),
+        '</g>',
+        label(220, 55, 'LÙI', { size: 8, fill: C.ego }),
+        label(16, 113, 'Chiếu gần', { size: 8 }),
+        line(77, 115, 144, 145, C.text, 1),
+        label(220, 72, 'Đèn lùi', { size: 8 }),
+        line(215, 74, 174, 79, C.text, 1),
+        note('Đèn và hướng lùi minh họa, không theo tỷ lệ. Không bảo đảm vùng nhìn rõ.')
       ],
       'lowlight-mirror': () => [
-        bayLot(2, [0, 3]),
-        rect(0, 0, W, 180, '#050a08', 0, 0.42),
-        car(196, 70, 180, C.ego),
-        cone(196, 100, 0, 34, 58, '#fff2c4'),
-        tag(104, 166, 'Hạ kính để nghe còi'),
-        note('Thiếu sáng thì hạ kính, đi chậm và nghe âm thanh xung quanh.')
+        lowlightLot(),
+        label(160, 15, 'XE DỪNG ĐỂ THỐNG NHẤT TÍN HIỆU', { size: 9, anchor: 'middle' }),
+        '<g id="lowlight-guide">',
+        '<circle cx="242" cy="64" r="5" fill="' + C.bike + '"/>',
+        line(242, 70, 242, 82, C.bike, 3),
+        line(235, 74, 249, 74, C.bike, 2),
+        line(242, 82, 236, 90, C.bike, 2),
+        line(242, 82, 248, 90, C.bike, 2),
+        '</g>',
+        label(242, 43, 'NGƯỜI HỖ TRỢ', { size: 8, fill: C.bike, anchor: 'middle' }),
+        '<g id="lowlight-sight">',
+        line(179, 116, 232, 79, C.text, 1.6, '4 4'),
+        '</g>',
+        label(306, 158, 'XE ĐANG DỪNG', { size: 8, anchor: 'end' }),
+        note('Nét đứt: liên lạc minh họa, không là quỹ đạo. Mất liên lạc thì dừng.')
       ],
       column: () => [
         bayLot(2, [1, 3]),
@@ -687,7 +718,7 @@ const specs = [
   ['parking-correct', 'bay', ['correct', 'Dừng để phân biệt thân nghiêng và lệch ngang', 'Sơ đồ không theo tỷ lệ: xe đang dừng, thân nghiêng so với trục ô; đuôi ở trên, đầu hướng xuống lối đi qua cửa ô mở. Nét đứt là trục ô, không phải đường xe chạy; không có mũi tên chuyển động.'], ['correct-out', 'Một đoạn tiến minh họa, không phải toàn bộ cách sửa', 'Sơ đồ không theo tỷ lệ, cùng vị trí xe đang nghiêng: đầu xe ở dưới, mũi tên thẳng hướng về phía trước qua cửa ô mở. Chỉ tiến khi đã nhường người và xe, quan sát rõ khoảng trống; không quy định quãng tiến hay hướng đánh lái cho mọi xe. Dừng hẳn trước đổi chiều.']],
   ['parking-parallel', 'parallel', ['enter', 'Ví dụ tiếp cận lề phải và hướng đuôi lùi ban đầu, không phải toàn quỹ đạo', 'Sơ đồ không theo tỷ lệ, đầu các xe hướng lên, lề phải ở bên phải hình; xe mình bên trái xe trước, hai đuôi ngang nhau chỉ là ví dụ. Mũi tên cong từ sau đuôi xe chỉ hướng lùi ban đầu xuống và sang phải về lề; đầu xe quét trái. Mũi tên thẳng bên trái chỉ chiều đi, không phải hướng lùi.'], ['settle', 'Ví dụ xe song song lề phải, chừa khoảng hở hai đầu; không phải mốc đo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu lên, song song lề phải ở bên phải hình, có khoảng hở với lề và cả xe trước, xe sau. Dấu ngoặc chỉ khoảng hở hai đầu, không phải số đo. Mũi tên bên trái chỉ chiều đi; xe đã đỗ không có mũi tên chuyển động.']],
   ['parking-slope', 'slopeParking', ['reverse', 'Ví dụ lùi thẳng lên dốc tại ô được phép, không phải đường dốc ra vào hầm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: phía cao ở trên, thấp ở dưới; đầu xe hướng xuống, đuôi hướng lên. Mũi tên xám bên trái chỉ chiều dốc xuống; mũi tên xanh từ sau đuôi hướng lên vào cửa ô mở chỉ hướng lùi lên dốc, không phải quỹ đạo đánh lái hay mức nhả phanh chung.'], ['hold', 'Nguy cơ trôi xuống dốc về phía đầu xe dù đã cài R', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng vị trí xe và hướng dốc: cao ở trên, thấp ở dưới, đầu xe ở dưới. Mũi tên xám bên trái chỉ dốc xuống; mũi tên đỏ nét đứt trước đầu xe chỉ nguy cơ trôi xuống nếu không giữ phanh, ngược hướng lùi lên dốc ở hình chính; không phải lệnh tiến hay trạng thái đã đỗ an toàn. Đạp phanh để dừng, không dùng P khi xe đang chuyển động.']],
-  ['parking-lowlight', 'bay', ['lowlight', 'Hầm thiếu sáng', 'Sơ đồ nhìn từ trên xuống: vùng sáng đèn xe khi lùi trong hầm thiếu sáng.'], ['lowlight-mirror', 'Quan sát bằng mắt và tai', 'Sơ đồ nhìn từ trên xuống: vùng quan sát phía sau khi hạ kính trong hầm tối.']],
+  ['parking-lowlight', 'bay', ['lowlight', 'Đèn hướng trước và sau khác nhau; chỉ lùi khi thấy rõ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng xuống lối đi, đuôi hướng lên cửa ô mở. Vệt vàng trước đầu xe minh họa đèn chiếu gần; vệt nhạt sau đuôi minh họa đèn lùi, không phải phạm vi nhìn rõ hay vùng cảm biến. Mũi tên xanh từ sau đuôi hướng thẳng lên ô chỉ một hướng lùi minh họa, không là chỉ dẫn đánh lái cho mọi vị trí.'], ['lowlight-mirror', 'Xe dừng, người hướng dẫn ở bên ngoài đường xe chạy', 'Sơ đồ không theo tỷ lệ, cùng hướng xe và cửa ô mở: xe đang dừng, người hỗ trợ đứng bên phải hình, ngoài hành lang lùi thẳng minh họa, không giữa xe và vật cản. Nét đứt nối bên xe với người hỗ trợ chỉ liên lạc trong tầm nhìn, không phải quỹ đạo hay vùng quan sát bảo đảm. Vị trí thực tế phải tránh cả vùng đầu xe quét, luôn nhìn thấy nhau; mất liên lạc thì dừng ngay. Không có mũi tên chuyển động.']],
   ['parking-column', 'bay', ['column', 'Ô đỗ sát cột bê tông', 'Sơ đồ nhìn từ trên xuống: ô đỗ có cột bê tông chắn tầm nhìn bên trái.'], ['column-gap', 'Chừa chỗ mở cửa', 'Sơ đồ nhìn từ trên xuống: xe đỗ lệch xa cột để còn khoảng trống mở cửa.']],
   ['narrow-creep', 'alley', ['creep', 'Bò đều trong hẻm', 'Sơ đồ nhìn từ trên xuống: xe đi chậm trong hẻm hẹp có xe máy phía trước.'], ['creep-stop', 'Dừng khi có xe cắt ngang', 'Sơ đồ nhìn từ trên xuống: vùng nguy hiểm khi xe máy cắt ngang đầu xe.']],
   ['narrow-mirror', 'alley', ['mirror', 'Giữ khoảng cách gương', 'Sơ đồ nhìn từ trên xuống: khoảng cách an toàn giữa gương xe và xe máy dựng ven hẻm.'], ['mirror-fold', 'Gập gương khi hẻm quá hẹp', 'Sơ đồ nhìn từ trên xuống: hẻm hẹp dưới 2,2 m cần gập gương để đi qua.']],

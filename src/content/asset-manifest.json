@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.5",
+  "contentVersion": "2026.10.6",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 122.06,
+  "totalSizeKb": 123.08,
   "assets": [
     {
       "id": "parking-start-main",
@@ -152,11 +152,11 @@
       "url": "/content/svg/parking-lowlight-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.36,
-      "checksum": "sha256-f87aabb0310e3a40f69f8a26f9152f04890e7f024643f07034f012e647f28ff7",
+      "sizeKb": 4.08,
+      "checksum": "sha256-6bd806cd6f70d66941a3335ab04bca3c3d80fc9047d32d622549539024ad88c0",
       "offlinePack": "core",
-      "caption": "Hầm thiếu sáng",
-      "alt": "Sơ đồ nhìn từ trên xuống: vùng sáng đèn xe khi lùi trong hầm thiếu sáng."
+      "caption": "Đèn hướng trước và sau khác nhau; chỉ lùi khi thấy rõ",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng xuống lối đi, đuôi hướng lên cửa ô mở. Vệt vàng trước đầu xe minh họa đèn chiếu gần; vệt nhạt sau đuôi minh họa đèn lùi, không phải phạm vi nhìn rõ hay vùng cảm biến. Mũi tên xanh từ sau đuôi hướng thẳng lên ô chỉ một hướng lùi minh họa, không là chỉ dẫn đánh lái cho mọi vị trí."
     },
     {
       "id": "parking-lowlight-var",
@@ -166,11 +166,11 @@
       "url": "/content/svg/parking-lowlight-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.48,
-      "checksum": "sha256-a939681a587a9acb104b80568293e1998ad477cb0d42c70fb6c025d225c173e9",
+      "sizeKb": 3.78,
+      "checksum": "sha256-d2991285c94af8604068e9c5b582b7aaa0fb6358164b77455e7d0bba37c9e534",
       "offlinePack": "core",
-      "caption": "Quan sát bằng mắt và tai",
-      "alt": "Sơ đồ nhìn từ trên xuống: vùng quan sát phía sau khi hạ kính trong hầm tối."
+      "caption": "Xe dừng, người hướng dẫn ở bên ngoài đường xe chạy",
+      "alt": "Sơ đồ không theo tỷ lệ, cùng hướng xe và cửa ô mở: xe đang dừng, người hỗ trợ đứng bên phải hình, ngoài hành lang lùi thẳng minh họa, không giữa xe và vật cản. Nét đứt nối bên xe với người hỗ trợ chỉ liên lạc trong tầm nhìn, không phải quỹ đạo hay vùng quan sát bảo đảm. Vị trí thực tế phải tránh cả vùng đầu xe quét, luôn nhìn thấy nhau; mất liên lạc thì dừng ngay. Không có mũi tên chuyển động."
     },
     {
       "id": "parking-column-main",

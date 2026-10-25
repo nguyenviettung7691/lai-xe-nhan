@@ -224,38 +224,43 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-underground',
     topicId: 'parking',
     title: 'Lùi chuồng khi hầm thiếu sáng',
-    context: 'Hầm cũ chỉ có vài bóng đèn vàng nên gương và camera đều nhiễu sáng. Bạn phải dựa nhiều hơn vào mốc canh và âm thanh.',
-    objective: 'Lùi vào ô đỗ an toàn khi tầm nhìn qua gương bị giảm.',
+    context: 'Bạn lái xe số tự động trong bãi đỗ tầng hầm thiếu sáng; gương khó thấy vật cản thấp, camera có thể nhiễu hoặc lóa. Chỉ lùi tại ô được phép khi quan sát rõ đường xe sẽ đi; âm thanh và mốc đã nhớ không chứng minh phía sau đang trống.',
+    objective: 'Đánh giá đủ tầm nhìn trước khi lùi, kết hợp quan sát trực tiếp với gương và dừng khi không còn thấy rõ khoảng trống.',
     risk: 'medium',
     difficulty: 3,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'poor', stress: 'moderate' },
     steps: [
-      { instruction: 'Bật đèn chiếu gần và đèn sương mù nếu xe có trang bị.', cueType: 'marker', cueText: 'Đèn chiếu gần đã bật' },
-      { instruction: 'Hạ kính hai bên để nghe tiếng còi và tiếng bánh xe.', cueType: 'sound', cueText: 'Nghe rõ âm thanh xung quanh' },
-      { instruction: 'Đi chậm qua ô đỗ một lượt để ghi nhớ vị trí cột và xe bên cạnh.', cueType: 'marker', cueText: 'Một lượt khảo sát trước khi lùi', speedHint: 'dưới 10 km/h' },
-      { instruction: 'Chọn ô có ít nhất một bên trống để dễ căn vạch.', cueType: 'marker', cueText: 'Một bên ô đỗ còn trống' },
-      { instruction: 'Lùi từng đoạn 50 cm rồi dừng kiểm tra gương và cảm biến.', cueType: 'mirror', cueText: 'Mỗi 50 cm dừng kiểm tra', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Nhờ người đi cùng đứng ở vị trí nhìn thấy đuôi xe khi cần.', cueType: 'marker', cueText: 'Người hỗ trợ đứng ngoài vùng lùi' }
+      { instruction: 'Chọn ô được phép, đủ rộng và đủ sáng để thấy vạch, cột, vật cản thấp và lối vào ô; tránh lối qua đường và lối ra vào của người đi bộ. Nếu chưa thấy rõ đường đi, dừng ở vị trí an toàn và nhờ nhân viên bãi hỗ trợ, không cố đi qua để ghi nhớ mốc.', cueType: 'marker', cueText: 'Không lùi vào vùng chưa quan sát rõ' },
+      { instruction: 'Bật đèn chiếu gần, không dùng đèn chiếu xa gây lóa; kiểm tra đèn lùi hoạt động khi chọn R và xe vẫn được giữ bằng phanh. Không bật đèn sương mù chỉ vì hầm tối. Nếu kính, gương hoặc camera bẩn, đọng hơi, chỉ làm sạch khi xe đã đỗ và giữ chắc an toàn.', cueType: 'marker', cueText: 'Đèn chiếu gần hướng trước; đèn lùi không bảo đảm thấy hết phía sau' },
+      { instruction: 'Dừng hẳn, giữ phanh chân; quan sát trực tiếp hai bên và phía sau, kiểm tra gương, điểm mù, người đi bộ, xe máy, cột và vùng đầu xe sẽ quét khi đánh lái. Chỉ chọn R và có tín hiệu lùi khi đường đi đã rõ, nhường người và xe trước khi di chuyển.', cueType: 'mirror', cueText: 'Camera và cảm biến chỉ hỗ trợ, không thay quan sát trực tiếp' },
+      { instruction: 'Giảm âm lượng trong xe; có thể hạ kính nếu an toàn để nghe cảnh báo. Không nghe thấy tiếng động không có nghĩa là đường trống; không dùng âm thanh hay mốc đã nhớ thay cho kiểm tra hiện tại.', cueType: 'sound', cueText: 'Nghe để bổ sung, không nghe để đo khoảng cách' },
+      { instruction: 'Nhờ người hướng dẫn nếu cần và thống nhất tín hiệu khi xe đang dừng. Người đó phải ở bên ngoài đường xe chạy và vùng đầu xe quét, không đứng giữa xe với tường, cột hay xe khác, luôn trong tầm nhìn của người lái. Mất liên lạc hoặc không còn thấy người hướng dẫn thì dừng ngay.', cueType: 'marker', cueText: 'Người hướng dẫn không đứng sau đuôi trong đường lùi' },
+      { instruction: 'Lùi ở tốc độ đi bộ hoặc chậm hơn, luôn có thể dừng ngay trong khoảng trống nhìn rõ; liên tục kết hợp gương với quan sát trực tiếp quanh xe và vùng đầu xe quét. Dừng kiểm tra lại khi cần, không chờ đủ một quãng cố định mới dừng.', cueType: 'mirror', cueText: 'Không có nhịp lùi hay khoảng cách dừng chung cho mọi tình huống', speedHint: 'tốc độ đi bộ hoặc chậm hơn' },
+      { instruction: 'Đạp phanh dừng hẳn và giữ xe ngay khi không rõ khoảng cách, bị lóa, có cảnh báo, người hoặc xe vào đường đi. Chỉ tiếp tục sau khi kiểm tra lại và thấy rõ an toàn; nếu vẫn thiếu sáng, nhờ nhân viên bãi hỗ trợ hoặc chọn ô sáng hơn chỉ khi có đường đi an toàn. Dừng hẳn trước đổi R/D.', cueType: 'marker', cueText: 'Không thấy rõ thì giữ phanh, không lùi thử' },
+      { instruction: 'Dừng hẳn khi đỗ xong hoặc cần rời xe để kiểm tra, giữ phanh chân và cài phanh đỗ, P theo hướng dẫn của xe trước khi nhả phanh chân; xác nhận xe đứng chắc. Chỉ mở cửa và xuống xe sau khi quan sát trước, sau và bên mở cửa; nếu không thể giữ xe hoặc ra ngoài an toàn, ở lại vị trí lái, giữ phanh và gọi hỗ trợ.', cueType: 'marker', cueText: 'Không chọn P khi xe đang chuyển động; không rời xe chưa giữ chắc' }
     ],
     mistakes: [
-      'Tin hoàn toàn vào camera lùi trong điều kiện thiếu sáng.',
-      'Lùi một mạch vì nghĩ phía sau vẫn trống.',
-      'Để đèn pha chiếu thẳng vào gương xe đối diện.'
+      'Tin camera, cảm biến, mốc đã nhớ hoặc sự im lặng chứng minh phía sau không có người hay vật cản.',
+      'Cố lùi đủ một đoạn rồi mới kiểm tra, bỏ sót vật cản thấp và vùng đầu xe quét.',
+      'Dùng đèn chiếu xa hoặc đèn sương mù chỉ vì tối, hoặc xuống xe khi chưa giữ xe chắc và kiểm tra lối mở cửa.'
     ],
-    recovery: 'Dừng lại, bật đèn cảnh báo và xuống xe quan sát trực tiếp khi không chắc khoảng cách.',
-    safety: 'Hầm quá tối thì chọn ô đỗ gần lối bộ hành để giảm thời gian lùi và tăng khả năng được nhìn thấy.',
-    mnemonic: { text: 'Tối thì chậm, dừng nhiều nhịp, nghe kỹ.', rhythm: 'ba-nhip' },
+    recovery: 'Giữ phanh để dừng hẳn; không lùi thử vào vùng tối và không chọn P khi còn chuyển động. Nếu cần ra ngoài kiểm tra, giữ phanh chân trong khi cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc rồi quan sát trước, sau, bên mở cửa và lối đi bộ trước khi ra; không đứng giữa xe và vật cản. Nếu không thể giữ xe hay ra ngoài an toàn, ở lại vị trí lái, giữ phanh và gọi nhân viên bãi. Chỉ chuyển sang ô sáng hơn khi quan sát rõ đường đi và dừng hẳn trước đổi chiều. Đèn cảnh báo khi cần báo nguy không cho phép tiếp tục lùi hoặc tạo quyền ưu tiên.',
+    safety: 'Chỉ lùi tại khu vực đỗ được phép và khi quan sát rõ hai bên, phía sau cùng vùng đầu xe quét; không lùi ở nơi tầm nhìn bị che khuất, đường một chiều, khu vực cấm dừng, phần đường người đi bộ qua đường, nơi giao nhau, giao cắt đường sắt, hầm đường bộ hoặc cao tốc. Bãi đỗ tầng hầm không phải hầm đường bộ. Dừng và giữ phanh khi không thấy rõ, có người hoặc xe vào đường đi, hay mất liên lạc với người hướng dẫn; họ phải ở ngoài đường xe chạy, vùng kẹp và luôn trong tầm nhìn. Không dựa vào sự im lặng, đèn lùi, camera hoặc cảm biến để kết luận an toàn. Trước khi rời xe, dừng hẳn, cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc và kiểm tra lối mở cửa; không ra ngoài nếu chưa an toàn. Không chọn ô chắn lối người đi bộ.',
+    mnemonic: { text: 'Thấy rõ mới lùi, chưa rõ thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Khi hầm thiếu sáng, bạn nên dựa vào đâu nhiều hơn để lùi an toàn?', options: ['Chỉ dựa vào camera lùi', 'Mốc canh và âm thanh xung quanh', 'Tốc độ bò nhanh hơn bình thường'], correctIndex: 1 },
-      { prompt: 'Nên lùi theo cách nào trong điều kiện thiếu sáng?', options: ['Lùi một mạch cho nhanh', 'Từng đoạn 50 cm rồi dừng kiểm tra', 'Nhắm mắt ước lượng khoảng cách'], correctIndex: 1 },
-      { prompt: 'Khi không chắc khoảng cách trong hầm tối, bạn nên?', options: ['Cứ lùi tiếp và hy vọng', 'Dừng lại, bật đèn cảnh báo và xuống xe quan sát', 'Bấm còi liên tục rồi lùi nhanh'], correctIndex: 1 }
+      { prompt: 'Camera tối, không nghe tiếng động và đã nhớ vị trí cột; có thể lùi chưa?', options: ['Có, sự im lặng chứng minh không có ai', 'Chưa; phải quan sát trực tiếp kết hợp gương, thấy rõ đường đi; âm thanh, camera và cảm biến chỉ hỗ trợ', 'Có, chỉ cần bật đèn sương mù'], correctIndex: 1 },
+      { prompt: 'Đang lùi thì mất dấu người hướng dẫn hoặc không rõ khoảng cách; bạn làm gì?', options: ['Lùi hết đoạn đã định rồi mới kiểm tra', 'Đạp phanh dừng hẳn và giữ xe, chỉ tiếp tục khi quan sát rõ và liên lạc lại an toàn', 'Bật đèn cảnh báo rồi tiếp tục lùi chậm'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Cần xuống xe kiểm tra trong bãi tối, cách nào an toàn?', options: ['Giữ R rồi mở cửa nhìn ra sau', 'Dừng hẳn, giữ phanh chân khi cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc và kiểm tra lối mở cửa; không an toàn thì ở lại giữ phanh, gọi hỗ trợ', 'Chọn ô sát lối người đi bộ rồi xuống ngay'], correctIndex: 1 }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống hầm thiếu sáng.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống hầm thiếu sáng.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Sửa quan sát, chiếu sáng, điều kiện dừng, người hướng dẫn và rời xe an toàn; bỏ mốc lùi cố định, sửa hai sơ đồ và công bố chưa thẩm định độc lập.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'parking-column',

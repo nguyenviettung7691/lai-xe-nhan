@@ -68,3 +68,45 @@ steps/safety. This lesson has two SVGs, no additional photos, charts or animatio
 Clean worktree. Baseline content, asset and validation suites: **31 tests
 passed**. Both original diagrams inspected in the rendered lesson: incorrect
 main light orientation and variant visibility cone confirmed.
+
+## Verification results
+
+- Analysis and mitigation plan committed first as `75ec7d4`.
+- Card is now **1.1.0**, content pack **2026.10.6**. Historical releases,
+  lesson/card/asset/checklist/quiz IDs retained. Removed only this card's sample
+  approval; browser shows the independent-validation warning with no sample
+  reviewer. The stale-approval test now uses still-approved `narrow-creep` and
+  continues to verify the same rejection behaviour.
+- Rewrote all eight steps and cues, three mistakes, recovery, safety, mnemonic
+  and three questions. No renderer or shared-checklist changes were necessary.
+  Increased the estimated reading time from three to five minutes.
+- Replaced both SVGs and descriptions. Tests check car heading, open bay,
+  side clearance, rear-origin reverse arrow, front/rear lamp origins and
+  directions, guide position outside the straight corridor, illustrative
+  sight-line endpoints and absence of motion arrows in the stopped variant.
+- **89 tests passed** across the content, asset, validation and all five
+  parking-review regression suites (including 11 new low-light tests).
+  Initial validation caught two non-action-first steps and the first geometry
+  test helper truncating nested SVG groups; both were corrected and rerun.
+- `npm run lint`, `npm run build` and `git diff --check` passed. Build emitted
+  only existing third-party Zod annotation warnings.
+- Two consecutive asset generations produced identical manifests; checksum
+  tests cover generated file bytes. Only the two low-light SVGs changed;
+  unrelated artwork remained unchanged. All 46 assets total **123.08 KB**.
+- Inspected both rendered diagrams on desktop and at **390 × 844** mobile.
+  Checked every SVG text bounding box: none outside the 320 × 200 canvas.
+  Both images loaded at their expected natural width, captions wrapped, and
+  neither desktop (**1440 × 1000**) nor mobile had horizontal page overflow.
+- Desktop/mobile quick mode retains eight steps, the stop instruction and
+  secure-before-exit guidance while showing only the main image, as intended.
+  Learning mode displays both images. Quiz browser exercise returned **0/3**
+  for incorrect choices, then **3/3** after retry with the correct choices.
+- Inspected the live TTS component's inputs: mnemonic, eight revised steps and
+  safety (**10 entries**); full-script and step inputs contain stopping,
+  securing and pedestrian-access guidance without the old fixed-distance rule.
+  This checks the instruction source, not acoustic quality or speech-engine
+  availability.
+
+Independent qualified-instructor review and practice in the actual vehicle and
+car park remain necessary; the revision does not claim certification, measured
+lighting coverage or a universally safe manoeuvring path.
