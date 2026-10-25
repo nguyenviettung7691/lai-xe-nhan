@@ -54,12 +54,14 @@ export const checklists: Checklist[] = [
     title: 'Trước khi lên cao tốc',
     description: 'Kiểm tra nhanh trước khi vào đoạn đường tốc độ cao.',
     items: [
-      { id: 'hw-tire', itemNo: 1, label: 'Áp suất và gai lốp còn tốt', criticalLevel: 'must' },
-      { id: 'hw-fuel', itemNo: 2, label: 'Nhiên liệu đủ đến trạm dừng kế tiếp', criticalLevel: 'must' },
-      { id: 'hw-wiper', itemNo: 3, label: 'Gạt mưa và nước rửa kính hoạt động', criticalLevel: 'should' },
-      { id: 'hw-route', itemNo: 4, label: 'Đã xem trước lối ra cần đi', criticalLevel: 'should' },
-      { id: 'hw-rest', itemNo: 5, label: 'Người lái tỉnh táo, không buồn ngủ', criticalLevel: 'must' },
-      { id: 'hw-phone', itemNo: 6, label: 'Điện thoại gắn giá đỡ, đã bật dẫn đường', criticalLevel: 'should' }
+      { id: 'hw-tire', itemNo: 1, label: 'Lốp đủ áp suất khuyến nghị và không hư hỏng rõ', criticalLevel: 'must', hint: 'Đo khi lốp nguội theo nhãn xe/sách hướng dẫn; kiểm tra gai, vết nứt, phồng hoặc thủng. Không lấy áp suất tối đa in trên hông lốp làm mức khuyến nghị.' },
+      { id: 'hw-brake-lights', itemNo: 2, label: 'Phanh và đèn trước/sau hoạt động bình thường', criticalLevel: 'must', hint: 'Không khởi hành nếu phanh có cảm giác bất thường, đèn thiết yếu hỏng hoặc xe báo lỗi nghiêm trọng; kiểm tra/sửa chữa trước chuyến đi.' },
+      { id: 'hw-fuel', itemNo: 3, label: 'Nhiên liệu hoặc mức sạc đủ cho chặng đã định', criticalLevel: 'must', hint: 'Tính cả đường vòng và điểm dừng phù hợp; không dựa hoàn toàn vào tầm hoạt động ước tính tối đa của xe.' },
+      { id: 'hw-wiper', itemNo: 4, label: 'Gạt mưa, nước rửa kính và sấy kính hoạt động', criticalLevel: 'should', hint: 'Kiểm tra để duy trì tầm nhìn khi mưa/ẩm; nếu kính không thể giữ đủ rõ, hoãn đi hoặc dừng ở nơi an toàn.' },
+      { id: 'hw-route', itemNo: 5, label: 'Đã xem trước tuyến, lối ra và điểm dừng dự kiến', criticalLevel: 'should', hint: 'Cài dẫn đường và kiểm tra tuyến trước khi xe chạy; không cố rẽ hoặc dừng đột ngột khi lỡ lối ra.' },
+      { id: 'hw-rest', itemNo: 6, label: 'Người lái tỉnh táo, đủ sức khỏe và không bị chất gây ảnh hưởng', criticalLevel: 'must', hint: 'Không lái khi buồn ngủ, uống rượu bia, dùng chất/thuốc ảnh hưởng hoặc không khỏe; đổi người lái, nghỉ hoặc hoãn chuyến.' },
+      { id: 'hw-phone', itemNo: 7, label: 'Điện thoại/dẫn đường đã đặt trước; không cần cầm khi xe chạy', criticalLevel: 'should', hint: 'Gắn chắc giá đỡ và nhập điểm đến khi xe đang đỗ; dừng ở nơi an toàn nếu cần đổi tuyến hoặc xử lý điện thoại.' },
+      { id: 'hw-load', itemNo: 8, label: 'Hành lý được cố định và không che tầm nhìn', criticalLevel: 'should', hint: 'Không chở quá tải; đặt đồ nặng chắc chắn, tránh để vật có thể văng vào người khi phanh.' }
     ]
   },
   {

@@ -45,4 +45,14 @@ describe('nội dung checklist thực tế', () => {
     expect(postPark?.items.find((item) => item.id === 'park-door')?.hint).toMatch(/xe đạp/i)
     expect(postPark?.items.find((item) => item.id === 'park-lock')).toBeDefined()
   })
+
+  it('chuẩn bị đi cao tốc mà không thao tác điện thoại khi xe chạy', () => {
+    const preHighway = checklists.find((checklist) => checklist.id === 'pre_highway')
+    expect(preHighway).toBeDefined()
+    expect(preHighway?.items.find((item) => item.id === 'hw-tire')?.hint).toMatch(/lốp nguội/i)
+    expect(preHighway?.items.find((item) => item.id === 'hw-brake-lights')?.criticalLevel).toBe('must')
+    expect(preHighway?.items.find((item) => item.id === 'hw-fuel')?.label).toMatch(/mức sạc/i)
+    expect(preHighway?.items.find((item) => item.id === 'hw-phone')?.hint).toMatch(/xe đang đỗ/i)
+    expect(preHighway?.items.find((item) => item.id === 'hw-load')?.hint).toMatch(/văng vào người/i)
+  })
 })
