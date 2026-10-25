@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.14'
+export const CONTENT_VERSION = '2026.10.15'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -121,5 +121,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa highway-exit: quan sát từng làn, phanh theo điều kiện, bỏ lối ra quá muộn và hai sơ đồ làn giảm tốc; bỏ mốc cố định và thẩm định mẫu.',
     cardIds: ['highway-exit']
+  },
+  {
+    version: '2026.10.15',
+    date: '2026-10-25',
+    summary: 'Sửa highway-signs: nhận diện và hiệu lực biển tốc độ, tối thiểu có điều kiện, chuyển làn an toàn và hai sơ đồ; bỏ thẩm định mẫu.',
+    cardIds: ['highway-signs']
   }
 ]

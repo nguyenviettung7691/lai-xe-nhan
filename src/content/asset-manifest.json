@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.14",
+  "contentVersion": "2026.10.15",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 154.37,
+  "totalSizeKb": 156.85,
   "assets": [
     {
       "id": "parking-start-main",
@@ -404,11 +404,11 @@
       "url": "/content/svg/highway-signs-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.33,
-      "checksum": "sha256-1aa4ebcb093262d0169f5ca809ccdf33cd1b86f299d94ecc2af91a3bd0a5bd96",
+      "sizeKb": 3.53,
+      "checksum": "sha256-b74915db4d177c34908d6b88cf111e6dcea67ddc8abbda2c358bc092b346ebc9",
       "offlinePack": "core",
-      "caption": "Biển gộp làn",
-      "alt": "Sơ đồ nhìn từ trên xuống: biển báo gộp làn và quỹ đạo nhập làn tương ứng."
+      "caption": "Nhận diện tối đa và tối thiểu có điều kiện, không phải lệnh đổi làn",
+      "alt": "Bảng nhận diện minh họa, không theo tỷ lệ hay mô tả cách đặt biển: vòng đỏ nền trắng số đen 80 là tối đa 80 km/h; vòng xanh lam số trắng 60 là tối thiểu 60 km/h khi giao thông thuận lợi và an toàn. Gặp nguy hiểm cần giảm tốc, kể cả dưới mức tối thiểu. Phía dưới là xe hướng đầu sang phải và mũi tên đi thẳng trên mặt đường, không phải quỹ đạo chuyển làn."
     },
     {
       "id": "highway-signs-var",
@@ -418,11 +418,11 @@
       "url": "/content/svg/highway-signs-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.41,
-      "checksum": "sha256-102460180c070d121ae3ad04aa3f9b38c42c6a7d5a232eefa23395e545cefde8",
+      "sizeKb": 3.69,
+      "checksum": "sha256-be3309c8c0278d4af305ab8a60c41b713e9351715177695916900d0901423d1c",
       "offlinePack": "core",
-      "caption": "Biển đổi tốc độ",
-      "alt": "Sơ đồ nhìn từ trên xuống: biển giới hạn tốc độ 60 km/h và quãng giảm tốc trước biển."
+      "caption": "Giảm tốc trước vị trí giới hạn mới có hiệu lực, không chờ qua biển",
+      "alt": "Ví dụ riêng nhìn từ trên xuống, không theo tỷ lệ: xe hướng đầu sang phải, còn ở trước biển tối đa 60 km/h, không có biển phụ. Nét dọc mảnh nối vị trí biển với đường chỉ vị trí hiệu lực, không phải vạch đường hay lệnh dừng. Vùng sáng bên phải bắt đầu tại vị trí này: không vượt 60 từ đây, vẫn chậm hơn nếu cần an toàn. Mũi tên đi thẳng khớp đầu xe; giảm tốc êm từ sớm, không có quãng phanh hoặc tốc độ cao tốc chung được bảo đảm."
     },
     {
       "id": "highway-gap-main",

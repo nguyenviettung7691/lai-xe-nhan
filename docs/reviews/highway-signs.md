@@ -68,4 +68,40 @@ downstream of its sign and both diagrams lack the intended sign interpretation.
 
 ## Implementation and verification results
 
-Pending.
+- Analysis/plan committed before implementation as `47f9715`.
+- Lesson **1.1.0**, content pack **2026.10.15**. Revised the complete lesson
+  coherently: context/objective, eight action-led instructions and cues,
+  mistakes, recovery, safety, mnemonic and all three quiz decisions. Retained
+  stable identities and original release/changelog history.
+- Removed only this lesson's seed approval; the running UI displays
+  **Chưa thẩm định độc lập**. Qualified instructor/legal sign-off remains
+  outstanding; this revision does not claim that certification.
+- Main illustration now distinguishes red-ring maximum 80 from blue minimum
+  60, explicitly conditional on safe, favorable traffic. Straight car/arrow
+  alignment does not imply an unnecessary lane change.
+- Variant is an independent example: car fully upstream of the 60 sign;
+  new-limit shading starts at the sign's station. Its reference line is
+  explicitly not a road marking or stop instruction. No braking-distance
+  guarantee or universal motorway speed is depicted.
+- Added **11 focused regression tests** covering safe decisions, actual graded
+  answers, stable metadata, sign colors/numbers, whole-car pavement clearance,
+  nose/arrow alignment, travel direction and the sign/effective-position
+  geometry. Text assertions account for SVG line wrapping.
+- **42 targeted tests passed**, including the existing content, asset and
+  validation gates. **Lint and production typecheck/build passed**. Build
+  reports only non-failing third-party Zod annotation warnings.
+- Regeneration is deterministic for the manifest and all **46 SVGs**.
+  Git's content diff contains only these two SVG changes; the other **44**
+  images are unchanged. Manifest sizes/checksums and offline budget pass.
+- Inspected both actual rendered SVGs and their captions in the running
+  lesson, including **1440px desktop** and **390px mobile** views. SVG text
+  bounding boxes fit within the 320 by 200 viewBox; images load without
+  clipping or horizontal page overflow.
+- Browser quiz test: deliberately choosing the unsafe minimum-speed answer
+  produces **2/3, Chưa đạt** and highlights that mistake; retrying with safe
+  answers produces **3/3, Đạt**. The hazard question has the stop-condition
+  badge.
+- Quick mode retains the main diagram, unverified status, minimum-speed
+  exception and safe lane-change warning while hiding the variant as intended.
+  Critical instructions/safety remain in the shared full/step audio sources;
+  no shared UI or speech implementation needed changing.

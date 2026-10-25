@@ -95,37 +95,43 @@ export const highwayCards: Card[] = [
     lessonId: 'highway-entry',
     topicId: 'highway',
     title: 'Đọc biển báo tốc độ và làn đường',
-    context: 'Trên cao tốc, biển báo tốc độ tối đa và tối thiểu có thể thay đổi theo từng đoạn. Đi sai làn hoặc sai tốc độ đều bị xử phạt.',
-    objective: 'Chọn đúng làn và tốc độ phù hợp với biển báo hiện hành.',
+    context: 'Bạn đang đi trên cao tốc có biển tốc độ và phân làn; phía trước có thể đổi giới hạn, thi công hoặc ùn tắc. Cần hiểu biển áp dụng cho làn và loại xe nào, không chỉ nhớ một con số ở đầu tuyến.',
+    objective: 'Phân biệt tốc độ tối đa, tối thiểu; chọn làn được phép và điều chỉnh tốc độ theo hiệu lực biển cùng điều kiện thực tế.',
     risk: 'medium',
     difficulty: 2,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'highway', spaceConstraint: 'open', visibility: 'good', stress: 'calm' },
     steps: [
-      { instruction: 'Đọc biển tốc độ ngay khi vào cao tốc và ghi nhớ con số.', cueType: 'sign', cueText: 'Biển tốc độ đầu tuyến' },
-      { instruction: 'Chọn làn theo tốc độ thực tế của mình, chậm hơn thì đi làn bên phải.', cueType: 'marker', cueText: 'Chậm hơn thì đi bên phải' },
-      { instruction: 'Quan sát biển báo tại mỗi nút giao vì giới hạn có thể thay đổi.', cueType: 'sign', cueText: 'Biển báo tại mỗi nút giao' },
-      { instruction: 'Giữ tốc độ trong khoảng giữa mức tối thiểu và tối đa.', cueType: 'marker', cueText: 'Giữa hai mức tốc độ' },
-      { instruction: 'Trở lại làn bên phải sau khi vượt xong.', cueType: 'marker', cueText: 'Vượt xong là về bên phải' }
+      { instruction: 'Đọc biển tròn viền đỏ, nền trắng, số đen là tốc độ tối đa; biển tròn nền xanh lam, số trắng là tốc độ tối thiểu. Số trên biển tính bằng ki-lô-mét mỗi giờ, không phải tốc độ bắt buộc phải đạt trong mọi tình huống.', cueType: 'sign', cueText: 'Viền đỏ: không vượt số; nền xanh: tối thiểu khi thuận lợi, an toàn' },
+      { instruction: 'Đọc cả bảng phân làn, ký hiệu loại xe, mũi tên làn và biển phụ để biết giới hạn áp dụng cho xe mình ở đâu; chọn làn được phép cho loại xe và hướng đi trước, không coi làn trái là làn được vượt giới hạn tốc độ.', cueType: 'sign', cueText: 'Giới hạn theo làn không tự cho phép mọi loại xe đi vào làn đó' },
+      { instruction: 'Quan sát biển liên tục, không chỉ tại nút giao: chú ý biển thay đổi tốc độ, biển điện tử, biển tạm ở công trường, biển hết hạn chế và chỉ dẫn của người điều khiển giao thông. Xác định phạm vi và vị trí hiệu lực qua biển chính, biển phụ; không tự coi qua nút giao là được tăng tốc.', cueType: 'sign', cueText: 'Biển thực tế và chỉ dẫn hợp lệ, không phải trí nhớ hay ứng dụng dẫn đường' },
+      { instruction: 'Giảm tốc khi thấy giới hạn tối đa thấp hơn sắp có hiệu lực: quan sát phía trước và gương, giảm tốc êm từ sớm để không vượt mức mới ngay từ vị trí có hiệu lực; không chờ qua biển mới phanh hoặc đổi làn để né giới hạn.', cueType: 'timing', cueText: 'Biển có thể kèm vị trí hoặc phạm vi áp dụng; không có quãng phanh chung', speedHint: 'theo biển áp dụng, dòng xe, tầm nhìn và độ bám' },
+      { instruction: 'Giữ tốc độ không vượt tốc độ tối đa áp dụng; chỉ duy trì ít nhất tốc độ tối thiểu khi điều kiện giao thông thuận lợi và an toàn. Khi ùn tắc, mưa trơn, tầm nhìn kém hoặc có chướng ngại, giảm tốc hoặc phanh theo nguy hiểm, kể cả xuống dưới mức tối thiểu; không tăng ga chỉ để đủ số trên biển.', cueType: 'feel', cueText: 'Tối đa là trần, không phải mục tiêu; không ép tốc độ khi không an toàn' },
+      { instruction: 'Chọn đi về bên phải trong các làn được phép khi an toàn nếu đi chậm hơn dòng xe. Sau khi vượt, chỉ trở lại làn bên phải khi đủ khoảng hở, không tạt đầu xe vừa vượt; không dùng làn dừng khẩn cấp hoặc lề đường làm làn chạy.', cueType: 'marker', cueText: 'Không có quyền vượt giới hạn dù xe sau thúc ép' },
+      { instruction: 'Bật xi-nhan báo trước mỗi lần chuyển làn, kiểm tra gương, khoảng hở trước sau và hai bên; kiểm tra lại điểm mù bên chuyển ngay trước khi dịch ngang, chỉ liếc ngắn rồi nhìn lại đường. Chỉ chuyển một làn liền kề qua vạch cho phép khi an toàn, không cắt vạch liền; ổn định xe rồi quan sát lại, tắt xi-nhan khi hoàn tất.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền ưu tiên; chưa đủ hở thì chưa chuyển' },
+      { instruction: 'Giữ kiểm soát nếu chưa đọc rõ biển hoặc lỡ ở sai làn; không phanh gấp chỉ để đọc lại, dừng xem biển, lùi hay quay đầu trên cao tốc. Điều chỉnh tốc độ an toàn theo giới hạn đang áp dụng và quan sát tiếp; chỉ sửa làn qua vạch cho phép khi đủ hở, nếu lỡ hướng ra thì đi tiếp tới lối ra phù hợp.', cueType: 'sign', cueText: 'Không đoán giới hạn cao hơn hoặc chạy theo xe trước' }
     ],
     mistakes: [
-      'Bám làn trái dù đang chạy chậm hơn dòng xe.',
-      'Chạy dưới tốc độ tối thiểu ghi trên biển.',
-      'Chỉ nhìn biển đầu tuyến rồi giữ nguyên tốc độ suốt hành trình.'
+      'Chỉ nhìn con số, bỏ qua màu biển, làn, loại xe hoặc biển phụ; tưởng làn trái cho phép chạy nhanh tùy ý.',
+      'Cố giữ tốc độ tối thiểu trong ùn tắc, mưa trơn hoặc tầm nhìn kém; coi tốc độ tối đa là mục tiêu phải đạt.',
+      'Qua biển giới hạn thấp hơn mới giảm tốc, hoặc tạt sang làn khác và dùng lề để né hạn chế.'
     ],
-    recovery: 'Khi lỡ đi sai làn, bật xi-nhan và chuyển làn ở đoạn trống, tránh đổi làn liên tục.',
-    safety: 'Quy định tốc độ và làn đường theo Luật Trật tự, an toàn giao thông đường bộ và biển báo tại chỗ luôn được ưu tiên.',
-    mnemonic: { text: 'Biển nói gì, chân ga nghe nấy.', rhythm: 'doi-ve' },
+    recovery: 'Nếu nhận ra đang vượt giới hạn, nhả ga và giảm tốc có kiểm soát, quan sát phía trước và xe sau; vẫn phanh ngay khi cần tránh va chạm. Nếu sai làn, báo hiệu, kiểm tra gương và điểm mù, nhường xe ở làn nhận, chỉ chuyển từng làn qua vạch cho phép khi đủ hở. Không cắt vạch liền, tạt nhiều làn, dùng làn dừng khẩn cấp hoặc lề đường; không dừng đọc biển, lùi hay quay đầu. Lỡ hướng ra thì đi tiếp tới lối ra phù hợp; chỉ kiểm tra lại hành trình bằng thiết bị khi đã dừng tại nơi được phép và an toàn. Nếu xe gặp sự cố không duy trì được hành trình an toàn, thực hiện quy trình sự cố cao tốc và gọi hỗ trợ, không cố tăng ga để đạt tối thiểu.',
+    safety: 'Chấp hành chỉ dẫn của người điều khiển giao thông và hệ thống báo hiệu theo thứ tự hiệu lực; đọc đúng phạm vi làn, loại xe, biển phụ và vị trí có hiệu lực. Không vượt tốc độ tối đa áp dụng; tối thiểu chỉ duy trì khi giao thông thuận lợi và an toàn. Ùn tắc, mưa trơn, thiếu tầm nhìn hoặc chướng ngại thì giảm tốc hoặc phanh theo nguy hiểm, kể cả dưới mức tối thiểu. Không đổi làn đột ngột để né biển; báo hiệu, kiểm tra gương và điểm mù, đủ hở mới chuyển từng làn qua vạch cho phép. Không chạy trên làn dừng khẩn cấp hoặc lề đường, không dừng đọc biển, lùi hay quay đầu; lỡ lối ra thì đi tiếp.',
+    mnemonic: { text: 'Đúng biển, đúng làn; gặp nguy giảm tốc, đủ hở chuyển.', rhythm: 'doi-ve' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Nếu đang chạy chậm hơn dòng xe, bạn nên đi ở làn nào?', options: ['Làn trong cùng bên trái', 'Làn bên phải', 'Làn nào cũng được'], correctIndex: 1 },
-      { prompt: 'Giới hạn tốc độ trên cao tốc có thể thay đổi khi nào?', options: ['Chỉ ở đầu tuyến', 'Tại mỗi nút giao, cần quan sát biển báo liên tục', 'Không bao giờ thay đổi'], correctIndex: 1 },
-      { prompt: 'Sau khi vượt xong một xe khác, bạn nên làm gì?', options: ['Giữ nguyên làn trái', 'Trở lại làn bên phải', 'Bật đèn cảnh báo'], correctIndex: 1 }
+      { prompt: 'Biển tròn viền đỏ số 80 và biển tròn nền xanh số 60 áp dụng cho xe, làn của bạn có nghĩa gì?', options: ['Phải chạy đúng 80 dù đường mưa trơn', 'Tối đa 80 km/h; tối thiểu 60 km/h chỉ khi giao thông thuận lợi và an toàn, không phải tốc độ bắt buộc trong nguy hiểm', 'Làn trái được vượt 80 nếu cần vượt xe'], correctIndex: 1 },
+      { prompt: 'Phía trước ùn tắc nhưng đoạn đường có biển tốc độ tối thiểu, bạn làm gì?', options: ['Giảm tốc hoặc phanh theo dòng xe và nguy hiểm, kể cả dưới mức tối thiểu; giữ khoảng cách, không lách ra lề', 'Giữ đủ tốc độ tối thiểu dù phải áp sát xe trước', 'Chuyển ngay ra làn dừng khẩn cấp để giữ tốc độ'], correctIndex: 0, isStopCondition: true },
+      { prompt: 'Thấy giới hạn tối đa thấp hơn phía trước và đang muốn về làn phải sau khi vượt, bạn xử lý thế nào?', options: ['Chờ qua biển mới phanh và tạt về phải', 'Sang bất kỳ làn phải nào để không phải giảm tốc', 'Giảm tốc êm từ sớm để đúng mức mới từ vị trí hiệu lực; chỉ về làn phải được phép sau khi báo hiệu, kiểm tra gương và điểm mù, đủ hở, qua vạch cho phép'], correctIndex: 2 }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về đọc biển báo trên cao tốc.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về đọc biển báo trên cao tốc.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Phân biệt tối đa và tối thiểu có điều kiện, phạm vi biển, chọn và chuyển làn an toàn; thay hai sơ đồ, câu hỏi và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'highway-gap',
