@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'power-limited',
+    icon: 'power-limited',
+    name: 'Giới hạn công suất (rùa)',
+    english: 'Power limited / turtle',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Hình rùa báo công suất bị giới hạn để bảo vệ hệ truyền động, có thể do pin thấp, pin/motor quá nóng hoặc quá lạnh. Không phải chế độ tiết kiệm ECO và không bảo đảm xe vẫn giữ đủ tốc độ.',
+    keywords: ['rùa', 'turtle', 'power down', 'power limited', 'giảm công suất', 'xe điện'],
+    actions: [
+      'Tránh tăng ga mạnh, kiểm tra khả năng giữ tốc độ và tìm nơi dừng an toàn nếu xe hụt lực.',
+      'Đọc thông báo để phân biệt pin thấp, nhiệt độ hay lỗi; chỉ sạc/làm mát theo sổ tay khi điều kiện cho phép.',
+      'Nếu kèm lỗi hệ EV, STOP hoặc không giữ được tốc độ an toàn, dừng và gọi hỗ trợ, không cố vượt/leo dốc.'
+    ],
+    avoid: 'Không ép ga để vượt giới hạn, không coi chỉ cần chờ một số phút cố định là hết hoặc tự mở hệ thống cao áp.',
+    callHelp: 'Cần hỗ trợ khi kèm lỗi EV/STOP, giảm lực mạnh hoặc không hết sau xử lý đúng sổ tay; khói/mùi cháy thì rời xa và gọi khẩn cấp.'
+  },
+  {
     id: 'ev-battery-low',
     icon: 'ev-battery-low',
     name: 'Pin kéo cao áp sắp cạn',

@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['power-limited', ['Hình rùa', 'quá lạnh', 'Không phải chế độ tiết kiệm ECO', 'STOP'], []],
   ['ev-battery-low', ['khác bình điện 12 V', 'không được bảo đảm', 'không kéo xe tùy tiện'], []],
   ['ready', ['dù không nghe tiếng', 'READY đã tắt', 'không gian kín'], []],
   ['forward-safety', ['đỏ/nháy/còi', 'không chờ xe tự xử lý', 'Không thử AEB'], []],
