@@ -318,15 +318,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Low fuel',
     color: 'amber',
     severity: 'info',
-    description: 'Nhiên liệu còn ở mức dự trữ, thường đủ 40–70 km tùy xe.',
+    description: 'Hình trụ bơm vàng báo nhiên liệu thấp. Mức dự trữ và quãng đường còn lại thay đổi theo xe, độ dốc, tải và cách chạy; không có số km được bảo đảm.',
     keywords: ['xăng', 'nhiên liệu', 'hết xăng', 'fuel', 'dầu diesel'],
     actions: [
-      'Tìm trạm xăng gần nhất trên bản đồ.',
-      'Đi đều ga, tắt điều hòa nếu quãng đường còn xa.',
-      'Trên cao tốc, ưu tiên ra trạm dừng gần nhất.'
+      'Nhờ người đi cùng tìm trạm phù hợp hoặc dừng an toàn để tra cứu, ưu tiên đổ nhiên liệu sớm.',
+      'Đi đều ga trong giới hạn an toàn, không cố kéo dài quãng đường dựa vào số km dự kiến.',
+      'Trên cao tốc, chỉ vào trạm/lối ra hợp lệ; nếu xe hụt nhiên liệu, tìm nơi dừng an toàn và gọi hỗ trợ.'
     ],
-    avoid: 'Không cố chạy tới cạn sạch — bơm xăng dễ hỏng khi chạy khô.',
-    callHelp: 'Gọi cứu hộ nếu xe chết máy giữa đường vì hết nhiên liệu.'
+    avoid: 'Không dừng đổ xăng trên làn chạy, lùi trên cao tốc hoặc cố đề nhiều lần khi cạn; xe diesel có thể cần quy trình mồi đúng sổ tay.',
+    callHelp: 'Gọi hỗ trợ nếu không tới được trạm an toàn, xe chết máy hoặc nghi rò nhiên liệu; tắt máy và tránh nguồn lửa khi có mùi xăng/rò rỉ.'
   },
   {
     id: 'washer-fluid',

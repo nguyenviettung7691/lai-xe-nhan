@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['fuel-low', ['không có số km được bảo đảm', 'lối ra hợp lệ', 'quy trình mồi'], ['40–70 km']],
   ['service', ['lỗi hệ truyền động', 'đọc thông báo', 'Không reset'], ['chỉ cần đặt lịch với gara quen']],
   ['glow-plug', ['quản lý động cơ', 'nhấp nháy', 'tự điều khiển sấy'], ['thêm 30 giây', 'hẹn kiểm tra bugi']],
   ['dpf', ['chỉ thực hiện', 'đèn nháy', 'trong nhà', 'cỏ khô'], ['15–20 phút']],
