@@ -57,7 +57,7 @@ export const lightIcons = {
   } },
   'esp-active': { paths: { car: skidCar, skidTracks } },
   'esp-off': { paths: { car: skidCar, skidTracks: 'M23 39c-8 3 4 5 0 7M41 39c-8 3 4 5 0 7' },
-    text: [{ value: 'OFF', x: 32, y: 60, size: 12 }] },
+    text: [{ value: 'OFF', x: 32, y: 58, size: 12 }] },
   immobilizer: { paths: { car,
     key: 'M35 31a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm0 0h8m-3 0v4'
   } },

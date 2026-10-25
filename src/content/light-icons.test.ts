@@ -72,5 +72,6 @@ describe('original dashboard SVG illustrations', () => {
     ] as const) {
       expect(getLightDrawing(name).text?.map((text) => text.value)).toEqual(labels)
     }
+    expect(getLightDrawing('esp-off').text?.[0].y).toBeLessThanOrEqual(58)
   })
 })
