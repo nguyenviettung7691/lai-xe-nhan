@@ -80,23 +80,23 @@ const title = computed(() =>
 
     <nav class="bottom-nav" aria-label="Điều hướng chính">
       <RouterLink to="/" :class="{ active: route.path === '/' }">
-        <span>⌂</span>Trang chủ
+        <span aria-hidden="true"><AppIcon name="home" /></span>Trang chủ
       </RouterLink>
       <RouterLink
         to="/topics"
         :class="{ active: route.path.startsWith('/topics') || route.path.startsWith('/lessons') }"
       >
-        <span>▦</span>Chuyên đề
+        <span aria-hidden="true"><AppIcon name="library" /></span>Chuyên đề
       </RouterLink>
       <RouterLink to="/checklist" :class="{ active: route.path === '/checklist' }">
-        <span>✓</span>Checklist
+        <span aria-hidden="true"><AppIcon name="checklist" /></span>Checklist
       </RouterLink>
       <RouterLink to="/review" :class="{ active: route.path === '/review' }">
-        <span>⟳</span>Ôn tập
+        <span aria-hidden="true"><AppIcon name="review" /></span>Ôn tập
         <sup v-if="store.dueReviewCards.length > 0" class="nav-badge">{{ store.dueReviewCards.length }}</sup>
       </RouterLink>
       <RouterLink to="/lights" :class="{ active: route.path === '/lights' }">
-        <span>!</span>Đèn xe
+        <span aria-hidden="true"><AppIcon name="dashboard" /></span>Đèn xe
       </RouterLink>
     </nav>
 
