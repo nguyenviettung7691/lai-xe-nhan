@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['immobilizer', ['khi xe đã khóa', 'khởi động dự phòng', 'không phải xe nào'], ['chờ 10 giây']],
   ['esp-off', ['OFF không chứng minh', 'một phần hoặc toàn bộ', 'bật lại ngay'], ['đang tắt hoặc bị lỗi']],
   ['esp-active', ['nhấp nháy', 'sáng liên tục', 'vẫn phanh khẩn cấp'], ['Không đạp ga hoặc phanh gấp']],
   ['eps', ['không đi tiếp', 'Không tắt nguồn khi xe còn chạy', 'đèn đỏ'], ['30 giây', 'chỉ đi chậm đoạn ngắn']],

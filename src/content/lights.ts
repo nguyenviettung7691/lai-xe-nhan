@@ -250,15 +250,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Immobilizer / Key',
     color: 'amber',
     severity: 'warn',
-    description: 'Xe không nhận chìa khóa thông minh hoặc hệ thống chống trộm đang khóa máy.',
+    description: 'Hình chìa khóa/xe có chìa báo nhận dạng chìa hoặc chống trộm; đèn đỏ nháy khi xe đã khóa có thể hoàn toàn bình thường. Đèn vàng, thông báo không thấy chìa hoặc không đề được cần đối chiếu sổ tay.',
     keywords: ['chìa khóa', 'smart key', 'chống trộm', 'immobilizer', 'remote'],
     actions: [
-      'Đưa chìa khóa lại gần nút start hoặc chạm vào nút đề.',
-      'Thay pin chìa khóa dự phòng nếu có.',
-      'Tắt máy hoàn toàn, chờ 10 giây rồi khởi động lại.'
+      'Dừng/đỗ an toàn, kiểm tra chìa đúng đang ở trong xe và đọc thông báo; không tắt máy giữa dòng xe để thử.',
+      'Thử chìa dự phòng hoặc thay pin chìa đúng loại; tránh để chìa sát thiết bị có thể gây nhiễu.',
+      'Nếu pin chìa yếu, chỉ dùng quy trình khởi động dự phòng đúng sổ tay; vị trí nhận chìa khác nhau, không phải xe nào cũng chạm nút Start.'
     ],
-    avoid: 'Không rời xe khi máy đang nổ mà chìa khóa không được nhận.',
-    callHelp: 'Gọi hỗ trợ hãng nếu xe không khởi động lại được sau vài lần thử.'
+    avoid: 'Không rời xe khi xe còn hoạt động, không cố đề liên tục hay tìm cách vô hiệu hóa chống trộm.',
+    callHelp: 'Gọi hỗ trợ hãng khi xe không nhận cả chìa dự phòng hoặc không khởi động được; nháy chống trộm bình thường lúc đỗ không cần cứu hộ.'
   },
   {
     id: 'dpf',
