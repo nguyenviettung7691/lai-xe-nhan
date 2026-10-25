@@ -195,6 +195,17 @@ const setColor = (value: LightColor | 'all') => {
 </template>
 
 <style scoped>
+.modal-backdrop {
+  z-index: 100;
+}
+
+.light-detail {
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 .result-count {
   font-size: 12px;
   margin: 0 0 12px;

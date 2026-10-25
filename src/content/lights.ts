@@ -742,9 +742,9 @@ const SEVERITY_RANK: Record<Severity, number> = { critical: 0, warn: 1, info: 2 
 
 /** Nhãn hiển thị theo mức độ: ưu tiên hành động, không dùng thuật ngữ kỹ thuật. */
 export const SEVERITY_LABEL: Record<Severity, string> = {
-  critical: 'Khẩn cấp — dừng sớm',
+  critical: 'Khẩn cấp — dừng an toàn',
   warn: 'Cảnh báo — hạn chế chạy xa',
-  info: 'Theo dõi — đi tiếp thận trọng'
+  info: 'Thông báo — xem hướng dẫn'
 }
 
 export const SEVERITY_SHORT_LABEL: Record<Severity, string> = {
