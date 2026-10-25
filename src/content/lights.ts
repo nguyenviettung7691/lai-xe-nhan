@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'parking-brake',
+    icon: 'parking-brake',
+    name: 'Phanh đỗ đang giữ',
+    english: 'Parking brake applied',
+    color: 'red',
+    severity: 'info',
+    description: 'Chữ P trong vòng tròn có ngoặc báo phanh đỗ đang giữ; một số xe dùng chung đèn phanh (!). Đỏ lúc đỗ có thể là bình thường, nhưng còn sáng khi đã nhả cần xử lý.',
+    keywords: ['phanh đỗ', 'phanh tay', 'parking brake', 'chữ p'],
+    actions: [
+      'Trước khi khởi hành, giữ phanh chân và nhả phanh đỗ theo sổ tay.',
+      'Xác nhận đèn tắt và xe không bị ghì; không tăng ga cưỡng ép khi phanh chưa nhả.',
+      'Nếu còn sáng/nháy hoặc không nhả được, dừng an toàn, giữ xe chắc và đọc thông báo, gọi hỗ trợ.'
+    ],
+    avoid: 'Không coi đèn P là đèn vị trí số P hoặc dùng thao tác phanh đỗ khẩn cấp không đúng sổ tay.',
+    callHelp: 'Đèn sáng khi đang đỗ thường không cần cứu hộ; không nhả/không giữ được phanh hoặc cảnh báo khi chạy cần hỗ trợ.'
+  },
+  {
     id: 'brake',
     icon: 'brake',
     name: 'Hệ thống phanh',
