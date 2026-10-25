@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['fog-light', ['sương mù trước', 'tia chúc xuống bên trái', 'biểu tượng vàng'], ['dưới 100 mét']],
   ['high-beam', ['xanh dương', 'tia ngang thẳng', 'quyền ưu tiên'], ['xin đường']],
   ['washer-fluid', ['không nhìn rõ', 'đúng bình', 'không đi tiếp'], ['xử lý ở lần dừng gần nhất']],
   ['fuel-low', ['không có số km được bảo đảm', 'lối ra hợp lệ', 'quy trình mồi'], ['40–70 km']],

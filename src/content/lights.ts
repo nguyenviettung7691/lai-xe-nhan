@@ -365,19 +365,19 @@ export const dashboardLights: DashboardLight[] = [
   {
     id: 'fog-light',
     icon: 'fog-light',
-    name: 'Đèn sương mù',
-    english: 'Fog light',
+    name: 'Đèn sương mù trước',
+    english: 'Front fog light',
     color: 'green',
     severity: 'info',
-    description: 'Đèn sương mù đang bật, hữu ích khi mưa lớn hoặc sương dày.',
-    keywords: ['đèn sương mù', 'sương mù', 'fog', 'mưa'],
+    description: 'Đèn xanh lá có tia chúc xuống bên trái cắt qua vạch lượn đứng báo đèn sương mù trước đang bật. Đèn sương mù sau là biểu tượng vàng hướng ngược lại.',
+    keywords: ['đèn sương mù', 'sương mù trước', 'front fog', 'fog light', 'mưa'],
     actions: [
-      'Bật khi tầm nhìn giảm dưới 100 mét.',
-      'Tắt ngay khi trời quang để không làm chói xe sau.',
-      'Kết hợp chiếu gần, không dùng chung với đèn pha.'
+      'Chỉ bật khi tầm nhìn/điều kiện và quy định cho phép; giảm tốc theo khoảng nhìn thấy thực tế.',
+      'Dùng cùng đèn chiếu gần khi cần; đèn sương mù không thay thế chiếu sáng chính hoặc tự bảo đảm nhìn rõ.',
+      'Tắt khi không còn cần thiết và kiểm tra riêng công tắc/đèn báo sương mù sau để tránh gây chói.'
     ],
-    avoid: 'Không để đèn sương mù sau bật suốt hành trình khi trời đã quang.',
-    callHelp: 'Không cần hỗ trợ; đây là đèn báo trạng thái.'
+    avoid: 'Không nhầm trước với sau, không coi một ngưỡng mét cố định áp dụng cho mọi nơi hoặc tăng tốc vì đã bật sương mù.',
+    callHelp: 'Trạng thái bình thường không cần hỗ trợ; nếu tầm nhìn không đủ để đi an toàn, tìm chỗ dừng phù hợp, không dừng giữa làn chạy.'
   },
   {
     id: 'cruise',
