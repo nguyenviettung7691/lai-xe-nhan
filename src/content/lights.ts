@@ -63,15 +63,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Transmission warning',
     color: 'red',
     severity: 'critical',
-    description: 'Dầu hộp số quá nóng hoặc hộp số đang chuyển sang chế độ bảo vệ.',
+    description: 'Bánh răng có dấu chấm than là một mẫu cảnh báo lỗi hộp số; xe khác dùng AT, nhiệt kế hoặc thông báo. Có thể là quá nhiệt hoặc lỗi truyền động, không thể chẩn đoán chỉ từ hình.',
     keywords: ['hộp số', 'số tự động', 'at', 'transmission', 'dầu hộp số'],
     actions: [
-      'Giảm tốc, chuyển về lái nhẹ nhàng và tìm chỗ dừng an toàn.',
-      'Dừng xe, để số P và cho máy chạy không tải khoảng 10 phút cho nguội.',
-      'Đi tiếp chậm đến gara nếu đèn tắt; đèn sáng lại thì dừng hẳn.'
+      'Giảm tải, tránh tăng ga và tìm nơi dừng an toàn; chỉ về P khi xe đã dừng hẳn.',
+      'Đọc đúng thông báo: có xe yêu cầu giữ máy chạy ở P để làm mát, xe khác yêu cầu tắt máy. Tuân thủ sổ tay, không tự đặt thời gian chờ.',
+      'Chỉ đi tiếp khi xe xác nhận đã nguội/cho phép và vận hành bình thường; không rõ hoặc cảnh báo còn thì gọi hỗ trợ.'
     ],
-    avoid: 'Không kéo tải, leo dốc dài hoặc chạy tốc độ cao khi đèn hộp số đang sáng.',
-    callHelp: 'Gọi cứu hộ nếu xe giật, mất lực kéo hoặc không vào được số.'
+    avoid: 'Không rà ga giữ xe trên dốc, ép vào số hay áp dụng cách làm mát của xe khác; khói/mùi cháy thì tắt máy khi đã dừng an toàn.',
+    callHelp: 'Gọi cứu hộ nếu giật mạnh, mất lực kéo, không vào số, có khói/mùi cháy hoặc cảnh báo không hết.'
   },
   {
     id: 'battery',

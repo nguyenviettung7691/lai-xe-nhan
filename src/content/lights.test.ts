@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['transmission', ['chỉ về P khi', 'xe khác yêu cầu tắt máy', 'không tự đặt thời gian'], ['khoảng 10 phút']],
   ['temperature', ['nguội hoàn toàn', 'không mở capo', 'quạt có thể tự quay'], ['ít nhất 30 phút']],
   ['oil', ['tắt động cơ', 'mức dầu đủ không chứng minh', 'sổ tay cho phép'], ['khởi động lại và xem']],
   ['brake', ['đã dừng', 'kèm ABS', 'không đi tiếp'], ['Đạp thử phanh']]
