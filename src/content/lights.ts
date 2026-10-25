@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'epb',
+    icon: 'epb',
+    name: 'Lỗi phanh đỗ điện tử',
+    english: 'Electronic parking brake fault',
+    color: 'amber',
+    severity: 'warn',
+    description: 'EPB vàng hoặc P có cờ lê tùy xe báo lỗi phanh đỗ điện tử; khác đèn P đỏ chỉ đang giữ. Đèn P nháy cũng có thể báo phanh chưa giữ/nhả hoàn toàn.',
+    keywords: ['epb', 'phanh tay điện tử', 'phanh đỗ điện tử', 'parking brake fault'],
+    actions: [
+      'Dừng tại nơi bằng phẳng an toàn, giữ phanh chân và đọc thông báo.',
+      'Chọn P khi đã dừng (xe số tự động); bảo đảm xe không trôi, không dựa vào EPB đang lỗi.',
+      'Liên hệ hỗ trợ, chỉ nhả khẩn cấp theo sổ tay/người có chuyên môn; không đi tiếp nếu phanh bó hoặc xe không giữ được.'
+    ],
+    avoid: 'Không tăng ga để thắng phanh đang bó, không tự chui dưới xe hoặc tháo cơ cấu EPB.',
+    callHelp: 'Cần xưởng kiểm tra sớm; cứu hộ nếu không nhả/giữ được xe, có phanh đỏ hoặc phanh hoạt động bất thường.'
+  },
+  {
     id: 'parking-brake',
     icon: 'parking-brake',
     name: 'Phanh đỗ đang giữ',
