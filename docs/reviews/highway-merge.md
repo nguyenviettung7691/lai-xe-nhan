@@ -63,3 +63,43 @@ Only the two SVG diagrams are attached: no separate photos, charts or animations
 
 Clean worktree. Baseline content, assets and validation suites: **31 tests passed**.
 Both original SVGs inspected in the rendered lesson before editing.
+
+## Implementation and verification results
+
+- Analysis/plan committed first as `aa27f58`.
+- Card **1.2.0**, pack **2026.10.13**. Reworked all eight instructions, cues,
+  hints, mistakes, recovery, safety, mnemonic and all three questions together.
+  Retained identifiers and both previous card changelog entries.
+- Removed only this lesson's sample endorsement. The browser shows
+  **Chưa thẩm định độc lập** and no sample reviewer. Independent instructor
+  validation remains outstanding; these changes do not claim certification.
+- Replaced both diagrams. The main car starts wholly inside the right-side
+  acceleration lane, and its forward arrow crosses the dashed boundary into
+  only the adjacent rightmost lane. Outer edge and taper agree with the road
+  fill. All cars and traffic arrows face right. The variant shows two separate
+  actual bumper-to-bumper clearances around the inserted car and warns about
+  the rear vehicle's approach speed, without a numerical authorization rule.
+- Added **11 focused regression tests**, including sampled Bezier geometry,
+  initial nose/path alignment, lane/taper boundaries, vehicle rotation, both
+  gap endpoints, accessible descriptions, corrected answers and release status.
+  The generic stale-review test now uses unchanged, approved `highway-exit`.
+- Focused validation: **42 tests passed** across the lesson, content, assets
+  and validation suites. `npm run lint`, `npm run build` (including Vue/TS
+  checking), and `git diff --check` passed. The build emitted only dependency
+  annotation warnings from Zod/Rollup, unrelated to this revision.
+- Repeated generation produced byte-identical output for all **46 SVGs plus
+  the manifest**. Compared with the pre-implementation manifest, only this
+  lesson's two asset records changed; the other **44 records and SVGs** are
+  unchanged.
+- Browser verification at **1440 x 1000** and **390 x 844**: both assets load,
+  eight steps display, no horizontal overflow, and mobile figure/caption fit
+  within the viewport. Inspected both rendered diagrams and the mobile main
+  figure; measured every SVG text box with no out-of-viewBox text.
+- Quick mode retains all eight instructions and safety, while hiding the
+  variant/recovery as designed. Verified the whole-lesson spoken source
+  retains yielding, forced-stop and no-shoulder guidance, without relying on
+  hidden recovery or cues. Audio source inspected; no live driving exercise
+  or acoustic TTS validation was performed.
+- Browser quiz: selecting the shoulder-extension answer fails **2/3 (67%)**
+  and highlights the corrected stop answer. Retry with all safe answers passes
+  **3/3 (100%)**. Final browser console had no runtime errors.

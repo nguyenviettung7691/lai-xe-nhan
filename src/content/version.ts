@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.12'
+export const CONTENT_VERSION = '2026.10.13'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -109,5 +109,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa narrow-cutoff: dừng trước vùng xung đột, phanh khẩn cấp, nhường và quan sát lại; thay hai sơ đồ ngã ba và bỏ thẩm định mẫu.',
     cardIds: ['narrow-cutoff']
+  },
+  {
+    version: '2026.10.13',
+    date: '2026-10-25',
+    summary: 'Sửa highway-merge: nhường xe cao tốc, khoảng hở trước sau, xử lý cuối làn không chạy lề và hai sơ đồ nhập làn phải; bỏ thẩm định mẫu.',
+    cardIds: ['highway-merge']
   }
 ]

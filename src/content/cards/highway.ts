@@ -8,40 +8,43 @@ export const highwayCards: Card[] = [
     lessonId: 'highway-entry',
     topicId: 'highway',
     title: 'Nhập làn cao tốc an toàn',
-    context: 'Làn tăng tốc ngắn, xe phía sau đang chạy nhanh hơn bạn khoảng ba mươi ki-lô-mét mỗi giờ. Bạn chỉ có vài giây để quyết định.',
-    objective: 'Hòa vào dòng xe với chênh lệch tốc độ nhỏ nhất có thể.',
+    context: 'Bạn vào cao tốc từ nhánh bên phải có làn tăng tốc, trong khi xe trên làn chính có thể chạy nhanh hoặc đang ùn lại. Cần quan sát và chọn khoảng trống sớm, không đua tới cuối làn để cố chen vào.',
+    objective: 'Nhường xe trên cao tốc và chỉ nhập vào làn sát bên phải khi tốc độ, khoảng hở trước sau và vạch đường cho phép.',
     risk: 'high',
     difficulty: 3,
-    minutes: 4,
+    minutes: 5,
     tags: { speedRange: 'highway', spaceConstraint: 'medium', visibility: 'good', stress: 'high' },
     steps: [
-      { instruction: 'Bật xi-nhan trái ngay khi vào làn tăng tốc.', cueType: 'marker', cueText: 'Vào làn tăng tốc là bật xi-nhan' },
-      { instruction: 'Tăng tốc bám theo tốc độ dòng xe trên làn ngoài cùng.', cueType: 'feel', cueText: 'Tốc độ gần bằng dòng xe', speedHint: 'theo dòng xe, tối đa bằng biển báo' },
-      { instruction: 'Liếc gương trái và ngoái nhìn điểm mù một nhịp.', cueType: 'mirror', cueText: 'Gương trái và điểm mù' },
-      { instruction: 'Chọn khoảng trống dài ít nhất ba giây giữa hai xe.', cueType: 'timing', cueText: 'Khoảng trống ba giây' },
-      { instruction: 'Chuyển làn bằng một nhịp lái mượt, không cắt chéo.', cueType: 'feel', cueText: 'Một nhịp lái mượt', steeringHint: 'lái mượt một nhịp' },
-      { instruction: 'Tắt xi-nhan và giữ đều tốc độ sau khi đã vào làn.', cueType: 'marker', cueText: 'Đã vào giữa làn' }
+      { instruction: 'Đọc biển, vạch và chiều dài làn tăng tốc; quan sát dòng xe ở làn sát bên phải cao tốc và nhường xe đang chạy trên đó.', cueType: 'sign', cueText: 'Dùng làn tăng tốc trước khi nhập; không cắt vạch liền hoặc vùng gạch chéo' },
+      { instruction: 'Bật xi-nhan trái trước khi nhập; kiểm tra gương trong, gương trái và xe phía sau đang tiến đến trên làn nhận.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền ưu tiên; theo dõi xe đến nhanh và điểm mù xe tải' },
+      { instruction: 'Chỉnh tốc độ trong làn tăng tốc để gần tốc độ dòng xe khi an toàn, không vượt giới hạn và luôn quan sát đường phía trước.', cueType: 'feel', cueText: 'Dòng xe chậm thì giảm theo, không tăng tốc máy móc', speedHint: 'theo biển báo, độ bám, tầm nhìn và dòng xe' },
+      { instruction: 'Chọn khoảng hở đủ cả phía trước lẫn phía sau sau khi xe mình nhập vào, xét tốc độ xe sau đang thu hẹp khoảng cách; không ép xe khác phanh gấp hoặc đánh lái tránh.', cueType: 'timing', cueText: 'Khe ba giây giữa hai xe không mặc nhiên đủ chỗ cho xe thứ ba' },
+      { instruction: 'Kiểm tra lại gương và điểm mù bên trái ngay trước khi dịch ngang, chỉ liếc ngắn rồi nhìn lại phía trước; hoãn nhập nếu chưa chắc an toàn.', cueType: 'mirror', cueText: 'Quan sát trực tiếp bổ sung cho gương; cảnh báo điểm mù chỉ hỗ trợ' },
+      { instruction: 'Giảm tốc sớm trong làn tăng tốc nếu chưa có khe an toàn; nếu buộc phải dừng để tránh va chạm, dừng trước cuối làn, không ép nhập hoặc chạy tiếp ra làn dừng khẩn cấp hay lề đường.', cueType: 'marker', cueText: 'Không chờ tới chỗ thu hẹp mới phanh; dừng chỉ là phương án cuối' },
+      { instruction: 'Chuyển êm qua vạch đứt khi đủ điều kiện vào đúng làn sát bên phải, không cắt nhiều làn; nếu làn nhập tiếp tục thành làn chạy riêng thì giữ làn đó theo biển và vạch.', cueType: 'marker', cueText: 'Nhập một làn, không lao sang làn giữa hoặc làn trái', steeringHint: 'dịch ngang êm, không giật lái' },
+      { instruction: 'Tắt xi-nhan sau khi xe đã ổn định trong làn, điều chỉnh tốc độ và giữ khoảng cách với xe trước theo biển báo, tốc độ và điều kiện đường.', cueType: 'timing', cueText: 'Tăng khoảng cách khi mưa, trơn hoặc tầm nhìn kém; chưa vội vượt' }
     ],
     mistakes: [
-      'Đi hết làn tăng tốc mới bắt đầu xin nhập làn.',
-      'Nhập làn với tốc độ thấp hơn dòng xe rất nhiều.',
-      'Dừng lại ở cuối làn tăng tốc để chờ khoảng trống.'
+      'Tới cuối làn mới quan sát, rồi phanh gấp hoặc cố chen vì đã bật xi-nhan.',
+      'Chỉ nhìn khe phía trước, bỏ sót xe sau đến nhanh hoặc lao ngang nhiều làn.',
+      'Dùng làn dừng khẩn cấp làm phần kéo dài của làn tăng tốc.'
     ],
-    recovery: 'Nếu hết làn tăng tốc mà chưa có khoảng trống, đi tiếp vào làn dừng khẩn cấp, giữ thẳng lái rồi chờ khe trống an toàn.',
-    safety: 'Làn dừng khẩn cấp chỉ dùng khi thật sự cần; không dừng đỗ để nghỉ hoặc nghe điện thoại.',
-    mnemonic: { text: 'Xi-nhan, tăng tốc, nhìn gương rồi nhập làn.', rhythm: 'ba-nhip' },
+    recovery: 'Nếu khe đóng lại, giữ trong làn tăng tốc và giảm tốc sớm, quan sát xe sau; chỉ thử lại khi còn đủ đường để điều chỉnh tốc độ và đủ khoảng hở. Nếu buộc dừng trước cuối làn để tránh va chạm, không coi đó là chỗ chờ thông thường; không lùi, quay đầu hay chạy ra lề. Nếu bị kẹt, không đủ quãng tăng tốc để nhập lại an toàn hoặc xe gặp sự cố, bật đèn khẩn cấp khi dừng gây nguy hiểm và gọi đơn vị quản lý cao tốc hoặc Cảnh sát giao thông; không tự đi bộ trên cao tốc tìm trợ giúp.',
+    safety: 'Phải nhường xe đang chạy trên cao tốc; xi-nhan không phải quyền nhập làn. Không có khe an toàn thì giảm tốc sớm trong làn tăng tốc, buộc phải dừng thì dừng trước cuối làn để tránh va chạm, không ép nhập; không dùng làn dừng khẩn cấp hoặc lề để tăng tốc, không lùi hay quay đầu. Nếu bị kẹt không thể nhập lại an toàn, báo hiệu nguy hiểm và gọi hỗ trợ. Khoảng hở phải đủ trước và sau theo tốc độ tương đối, không lấy khe ba giây giữa hai xe làm bảo đảm; giữ cự ly theo biển và quy định tương ứng tốc độ, tăng thêm khi điều kiện xấu.',
+    mnemonic: { text: 'Nhường, nhìn, chỉnh tốc; đủ hở mới nhập.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Khi nhập làn cao tốc, nên tăng tốc đến mức nào?', options: ['Chậm hơn dòng xe nhiều để an toàn', 'Bám theo tốc độ của dòng xe trên làn ngoài', 'Giữ nguyên tốc độ đường phố'], correctIndex: 1 },
-      { prompt: 'Khoảng trống tối thiểu để chuyển làn nhập vào cao tốc là bao lâu?', options: ['Một giây', 'Ba giây', 'Không cần tính bằng thời gian'], correctIndex: 1 },
-      { prompt: 'Nếu hết làn tăng tốc mà chưa có khoảng trống an toàn, bạn nên làm gì?', options: ['Dừng hẳn giữa làn tăng tốc để chờ', 'Đi tiếp vào làn dừng khẩn cấp, giữ thẳng lái chờ khe hở', 'Tạt đầu xe đang chạy để có chỗ'], correctIndex: 1, isStopCondition: true }
+      { prompt: 'Khi dòng xe cao tốc thay đổi tốc độ, bạn chuẩn bị nhập làn thế nào?', options: ['Luôn tăng tới tốc độ tối đa dù dòng xe đang ùn', 'Nhường xe trên cao tốc, chỉnh tốc độ gần dòng xe khi an toàn, trong giới hạn và điều kiện đường', 'Bật xi-nhan để xe trên làn chính bắt buộc nhường mình'], correctIndex: 1 },
+      { prompt: 'Hai xe trên làn chính cách nhau ba giây; có đủ điều kiện để chen vào giữa không?', options: ['Có, ba giây luôn đủ cho một xe nữa', 'Chỉ cần đủ khoảng cách với xe phía trước', 'Chưa thể kết luận; cần đủ khoảng hở trước và sau khi nhập, xét tốc độ xe sau, không ép xe khác phanh gấp hoặc tránh'], correctIndex: 2 },
+      { prompt: 'Chưa có khe an toàn và làn tăng tốc sắp kết thúc, bạn làm gì?', options: ['Giảm tốc sớm trong làn tăng tốc; nếu buộc dừng tránh va chạm thì dừng trước cuối làn, không ép nhập hay dùng lề; gọi hỗ trợ nếu bị kẹt', 'Tăng tốc tiếp trên làn dừng khẩn cấp để tìm khe', 'Ép vào làn chính vì xi-nhan đã bật'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.1.0',
-    updatedAt: '2026-09-10',
+    reviewStatus: 'published_unverified',
+    version: '1.2.0',
+    updatedAt: '2026-10-25',
     changelog: [
       { version: '1.0.0', date: '2026-08-20', summary: 'Bản đầu tiên của thẻ nhập làn cao tốc.', author: 'Biên tập nội dung' },
-      { version: '1.1.0', date: '2026-09-10', summary: 'Thêm mốc khoảng trống ba giây và phương án khi hết làn tăng tốc.', author: 'Biên tập nội dung' }
+      { version: '1.1.0', date: '2026-09-10', summary: 'Thêm mốc khoảng trống ba giây và phương án khi hết làn tăng tốc.', author: 'Biên tập nội dung' },
+      { version: '1.2.0', date: '2026-10-25', summary: 'Sửa nhường đường, khoảng hở trước sau và xử lý cuối làn; bỏ hướng dẫn chạy lề, thay hai sơ đồ nhập làn phải và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
     ]
   }),
   defineCard({

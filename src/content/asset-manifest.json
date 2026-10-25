@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.12",
+  "contentVersion": "2026.10.13",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 145.5,
+  "totalSizeKb": 149.9,
   "assets": [
     {
       "id": "parking-start-main",
@@ -348,11 +348,11 @@
       "url": "/content/svg/highway-merge-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.76,
-      "checksum": "sha256-db924cae9b08575359fe3dde97717f8cad6a7457cfed8be441d64b6265b79e2d",
+      "sizeKb": 4.53,
+      "checksum": "sha256-782aa55495c6e4e5931aba3be769192db5217652d14b9b837811735cb5d74dee",
       "offlinePack": "core",
-      "caption": "Nhập làn từ làn tăng tốc",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo nhập làn từ làn tăng tốc vào làn phải cao tốc."
+      "caption": "Từ làn tăng tốc bên phải, chỉ nhập một làn khi đủ hở",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: các xe hướng đầu sang phải; làn tăng tốc nằm dưới làn sát bên phải cao tốc và thu hẹp ở cuối. Mũi tên xanh từ trước đầu xe mình đi qua vạch đứt vào đúng làn sát bên phải, không sang làn trái; xe trên làn chính có quyền ưu tiên. Đây là hướng nhập minh họa, không phải quỹ đạo hoặc khoảng cách bảo đảm."
     },
     {
       "id": "highway-merge-var",
@@ -362,11 +362,11 @@
       "url": "/content/svg/highway-merge-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.5,
-      "checksum": "sha256-4051070470faa55a1c31ac2568b1f417ea47098f1d659a4a71419c87e9c132ef",
+      "sizeKb": 5.13,
+      "checksum": "sha256-17074f244d0b391f0e9d3eddac799f0ff864fadc2a8df62a99aef3bb1c8285c0",
       "offlinePack": "core",
-      "caption": "Chọn khoảng trống ba giây",
-      "alt": "Sơ đồ nhìn từ trên xuống: khoảng trống ba giây giữa hai xe trên làn chính."
+      "caption": "Sau khi nhập cần đủ khoảng hở cả trước và sau, xét tốc độ tương đối",
+      "alt": "Sơ đồ không theo tỷ lệ: ba xe cùng hướng sang phải trên làn sát bên phải cao tốc; xe mình ở giữa. Hai ngoặc nét đứt đo khoảng hở từ đầu xe sau tới đuôi xe mình và từ đầu xe mình tới đuôi xe trước, không phải mũi tên chuyển động hay mốc giây cố định. Hình không chứng minh khe an toàn; cần xét xe sau đến gần nhanh, không ép xe khác phanh gấp hoặc đánh lái tránh."
     },
     {
       "id": "highway-exit-main",
