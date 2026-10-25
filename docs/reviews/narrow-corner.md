@@ -72,4 +72,46 @@ renderer; visually confirmed the main arrow crossing the wall in-browser.
 
 ## Implementation and verification
 
-Pending.
+- Analysis/plan committed first as `bf03341`, before lesson implementation.
+- Card **1.1.0**, content pack **2026.10.10**: revised context, objective,
+  seven instructions/cues, speed/steering hints, mistakes, recovery,
+  safety, mnemonic and all three quiz questions. Reading estimate is six
+  minutes; stable identifiers, original history, medium risk and difficulty
+  3 remain. Removed only this card's sample approval and published it as
+  **unverified**; independent driving-instructor review is still required.
+- Replaced both corner SVGs at their existing URLs. The main illustrates
+  right-side front/rear wheels on a common-centre low-speed turn, with
+  corresponding visible tyres, steering angles, open mirrors, distinct
+  arrow colours/dash patterns and a legend. Both tracks remain on the road.
+  The variant's entire stopped body/mirrors remain clear; its hypothetical
+  rear-wheel continuation genuinely intersects the inner wall at the X.
+  Captions/alt text distinguish a partial arc from a full swept envelope
+  and a hazard prediction from a movement instruction.
+- Added **12 focused regression tests**, including numerical track radii,
+  wheelbase, endpoints/direction, real SVG body/mirror geometry over every
+  degree of the illustrated main arc, stopped variant clearance,
+  predicted wheel/wall intersection and X location. Also cover all card
+  guidance, quick/spoken stop conditions, quiz answers and release metadata.
+  The generic stale-review test now uses still-approved `narrow-yield`;
+  no adjacent lesson content was edited.
+- Focused corner/asset/validation suite: **29 passed**. Full suite:
+  **191 tests across 21 files passed**. ESLint and production
+  TypeScript/Vite/PWA build passed. Build emitted only dependency
+  annotation warnings from Zod/Rollup; no build failure.
+- Asset regeneration is deterministic: **46 SVGs plus manifest**
+  byte-identical on the second successful run. Only the two corner SVGs
+  changed relative to baseline; other asset records are unchanged.
+  Main **5.23 KB**, variant **4.69 KB**, entire core asset pack
+  **136.89 KB**, within the 60 KB/asset and 2560 KB/core budgets.
+- Browser: visually inspected both actual generated illustrations and the
+  main diagram at **390 px** mobile width and **1136 px** desktop width.
+  Both images loaded, all SVG text bounds stayed inside
+  the 320 x 200 viewBox, and the lesson had no horizontal overflow.
+  Both diagrams and all seven steps appear in learn mode; quick mode hides
+  only the variant/recovery while retaining all steps, stop/no-blind-reverse
+  conditions, safety and the unverified status.
+- Browser quiz: two correct answers with an incorrect stop answer produces
+  **2/3 (67%), not passed**; retry with all correct produces **3/3 (100%),
+  passed**. Reviewed renderer inputs for full-script and step TTS, including
+  essential safety in instructions/safety; no claim of vehicle-specific
+  practical validation or audible speech-quality testing is made.

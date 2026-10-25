@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.9",
+  "contentVersion": "2026.10.10",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 130.79,
+  "totalSizeKb": 136.89,
   "assets": [
     {
       "id": "parking-start-main",
@@ -264,11 +264,11 @@
       "url": "/content/svg/narrow-corner-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.84,
-      "checksum": "sha256-e2ae555ee63647a7d284275c88cee2d71b9cf03ed685857ffa7a5394c4ec751d",
+      "sizeKb": 5.23,
+      "checksum": "sha256-bb270c694f6ecb878f52d5a35ad641eb11ac3d6ddbf0645df19f699d62134479",
       "offlinePack": "core",
-      "caption": "Ôm cua rộng trong hẻm",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo ôm cua rộng để bánh sau không cắt góc."
+      "caption": "Ví dụ rẽ phải: bánh sau phía trong đi hẹp hơn bánh trước",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe con có gương mở, đầu hướng lên rồi tiến rẽ phải trong lối hình chữ L. Vệt xanh có mũi tên là bánh trước phải, vệt vàng có mũi tên là bánh sau phải của cùng xe; bánh sau đi phía trong. Chỉ minh họa một đoạn cung quay, không phải toàn bộ vùng quét thân, gương, đầu đuôi xe, mốc đánh lái hay bảo đảm xe thực tế quay lọt."
     },
     {
       "id": "narrow-corner-var",
@@ -278,11 +278,11 @@
       "url": "/content/svg/narrow-corner-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.98,
-      "checksum": "sha256-36c4d186d9c8c72e03a3952dae360c4273a3c3c6eee6b082c5bcfc7d204aa2b4",
+      "sizeKb": 4.69,
+      "checksum": "sha256-5db82ea33ff6221869e00234e3713e22308f35d7fbcd885378632d2f16c8757c",
       "offlinePack": "core",
-      "caption": "Lỗi bánh sau cắt góc",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo sai khi vào cua sớm làm bánh sau leo lề."
+      "caption": "Xe dừng trước nguy cơ bánh sau cắt góc, không tự lùi ở góc khuất",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng góc tường: xe có gương mở đang dừng khi đầu hướng chéo lên phải, thân chưa chạm tường. Nét đỏ đứt dự báo bánh sau phải nếu cố tiến theo cung quay hiện tại, giao chân tường tại dấu X; không phải lệnh đi hay đường lùi. Chưa rõ khoảng hở thì giữ xe, quan sát lại và gọi hỗ trợ; không tự lùi ở góc khuất."
     },
     {
       "id": "narrow-yield-main",

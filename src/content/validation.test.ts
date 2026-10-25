@@ -84,7 +84,7 @@ describe('cổng chất lượng nội dung', () => {
   })
 
   it('cảnh báo khi thẻ được sửa sau lần duyệt gần nhất', () => {
-    const card = clone(validationInput.cards.find(item => item.id === 'narrow-corner')!)
+    const card = clone(validationInput.cards.find(item => item.id === 'narrow-yield')!)
     card.updatedAt = '2099-01-01'
     const issues = validateExpert(withCard(card))
     expect(issues.some(issue => issue.severity === 'error' && issue.message.includes('duyệt lại'))).toBe(true)

@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.9'
+const CONTENT_VERSION = '2026.10.10'
 
 const W = 320
 const H = 200
@@ -282,6 +282,87 @@ const floodLot = (depth = 44) => [
   `<path d="M0 ${180 - depth}q20 -5 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0" stroke="${C.water}" stroke-width="2" fill="none" opacity=".9"/>`
 ].join('')
 
+const cornerScene = risk => {
+  const cx = risk ? 229 : 224
+  const cy = risk ? 173 : 142
+  const radius = 82
+  const wheelbase = 28
+  const halfTrack = 10
+  const start = risk ? 45 : 0
+  const angle = start * Math.PI / 180
+  const rearX = cx - radius * Math.cos(angle)
+  const rearY = cy - radius * Math.sin(angle)
+  // Same-side wheel positions on one rigid vehicle, rotating about a common centre.
+  const wheelPath = front => Array.from({ length: 31 }, (_, index) => {
+    const theta = (start + (90 - start) * index / 30) * Math.PI / 180
+    const x = cx - (radius - halfTrack) * Math.cos(theta) + (front ? wheelbase * Math.sin(theta) : 0)
+    const y = cy - (radius - halfTrack) * Math.sin(theta) - (front ? wheelbase * Math.cos(theta) : 0)
+    return `${index === 0 ? 'M' : 'L'}${num(x)} ${num(y)}`
+  }).join('')
+  const track = (id, front, color, marker = '') =>
+    `<path id="${id}" d="${wheelPath(front)}" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="${front ? '6 4' : '2 3'}"${marker ? ` marker-end="url(#${marker})"` : ''}/>`
+  const parts = [
+    '<defs><marker id="corner-rear-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">',
+    `<path d="M0 1L9 5L0 9Z" fill="${C.bike}"/></marker></defs>`,
+    rect(0, 0, W, 174, C.kerb),
+    rect(76, 20, 244, 88, C.asphalt),
+    rect(76, 108, 118, 66, C.asphalt),
+    `<g id="corner-inner-wall">${rect(194, 108, 126, 66, C.kerb)}</g>`,
+    '<g id="corner-boundaries">',
+    line(76, 20, 320, 20, C.bay, 2),
+    line(76, 20, 76, 174, C.bay, 2),
+    line(194, 108, 320, 108, C.bay, 2),
+    line(194, 108, 194, 174, C.bay, 2),
+    '</g>',
+    label(10, 13, 'VÍ DỤ RẼ PHẢI', { size: 8, fill: C.ego }),
+    label(254, 39, 'LỐI RA →', { size: 8 }),
+    risk ? '' : track('corner-front-track', true, C.ego, 'tip'),
+    track('corner-rear-track', false, risk ? C.hazard : C.bike, risk ? '' : 'corner-rear-tip'),
+    `<g id="corner-car" transform="translate(${num(rearX)} ${num(rearY)}) rotate(${start})">`,
+    car(0, -14, 0, C.ego, 20, 46),
+    '<g id="corner-open-mirrors">',
+    rect(-14, -28, 4, 3, C.ego, 1),
+    rect(10, -28, 4, 3, C.ego, 1),
+    '</g>',
+    '<g id="corner-wheels">',
+    ...[-halfTrack, halfTrack].flatMap(x => [
+      `<g transform="translate(${x} -28) rotate(${num(Math.atan(wheelbase / (radius - x)) * 180 / Math.PI)})">${rect(-1.5, -3, 3, 6, C.bay, 1)}</g>`,
+      rect(x - 1.5, -3, 3, 6, C.bay, 1)
+    ]),
+    '</g></g>'
+  ]
+  if (risk) {
+    const hitX = 194
+    const hitY = cy - Math.sqrt((radius - halfTrack) ** 2 - (cx - hitX) ** 2)
+    parts.push(
+      '<g id="corner-contact-risk">',
+      line(hitX - 4, hitY - 4, hitX + 4, hitY + 4, C.hazard, 2),
+      line(hitX - 4, hitY + 4, hitX + 4, hitY - 4, C.hazard, 2),
+      '</g>',
+      label(82, 146, 'XE DỪNG', { size: 8, fill: C.ego }),
+      line(124, 138, 155, 125, C.ego, 1),
+      label(186, 78, 'ĐẦU', { size: 8, fill: C.ego }),
+      label(124, 127, 'ĐUÔI', { size: 8, fill: C.ego }),
+      label(224, 139, 'NGUY CƠ', { size: 8, fill: C.hazard }),
+      line(222, 132, 198, 114, C.hazard, 1),
+      note('Không theo tỷ lệ. Nét đỏ: nguy cơ nếu cố tiến, không phải lệnh đi.', 12)
+    )
+  } else {
+    parts.push(
+      line(10, 47, 58, 47, C.ego, 2, '6 4'),
+      label(10, 60, 'TRƯỚC', { size: 8, fill: C.ego }),
+      line(10, 78, 58, 78, C.bike, 2, '2 3'),
+      label(10, 91, 'SAU', { size: 8, fill: C.bike }),
+      label(93, 100, 'ĐẦU ↑', { size: 8, fill: C.ego }),
+      label(110, 162, 'ĐUÔI', { size: 8, fill: C.ego }),
+      label(220, 139, 'GÓC TRONG', { size: 8 }),
+      line(218, 131, 196, 110, C.line, 1),
+      note('Không theo tỷ lệ. Vệt bánh không phải vùng quét toàn xe hay mốc đánh lái.', 12)
+    )
+  }
+  return parts
+}
+
 const templates = {
   bay: mode => {
     const scenes = {
@@ -492,14 +573,6 @@ const templates = {
     return (scenes[mode] ?? scenes.enter)()
   },
   alley: mode => {
-    const corner = [
-      rect(0, 0, W, 180, C.kerb),
-      rect(106, 0, 108, 180, C.asphalt),
-      rect(106, 96, 214, 84, C.asphalt),
-      line(106, 0, 106, 180, C.bay, 2),
-      line(214, 0, 214, 96, C.bay, 2),
-      line(214, 96, 320, 96, C.bay, 2)
-    ]
     const scenes = {
       creep: () => [
         ...creepLot(),
@@ -568,20 +641,8 @@ const templates = {
         line(78, 132, 123, 102, C.ego, 1),
         note('Không theo tỷ lệ. Chưa rõ khoảng hở thì dừng; không gập gương để cố lọt.', 12)
       ],
-      corner: () => [
-        ...corner,
-        car(160, 134, 0, C.ego),
-        trail('M160 110C160 82 186 66 248 66', C.accent, '6 5'),
-        pin(210, 120, '1'),
-        note('Ôm cua rộng để bánh sau không cắt vào góc tường.')
-      ],
-      'corner-wide': () => [
-        ...corner,
-        car(150, 140, 0, C.ego),
-        `<path d="M150 118C150 96 176 84 240 84" stroke="${C.hazard}" stroke-width="2.2" stroke-dasharray="4 4" fill="none"/>`,
-        tag(16, 166, 'Bánh sau cắt góc'),
-        note('Vào cua sớm sẽ làm bánh sau leo lề hoặc quệt tường.')
-      ],
+      corner: () => cornerScene(false),
+      'corner-risk': () => cornerScene(true),
       yield: () => [
         alleyLot(112),
         car(140, 126, 0, C.ego),
@@ -833,7 +894,7 @@ const specs = [
   ['parking-column', 'bay', ['column', 'Ví dụ lùi thẳng cạnh cột, không phải toàn bộ quỹ đạo vào ô', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cột bên phải hình, cạnh cửa ô mở; đầu xe ở dưới, đuôi ở trên. Xe đã thẳng hướng, mũi tên từ sau đuôi hướng lên ô chỉ ví dụ lùi thẳng, không phải hướng đánh lái hay bảo đảm khoảng hở. Phải kiểm tra cả thân, gương, góc xe, hai bên và vùng đầu xe quét; chưa rõ thì dừng, không chờ cảm biến.'], ['column-gap', 'Xe đã giữ chắc; kiểm tra cửa lái và lối ra, không chỉ thân xe', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng ô và cột bên phải hình: xe đã giữ chắc, nằm trong vạch, đầu ở dưới và đuôi ở trên. Với xe tay lái trái minh họa, cửa lái ở bên phải hình; cung vàng cạnh cột chỉ khoảng quét một cánh cửa trước minh họa, không phải quỹ đạo xe hay khoảng mở bảo đảm. Kiểm tra cả hai bên, khoảng quét cửa thực tế, người xung quanh và lối ra; không chen giữa xe với cột. Không có mũi tên chuyển động.']],
   ['narrow-creep', 'alley', ['creep', 'Chỉ tiến khi nhìn rõ và đủ khoảng hở cả gương', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe ở trên, đuôi ở dưới, gương nhô hai bên; hai mô tô đang đỗ sát mép phía trước. Mũi tên xanh từ trước đầu xe hướng lên chỉ hướng tiến minh họa, không phải điểm nhìn hay bảo đảm xe lọt. Đi bộ hoặc chậm hơn, chỉ tiến khi quan sát rõ và đủ khoảng hở toàn xe.'], ['creep-stop', 'Xe dừng trước vùng xe máy từ nhánh bên phải cắt ngang', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng hướng xe: đầu ở trên, đuôi ở dưới. Xe mình đang dừng trước vùng xung đột tô đỏ, không có mũi tên chuyển động của xe mình. Xe máy hướng sang trái từ lối mở bên phải; mũi tên đỏ nét đứt chỉ hướng xe máy cắt ngang, không phải lệnh đánh lái. Giữ phanh, chờ lối đi rõ và quan sát lại trước khi đi tiếp.']],
   ['narrow-mirror', 'alley', ['mirror', 'Khoảng hở từ mép gương tới vật cản, không phải số đo hay hình phản chiếu', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng lên, đuôi ở dưới, hai gương mở nhô ngoài thân; mô tô đỗ bên phải có tay lái nhô ra. a nối tường trái với mép ngoài gương trái, b nối mép ngoài gương phải với mép gần nhất tay lái tại cùng mặt cắt; không phải số đo, mức hở an toàn chung hay vùng nhìn thấy trong gương. Không có mũi tên chuyển động.'], ['mirror-stop', 'Dừng trước chỗ tường nhô khi chưa rõ khoảng hở; không gập gương để cố lọt', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cùng xe đầu hướng lên, hai gương vẫn mở; xe đang dừng trước đoạn tường trái nhô vào lối đi. Nét đứt đỏ ngang đoạn thắt chỉ khoảng hở chưa rõ, không phải hướng xe chạy hay bằng chứng xe lọt. Không có mũi tên tiến, lùi hoặc gập gương; chỉ đi tiếp sau khi kiểm tra rõ và đủ khoảng hở toàn xe.']],
-  ['narrow-corner', 'alley', ['corner', 'Ôm cua rộng trong hẻm', 'Sơ đồ nhìn từ trên xuống: quỹ đạo ôm cua rộng để bánh sau không cắt góc.'], ['corner-wide', 'Lỗi bánh sau cắt góc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo sai khi vào cua sớm làm bánh sau leo lề.']],
+  ['narrow-corner', 'alley', ['corner', 'Ví dụ rẽ phải: bánh sau phía trong đi hẹp hơn bánh trước', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe con có gương mở, đầu hướng lên rồi tiến rẽ phải trong lối hình chữ L. Vệt xanh có mũi tên là bánh trước phải, vệt vàng có mũi tên là bánh sau phải của cùng xe; bánh sau đi phía trong. Chỉ minh họa một đoạn cung quay, không phải toàn bộ vùng quét thân, gương, đầu đuôi xe, mốc đánh lái hay bảo đảm xe thực tế quay lọt.'], ['corner-risk', 'Xe dừng trước nguy cơ bánh sau cắt góc, không tự lùi ở góc khuất', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng góc tường: xe có gương mở đang dừng khi đầu hướng chéo lên phải, thân chưa chạm tường. Nét đỏ đứt dự báo bánh sau phải nếu cố tiến theo cung quay hiện tại, giao chân tường tại dấu X; không phải lệnh đi hay đường lùi. Chưa rõ khoảng hở thì giữ xe, quan sát lại và gọi hỗ trợ; không tự lùi ở góc khuất.']],
   ['narrow-yield', 'alley', ['yield', 'Nhường đường trong hẻm', 'Sơ đồ nhìn từ trên xuống: hai xe ngược chiều và vị trí chỗ tránh trong hẻm.'], ['yield-pocket', 'Đỗ gọn trong chỗ tránh', 'Sơ đồ nhìn từ trên xuống: xe đỗ gọn trong chỗ tránh để xe ngược chiều đi qua.']],
   ['narrow-cutoff', 'alley', ['cutoff', 'Xe máy tạt đầu', 'Sơ đồ nhìn từ trên xuống: xe máy cắt chéo trước đầu xe trong hẻm.'], ['cutoff-stop', 'Giữ khoảng trống phía trước', 'Sơ đồ nhìn từ trên xuống: khoảng trống một thân xe máy phía trước đầu xe.']],
   ['highway-merge', 'highway', ['merge', 'Nhập làn từ làn tăng tốc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo nhập làn từ làn tăng tốc vào làn phải cao tốc.'], ['merge-gap', 'Chọn khoảng trống ba giây', 'Sơ đồ nhìn từ trên xuống: khoảng trống ba giây giữa hai xe trên làn chính.']],

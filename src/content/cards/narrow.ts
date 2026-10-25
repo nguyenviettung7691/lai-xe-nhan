@@ -93,37 +93,42 @@ export const narrowCards: Card[] = [
     lessonId: 'narrow-control',
     topicId: 'narrow',
     title: 'Ôm cua vuông góc trong ngõ',
-    context: 'Ngõ rẽ vuông góc, tường xây sát mép đường nên bánh sau dễ cắt vào góc trong. Đây là lỗi va quệt phổ biến của tài mới.',
-    objective: 'Đưa cả bốn bánh qua góc cua mà không chạm tường.',
+    context: 'Ngõ rẽ vuông góc có tường sát mép, người và xe máy có thể xuất hiện sau góc khuất; bánh sau phía trong đi theo đường cong hẹp hơn bánh trước. Bài minh họa xe con tiến rẽ phải ở tốc độ thấp, không kéo rơ-moóc; rẽ trái cũng phải kiểm tra vùng quét và nhường đường, không sao chép vị trí xe hay mốc đánh lái từ hình.',
+    objective: 'Đánh giá lối rẽ được phép, giữ khoảng hở cho toàn xe qua góc trong và phía ngoài, dừng trước nguy cơ thay vì cố ôm cua.',
     risk: 'medium',
     difficulty: 3,
-    minutes: 3,
+    minutes: 6,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'moderate' },
     steps: [
-      { instruction: 'Đi sát mép ngoài của ngõ trước khi vào cua.', cueType: 'marker', cueText: 'Bám mép ngoài trước cua' },
-      { instruction: 'Đưa vai xe vượt qua góc tường rồi mới bắt đầu đánh lái.', cueType: 'marker', cueText: 'Vai xe vượt góc tường' },
-      { instruction: 'Đánh lái đều tay và giữ tốc độ bò suốt góc cua.', cueType: 'feel', cueText: 'Tốc độ không đổi trong cua', speedHint: 'dưới 10 km/h', steeringHint: 'đánh lái đều tay' },
-      { instruction: 'Nhìn gương phía trong cua để theo dõi bánh sau.', cueType: 'mirror', cueText: 'Bánh sau trong gương phía trong' },
-      { instruction: 'Trả lái ngay khi đầu xe đã hướng vào giữa ngõ mới.', cueType: 'marker', cueText: 'Đầu xe hướng giữa ngõ', steeringHint: 'trả lái về thẳng' }
+      { instruction: 'Giảm tốc từ trước góc cua, kiểm tra biển báo và lối rẽ được phép; dừng trước vùng khuất khi chưa nhìn rõ đường còn trống hoặc chưa chắc toàn xe qua được.', cueType: 'marker', cueText: 'Kiểm tra bề rộng cả hai nhánh, góc tường, vật cản thấp, người và xe có thể xuất hiện; không đủ chỗ thì không vào' },
+      { instruction: 'Quan sát phía trước, phía sau, hai bên và điểm mù, bật xi-nhan theo hướng rẽ và duy trì trong suốt quá trình chuyển hướng; nhường người đi bộ, xe đạp, xe máy và xe đi ngược chiều, chỉ rẽ khi không gây nguy hiểm hoặc cản trở.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền ưu tiên; kiểm tra cả xe máy đang đi sát bên, không mặc định đã thấy nhau' },
+      { instruction: 'Chọn vị trí trong phần đường được phép, chừa khoảng hở cho thân, gương, góc đầu và đuôi xe ở cả hai bên; không mặc định bám sát mép ngoài hay mở cua sang phần đường ngược chiều, nếu không đủ chỗ thì dừng và chọn lối khác hoặc gọi hỗ trợ.', cueType: 'marker', cueText: 'Gương mở để quan sát; không gập gương để cố lọt, không dùng mốc vai xe qua tường cho mọi xe' },
+      { instruction: 'Đánh lái từng nhịp có kiểm soát khi đã quan sát rõ khoảng trống, chỉ tiến ở tốc độ đi bộ hoặc chậm hơn để dừng được trong phần đường nhìn rõ còn trống; kiểm tra góc đầu xe phía ngoài và bánh sau phía trong có thể đi sát chân tường hơn bánh trước.', cueType: 'feel', cueText: 'Điểm bắt đầu và lượng lái phụ thuộc chiều dài cơ sở, bán kính quay, phần nhô đầu đuôi và hình dạng góc cua; không có mốc đánh lái chung', speedHint: 'đi bộ hoặc chậm hơn; giảm nữa hoặc dừng khi tầm nhìn ngắn', steeringHint: 'không mặc định đánh hết lái hoặc giữ tốc độ không đổi' },
+      { instruction: 'Quét mắt luân phiên đường phía trước, hai bên, gương và điểm mù bằng quan sát trực tiếp khi an toàn; theo dõi khoảng hở toàn xe, không nhìn cố định vào gương trong cua hay mặc định gương thấy được lốp sau và chân tường.', cueType: 'mirror', cueText: 'Gương, camera và cảm biến chỉ hỗ trợ, không cho thấy hết vùng đầu đuôi xe quét; cảm biến im lặng không chứng minh đủ chỗ' },
+      { instruction: 'Đạp phanh dừng hẳn và giữ xe trước nguy cơ khi chưa rõ khoảng hở, mất tầm nhìn, có người hoặc xe vào vùng quét hay có cảnh báo; không cố tiến, đánh lái lách hoặc tự lùi tại góc khuất, chỉ đi tiếp sau khi quan sát lại và toàn bộ lối rẽ rõ, đủ khoảng hở, đã nhường đường.', cueType: 'marker', cueText: 'Không chờ bánh hoặc thân chạm tường; chưa thể bảo đảm an toàn thì giữ xe và gọi hỗ trợ' },
+      { instruction: 'Trả lái dần theo lối ra khi đã kiểm tra bánh sau, thân và đuôi xe qua góc trong còn đủ khoảng hở, đồng thời phía trước và hai bên thông thoáng; giữ chậm đến khi toàn xe thẳng và qua hết vùng hẹp rồi mới tăng tốc phù hợp.', cueType: 'marker', cueText: 'Đầu xe đã hướng vào ngõ mới chưa chứng minh đuôi và bánh sau đã qua góc; không tăng tốc để kéo đuôi qua', steeringHint: 'trả lái theo khoảng trống thực tế, không theo riêng hướng đầu xe' }
     ],
     mistakes: [
-      'Đánh lái sớm nên bánh sau cắt vào chân tường.',
-      'Tăng tốc giữa cua làm xe văng ra mép đối diện.',
-      'Chỉ nhìn đầu xe mà quên bánh sau đi theo quỹ đạo hẹp hơn.'
+      'Bám mép ngoài hoặc dùng mốc vai xe qua tường như quy tắc chung, bỏ sót xe ngược chiều và khoảng quét đầu đuôi.',
+      'Giữ một tốc độ cố định, nhìn chằm chằm vào gương trong cua hoặc tin cảm biến thay cho quan sát.',
+      'Thấy đầu xe đã qua thì trả lái hoặc tăng tốc ngay, rồi tự lùi ở góc khuất khi bánh sau còn sát tường.'
     ],
-    recovery: 'Dừng lại, lùi thẳng một đoạn ngắn rồi vào cua lại với điểm bắt đầu xa hơn.',
-    safety: 'Bấm còi ngắn khi vào cua khuất tầm nhìn và sẵn sàng dừng cho xe máy đi ngược chiều.',
-    mnemonic: { text: 'Ra rộng, vào muộn, bánh sau theo sau.', rhythm: 'ba-nhip' },
+    recovery: 'Đạp phanh dừng hẳn và giữ xe; nếu đã va chạm, không cố tiến hoặc lùi, kiểm tra người và thiệt hại, gọi hỗ trợ khi cần. Muốn xuống kiểm tra, giữ phanh chân, dùng phanh đỗ và vị trí số theo hướng dẫn của xe, chỉ chọn P với xe có số P sau khi đứng hẳn; bảo đảm xe đứng chắc và mở cửa an toàn. Người hướng dẫn phải ở ngoài đường xe chạy và vùng quét, không giữa xe với tường; thống nhất tín hiệu, luôn thấy nhau, mất liên lạc thì dừng. Không tự lùi thẳng để sửa một quỹ đạo cong; chỉ lùi khi được phép, đã quan sát rõ hai bên và phía sau, có tín hiệu lùi và đường lùi an toàn, dừng hẳn trước đổi chiều. Không lùi tại nơi đường giao nhau, đường một chiều, nơi tầm nhìn bị che khuất hoặc nơi cấm lùi khác; nếu không thể sửa an toàn thì giữ xe và gọi hỗ trợ thay vì thử nhiều lần.',
+    safety: 'Chưa rõ đường hoặc khoảng hở thì đạp phanh dừng hẳn và giữ xe trước nguy cơ, không cố tiến hay tự lùi tại góc khuất hoặc nơi đường giao nhau; chỉ đi tiếp sau khi quan sát lại, đủ khoảng hở toàn xe và đã nhường người, xe. Đi bộ hoặc chậm hơn để dừng được trong phần đường nhìn rõ còn trống; xi-nhan suốt quá trình rẽ, không mở cua sang phần đường ngược chiều hay gập gương để cố lọt. Còi chỉ dùng để cảnh báo tình huống có thể mất an toàn theo quy định, không thay quan sát, xi-nhan hay nhường đường; không bấm liên tục, không dùng từ 22 giờ đến 05 giờ trong khu đông dân cư, khu vực cơ sở khám bệnh, chữa bệnh, trừ xe ưu tiên. Sơ đồ không phải mốc đánh lái hay bảo đảm xe bạn quay lọt; thực hành với giáo viên đủ chuyên môn ở nơi an toàn.',
+    mnemonic: { text: 'Nhìn lối, chừa toàn xe, chưa rõ thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
     quickCheck: [
-      { prompt: 'Khi vào cua vuông góc trong ngõ, nên đi sát bên nào trước khi vào cua?', options: ['Mép trong của ngõ', 'Mép ngoài của ngõ', 'Chính giữa ngõ'], correctIndex: 1 },
-      { prompt: 'Vì sao bánh sau dễ cắt vào góc tường nếu đánh lái quá sớm?', options: ['Vì bánh sau đi theo quỹ đạo hẹp hơn đầu xe', 'Vì bánh sau lớn hơn bánh trước', 'Vì gương không phản chiếu bánh sau'], correctIndex: 0 },
-      { prompt: 'Khi vào cua khuất tầm nhìn trong ngõ, nên làm gì?', options: ['Tăng tốc để qua nhanh', 'Bấm còi ngắn và sẵn sàng dừng', 'Không cần tín hiệu gì thêm'], correctIndex: 1 }
+      { prompt: 'Nên chọn vị trí và thời điểm đánh lái thế nào trước góc cua hẹp?', options: ['Luôn bám mép ngoài, vai qua góc tường là đánh hết lái', 'Trong phần đường được phép, đủ khoảng hở toàn xe và quan sát rõ; không có mốc vai xe chung, không đủ chỗ thì dừng', 'Cứ đi giữa ngõ và rẽ khi đầu xe vừa ngang tường, mọi xe đều như nhau'], correctIndex: 1 },
+      { prompt: 'Vì sao đầu xe đã vào ngõ mới vẫn chưa thể tăng tốc hoặc trả thẳng lái ngay?', options: ['Bánh sau phía trong đi theo đường cong hẹp hơn bánh trước; phải kiểm tra cả bánh sau, thân, đuôi và khoảng trống lối ra rồi trả lái dần', 'Bánh sau luôn đi đúng vệt bánh trước nên chỉ cần nhìn đầu xe', 'Nếu gương không thấy chân tường thì chắc chắn đuôi đã qua'], correctIndex: 0 },
+      { prompt: 'Đang rẽ ở góc khuất, chưa rõ bánh sau có đủ khoảng hở hoặc có xe máy đi vào vùng quét, bạn làm gì?', options: ['Bấm còi rồi bò tiếp vì đã có xi-nhan', 'Lùi thẳng một đoạn ngay để lấy lại góc', 'Đạp phanh dừng hẳn và giữ xe trước nguy cơ; không tự lùi ở góc khuất, chỉ đi tiếp sau quan sát lại, đủ khoảng hở và đã nhường đường'], correctIndex: 2, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng ôm cua vuông góc.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng ôm cua vuông góc.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ mốc vai xe và mở cua mặc định; làm rõ vùng quét toàn xe, nhường đường, dừng và giới hạn lùi/còi; sửa hai sơ đồ quỹ đạo bánh, bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'narrow-yield',
