@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../icons/AppIcon.vue'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useTTS } from './useTTS'
 import { analytics } from '../../services/analytics'
@@ -93,7 +94,7 @@ watch(
   >
     <div class="tts-info">
       <div class="tts-title-row">
-        <span class="tts-icon" aria-hidden="true">🔊</span>
+        <span class="tts-icon" aria-hidden="true"><AppIcon name="speaker" /></span>
         <div>
           <strong>{{ title || 'Nghe hướng dẫn' }}</strong>
           <small v-if="!drivingMode" class="muted-block">
@@ -129,9 +130,9 @@ watch(
           :aria-label="isPlaying ? (isPaused ? 'Tiếp tục đọc' : 'Tạm dừng') : 'Đọc toàn bộ bài học'"
           @click="togglePlay"
         >
-          <span v-if="!isPlaying">▶ Đọc cả bài</span>
-          <span v-else-if="isPaused">▶ Tiếp tục</span>
-          <span v-else>❚❚ Tạm dừng</span>
+          <span v-if="!isPlaying"><AppIcon name="play" /> Đọc cả bài</span>
+          <span v-else-if="isPaused"><AppIcon name="play" /> Tiếp tục</span>
+          <span v-else><AppIcon name="pause" /> Tạm dừng</span>
         </button>
 
         <button
@@ -140,7 +141,7 @@ watch(
           aria-label="Đọc lần lượt từng bước"
           @click="playSteps"
         >
-          ☰ Từng bước
+          <AppIcon name="steps" /> Từng bước
         </button>
 
         <button
@@ -149,7 +150,7 @@ watch(
           aria-label="Dừng phát âm thanh"
           @click="stop"
         >
-          ■ Dừng
+          <AppIcon name="stop-media" /> Dừng
         </button>
       </div>
 
@@ -160,7 +161,7 @@ watch(
           aria-label="Bước trước"
           @click="previousStep"
         >
-          ⏮ Bước trước
+          <AppIcon name="step-previous" /> Bước trước
         </button>
         <button
           class="tts-step-btn"
@@ -168,7 +169,7 @@ watch(
           aria-label="Bước sau"
           @click="nextStep"
         >
-          Bước sau ⏭
+          Bước sau <AppIcon name="step-next" />
         </button>
       </div>
 

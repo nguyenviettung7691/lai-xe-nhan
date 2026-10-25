@@ -209,7 +209,7 @@ const complete = () => {
             :aria-label="`Đọc bước ${step.stepNo}`"
             @click="speak(`Bước ${step.stepNo}: ${step.instruction}`)"
           >
-            🔊
+            <AppIcon name="speaker" />
           </button>
         </li>
       </ol>
@@ -229,7 +229,7 @@ const complete = () => {
 
     <div v-if="store.displayMode !== 'quick'" class="info-grid">
       <div class="info-box warning">
-        <span>!</span>
+        <span aria-hidden="true"><AppIcon name="warning" /></span>
         <div>
           <strong>Lỗi hay gặp</strong>
           <ul>
@@ -238,7 +238,7 @@ const complete = () => {
         </div>
       </div>
       <div class="info-box recovery">
-        <span>↻</span>
+        <span aria-hidden="true"><AppIcon name="undo" /></span>
         <div>
           <strong>Nếu lỡ sai</strong>
           <p>{{ card.recovery }}</p>
