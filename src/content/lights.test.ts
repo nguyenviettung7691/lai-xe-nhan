@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['regen-brake', ['kèm đèn phanh đỏ', 'pin đầy hoặc lạnh', 'không đi tiếp'], []],
   ['charge-connector', ['Không tự xác nhận pin đang nhận điện', 'kết thúc sạc', 'Không kéo xe'], []],
   ['ev-system', ['Không phải nhắc bảo dưỡng', 'cáp màu cam', 'không tiếp tục sạc'], []],
   ['power-limited', ['Hình rùa', 'quá lạnh', 'Không phải chế độ tiết kiệm ECO', 'STOP'], []],
@@ -65,10 +66,11 @@ describe('reviewed real-world signal states and actions', () => {
 })
 
 describe('tra cứu đèn cảnh báo táp-lô', () => {
-  it('có tối thiểu 20 đèn phổ biến, không trùng mã', () => {
-    expect(dashboardLights.length).toBeGreaterThanOrEqual(20)
+  it('có đủ 43 đèn đã rà soát, không trùng mã hoặc bỏ sót kiểm thử', () => {
+    expect(dashboardLights).toHaveLength(43)
     const ids = dashboardLights.map((light) => light.id)
     expect(new Set(ids).size).toBe(ids.length)
+    expect(reviewedSignals.map(([id]) => id).sort()).toEqual([...ids].sort())
   })
 
   it('mỗi đèn đủ thông tin xử lý theo chuẩn nội dung', () => {

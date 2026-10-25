@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'regen-brake',
+    icon: 'regen-brake',
+    name: 'Lỗi phanh tái sinh',
+    english: 'Regenerative braking warning',
+    color: 'amber',
+    severity: 'critical',
+    description: 'Một số EV dùng (!) vàng kèm đèn phanh đỏ khi lỗi phanh tái sinh/phối hợp phanh. Hành trình/lực pedal và quãng dừng có thể thay đổi; khác giảm tái sinh bình thường do pin đầy hoặc lạnh.',
+    keywords: ['phanh tái sinh', 'regenerative braking', 'regen', 'ev brake', 'phanh vàng'],
+    actions: [
+      'Nhả ga êm, tự dùng phanh chân theo hiệu lực thực tế; không trông chờ xe tự chậm như trước.',
+      'Giữ hướng, tăng khoảng cách và dừng tại nơi an toàn; đặc biệt khi kèm phanh đỏ hoặc pedal bất thường.',
+      'Đọc thông báo/sổ tay và gọi hỗ trợ; có đèn đỏ, phanh yếu hoặc chưa rõ tình trạng thì không đi tiếp.'
+    ],
+    avoid: 'Không thử one-pedal để kiểm tra, không coi đây chỉ là pin đầy khi có cảnh báo phanh hoặc hiệu lực phanh giảm.',
+    callHelp: 'Cần kiểm tra hệ phanh; gọi cứu hộ khi kèm phanh đỏ, lực phanh bất thường hoặc không bảo đảm dừng xe an toàn.'
+  },
+  {
     id: 'charge-connector',
     icon: 'charge-connector',
     name: 'Cáp sạc đang kết nối',
