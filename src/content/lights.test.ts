@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['high-beam', ['xanh dương', 'tia ngang thẳng', 'quyền ưu tiên'], ['xin đường']],
   ['washer-fluid', ['không nhìn rõ', 'đúng bình', 'không đi tiếp'], ['xử lý ở lần dừng gần nhất']],
   ['fuel-low', ['không có số km được bảo đảm', 'lối ra hợp lệ', 'quy trình mồi'], ['40–70 km']],
   ['service', ['lỗi hệ truyền động', 'đọc thông báo', 'Không reset'], ['chỉ cần đặt lịch với gara quen']],
@@ -83,6 +84,8 @@ describe('tra cứu đèn cảnh báo táp-lô', () => {
     const green = findLights({ color: 'green' })
     expect(green.length).toBeGreaterThan(0)
     expect(green.every((light) => light.color === 'green')).toBe(true)
+    expect(getLightById('high-beam')?.color).toBe('blue')
+    expect(findLights({ color: 'blue' }).map((light) => light.id)).toContain('high-beam')
   })
 
   it('xếp đèn khẩn cấp lên đầu danh sách', () => {

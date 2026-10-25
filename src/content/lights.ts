@@ -350,17 +350,17 @@ export const dashboardLights: DashboardLight[] = [
     icon: 'high-beam',
     name: 'Đèn pha (chiếu xa)',
     english: 'High beam',
-    color: 'green',
+    color: 'blue',
     severity: 'info',
-    description: 'Đèn pha đang bật — rất dễ gây chói cho xe đối diện trong phố.',
+    description: 'Đèn xanh dương với tia ngang thẳng báo chiếu xa đang bật hoặc đang nháy pha. Không nhầm với đèn xanh lá chiếu gần có tia chúc xuống hay đèn tự động có chữ A.',
     keywords: ['đèn pha', 'chiếu xa', 'high beam', 'đèn xanh'],
     actions: [
-      'Chuyển về chiếu gần khi có xe ngược chiều hoặc trong khu dân cư.',
-      'Chỉ dùng pha ở đường trường vắng, không đèn.',
-      'Nháy pha ngắn thay vì bật liên tục để xin đường.'
+      'Chuyển về chiếu gần khi có thể gây chói cho xe ngược chiều hoặc xe phía trước.',
+      'Chỉ dùng chiếu xa khi điều kiện và quy định cho phép; trong sương/mưa dày ưu tiên chiếu gần, giảm tốc.',
+      'Nếu dùng pha tự động, vẫn tự quan sát và chuyển về chiếu gần khi hệ thống chưa hạ đèn kịp.'
     ],
-    avoid: 'Không giữ đèn pha trong phố, hầm để xe hoặc khi bám đuôi xe khác.',
-    callHelp: 'Không cần hỗ trợ; đây là đèn báo trạng thái.'
+    avoid: 'Không coi nháy pha là quyền ưu tiên, không giữ pha khi gây chói hoặc tin pha tự động luôn nhận đúng mọi xe.',
+    callHelp: 'Không cần cứu hộ với trạng thái bình thường; nếu không hạ được pha hoặc chiếu sáng hỏng, dừng an toàn và sửa trước khi đi trong tối.'
   },
   {
     id: 'fog-light',
