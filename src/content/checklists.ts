@@ -6,14 +6,17 @@ export const checklists: Checklist[] = [
     id: 'pre_drive',
     scope: 'pre_drive',
     title: 'Trước khi nổ máy',
-    description: 'Thói quen 20 giây giúp phát hiện sớm vấn đề trước mỗi chuyến đi.',
+    description: 'Rà soát xe và người ngồi trước mỗi chuyến đi; thời gian kiểm tra tùy tình trạng xe và hành trình.',
     items: [
-      { id: 'seat', itemNo: 1, label: 'Ghế chỉnh đúng tư thế', criticalLevel: 'must', hint: 'Đạp hết phanh mà đầu gối vẫn hơi cong.' },
-      { id: 'mirrors', itemNo: 2, label: 'Gương trái, phải và giữa', criticalLevel: 'must', hint: 'Mỗi gương thấy một phần thân xe để định vị.' },
-      { id: 'belt', itemNo: 3, label: 'Dây an toàn đã cài', criticalLevel: 'must' },
-      { id: 'brake', itemNo: 4, label: 'Phanh tay và trạng thái số', criticalLevel: 'must', hint: 'Số P, phanh tay còn giữ trước khi nổ máy.' },
-      { id: 'fuel', itemNo: 5, label: 'Nhiên liệu đủ cho hành trình', criticalLevel: 'should' },
-      { id: 'warning', itemNo: 6, label: 'Không có đèn cảnh báo bất thường', criticalLevel: 'must', hint: 'Đèn đỏ còn sáng sau khi nổ máy là dấu hiệu cần dừng.' }
+      { id: 'walkaround', itemNo: 1, label: 'Lốp không xẹp/hư hỏng rõ; quanh xe không có người hoặc vật cản', criticalLevel: 'must', hint: 'Quan sát từ bên ngoài trước khi lên xe. Nếu thấy lốp xẹp, hư hỏng hoặc rò rỉ bất thường, không khởi hành cho tới khi được kiểm tra.' },
+      { id: 'seat', itemNo: 2, label: 'Ghế, tựa đầu và vô-lăng chỉnh để điều khiển thoải mái', criticalLevel: 'must', hint: 'Đạp hết bàn đạp mà đầu gối vẫn hơi cong; ngồi tựa lưng, với tới vô-lăng mà vai không rời tựa ghế.' },
+      { id: 'mirrors', itemNo: 3, label: 'Gương chỉnh phù hợp; sẵn sàng kiểm tra điểm mù trực tiếp', criticalLevel: 'must', hint: 'Chỉnh để thấy đủ khu vực phía sau và giảm phần thân xe lọt vào gương; gương không loại bỏ điểm mù, vẫn quan sát trực tiếp khi cần.' },
+      { id: 'belt', itemNo: 4, label: 'Người lái và mọi hành khách thắt dây đúng cách; trẻ có ghế phù hợp', criticalLevel: 'must', hint: 'Dây hông nằm thấp qua hông, dây vai qua giữa ngực; chọn ghế trẻ em phù hợp với trẻ và xe theo hướng dẫn của nhà sản xuất.' },
+      { id: 'brake', itemNo: 5, label: 'Xe đứng yên; trạng thái số và phanh đỗ phù hợp với xe', criticalLevel: 'must', hint: 'Giữ phanh đỗ; chọn P/N trên xe tự động hoặc số N trên xe số sàn theo hướng dẫn của xe trước khi khởi động.' },
+      { id: 'fuel', itemNo: 6, label: 'Nhiên liệu hoặc mức sạc đủ cho hành trình dự kiến', criticalLevel: 'should', hint: 'Tính cả chặng dự phòng hoặc điểm sạc/nạp phù hợp; không dựa hoàn toàn vào ước tính tầm hoạt động tối đa trên màn hình.' },
+      { id: 'warning', itemNo: 7, label: 'Đã phân biệt đèn tự kiểm tra với cảnh báo còn hiện', criticalLevel: 'must', hint: 'Không đánh giá chỉ theo màu đèn. Đọc sách xe; nếu xe báo dừng hoặc có cảnh báo nghiêm trọng như phanh, áp suất dầu hay quá nhiệt, không tiếp tục lái và gọi hỗ trợ.' },
+      { id: 'driver-ready', itemNo: 8, label: 'Người lái tỉnh táo, đủ sức khỏe và không bị chất gây ảnh hưởng', criticalLevel: 'must', hint: 'Không lái sau khi uống rượu bia, dùng chất/thuốc gây ảnh hưởng hoặc khi buồn ngủ, không khỏe; đổi người lái hoặc hoãn chuyến đi.' },
+      { id: 'load-secure', itemNo: 9, label: 'Cửa đã đóng; hành lý và vật dụng trong xe được cố định', criticalLevel: 'should', hint: 'Không để đồ che tầm nhìn hoặc có thể văng vào người khi phanh gấp.' }
     ]
   },
   {

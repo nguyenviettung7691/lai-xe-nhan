@@ -62,7 +62,9 @@ describe('gói nội dung offline', () => {
   it('mọi thẻ đều trỏ tới một checklist có thật', () => {
     expect(checklists.length).toBeGreaterThanOrEqual(5)
     expect(allCards.every(card => getChecklist(card.checklistId) !== undefined)).toBe(true)
-    expect(getChecklist('pre_drive')?.items.map(item => item.id)).toEqual(['seat', 'mirrors', 'belt', 'brake', 'fuel', 'warning'])
+    expect(getChecklist('pre_drive')?.items.map(item => item.id)).toEqual([
+      'walkaround', 'seat', 'mirrors', 'belt', 'brake', 'fuel', 'warning', 'driver-ready', 'load-secure'
+    ])
   })
 
   it('thẻ đã duyệt luôn kèm hồ sơ thẩm định', () => {

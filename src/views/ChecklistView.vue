@@ -79,6 +79,10 @@ const reset = () =>
         </div>
       </div>
       <p class="muted">{{ activeChecklist.description }}</p>
+      <p class="checklist-safety muted" role="note">
+        Chỉ rà soát khi xe đã dừng ở nơi an toàn; không đọc hoặc thao tác màn hình khi đang lái.
+        Đánh dấu đủ mục không thay thế việc đánh giá tình trạng xe và điều kiện thực tế.
+      </p>
 
       <div
         class="progress-track"
@@ -91,7 +95,7 @@ const reset = () =>
         <span :style="{ '--progress': `${summary.ratio}` }" />
       </div>
       <p class="progress-caption" aria-live="polite">
-        <template v-if="summary.isComplete">✓ Hoàn tất {{ summary.total }}/{{ summary.total }} mục — sẵn sàng lăn bánh.</template>
+        <template v-if="summary.isComplete">✓ Đã đánh dấu đủ {{ summary.total }}/{{ summary.total }} mục — vẫn cần đánh giá điều kiện thực tế.</template>
         <template v-else>{{ summary.done }}/{{ summary.total }} mục hoàn tất<span v-if="summary.missingMust.length"> · còn {{ summary.missingMust.length }} mục bắt buộc</span></template>
       </p>
 
