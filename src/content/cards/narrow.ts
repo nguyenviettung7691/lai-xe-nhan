@@ -135,37 +135,42 @@ export const narrowCards: Card[] = [
     lessonId: 'narrow-negotiation',
     topicId: 'narrow',
     title: 'Nhường đường khi gặp xe ngược chiều',
-    context: 'Hai ô tô gặp nhau giữa ngõ chỉ đủ một làn, phía sau bạn còn vài xe máy. Quyết định nhường nhanh giúp cả hai bên thoát kẹt.',
-    objective: 'Chọn điểm tránh phù hợp và ra hiệu rõ ràng cho xe đối diện.',
+    context: 'Hai ô tô ngược chiều gặp đoạn ngõ chỉ đủ một xe, có thể có xe máy hoặc người đi bộ sát bên và phía sau. Hình minh họa nền bằng, chỗ tránh ở bên phải và phía trước xe bạn; không phải hướng dẫn đánh lái hay lùi cho mọi ngõ.',
+    objective: 'Dừng sớm, xác định bên phải nhường và chọn chỗ tránh được phép, đủ khoảng hở; không tiến hay lùi khi chưa bảo đảm an toàn.',
     risk: 'medium',
     difficulty: 3,
-    minutes: 3,
+    minutes: 6,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'high' },
     steps: [
-      { instruction: 'Dừng xe khi còn cách xe đối diện ít nhất mười mét.', cueType: 'marker', cueText: 'Cách xe đối diện 10 m' },
-      { instruction: 'Quan sát hai bên tìm khoảng lõm hoặc lối rẽ gần nhất.', cueType: 'marker', cueText: 'Khoảng lõm hoặc lối rẽ' },
-      { instruction: 'Ra hiệu bằng đèn hoặc tay để báo bên nào sẽ lùi.', cueType: 'marker', cueText: 'Tín hiệu thống nhất hai bên' },
-      { instruction: 'Lùi chậm về điểm tránh và giữ khoảng cách với tường.', cueType: 'mirror', cueText: 'Khoảng cách tường trong gương', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Chờ xe kia đi qua hẳn rồi mới trở lại giữa ngõ.', cueType: 'marker', cueText: 'Xe kia đã qua hẳn' }
+      { instruction: 'Giảm tốc trước đoạn hẹp, đi về bên phải theo chiều xe chạy trong phần đường được phép; nếu không đủ chỗ tránh nhau thì dừng sớm và giữ xe, chừa khoảng trống xử lý trong phần đường nhìn rõ còn trống.', cueType: 'marker', cueText: 'Không có mốc dừng 10 m chung; chưa rõ lối thoát thì không tiến vào đoạn thắt' },
+      { instruction: 'Xác định bên phải nhường theo tình huống: đoạn chỉ đủ một xe có chỗ tránh thì xe gần chỗ tránh hơn phải vào nhường; xe xuống dốc nhường xe lên dốc; xe có chướng ngại vật phía trước nhường xe không có chướng ngại vật.', cueType: 'marker', cueText: 'Gần chỗ tránh không có nghĩa luôn phải lùi; quyền đi trước không cho phép cố chen' },
+      { instruction: 'Quan sát phía trước, phía sau, hai bên và điểm mù; chọn chỗ tránh được phép, nhìn rõ, nền chắc, đủ cho toàn bộ thân, gương, đầu và đuôi xe cùng khoảng hở để xe kia qua. Không tự vào sân nhà, lên vỉa hè, chắn cửa, lối người đi bộ hoặc nút giao.', cueType: 'mirror', cueText: 'Khoảng lõm hay lối rẽ không mặc nhiên là chỗ tránh; không gập gương để cố lọt' },
+      { instruction: 'Giữ xe đứng yên, trao đổi ngắn khi cả hai xe đã dừng để thống nhất bên di chuyển và bên chờ; dùng xi-nhan phù hợp trước khi đổi hướng vào chỗ tránh. Ưu tiên phương án tiến vào khi được phép và đủ chỗ, chỉ di chuyển sau khi kiểm tra lại và xe kia vẫn chờ.', cueType: 'marker', cueText: 'Cái vẫy tay hay nháy đèn không tạo quyền ưu tiên, không chứng minh phía sau an toàn' },
+      { instruction: 'Kiểm tra điều kiện lùi: chỉ lùi nếu được phép, có tín hiệu lùi, quan sát rõ hai bên và phía sau, đường lùi đã trống; không lùi trên đường một chiều, nơi giao nhau, nơi cấm dừng hoặc tầm nhìn bị che khuất. Tiến hay lùi đều thật chậm, kiểm tra vùng quét đầu, đuôi và gương; dừng hẳn và giữ xe khi có người, xe máy, chưa rõ khoảng hở hoặc mất liên lạc với người hướng dẫn.', cueType: 'mirror', cueText: 'Không đủ điều kiện lùi thì giữ xe và tìm hỗ trợ; camera, cảm biến chỉ hỗ trợ, không thay quan sát', speedHint: 'đi bộ hoặc chậm hơn, luôn dừng được trong phần đường nhìn rõ còn trống' },
+      { instruction: 'Dừng hẳn và giữ xe khi toàn xe đã gọn trong chỗ tránh và đủ khoảng hở cho xe kia; chờ toàn bộ xe đối diện cùng xe máy, người đi bộ đi kèm qua hết. Không nhích ra khi đuôi xe kia còn sát hoặc có xe khác đang tới.', cueType: 'marker', cueText: 'Giữ xe đứng yên, không coi đầu xe kia qua là đã hết nguy hiểm' },
+      { instruction: 'Quan sát lại phía trước, phía sau, hai bên, gương và điểm mù; báo hướng ra, nhường người và xe đang đi qua, chỉ ra khỏi chỗ tránh khi lối đi rõ và đủ khoảng hở. Trở lại phía bên phải theo chiều đi, không mặc định chạy giữa ngõ.', cueType: 'marker', cueText: 'Chưa thấy rõ hoặc chưa đủ chỗ thì tiếp tục chờ, không đi theo cái vẫy tay' }
     ],
     mistakes: [
-      'Cố tiến thêm vài mét khiến cả hai xe mắc kẹt sát nhau.',
-      'Lùi nhanh mà không nhìn xe máy phía sau.',
-      'Chờ đối phương nhường trong khi phía sau ùn dài.'
+      'Cố chen vì nghĩ mình có quyền đi trước, hoặc lấy 10 m làm khoảng cách luôn an toàn.',
+      'Tự lùi theo tín hiệu tay mà chưa kiểm tra xe máy, người đi bộ và điều kiện được phép lùi.',
+      'Chọn khoảng lõm không đủ cho cả gương, hoặc nhích ra ngay khi đầu xe đối diện vừa qua.'
     ],
-    recovery: 'Nếu không còn chỗ tránh, bật đèn cảnh báo, xuống xe trao đổi và cùng thống nhất một bên lùi ra.',
-    safety: 'Ưu tiên nhường cho xe cứu thương, xe cứu hỏa và xe công vụ ưu tiên theo quy định.',
-    mnemonic: { text: 'Dừng sớm, tìm chỗ tránh, ra hiệu rõ ràng.', rhythm: 'ba-nhip' },
+    recovery: 'Dừng hẳn và giữ xe nếu không có chỗ tránh an toàn; trao đổi khi xe đứng yên, không xuống xe chỉ để tranh luận, không mặc định bật đèn cảnh báo là được lùi. Nhờ hỗ trợ tại chỗ hoặc lực lượng chức năng nếu không thể giải tỏa an toàn. Nếu cần và được phép rời vị trí lái, dùng phanh đỗ, chọn P với xe tự động theo hướng dẫn của xe, bảo đảm xe đứng chắc và kiểm tra trước khi mở cửa; không đứng giữa hai xe hay giữa xe và tường. Người hướng dẫn phải đứng ngoài đường xe chạy, vùng quét và vùng kẹp, luôn thấy nhau; mất liên lạc thì dừng. Không lùi vào vùng khuất hoặc nơi cấm lùi để giải tỏa ùn xe.',
+    safety: 'Không vì áp lực phía sau hay có quyền đi trước mà cố chen hoặc tự lùi; dừng hẳn và giữ xe khi có người, xe máy, mất tầm nhìn hoặc chưa rõ khoảng hở. Chỉ lùi nơi được phép, có tín hiệu lùi, quan sát rõ hai bên và phía sau, đường lùi an toàn; không lùi ở đường một chiều, nút giao hoặc nơi tầm nhìn bị che khuất. Khi có tín hiệu của xe ưu tiên đang làm nhiệm vụ theo quy định, giảm tốc, đi sát lề phải hoặc dừng an toàn để nhường, không gây cản trở; không tự lùi vào nguy hiểm. Không phải mọi xe cứu thương hay xe công vụ đều luôn có quyền ưu tiên; xe cứu thương phải đang làm nhiệm vụ cấp cứu và có tín hiệu ưu tiên theo quy định.',
+    mnemonic: { text: 'Dừng sớm, chọn chỗ an toàn, chưa rõ thì chờ.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
     quickCheck: [
-      { prompt: 'Khi gặp xe ngược chiều trong ngõ một làn, nên dừng lại từ khoảng cách nào?', options: ['Sát ngay trước mũi xe đối diện', 'Ít nhất mười mét', 'Không cần dừng, cứ đi tiếp'], correctIndex: 1 },
-      { prompt: 'Sau khi thống nhất tín hiệu nhường đường, bên lùi nên làm gì?', options: ['Lùi nhanh cho xong', 'Lùi chậm, giữ khoảng cách với tường', 'Lùi mà không cần nhìn gương'], correctIndex: 1 },
-      { prompt: 'Trong tình huống nhường đường, ai luôn được ưu tiên đi trước?', options: ['Xe cứu thương, cứu hỏa, xe công vụ ưu tiên', 'Xe đến trước theo thứ tự', 'Xe to hơn'], correctIndex: 0 }
+      { prompt: 'Trên nền bằng, đoạn chỉ đủ một xe có chỗ tránh an toàn ở gần bạn hơn và phía trước bên phải, bạn nên?', options: ['Dừng sớm, kiểm tra và báo hướng; tiến vào chỗ tránh khi đủ điều kiện, giữ xe nhường xe kia', 'Luôn lùi dù chỗ tránh ở phía trước', 'Cứ tiến vì xe nào đến trước được đi trước'], correctIndex: 0 },
+      { prompt: 'Đã thống nhất bạn lùi nhưng phía sau có xe máy hoặc bị khuất tầm nhìn, bạn nên?', options: ['Lùi dưới 5 km/h là đủ an toàn', 'Dừng hẳn và giữ xe, không lùi; chỉ xem xét lại khi được phép và đường lùi rõ, an toàn, nếu không thì tìm hỗ trợ', 'Bật đèn cảnh báo rồi lùi theo tay người kia'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Xe cứu thương đang làm nhiệm vụ cấp cứu có tín hiệu ưu tiên tới đoạn hẹp, bạn nên?', options: ['Tự lùi vào góc khuất ngay để mở đường', 'Giữ đường vì bạn gần chỗ tránh hơn', 'Giảm tốc, đi sát lề phải hoặc dừng an toàn để nhường, không gây cản trở; không lùi nguy hiểm'], correctIndex: 2 }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về nhường đường trong ngõ một làn.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới về nhường đường trong ngõ một làn.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ mốc dừng và lùi mặc định; làm rõ quy tắc nhường, chỗ tránh, điều kiện lùi và xe ưu tiên; sửa hai sơ đồ và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'narrow-cutoff',

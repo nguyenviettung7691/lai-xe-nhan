@@ -60,3 +60,49 @@ by a driving instructor.
 
 Clean worktree. Baseline content/asset/validation suites: **31 tests passed**.
 No independent instructor approval is claimed by this review.
+
+## Implementation and verification
+
+- Analysis/plan committed first as `06c85e9`, before implementation.
+- Card **1.1.0**, content pack **2026.10.11**. Seven steps, all cues/hints,
+  three mistakes, recovery, safety, mnemonic and all three questions revised.
+  Stable identifiers, checklist association and historical releases retained.
+  Only this card's sample approval removed; UI now says **Chưa thẩm định
+  độc lập**. Stale-approval validation uses unchanged approved `narrow-cutoff`.
+- Replaced both SVGs and their captions/alt text. Main: both vehicles stopped,
+  each offset toward its own right, upward ego front labelled, actual open
+  pocket ahead/right. Variant: ego body and both open mirrors wholly inside
+  the same pocket, opposing car facing down with a matching grey down arrow,
+  ego stationary with no motion arrow. No false reverse/steering trajectory,
+  parking claim, fixed gap graphic or implied manoeuvring guarantee remains.
+- **12 dedicated regression cases** cover rules, legal/visible reversing,
+  stop conditions, safe inspection/guide placement, qualified priority,
+  all correct quiz answers, IDs/history, actual car/mirror bounds, opposing
+  headings, open wall geometry and arrow origin/direction/colour.
+- Initial quality-gate runs rejected step-opening words outside the existing
+  action-verb vocabulary. Reworded the steps without relaxing validation.
+  Final full suite: **203 tests passed across 22 files**; **lint passed**;
+  **type-check and production build passed**; `git diff --check` passed.
+- Regenerated twice and compared hashes: **all 46 SVGs and manifest regenerate
+  identically**. Only the two `narrow-yield` SVGs differ from the baseline.
+- Browser verification at **1280 x 900** and **390 x 844**: lesson and both
+  images load, no horizontal overflow, correct unverified warning. Both final
+  diagrams visually inspected together at native 320 x 200; SVG text bounding
+  boxes stay inside the canvas. No runtime console errors or warnings on the
+  final lesson page. A standalone SVG page's unrelated automatic favicon
+  request returned 404; the actual app page uses its configured favicon.
+- Quick mode retains all seven steps and safety guidance while hiding only
+  the variant/recovery as designed. Selecting the three revised correct
+  answers in the rendered quiz produces **3/3 (100%), Đạt**; its mandatory
+  stop-condition badge is present. Spoken-mode data was traced through the
+  shared renderer: steps, cues and safety use the same revised card; actual
+  synthesized audio and on-road vehicle manoeuvres were not tested.
+
+## Remaining limits
+
+This is a sourced editorial and geometric correction, not legal advice or an
+independent instructor sign-off. Illustrations are intentionally not to scale:
+no vehicle-specific swept path, turning radius, braking distance or sufficient
+real-world pocket size is certified. Actual manoeuvres still require lawful
+access, all-round visibility and adequate clearance. Other lessons and shared
+UI behaviour were not revised or certified by this iteration.

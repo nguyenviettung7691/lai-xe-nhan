@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('narrow-yield', 'safety', 'Bổ sung ưu tiên xe cứu thương là điểm cần thiết, nội dung đạt.', 4, '2026-09-12'),
   review('narrow-cutoff', 'safety', 'Nhấn mạnh phanh đều và không đánh lái gấp phù hợp thực tế đô thị.', 5, '2026-09-12'),
   review('highway-merge', 'safety', 'Khoảng trống ba giây và phương án khi hết làn tăng tốc đều chính xác.', 5, '2026-09-12'),
   review('highway-exit', 'safety', 'Nguyên tắc chỉ phanh trong làn giảm tốc rất quan trọng, đã kiểm chứng.', 5, '2026-09-12'),

@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.10",
+  "contentVersion": "2026.10.11",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 136.89,
+  "totalSizeKb": 140.29,
   "assets": [
     {
       "id": "parking-start-main",
@@ -292,11 +292,11 @@
       "url": "/content/svg/narrow-yield-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.42,
-      "checksum": "sha256-231439bc65d8e8023bcaaa7fba630fe21a39eb1665d02d133fb2b28cc6483e09",
+      "sizeKb": 4.12,
+      "checksum": "sha256-9b6b8b338c87b2eaa46653b6ba9b67b44e511395c82ac3fb69e59b5b07a8b986",
       "offlinePack": "core",
-      "caption": "Nhường đường trong hẻm",
-      "alt": "Sơ đồ nhìn từ trên xuống: hai xe ngược chiều và vị trí chỗ tránh trong hẻm."
+      "caption": "Hai xe dừng đánh giá; chỗ tránh phía trước bên phải xe bạn, không mặc định phải lùi.",
+      "alt": "Sơ đồ không theo tỷ lệ trên nền bằng: xe bạn màu xanh hướng lên, xe đối diện hướng xuống, cả hai dừng; chỗ tránh mở về phía trước bên phải xe bạn. Không vẽ quỹ đạo đánh lái."
     },
     {
       "id": "narrow-yield-var",
@@ -306,11 +306,11 @@
       "url": "/content/svg/narrow-yield-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.34,
-      "checksum": "sha256-29176d746682e448f010f07a87d47c5fdaa15f5dd88e45798a6b2f674917da1f",
+      "sizeKb": 4.04,
+      "checksum": "sha256-9bfc99fd054c71037f3ac853c226c235f9d66e342c9f3023862c55759527a020",
       "offlinePack": "core",
-      "caption": "Đỗ gọn trong chỗ tránh",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe đỗ gọn trong chỗ tránh để xe ngược chiều đi qua."
+      "caption": "Xe bạn giữ yên trong chỗ tránh; chờ hết xe và người, kiểm tra lại trước khi ra.",
+      "alt": "Sơ đồ không theo tỷ lệ: toàn xe bạn và gương nằm trong chỗ tránh bên phải, đầu hướng lên và đang dừng; xe đối diện hướng xuống với mũi tên cùng chiều. Hai trạng thái không phải quỹ đạo bảo đảm xe lọt."
     },
     {
       "id": "narrow-cutoff-main",

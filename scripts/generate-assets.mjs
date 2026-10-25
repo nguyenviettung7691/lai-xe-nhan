@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.10'
+const CONTENT_VERSION = '2026.10.11'
 
 const W = 320
 const H = 200
@@ -215,6 +215,51 @@ const alleyLot = (wallGap = 108) => {
     label(W - 12, 24, 'NHÀ DÂN', { size: 8, anchor: 'end' })
   ].join('')
 }
+
+const yieldVehicle = (id, x, y, rotation, fill) =>
+  `<g id="${id}" transform="translate(${x} ${y}) rotate(${rotation})">` +
+  car(0, 0, 0, fill, 30, 48) +
+  `<g id="${id}-mirrors">` +
+  rect(-19, -13, 4, 4, fill, 1) +
+  rect(15, -13, 4, 4, fill, 1) +
+  '</g></g>'
+
+const yieldScene = waiting => [
+  rect(0, 0, W, 174, C.kerb),
+  `<g id="yield-road">${rect(126, 0, 64, 174, C.asphalt)}</g>`,
+  `<g id="yield-pocket">${rect(190, 70, 80, 88, C.asphalt)}</g>`,
+  '<g id="yield-walls">',
+  line(126, 0, 126, 174, C.bay, 2),
+  line(190, 0, 190, 70, C.bay, 2),
+  line(190, 158, 190, 174, C.bay, 2),
+  line(190, 70, 270, 70, C.bay, 2),
+  line(270, 70, 270, 158, C.bay, 2),
+  line(270, 158, 190, 158, C.bay, 2),
+  '</g>',
+  yieldVehicle('yield-ego', waiting ? 230 : 164, waiting ? 98 : 148, 0, C.ego),
+  yieldVehicle('yield-other', 152, waiting ? 100 : 36, 180, C.other),
+  label(204, 62, 'CHỖ TRÁNH', { size: 8 }),
+  label(12, 24, 'XE ĐỐI DIỆN', { size: 8 }),
+  label(waiting ? 258 : 184, waiting ? 78 : 128, 'ĐẦU', { size: 7, fill: C.ego }),
+  ...(waiting ? [
+    '<defs><marker id="yield-pass-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">',
+    `<path d="M0 1L9 5L0 9Z" fill="${C.other}"/></marker></defs>`,
+    `<path id="yield-pass" d="M152 130L152 158" fill="none" stroke="${C.other}" stroke-width="2.4" marker-end="url(#yield-pass-tip)"/>`,
+    label(12, 80, 'XE KIA QUA', { size: 8 }),
+    label(230, 138, 'XE BẠN CHỜ', { size: 8, fill: C.ego, anchor: 'middle' }),
+    label(230, 150, 'GIỮ XE', { size: 8, fill: C.ego, anchor: 'middle' })
+  ] : [
+    label(202, 94, 'PHÍA TRƯỚC', { size: 7 }),
+    label(202, 108, 'BÊN PHẢI', { size: 7 }),
+    label(12, 82, 'CẢ HAI DỪNG', { size: 8 }),
+    label(12, 96, 'ĐỂ KIỂM TRA', { size: 8 }),
+    label(12, 148, 'XE BẠN DỪNG', { size: 8, fill: C.ego }),
+    line(90, 145, 141, 148, C.ego, 1)
+  ]),
+  note(waiting
+    ? 'Không theo tỷ lệ. Giữ xe; chờ cả xe và người qua hết, kiểm tra lại trước khi ra.'
+    : 'Không theo tỷ lệ. Chỗ tránh phía trước; chỉ tiến vào khi được phép và đủ khoảng hở.')
+]
 
 const creepLot = (crossing = false) => [
   rect(0, 0, W, 174, C.kerb),
@@ -643,22 +688,8 @@ const templates = {
       ],
       corner: () => cornerScene(false),
       'corner-risk': () => cornerScene(true),
-      yield: () => [
-        alleyLot(112),
-        car(140, 126, 0, C.ego),
-        car(182, 52, 180, C.other),
-        rect(214, 92, 30, 44, '#31463f', 4),
-        label(212, 150, 'CHỖ TRÁNH', { size: 7.5 }),
-        trail('M140 102C140 86 168 86 186 102', C.accent, '5 4'),
-        note('Xe nào gần chỗ tránh hơn thì chủ động lùi vào nhường.')
-      ],
-      'yield-pocket': () => [
-        alleyLot(112),
-        car(226, 112, 0, C.ego),
-        car(150, 62, 180, C.other),
-        gap(140, 214, 156, 'Chờ xe kia qua hẳn'),
-        note('Đỗ gọn trong chỗ tránh, bật xi-nhan phải và chờ.')
-      ],
+      yield: () => yieldScene(false),
+      'yield-pocket': () => yieldScene(true),
       cutoff: () => [
         alleyLot(120),
         car(160, 128, 0, C.ego),
@@ -895,7 +926,7 @@ const specs = [
   ['narrow-creep', 'alley', ['creep', 'Chỉ tiến khi nhìn rõ và đủ khoảng hở cả gương', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe ở trên, đuôi ở dưới, gương nhô hai bên; hai mô tô đang đỗ sát mép phía trước. Mũi tên xanh từ trước đầu xe hướng lên chỉ hướng tiến minh họa, không phải điểm nhìn hay bảo đảm xe lọt. Đi bộ hoặc chậm hơn, chỉ tiến khi quan sát rõ và đủ khoảng hở toàn xe.'], ['creep-stop', 'Xe dừng trước vùng xe máy từ nhánh bên phải cắt ngang', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng hướng xe: đầu ở trên, đuôi ở dưới. Xe mình đang dừng trước vùng xung đột tô đỏ, không có mũi tên chuyển động của xe mình. Xe máy hướng sang trái từ lối mở bên phải; mũi tên đỏ nét đứt chỉ hướng xe máy cắt ngang, không phải lệnh đánh lái. Giữ phanh, chờ lối đi rõ và quan sát lại trước khi đi tiếp.']],
   ['narrow-mirror', 'alley', ['mirror', 'Khoảng hở từ mép gương tới vật cản, không phải số đo hay hình phản chiếu', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng lên, đuôi ở dưới, hai gương mở nhô ngoài thân; mô tô đỗ bên phải có tay lái nhô ra. a nối tường trái với mép ngoài gương trái, b nối mép ngoài gương phải với mép gần nhất tay lái tại cùng mặt cắt; không phải số đo, mức hở an toàn chung hay vùng nhìn thấy trong gương. Không có mũi tên chuyển động.'], ['mirror-stop', 'Dừng trước chỗ tường nhô khi chưa rõ khoảng hở; không gập gương để cố lọt', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cùng xe đầu hướng lên, hai gương vẫn mở; xe đang dừng trước đoạn tường trái nhô vào lối đi. Nét đứt đỏ ngang đoạn thắt chỉ khoảng hở chưa rõ, không phải hướng xe chạy hay bằng chứng xe lọt. Không có mũi tên tiến, lùi hoặc gập gương; chỉ đi tiếp sau khi kiểm tra rõ và đủ khoảng hở toàn xe.']],
   ['narrow-corner', 'alley', ['corner', 'Ví dụ rẽ phải: bánh sau phía trong đi hẹp hơn bánh trước', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe con có gương mở, đầu hướng lên rồi tiến rẽ phải trong lối hình chữ L. Vệt xanh có mũi tên là bánh trước phải, vệt vàng có mũi tên là bánh sau phải của cùng xe; bánh sau đi phía trong. Chỉ minh họa một đoạn cung quay, không phải toàn bộ vùng quét thân, gương, đầu đuôi xe, mốc đánh lái hay bảo đảm xe thực tế quay lọt.'], ['corner-risk', 'Xe dừng trước nguy cơ bánh sau cắt góc, không tự lùi ở góc khuất', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng góc tường: xe có gương mở đang dừng khi đầu hướng chéo lên phải, thân chưa chạm tường. Nét đỏ đứt dự báo bánh sau phải nếu cố tiến theo cung quay hiện tại, giao chân tường tại dấu X; không phải lệnh đi hay đường lùi. Chưa rõ khoảng hở thì giữ xe, quan sát lại và gọi hỗ trợ; không tự lùi ở góc khuất.']],
-  ['narrow-yield', 'alley', ['yield', 'Nhường đường trong hẻm', 'Sơ đồ nhìn từ trên xuống: hai xe ngược chiều và vị trí chỗ tránh trong hẻm.'], ['yield-pocket', 'Đỗ gọn trong chỗ tránh', 'Sơ đồ nhìn từ trên xuống: xe đỗ gọn trong chỗ tránh để xe ngược chiều đi qua.']],
+  ['narrow-yield', 'alley', ['yield', 'Hai xe dừng đánh giá; chỗ tránh phía trước bên phải xe bạn, không mặc định phải lùi.', 'Sơ đồ không theo tỷ lệ trên nền bằng: xe bạn màu xanh hướng lên, xe đối diện hướng xuống, cả hai dừng; chỗ tránh mở về phía trước bên phải xe bạn. Không vẽ quỹ đạo đánh lái.'], ['yield-pocket', 'Xe bạn giữ yên trong chỗ tránh; chờ hết xe và người, kiểm tra lại trước khi ra.', 'Sơ đồ không theo tỷ lệ: toàn xe bạn và gương nằm trong chỗ tránh bên phải, đầu hướng lên và đang dừng; xe đối diện hướng xuống với mũi tên cùng chiều. Hai trạng thái không phải quỹ đạo bảo đảm xe lọt.']],
   ['narrow-cutoff', 'alley', ['cutoff', 'Xe máy tạt đầu', 'Sơ đồ nhìn từ trên xuống: xe máy cắt chéo trước đầu xe trong hẻm.'], ['cutoff-stop', 'Giữ khoảng trống phía trước', 'Sơ đồ nhìn từ trên xuống: khoảng trống một thân xe máy phía trước đầu xe.']],
   ['highway-merge', 'highway', ['merge', 'Nhập làn từ làn tăng tốc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo nhập làn từ làn tăng tốc vào làn phải cao tốc.'], ['merge-gap', 'Chọn khoảng trống ba giây', 'Sơ đồ nhìn từ trên xuống: khoảng trống ba giây giữa hai xe trên làn chính.']],
   ['highway-exit', 'highway', ['exit', 'Thoát làn đúng lối ra', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vào làn giảm tốc trước lối ra cao tốc.'], ['exit-miss', 'Lỡ lối ra', 'Sơ đồ nhìn từ trên xuống: thao tác cắt ngang gấp bị gạch bỏ khi lỡ lối ra.']],
