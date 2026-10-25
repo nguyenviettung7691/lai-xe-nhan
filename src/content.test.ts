@@ -41,7 +41,7 @@ describe('gói nội dung offline', () => {
     expect(allCards.length).toBeGreaterThan(publishedCards.length)
     expect(publishedCards.every(card => card.reviewStatus === 'approved' || card.reviewStatus === 'published_unverified')).toBe(true)
     expect(getCardById('parking-column')).toBeUndefined()
-    expect(getCardById('highway-tailgater')).toBeUndefined()
+    expect(getCardById('highway-tailgater')?.reviewStatus).toBe('published_unverified')
     expect(getCardById('parking-start')?.title).toBe('Chọn điểm bắt đầu lùi')
   })
 
@@ -68,7 +68,7 @@ describe('gói nội dung offline', () => {
   it('thẻ đã duyệt luôn kèm hồ sơ thẩm định', () => {
     expect(publishedCards.filter(card => card.reviewStatus === 'approved').every(card => getReview(card.id)?.decision === 'approved')).toBe(true)
     expect(publishedCards.filter(card => card.reviewStatus === 'published_unverified').every(card => getReview(card.id) === undefined)).toBe(true)
-    expect(getReview('highway-tailgater')?.decision).toBe('needs_revision')
+    expect(getReview('highway-tailgater')).toBeUndefined()
     expect(getReview('parking-column')).toBeUndefined()
   })
 

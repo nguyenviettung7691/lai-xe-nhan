@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('highway-tailgater', 'safety', 'Cần bổ sung hướng dẫn khi bị ép xe kéo dài và cách ghi nhận bằng camera hành trình.', 3, '2026-09-12', 'needs_revision'),
   review('weather-downhill', 'slope', 'Phanh động cơ là nội dung cốt lõi, dấu hiệu phanh quá nhiệt mô tả đúng.', 5, '2026-09-12'),
   review('weather-uphill-start', 'slope', 'Trình tự giữ phanh tay đến khi có lực kéo là cách an toàn cho tài mới.', 5, '2026-09-12'),
   review('weather-engine-brake', 'slope', 'Lưu ý đọc sách hướng dẫn của nhà sản xuất là cần thiết vì ký hiệu khác nhau.', 4, '2026-09-12'),

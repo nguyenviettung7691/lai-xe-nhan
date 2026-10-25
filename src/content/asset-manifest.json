@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.17",
+  "contentVersion": "2026.10.18",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 165.68,
+  "totalSizeKb": 170.63,
   "assets": [
     {
       "id": "parking-start-main",
@@ -488,11 +488,11 @@
       "url": "/content/svg/highway-tailgater-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.4,
-      "checksum": "sha256-3cbbab7bd37365ab48ea338f0b337ad1e045bb704d50db1b989ba6219b8ad018",
+      "sizeKb": 5.21,
+      "checksum": "sha256-1c8bcbe73e9c27692b5bfd3893cdffb94f83897f3187ba9a04cc967c313477cd",
       "offlinePack": "core",
-      "caption": "Bị xe sau bám đuôi",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe phía sau bám sát đuôi ở khoảng cách nguy hiểm."
+      "caption": "Giãn trước êm, không phanh cảnh cáo; vẫn phanh khi nguy hiểm",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải. Xe mình màu xanh ở giữa làn trái, xe sau màu cam bám sát cùng làn, xe trước màu xám ở xa hơn phía trước. Ngoặc cam nối đầu xe sau đến đuôi xe mình là tình huống nguy hiểm, không phải cự ly chuẩn; ngoặc xanh nối đầu xe mình đến đuôi xe trước nhắc tăng khoảng trống phía trước êm theo biển, tốc độ và điều kiện, không phải số mét hay giây bảo đảm. Không phanh cảnh cáo, nhưng vẫn phanh cần thiết khi có nguy hiểm tức thời."
     },
     {
       "id": "highway-tailgater-var",
@@ -502,11 +502,11 @@
       "url": "/content/svg/highway-tailgater-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.22,
-      "checksum": "sha256-7a824fca749d01b1b62e7ff895ba7ac40efc784ca60d7d1f629fb7a251a55d63",
+      "sizeKb": 4.36,
+      "checksum": "sha256-aa0b2055725d71ee63fb039afe3713cf3a5c98ae940d7d6697781d0bbedd67ca",
       "offlinePack": "core",
-      "caption": "Nhường đường cho xe sau",
-      "alt": "Sơ đồ nhìn từ trên xuống: chuyển sang làn phải để xe bám đuôi vượt lên."
+      "caption": "Chỉ nhường một làn phải khi được phép và an toàn; chưa đủ hở thì giữ làn",
+      "alt": "Thời điểm chuẩn bị riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe bám sau màu cam vẫn nằm trọn trong làn trái, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt sang làn phải ở phía dưới và kết thúc thẳng trong làn, không ra lề. Đây chỉ là phương án có điều kiện, không phải quỹ đạo lái chính xác hay bằng chứng làn nhận an toàn: cần được phép, báo hiệu sớm, kiểm tra gương, điểm mù phải và đủ hở trước, sau, hai bên, xét cả xe đang đi lên bên phải. Nếu đã ở làn phải ngoài cùng hoặc chưa an toàn thì giữ làn, không dùng làn dừng khẩn cấp hay lề để nhường."
     },
     {
       "id": "weather-downhill-main",

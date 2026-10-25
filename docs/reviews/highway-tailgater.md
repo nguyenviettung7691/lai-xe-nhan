@@ -68,3 +68,48 @@ this is not independent driving-instructor certification.
 Initial worktree clean. Content, assets and validation suites: **31 tests
 passed**. Both original diagrams inspected in the browser. The original card
 is intentionally excluded from public lookup until revision.
+
+## Implementation and verification results
+
+- Analysis/plan committed first as `a534312`. Implemented one coherent lesson
+  revision afterward; retained card/lesson/checklist/asset/quiz IDs and the
+  original 0.9.0 changelog. Eight steps now cover predictable speed, progressive
+  front spacing, conditional yielding, passing/cut-in, necessary emergency
+  braking, persistent threats and safe evidence handling.
+- Replaced both SVGs with explicit two-lane, rightward-traffic scenes. All car
+  footprints are centered inside the left lane; the main has bumper-anchored
+  rear/forward gaps, and the conditional variant path ends forward inside the
+  right lane. Captions/alt explain conditions, scale, shoulder prohibition and
+  fallback. No numeric safety threshold or extra chart/photo was introduced.
+- Published card 1.0.0 in pack 2026.10.18 with **Chưa thẩm định độc lập**;
+  removed the outdated sample revision record, not a real expert endorsement.
+  Independent instructor/legal review remains outstanding, explicitly labeled
+  in the app. Updated the coupled publication tests and content-model example.
+- Added **11 focused regression tests** covering selected correct quiz answers,
+  fresh observation, blocked/rightmost fallback, emergency braking, safe
+  reporting/evidence handling in quick/audio source text, stable identities,
+  vehicle containment/headings, bumper anchors and a sampled lane-change path.
+- Baseline content gates: **31/31 passed**. Final focused content/asset/validation
+  checks: **42/42 passed**. All content regressions: **240/240 passed** across
+  21 files, including previous lesson revisions.
+- `npm run lint` and `npm run build` passed, including Vue/TypeScript checks
+  and PWA generation. Build reports only upstream Zod pure-annotation warnings;
+  no new tooling or dependencies were installed.
+- Browser checks: original and final SVGs visually inspected; final SVG text
+  bounding boxes stay inside the 320 x 200 viewBox. Desktop at 1440px and mobile
+  emulation at 390 x 844 show no horizontal overflow. Both lesson images load;
+  both mobile figures and wrapped captions were inspected. The unverified
+  badge is visible; eight steps display. Quick mode hides the variant/recovery
+  as designed but retains lane fallback, emergency exception and safety text.
+- In-browser quiz exercised with wrong choices (**0/3, Chưa đạt**), then retry
+  and correct choices (**3/3, Đạt**). Whole-card/per-step audio consumers were
+  checked at the source: critical conditions are in instructions and safety,
+  not solely cues, alt or recovery; audible playback was not assessed.
+- Repeated generation produced identical manifest and revised SVG hashes.
+  Git confirms only the two tailgater SVGs changed; other 44 SVGs are unchanged.
+  Whitespace/diff checks passed. No shared UI, checklist or learning-path code
+  needed modification.
+
+Browser-tool timeouts were worked around using Chrome DevTools and explicit
+page selection; actual viewport dimensions and decoded image readiness were
+verified rather than assuming a resize or lazy image load succeeded.

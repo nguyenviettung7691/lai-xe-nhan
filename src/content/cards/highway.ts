@@ -223,36 +223,42 @@ export const highwayCards: Card[] = [
     lessonId: 'highway-flow',
     topicId: 'highway',
     title: 'Khi bị xe sau bám sát',
-    context: 'Xe phía sau bám cách đuôi chưa tới một thân xe và nháy đèn liên tục. Phản ứng nóng giận lúc này dễ dẫn tới va chạm liên hoàn.',
-    objective: 'Tạo thêm khoảng trống phía trước và nhường đường sớm.',
+    context: 'Trên cao tốc, xe phía sau bám quá sát khiến khoảng trống không đủ để phản ứng khi bạn phải phanh, có thể kèm nháy đèn. Không suy đoán ý định của họ; hãy giữ bình tĩnh và tránh để áp lực làm mình lái xe nguy hiểm.',
+    objective: 'Giữ tốc độ an toàn, tạo thêm khoảng trống phía trước và chỉ nhường sang làn phải khi được phép, đủ hở và đã quan sát.',
     risk: 'high',
     difficulty: 3,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'highway', spaceConstraint: 'medium', visibility: 'good', stress: 'high' },
     steps: [
-      { instruction: 'Giữ tốc độ ổn định và tránh phản ứng đột ngột.', cueType: 'feel', cueText: 'Tốc độ không dao động' },
-      { instruction: 'Tăng khoảng cách với xe phía trước lên bốn giây.', cueType: 'timing', cueText: 'Khoảng cách bốn giây' },
-      { instruction: 'Bật xi-nhan phải và chuyển sang làn bên phải khi có khoảng trống.', cueType: 'marker', cueText: 'Khoảng trống làn phải' },
-      { instruction: 'Giữ hướng thẳng cho xe sau vượt qua.', cueType: 'feel', cueText: 'Xe sau đang vượt' },
-      { instruction: 'Trở lại nhịp chạy bình thường sau khi xe sau đã đi xa.', cueType: 'mirror', cueText: 'Xe sau đã đi xa' }
+      { instruction: 'Giữ bình tĩnh, giữ làn và tốc độ phù hợp biển báo, dòng xe, tầm nhìn và độ bám; không tăng tốc vượt giới hạn để chạy trốn, không phanh cảnh cáo hay đáp trả bằng đèn, còi hoặc cử chỉ.', cueType: 'feel', cueText: 'Lái dễ đoán, không đua hoặc trả đũa' },
+      { instruction: 'Tăng khoảng trống phía trước bằng cách nhả ga êm khi an toàn, quan sát xe sau và tránh giảm tốc đột ngột; giữ cự ly theo biển, tốc độ và quy định, tăng thêm khi mưa, trơn hoặc nhìn kém, không coi bốn giây là bảo đảm an toàn.', cueType: 'timing', cueText: 'Giãn trước để có thể giảm tốc sớm, không cố làm xe sau lùi lại' },
+      { instruction: 'Kiểm tra biển, vạch và phân làn trước khi định nhường sang phải; quan sát phía trước, phía sau và hai bên, xét tốc độ xe đến gần và xe đang đi lên bên phải. Nếu đã ở làn phải ngoài cùng, bị chắn hoặc chưa đủ hở thì giữ làn, không chạy ra làn dừng khẩn cấp hay lề đường.', cueType: 'marker', cueText: 'Không có làn nhận hợp lệ, an toàn thì chưa chuyển' },
+      { instruction: 'Giữ hướng và tốc độ dễ đoán để xe sau đi qua, không tăng tốc cản đường; nếu có thể chuyển phải an toàn, bật xi-nhan phải sớm, kiểm tra gương trong, gương phải và điểm mù phải ngay trước khi dịch ngang, chỉ liếc ngắn rồi nhìn lại phía trước.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền chuyển làn; gương và cảnh báo điểm mù chỉ hỗ trợ' },
+      { instruction: 'Chuyển êm một làn liền kề qua vạch đứt khi được phép và vẫn đủ hở trước, sau, hai bên; nếu khe đóng hoặc xe sau đang đi lên bên phải thì hoãn chuyển, không ép vào. Tắt xi-nhan khi đã ổn định trong làn; không cắt nhiều làn hay chuyển lại sang trái để bám đuổi.', cueType: 'marker', cueText: 'Quan sát lại trước khi đi; không đánh lái tránh xe sau bằng mọi giá', steeringHint: 'dịch ngang êm, kết thúc thẳng trong làn nhận' },
+      { instruction: 'Quan sát đường phía trước là chính, chỉ kiểm tra gương ngắn; khi xe kia đi qua hoặc cắt vào trước, giữ làn và tạo lại cự ly an toàn bằng điều chỉnh tốc độ êm, không bám theo. Nếu có nguy hiểm tức thời, phanh cần thiết để tránh va chạm, không vì sợ xe sau mà trì hoãn; không giật lái sang làn chưa kiểm tra.', cueType: 'mirror', cueText: 'Tránh phanh trả đũa không có nghĩa là bỏ phanh khẩn cấp' },
+      { instruction: 'Chọn lối ra hoặc lối vào trạm dừng nghỉ có biển chỉ dẫn nếu cần thoát áp lực kéo dài và có thể vào an toàn; chuẩn bị từng làn, không cắt gấp, quá muộn thì đi tiếp. Nếu bị bám theo hoặc đe dọa, hướng tới nơi công cộng có nhân viên và gọi Cảnh sát giao thông qua người đi cùng hoặc sau khi dừng an toàn; không dừng trên cao tốc hay ở nơi vắng để đối chất.', cueType: 'sign', cueText: 'Không có số phút chờ nào bảo đảm hết nguy cơ; khi dừng ở nơi an toàn, khóa cửa và không đối đầu' },
+      { instruction: 'Nhờ người đi cùng liên hệ hỗ trợ khi cần; để camera hành trình đang hoạt động tự ghi, chỉ xem và lưu video, ghi biển số, thời gian, địa điểm sau khi đỗ an toàn. Không cầm điện thoại, chỉnh camera, cố đọc biển số hoặc bám đuổi để lấy bằng chứng khi đang lái.', cueType: 'feel', cueText: 'Ưu tiên điều khiển xe; bằng chứng chỉ xử lý sau khi an toàn' }
     ],
     mistakes: [
-      'Đạp phanh cảnh cáo xe phía sau.',
-      'Giảm tốc đột ngột để buộc xe sau lùi lại.',
-      'Bám lại xe phía trước cho đỡ bị ép.'
+      'Phanh cảnh cáo, giảm tốc đột ngột để trả đũa hoặc tăng tốc vượt giới hạn vì bị thúc ép.',
+      'Chuyển phải chỉ vì đã bật xi-nhan, bỏ sót xe đi lên bên phải hoặc dùng làn dừng khẩn cấp để nhường.',
+      'Bám xe trước, nhìn gương quá lâu, dùng điện thoại ghi hình hoặc dừng ở nơi vắng để đối chất.'
     ],
-    recovery: 'Nếu xe sau tiếp tục bám sát, tấp vào trạm dừng nghỉ gần nhất và chờ vài phút cho dòng xe đi qua.',
-    safety: 'Không tranh chấp trên đường; ghi nhớ biển số và báo cơ quan chức năng nếu bị đe dọa.',
-    mnemonic: { text: 'Giữ đều, giãn trước, nhường phải, đi tiếp.', rhythm: 'ba-nhip' },
+    recovery: 'Nếu chưa đủ hở, đã ở làn phải ngoài cùng hoặc xe sau đang đi lên bên phải, giữ làn và hoãn chuyển; không dùng làn dừng khẩn cấp hay lề để nhường. Tiếp tục tạo khoảng trống phía trước êm, không ép xe sau lùi lại; phanh cần thiết khi có nguy hiểm tức thời. Nếu áp lực kéo dài, chọn lối ra hoặc trạm dừng nghỉ có biển và vào được an toàn, lỡ thì đi tiếp, không dừng giữa đường hay cắt gấp. Nếu bị bám theo hoặc đe dọa, tránh nơi vắng, tìm nơi công cộng có nhân viên, khi dừng an toàn giữ cửa khóa, không đối chất; nhờ người đi cùng gọi Cảnh sát giao thông hoặc tự gọi sau khi đỗ an toàn. Để camera tự ghi; chỉ lưu bằng chứng sau khi đỗ, không truy đuổi.',
+    safety: 'Không phanh cảnh cáo, cố giảm tốc để chọc tức, tăng tốc vượt giới hạn hoặc nhìn gương liên tục. Tạo thêm cự ly trước êm theo biển, tốc độ và điều kiện; bốn giây không bảo đảm an toàn. Chỉ chuyển một làn phải liền kề khi được phép, báo hiệu, kiểm tra gương và điểm mù, đủ hở trước sau và hai bên; hết làn phải hoặc chưa an toàn thì giữ làn, không dùng làn dừng khẩn cấp hay lề để nhường. Vẫn phanh cần thiết khi nguy hiểm tức thời. Nếu bị đe dọa, tìm nơi công cộng có nhân viên qua lối ra hợp lệ khi an toàn, không dừng trên cao tốc để đối chất; nhờ người đi cùng gọi Cảnh sát giao thông hoặc gọi sau khi đỗ an toàn. Camera tự ghi, không cầm điện thoại hay chỉnh camera khi lái; lưu bằng chứng sau khi đỗ.',
+    mnemonic: { text: 'Giữ bình tĩnh, giãn trước, đủ hở mới nhường.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Khi bị xe sau bám sát và nháy đèn, phản ứng đúng là gì?', options: ['Đạp phanh cảnh cáo', 'Giữ tốc độ ổn định, tránh phản ứng đột ngột', 'Tăng tốc bỏ chạy'], correctIndex: 1 },
-      { prompt: 'Nên làm gì để tạo điều kiện cho xe sau vượt an toàn?', options: ['Bám sát xe phía trước hơn', 'Bật xi-nhan phải, chuyển làn khi có khoảng trống', 'Giảm tốc đột ngột giữa làn'], correctIndex: 1 },
-      { prompt: 'Nếu xe phía sau tiếp tục bám sát và có dấu hiệu đe dọa, bạn nên?', options: ['Tấp vào trạm dừng nghỉ gần nhất và chờ', 'Dừng hẳn giữa cao tốc để tranh cãi', 'Tăng tốc tối đa để bỏ xa'], correctIndex: 0, isStopCondition: true }
+      { prompt: 'Xe sau bám sát, còn phía trước có xe đang chạy; nên tạo thêm thời gian phản ứng thế nào?', options: ['Đạp phanh nhẹ nhiều lần để cảnh cáo xe sau', 'Giữ tốc độ an toàn trong giới hạn, nhả ga êm khi an toàn để tăng cự ly trước theo điều kiện; vẫn phanh cần thiết nếu có nguy hiểm tức thời', 'Tăng tốc vượt giới hạn để thoát xe sau'], correctIndex: 1 },
+      { prompt: 'Đã bật xi-nhan phải nhưng xe sau đang đi lên bên phải hoặc khe chưa đủ, bạn làm gì?', options: ['Chuyển ngay vì xe sau phải nhường xi-nhan', 'Đi ra làn dừng khẩn cấp để nhường', 'Giữ làn, hoãn chuyển; chỉ qua một làn liền kề được phép khi đủ hở trước sau và hai bên, đã kiểm tra gương và điểm mù phải'], correctIndex: 2, isStopCondition: true },
+      { prompt: 'Xe kia tiếp tục bám theo, đe dọa; xử lý và ghi nhận thế nào?', options: ['Tìm nơi công cộng có nhân viên qua lối ra hợp lệ khi an toàn; nhờ người đi cùng gọi Cảnh sát giao thông hoặc gọi sau khi đỗ an toàn, để camera tự ghi và lưu bằng chứng sau khi đỗ', 'Dừng ở lề cao tốc để quay phim và hỏi cho rõ', 'Bám theo để đọc biển số rồi vào trạm gần nhất chờ đúng vài phút'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'needs_revision',
-    version: '0.9.0',
-    updatedAt: '2026-09-12',
-    changelog: [{ version: '0.9.0', date: '2026-09-12', summary: 'Chờ bổ sung hướng dẫn xử lý tình huống bị ép xe kéo dài.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.0.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '0.9.0', date: '2026-09-12', summary: 'Chờ bổ sung hướng dẫn xử lý tình huống bị ép xe kéo dài.', author: 'Biên tập nội dung' },
+      { version: '1.0.0', date: '2026-10-25', summary: 'Sửa cự ly trước, chuyển làn có điều kiện, phanh khẩn cấp, đe dọa kéo dài và camera; thay hai sơ đồ, bỏ hồ sơ mẫu và công bố chưa thẩm định độc lập.', author: 'Biên tập nội dung' }
+    ]
   })
 ]

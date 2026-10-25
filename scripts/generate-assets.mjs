@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.17'
+const CONTENT_VERSION = '2026.10.18'
 
 const W = 320
 const H = 200
@@ -352,14 +352,6 @@ const mirrorLot = () => [
   label(148, 162, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'middle' })
 ]
 
-const highwayLot = (lanes = 3) => {
-  const parts = [rect(0, 0, W, 180, C.kerb), rect(0, 30, W, lanes * 38, C.asphalt)]
-  for (let i = 1; i < lanes; i += 1) parts.push(line(0, 30 + i * 38, W, 30 + i * 38, C.bay, 1.8, '14 12'))
-  parts.push(line(0, 30, W, 30, C.bay, 2.4))
-  parts.push(line(0, 30 + lanes * 38, W, 30 + lanes * 38, C.bay, 2.4))
-  return parts.join('')
-}
-
 const followingSnapshot = (id, y, egoX, leadX) => [
   `<g id="${id}-lane">${rect(0, y - 19, W, 38, C.asphalt)}</g>`,
   line(0, y - 19, W, y - 19, C.bay, 1.6),
@@ -530,6 +522,40 @@ const overtakeScene = returning => {
     ])
   ]
 }
+
+const tailgaterScene = yielding => [
+  rect(0, 0, W, 174, C.kerb),
+  `<g id="tailgater-road">${rect(0, 42, W, 108, C.asphalt)}</g>`,
+  `<g id="tailgater-edges">${line(0, 42, W, 42, C.bay, 2)}${line(0, 150, W, 150, C.bay, 2)}</g>`,
+  `<g id="tailgater-divider">${line(0, 96, W, 96, C.bay, 1.8, '10 8')}</g>`,
+  label(16, 18, yielding ? 'ĐỦ HỞ MỚI NHƯỜNG PHẢI' : 'BỊ BÁM SÁT: GIÃN TRƯỚC ÊM', { size: 9, fill: C.ego }),
+  label(16, 34, 'HAI LÀN CÙNG CHIỀU', { size: 8 }),
+  `<g id="tailgater-direction">${arrow(260, 29, 300, 29)}${arrow(260, 139, 300, 139)}</g>`,
+  `<g id="tailgater-follower">${car(54, 69, 90, C.hazard, 18, 32)}</g>`,
+  `<g id="tailgater-ego">${car(94, 69, 90, C.ego, 18, 32)}</g>`,
+  label(54, 53, 'XE SAU', { size: 8, fill: C.hazard, anchor: 'middle' }),
+  label(110, 53, 'XE MÌNH', { size: 8, fill: C.ego }),
+  label(16, 92, 'LÀN TRÁI', { size: 8 }),
+  label(16, 127, 'LÀN PHẢI', { size: 8 }),
+  ...(yielding ? [
+    `<g id="tailgater-yield-path">${trail('M110 69C145 69 160 123 208 123L244 123')}</g>`,
+    label(170, 88, 'KIỂM TRA ĐIỂM MÙ PHẢI', { size: 8 }),
+    label(160, 163, 'CHƯA AN TOÀN: GIỮ LÀN', { size: 8, fill: C.ego, anchor: 'middle' }),
+    note('Không theo tỷ lệ. Chỉ qua một làn khi được phép, báo hiệu và đủ hở trước, sau, hai bên.')
+  ] : [
+    `<g id="tailgater-lead">${car(274, 69, 90, C.other, 18, 32)}</g>`,
+    label(274, 53, 'XE TRƯỚC', { size: 8, anchor: 'middle' }),
+    '<g id="tailgater-rear-gap">',
+    line(70, 105, 78, 105, C.hazard, 1.6, '2 2'),
+    line(70, 101, 70, 109, C.hazard, 1.6),
+    line(78, 101, 78, 109, C.hazard, 1.6),
+    label(86, 109, 'BÁM SÁT', { size: 8, fill: C.hazard }),
+    '</g>',
+    `<g id="tailgater-front-gap">${gap(110, 258, 92, 'TĂNG HỞ TRƯỚC ÊM')}</g>`,
+    label(160, 163, 'KHÔNG PHANH CẢNH CÁO', { size: 8, fill: C.hazard, anchor: 'middle' }),
+    note('Không theo tỷ lệ; không phải cự ly chuẩn. Vẫn phanh cần thiết khi nguy hiểm tức thời.')
+  ])
+]
 
 const exitScene = missed => [
   rect(0, 0, W, 180, C.kerb),
@@ -962,21 +988,8 @@ const templates = {
       'gap-rain': () => followingScene(true),
       overtake: () => overtakeScene(false),
       'overtake-return': () => overtakeScene(true),
-      tailgate: () => [
-        highwayLot(),
-        car(182, 98, 90, C.ego),
-        car(120, 98, 90, C.hazard),
-        gap(146, 156, 82, 'Quá gần'),
-        note('Bị bám đuôi thì giữ đều tốc độ và tăng khoảng cách phía trước.')
-      ],
-      'tailgate-let': () => [
-        highwayLot(),
-        car(150, 136, 90, C.ego),
-        car(184, 98, 90, C.other),
-        trail('M176 130C198 130 222 126 248 120'),
-        tag(16, 166, 'Nhường làn cho xe sau'),
-        note('Chuyển sang làn phải khi an toàn để xe sau vượt.')
-      ]
+      tailgate: () => tailgaterScene(false),
+      'tailgate-let': () => tailgaterScene(true)
     }
     return (scenes[mode] ?? scenes.merge)()
   },
@@ -1099,7 +1112,7 @@ const specs = [
   ['highway-signs', 'highway', ['signs', 'Nhận diện tối đa và tối thiểu có điều kiện, không phải lệnh đổi làn', 'Bảng nhận diện minh họa, không theo tỷ lệ hay mô tả cách đặt biển: vòng đỏ nền trắng số đen 80 là tối đa 80 km/h; vòng xanh lam số trắng 60 là tối thiểu 60 km/h khi giao thông thuận lợi và an toàn. Gặp nguy hiểm cần giảm tốc, kể cả dưới mức tối thiểu. Phía dưới là xe hướng đầu sang phải và mũi tên đi thẳng trên mặt đường, không phải quỹ đạo chuyển làn.'], ['signs-speed', 'Giảm tốc trước vị trí giới hạn mới có hiệu lực, không chờ qua biển', 'Ví dụ riêng nhìn từ trên xuống, không theo tỷ lệ: xe hướng đầu sang phải, còn ở trước biển tối đa 60 km/h, không có biển phụ. Nét dọc mảnh nối vị trí biển với đường chỉ vị trí hiệu lực, không phải vạch đường hay lệnh dừng. Vùng sáng bên phải bắt đầu tại vị trí này: không vượt 60 từ đây, vẫn chậm hơn nếu cần an toàn. Mũi tên đi thẳng khớp đầu xe; giảm tốc êm từ sớm, không có quãng phanh hoặc tốc độ cao tốc chung được bảo đảm.']],
   ['highway-gap', 'highway', ['gap', 'Đếm đủ giây qua cùng mốc; vẫn theo biển và cự ly quy định', 'Hai thời điểm nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe trước màu xám cùng làn, đầu và mũi tên hướng sang phải. Nét dọc vàng là cùng một mốc cố định bên đường, không phải vạch dừng. Bắt đầu khi đuôi xe trước ngang mốc ở hình trên; kết thúc khi đầu xe mình ngang mốc ở hình dưới. Ít nhất ba giây chỉ là tham khảo khi khô, thuận lợi; vẫn giữ cự ly theo biển, tốc độ và điều kiện. Dấu ngoặc chỉ cự ly giữa hai cản xe, không quy đổi độ dài hình thành giây hay mét.'], ['gap-rain', 'Mưa: từ mốc ba giây khô tăng ít nhất sáu giây, có thể cần hơn', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: mưa, hai xe cùng làn hướng sang phải; xe mình màu xanh theo sau xe xám, dấu ngoặc từ đầu xe mình đến đuôi xe trước minh họa cự ly tăng, không phải quãng phanh hay số mét. Từ mốc ba giây khô tăng ít nhất sáu giây khi ướt, có thể cần hơn; tuân thủ cự ly lớn hơn biển hoặc bảng trong điều kiện xấu và giảm tốc theo độ bám, tầm nhìn. Sáu giây không bảo đảm an toàn.']],
   ['highway-overtake-truck', 'highway', ['overtake', 'Đủ điều kiện mới qua trái, không vượt giới hạn tốc độ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải, xe tải có ca-bin ở đầu bên phải nằm trọn làn phải. Xe mình màu xanh ở sau xe tải; mũi tên từ đầu xe chuyển qua vạch đứt sang làn trái rồi đi thẳng. Vùng cam trước, sau và hai bên xe tải chỉ minh họa điểm mù thay đổi theo xe và gương, không phải ranh giới chính xác hoặc vùng ngoài đó chắc chắn được nhìn thấy. Chỉ đi khi được phép, đủ hở và không vượt giới hạn tốc độ; đường vẽ không phải quỹ đạo lái chính xác.'], ['overtake-return', 'Đủ cự ly trước sau, báo hiệu và kiểm tra lại mới về phải', 'Thời điểm sau riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình đã đi hẳn lên trước trong làn trái; xe tải nằm trong làn phải, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt rồi đi thẳng giữa làn phải, không ra lề. Dấu ngoặc hở sau nối theo phương dọc từ đầu xe tải đến đuôi xe mình, không phải số mét, giây hay khoảng cách được bảo đảm. Sơ đồ không chứng minh tầm nhìn trong gương: thấy toàn bộ xe tải trong gương trong chỉ hỗ trợ; còn phải đủ cự ly với xe trước, khoảng hở sau theo tốc độ tương đối, báo hiệu và kiểm tra lại gương, điểm mù phải trước khi về làn.']],
-  ['highway-tailgater', 'highway', ['tailgate', 'Bị xe sau bám đuôi', 'Sơ đồ nhìn từ trên xuống: xe phía sau bám sát đuôi ở khoảng cách nguy hiểm.'], ['tailgate-let', 'Nhường đường cho xe sau', 'Sơ đồ nhìn từ trên xuống: chuyển sang làn phải để xe bám đuôi vượt lên.']],
+  ['highway-tailgater', 'highway', ['tailgate', 'Giãn trước êm, không phanh cảnh cáo; vẫn phanh khi nguy hiểm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải. Xe mình màu xanh ở giữa làn trái, xe sau màu cam bám sát cùng làn, xe trước màu xám ở xa hơn phía trước. Ngoặc cam nối đầu xe sau đến đuôi xe mình là tình huống nguy hiểm, không phải cự ly chuẩn; ngoặc xanh nối đầu xe mình đến đuôi xe trước nhắc tăng khoảng trống phía trước êm theo biển, tốc độ và điều kiện, không phải số mét hay giây bảo đảm. Không phanh cảnh cáo, nhưng vẫn phanh cần thiết khi có nguy hiểm tức thời.'], ['tailgate-let', 'Chỉ nhường một làn phải khi được phép và an toàn; chưa đủ hở thì giữ làn', 'Thời điểm chuẩn bị riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe bám sau màu cam vẫn nằm trọn trong làn trái, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt sang làn phải ở phía dưới và kết thúc thẳng trong làn, không ra lề. Đây chỉ là phương án có điều kiện, không phải quỹ đạo lái chính xác hay bằng chứng làn nhận an toàn: cần được phép, báo hiệu sớm, kiểm tra gương, điểm mù phải và đủ hở trước, sau, hai bên, xét cả xe đang đi lên bên phải. Nếu đã ở làn phải ngoài cùng hoặc chưa an toàn thì giữ làn, không dùng làn dừng khẩn cấp hay lề để nhường.']],
   ['weather-downhill', 'slope', ['downhill', 'Đổ dốc dài', 'Sơ đồ cắt ngang: xe xuống dốc dài với số thấp.'], ['downhill-pulse', 'Phanh theo nhịp', 'Sơ đồ cắt ngang: các nhịp phanh ngắt quãng khi đổ dốc.']],
   ['weather-uphill-start', 'slope', ['uphill', 'Khởi hành ngang dốc', 'Sơ đồ cắt ngang: xe khởi hành trên đoạn dốc lên.'], ['uphill-hold', 'Trôi ngược khi nhả sớm', 'Sơ đồ cắt ngang: hướng trôi ngược khi nhả phanh quá sớm trên dốc.']],
   ['weather-engine-brake', 'slope', ['engine', 'Lẫy số sau vô-lăng', 'Sơ đồ cắt ngang: vị trí lẫy số dùng để hãm tốc bằng động cơ.'], ['engine-gear', 'Giảm số từng cấp', 'Sơ đồ cắt ngang: trình tự giảm số D về 3 rồi về 2 khi đổ đèo.']],

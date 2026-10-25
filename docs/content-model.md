@@ -28,7 +28,7 @@ Topic (chuyên đề)
         ├── mnemonic       khẩu quyết ≤ 12 từ
         ├── checklistId    checklist liên quan
         ├── assetIds[2]    1 sơ đồ chính + 1 sơ đồ biến thể
-        └── reviewStatus   draft | in_review | needs_revision | approved
+        └── reviewStatus   draft | in_review | needs_revision | approved | published_unverified
 ```
 
 Kiểu dữ liệu đầy đủ nằm trong `src/types.ts`. Thẻ được tạo qua `defineCard()`
@@ -41,16 +41,20 @@ và id asset (`<cardId>-main`, `<cardId>-var`).
 - 46 sơ đồ SVG tự tạo, tổng ~118 KB.
 - 5 checklist theo ngữ cảnh, 24 đèn cảnh báo táp-lô.
 
-## 3. Chỉ nội dung đã duyệt được phát hành
+## 3. Chỉ nội dung có trạng thái công bố được phát hành
 
 `src/content/index.ts` xuất ra hai nhánh dữ liệu:
 
-- `topics` / `publishedCards` — **chỉ** thẻ có `reviewStatus === 'approved'`; đây là dữ liệu
+- `topics` / `publishedCards` — **chỉ** thẻ có `reviewStatus === 'approved'` hoặc
+  `reviewStatus === 'published_unverified'` (hiển thị nhãn chưa thẩm định); đây là dữ liệu
   mà giao diện sử dụng. `getCardById()` cũng chỉ tìm trong nhánh này.
 - `allTopics` / `allCards` — toàn bộ nội dung kể cả bản nháp, dùng cho khâu biên tập và kiểm thử.
 
-Ví dụ trong bản seed: `parking-column` đang ở trạng thái `draft` và `highway-tailgater` ở
-trạng thái `needs_revision` nên cả hai không xuất hiện trong ứng dụng.
+Ví dụ hiện tại: `parking-column` vẫn ở trạng thái `draft` nên không xuất hiện trong ứng dụng.
+Sau bản sửa ngày 2026-10-25, `highway-tailgater` được công bố với trạng thái
+`published_unverified`, có nhãn **Chưa thẩm định độc lập**, không dùng hồ sơ duyệt mẫu.
+`publishedCards` và `getCardById()` nhận cả `approved` và `published_unverified`;
+trạng thái công bố chưa thẩm định không đồng nghĩa được chuyên gia chứng nhận.
 
 ## 4. Hàng rào chất lượng
 
@@ -165,4 +169,3 @@ khoá `lxn-display-mode`); chuyển đổi bằng nhóm nút ở đầu `LessonV
 `getLessonMastery()` trong `src/content/index.ts` tính mức đạt của một bài học: cần **≥ 80%** thẻ
 đã đánh dấu hoàn thành **và** **≥ 70%** thẻ có lần quick check gần nhất đạt. `TopicView.vue`
 hiển thị huy hiệu "🏅 Đạt module" khi đạt cả hai tiêu chí.
-
