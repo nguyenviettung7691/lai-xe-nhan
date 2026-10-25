@@ -335,15 +335,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Washer fluid low',
     color: 'amber',
     severity: 'info',
-    description: 'Bình nước rửa kính sắp cạn, tầm nhìn có thể giảm khi đường bụi.',
+    description: 'Hình kính có tia phun báo mức nước rửa kính thấp; không phải nước làm mát động cơ. Bụi/bùn và thiếu nước rửa có thể làm mất tầm nhìn.',
     keywords: ['nước rửa kính', 'gạt mưa', 'washer', 'kính lái'],
     actions: [
-      'Châm thêm nước rửa kính khi dừng nghỉ.',
-      'Kiểm tra lưỡi gạt mưa còn sạch và không bị rách.',
-      'Giữ khoảng cách lớn hơn nếu kính đang bám bụi.'
+      'Nếu kính bẩn không nhìn rõ, giảm tốc và dừng an toàn để làm sạch trước khi đi tiếp.',
+      'Châm dung dịch rửa kính phù hợp vào đúng bình theo sổ tay khi xe đã dừng; đóng nắp chắc.',
+      'Kiểm tra vòi phun/lưỡi gạt; đủ nước mà còn báo hoặc không phun thì cần kiểm tra hệ thống.'
     ],
-    avoid: 'Không gạt khô lên kính bám bụi vì dễ tạo vệt xước và chói nắng.',
-    callHelp: 'Không khẩn cấp; xử lý ở lần dừng gần nhất.'
+    avoid: 'Không gạt khô trên kính bám cát, không đổ nước làm mát/dung dịch gia dụng vào bình rửa kính hoặc coi đủ tầm nhìn chỉ vì đèn tắt.',
+    callHelp: 'Không cần cứu hộ chỉ vì mức thấp nếu vẫn nhìn rõ; không đi tiếp và gọi hỗ trợ nếu không thể khôi phục tầm nhìn an toàn.'
   },
   {
     id: 'high-beam',
