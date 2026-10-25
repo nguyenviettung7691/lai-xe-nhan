@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'ready',
+    icon: 'ready',
+    name: 'Xe điện / hybrid sẵn sàng chạy',
+    english: 'EV / hybrid READY',
+    color: 'green',
+    severity: 'info',
+    description: 'READY xanh lá báo hệ truyền động đã sẵn sàng, xe có thể di chuyển dù không nghe tiếng động cơ. Trên hybrid, động cơ đốt trong có thể tự khởi động; nháy hoặc không lên READY cần đọc thông báo.',
+    keywords: ['ready', 'xe điện', 'hybrid', 'sẵn sàng', 'không tiếng máy'],
+    actions: [
+      'Giữ phanh, kiểm tra đúng số và xung quanh trước khi chọn D/R; chỉ bật nguồn phụ kiện chưa chắc đã READY.',
+      'Khi dừng tạm vẫn giữ xe đúng cách; người đi bộ có thể không nghe thấy xe.',
+      'Trước khi rời xe, về P khi đã dừng, cài phanh đỗ và tắt nguồn; xác nhận READY đã tắt.'
+    ],
+    avoid: 'Không coi xe im tiếng là đã tắt, không để hybrid ở READY trong không gian kín vì máy có thể tự nổ.',
+    callHelp: 'READY ổn định là bình thường; nếu không lên READY, nháy hoặc kèm lỗi truyền động, đọc sổ tay và gọi hỗ trợ nếu không khởi hành được.'
+  },
+  {
     id: 'forward-safety',
     icon: 'forward-safety',
     name: 'Cảnh báo va chạm / phanh tự động',

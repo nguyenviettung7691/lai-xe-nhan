@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['ready', ['dù không nghe tiếng', 'READY đã tắt', 'không gian kín'], []],
   ['forward-safety', ['đỏ/nháy/còi', 'không chờ xe tự xử lý', 'Không thử AEB'], []],
   ['auto-hold', ['trắng là chờ', 'vàng có thể lỗi', 'rời xe dùng phanh đỗ'], []],
   ['adblue', ['không khởi động lại', 'đúng bình', 'không pha nước', 'lỗi SCR'], []],
