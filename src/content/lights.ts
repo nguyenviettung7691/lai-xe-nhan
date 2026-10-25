@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'hazard',
+    icon: 'hazard',
+    name: 'Đèn cảnh báo nguy hiểm',
+    english: 'Hazard warning lights',
+    color: 'red',
+    severity: 'info',
+    description: 'Tam giác kép đỏ minh họa ký hiệu nút hazard, không phải đèn báo lỗi chung tam giác có chấm than. Trên táp-lô thường là hai mũi tên xanh cùng nháy, có xe thêm đèn ở nút.',
+    keywords: ['hazard', 'đèn khẩn cấp', 'đèn ưu tiên', 'đèn cảnh báo nguy hiểm', 'tam giác', 'hai xi nhan'],
+    actions: [
+      'Khi xe hỏng/dừng gây nguy hiểm, bật hazard theo tình huống và quy định để cảnh báo xe khác.',
+      'Ưu tiên đưa xe tới vị trí an toàn nếu còn kiểm soát được; hazard không làm nơi dừng trở nên an toàn.',
+      'Gọi hỗ trợ nếu cần, rời vùng nguy hiểm theo điều kiện thực tế; tắt hazard khi nguy hiểm đã hết.'
+    ],
+    avoid: 'Không dùng hazard để xin đi thẳng, giành ưu tiên, đỗ tùy tiện hoặc thay đèn chiếu sáng khi mưa/sương.',
+    callHelp: 'Chỉ đang bật hazard không có nghĩa xe bị lỗi; gọi cứu hộ khi nguyên nhân là hỏng xe hoặc không thể tiếp tục an toàn.'
+  },
+  {
     id: 'turn-signal',
     icon: 'turn-signal',
     name: 'Xi-nhan / báo rẽ',
