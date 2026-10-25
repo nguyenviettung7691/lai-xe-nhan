@@ -386,15 +386,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Cruise control',
     color: 'green',
     severity: 'info',
-    description: 'Ga tự động đang bật hoặc đang giữ tốc độ đã cài.',
+    description: 'Đồng hồ có mũi tên thường báo cruise; xanh lá thường là đang giữ tốc độ, trắng/xám có thể chỉ sẵn sàng. Cruise thường không giữ khoảng cách; ACC có giới hạn riêng, không phải tự lái.',
     keywords: ['cruise', 'ga tự động', 'giữ ga', 'cao tốc'],
     actions: [
-      'Chỉ dùng trên cao tốc thoáng, mặt đường khô.',
-      'Luôn đặt chân gần bàn đạp phanh để can thiệp ngay.',
-      'Tắt ga tự động khi trời mưa, đường đông hoặc xuống đèo.'
+      'Xác nhận chế độ và tốc độ thực sự đã cài trên màn hình, chỉ dùng khi điều kiện/sổ tay cho phép.',
+      'Luôn quan sát và sẵn sàng đạp phanh; nút hủy hoặc bàn đạp phanh thường hủy giữ tốc độ theo sổ tay.',
+      'Hủy cruise khi trơn trượt, tầm nhìn kém hoặc cần chủ động kiểm soát tốc độ xuống dốc; không dùng RES khi chưa kiểm tra tốc độ lưu.'
     ],
-    avoid: 'Không dùng ga tự động khi đường trơn, ngập nước hoặc kẹt xe.',
-    callHelp: 'Không cần hỗ trợ; tắt hệ thống nếu xe không nhả ga như mong muốn.'
+    avoid: 'Không coi cruise thường là ACC, không dựa vào cruise để tránh va chạm hoặc bảo đảm không vượt tốc độ khi xuống dốc.',
+    callHelp: 'Trạng thái bình thường không cần hỗ trợ; nếu không hủy được, đạp phanh và làm theo quy trình khẩn cấp của xe, dừng an toàn rồi gọi cứu hộ.'
   },
   {
     id: 'lane-assist',
