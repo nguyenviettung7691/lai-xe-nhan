@@ -9,6 +9,20 @@ import {
 } from './lights'
 import { DashboardLightSchema } from '../lib/schema'
 
+const reviewedSignals: [string, string[], string[]][] = [
+  ['brake', ['đã dừng', 'kèm ABS', 'không đi tiếp'], ['Đạp thử phanh']]
+]
+
+describe('reviewed real-world signal states and actions', () => {
+  it.each(reviewedSignals)('%s preserves safety distinctions', (id, required, prohibited) => {
+    const light = getLightById(id)
+    expect(light).toBeDefined()
+    const text = JSON.stringify(light)
+    for (const phrase of required) expect(text).toContain(phrase)
+    for (const phrase of prohibited) expect(text).not.toContain(phrase)
+  })
+})
+
 describe('tra cứu đèn cảnh báo táp-lô', () => {
   it('có tối thiểu 20 đèn phổ biến, không trùng mã', () => {
     expect(dashboardLights.length).toBeGreaterThanOrEqual(20)

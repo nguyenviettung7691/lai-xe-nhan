@@ -12,15 +12,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Brake system',
     color: 'red',
     severity: 'critical',
-    description: 'Phanh tay chưa nhả, dầu phanh thiếu hoặc hệ thống phanh có lỗi.',
+    description: 'Đèn phanh đỏ có thể báo phanh đỗ đang giữ, thiếu dầu phanh hoặc lỗi hệ thống. Nếu vẫn sáng sau khi nhả phanh đỗ, không coi phanh còn an toàn.',
     keywords: ['phanh', 'phanh tay', 'dầu phanh', 'brake', 'thắng'],
     actions: [
-      'Nhả phanh tay và xem đèn có tắt không.',
-      'Nếu đèn vẫn sáng, giảm tốc và tấp vào nơi an toàn.',
-      'Đạp thử phanh nhẹ: pedal mềm hoặc hẫng thì dừng hẳn.'
+      'Nếu đang chạy, giảm ga, giữ lái và dùng phanh còn hiệu lực để dừng ở nơi an toàn.',
+      'Khi xe đã dừng, kiểm tra phanh đỗ đã nhả hoàn toàn; đọc thông báo trên xe.',
+      'Đèn vẫn sáng hoặc kèm ABS: không đi tiếp; gọi hỗ trợ kiểm tra dầu, rò rỉ và hệ thống phanh.'
     ],
-    avoid: 'Không chạy tiếp trên đường đèo hoặc cao tốc khi đèn phanh đỏ còn sáng.',
-    callHelp: 'Gọi cứu hộ ngay khi pedal hẫng, xe lệch khi phanh hoặc có mùi khét.'
+    avoid: 'Không chạy thử để kiểm tra phanh, không chỉ châm dầu rồi coi đã sửa xong lỗi.',
+    callHelp: 'Gọi cứu hộ nếu đèn còn sáng khi phanh đỗ đã nhả, kèm ABS, pedal mềm/hẫng, rò dầu hoặc phanh yếu.'
   },
   {
     id: 'oil',
