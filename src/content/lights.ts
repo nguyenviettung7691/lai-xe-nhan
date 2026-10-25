@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'low-beam',
+    icon: 'low-beam',
+    name: 'Đèn chiếu gần',
+    english: 'Low beam / dipped headlights',
+    color: 'green',
+    severity: 'info',
+    description: 'Đèn xanh lá với tia chúc xuống bên trái báo chiếu gần; không có vạch lượn sương mù. Một số xe chỉ có đèn báo bật đèn chung, không có biểu tượng riêng.',
+    keywords: ['chiếu gần', 'đèn cốt', 'cos', 'low beam', 'dipped'],
+    actions: [
+      'Dùng chiếu gần khi trời tối, vào hầm hoặc điều kiện/quy định yêu cầu bật đèn.',
+      'Kiểm tra ánh sáng thực tế và đèn sau; đèn chạy ban ngày DRL không thay thế đèn chiếu gần.',
+      'Nếu không thấy rõ, giảm tốc và dừng an toàn để kiểm tra; chỉnh tầm chiếu theo tải và sổ tay.'
+    ],
+    avoid: 'Không dựa chỉ vào màn hình táp-lô sáng hoặc AUTO để cho rằng đủ đèn, không chỉnh đèn gây chói.',
+    callHelp: 'Báo bật đèn bình thường không cần hỗ trợ; sửa đèn hỏng trước khi đi trong tối, gọi hỗ trợ nếu không thể bảo đảm tầm nhìn.'
+  },
+  {
     id: 'epb',
     icon: 'epb',
     name: 'Lỗi phanh đỗ điện tử',

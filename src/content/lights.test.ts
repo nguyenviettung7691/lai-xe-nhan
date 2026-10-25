@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['low-beam', ['tia chúc xuống', 'không có vạch lượn', 'DRL không thay thế'], []],
   ['epb', ['khác đèn P đỏ', 'không dựa vào EPB', 'không nhả/giữ được'], []],
   ['parking-brake', ['vòng tròn', 'không tăng ga', 'vị trí số P'], []],
   ['lane-assist', ['LDW chỉ cảnh báo', 'trắng/xám', 'camera bẩn', 'tay trên vô-lăng'], ['đang hoạt động và theo dõi']],
