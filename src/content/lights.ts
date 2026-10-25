@@ -97,15 +97,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Airbag / SRS',
     color: 'red',
     severity: 'warn',
-    description: 'Hệ thống túi khí hoặc cảm biến lỗi, túi khí có thể không bung khi va chạm.',
+    description: 'Đèn người ngồi trước túi khí sáng dai dẳng hoặc không sáng tự kiểm tra có thể báo lỗi SRS, gồm túi khí và bộ căng đai. Không nhầm với đèn PASSENGER AIRBAG OFF riêng.',
     keywords: ['túi khí', 'srs', 'airbag', 'an toàn'],
     actions: [
-      'Nhắc mọi người thắt dây an toàn và ngồi đúng tư thế.',
-      'Lái chậm, giữ khoảng cách lớn hơn bình thường.',
-      'Đặt lịch kiểm tra hệ thống SRS trong vài ngày tới.'
+      'Mọi người cài dây an toàn đúng cách và ngồi đúng tư thế; không đặt trẻ nhỏ trước túi khí đang hoạt động.',
+      'Nếu đèn không tắt sau tự kiểm tra hoặc sáng khi chạy, liên hệ xưởng để kiểm tra sớm nhất có thể.',
+      'Sau va chạm, đai/túi khí đã kích hoạt hoặc có hư hỏng: dừng an toàn và gọi hỗ trợ trước khi đi tiếp.'
     ],
-    avoid: 'Không tự tháo giắc, không để trẻ nhỏ ngồi ghế trước khi đèn túi khí đang lỗi.',
-    callHelp: 'Vào gara sớm; gọi hỗ trợ ngay nếu đèn sáng sau một va chạm.'
+    avoid: 'Không tự tháo giắc SRS, đo điện vào mạch túi khí hay coi dây an toàn là thay thế đầy đủ cho SRS.',
+    callHelp: 'Kiểm tra SRS ngay khi có thể; gọi cứu hộ sau va chạm hoặc khi không thể bảo đảm an toàn cho người ngồi.'
   },
   {
     id: 'seatbelt',
