@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.2'
+const CONTENT_VERSION = '2026.10.3'
 
 const W = 320
 const H = 200
@@ -140,6 +140,31 @@ const alignmentLot = () => [
   label(160, 130, 'ĐẦU', { size: 8, fill: C.ego, anchor: 'middle' })
 ].join('')
 
+const correctionLot = () => [
+  rect(0, 0, W, 174, C.asphalt),
+  rect(120, 24, 80, 88, '#31463f'),
+  '<g id="correction-bay">',
+  line(120, 24, 120, 112, C.bay, 1.6),
+  line(200, 24, 200, 112, C.bay, 1.6),
+  line(120, 24, 200, 24, C.bay, 1.6),
+  '</g>',
+  '<g id="correction-axis">',
+  line(160, 32, 160, 104, C.line, 1, '3 3'),
+  '</g>',
+  label(108, 39, 'TRỤC Ô', { size: 8, anchor: 'end' }),
+  line(110, 36, 160, 36, C.line, 1),
+  car(64, 70, 180, C.other, 30, 52),
+  car(256, 70, 180, C.other, 30, 52),
+  `<g id="correction-car">${car(156, 86, 160, C.ego, 30, 52)}`,
+  '<g transform="translate(156 86) rotate(160)">',
+  rect(-19, -14, 4, 3, C.ego, 1),
+  rect(15, -14, 4, 3, C.ego, 1),
+  '</g></g>',
+  label(143, 49, 'ĐUÔI', { size: 8, fill: C.ego, anchor: 'middle' }),
+  label(190, 128, 'ĐẦU', { size: 8, fill: C.ego }),
+  label(20, 153, 'LỐI ĐI', { size: 8 })
+].join('')
+
 const alleyLot = (wallGap = 108) => {
   const left = (W - wallGap) / 2
   return [
@@ -219,19 +244,19 @@ const templates = {
         note('Nét đứt: hướng nhìn minh họa, không là quỹ đạo.')
       ],
       correct: () => [
-        bayLot(2),
-        car(202, 64, 160, C.ego),
-        line(176, 20, 176, 86, C.hazard, 2, '4 4'),
-        trail('M214 108C208 96 202 88 198 78', C.hazard, '5 4'),
-        tag(186, 152, 'Lệch hơn 20 cm'),
-        note('Lệch nhiều thì tiến ra một nhịp rồi lùi lại từ đầu.')
+        correctionLot(),
+        label(160, 13, 'DỪNG ĐỂ ĐÁNH GIÁ', { size: 9, anchor: 'middle' }),
+        label(306, 153, 'Thân nghiêng so với vạch', { size: 8, anchor: 'end' }),
+        note('Không theo tỷ lệ; chưa rõ khoảng trống thì giữ phanh.')
       ],
       'correct-out': () => [
-        bayLot(2),
-        car(196, 96, 180, C.ego),
-        trail('M196 122C196 142 210 152 238 152'),
-        pin(244, 128, '1'),
-        note('Tiến thẳng ra giữa lối đi rồi tạo lại góc lùi mới.')
+        correctionLot(),
+        label(160, 13, 'CHỈ TIẾN KHI LỐI ĐI ĐÃ RÕ', { size: 9, anchor: 'middle' }),
+        '<g id="correction-forward">',
+        arrow(166.9, 116.1, 179.9, 151.8),
+        '</g>',
+        label(192, 151, 'TIẾN', { size: 8, fill: C.ego }),
+        note('Mũi tên: tiến thẳng minh họa, không theo tỷ lệ. Dừng hẳn trước đổi chiều.')
       ],
       slope: () => [
         bayLot(2, [0, 1, 3]),
@@ -606,7 +631,7 @@ const render = ({ template, mode, title }) => [
 const specs = [
   ['parking-start', 'bay', ['approach', 'Vị trí dừng và hướng lùi minh họa', 'Sơ đồ nhìn từ trên xuống: xe dừng trước ô đỗ; mũi tên chỉ đầu xe và hướng lùi tham khảo.'], ['approach-angle', 'Góc tiếp cận thay đổi', 'Sơ đồ nhìn từ trên xuống: xe ở góc tiếp cận khác; mũi tên chỉ đầu xe và một quỹ đạo lùi minh họa.']],
   ['parking-align', 'bay', ['align', 'Phân biệt song song vạch và khoảng trống hai bên', 'Sơ đồ không theo tỷ lệ: xe lùi vào ô, đầu xe hướng ra lối đi ở dưới; thân song song hai vạch, a và b chỉ khoảng trống từ thân xe tới vạch, không phải mốc đo cố định.'], ['align-mirror', 'Hướng nhìn qua gương, không phải đường xe chạy', 'Sơ đồ nhìn từ trên xuống: đầu xe ở dưới, đuôi ở trên; nét đứt từ hai gương hướng về vạch phía sau chỉ minh họa hướng nhìn, không mô tả đầy đủ vùng thấy hay thay thế quan sát trực tiếp.']],
-  ['parking-correct', 'bay', ['correct', 'Nhận biết xe bị lệch', 'Sơ đồ nhìn từ trên xuống: thân xe lệch so với vạch ô đỗ quá 20 cm.'], ['correct-out', 'Tiến ra làm lại', 'Sơ đồ nhìn từ trên xuống: quỹ đạo tiến ra lối đi để tạo lại góc lùi.']],
+  ['parking-correct', 'bay', ['correct', 'Dừng để phân biệt thân nghiêng và lệch ngang', 'Sơ đồ không theo tỷ lệ: xe đang dừng, thân nghiêng so với trục ô; đuôi ở trên, đầu hướng xuống lối đi qua cửa ô mở. Nét đứt là trục ô, không phải đường xe chạy; không có mũi tên chuyển động.'], ['correct-out', 'Một đoạn tiến minh họa, không phải toàn bộ cách sửa', 'Sơ đồ không theo tỷ lệ, cùng vị trí xe đang nghiêng: đầu xe ở dưới, mũi tên thẳng hướng về phía trước qua cửa ô mở. Chỉ tiến khi đã nhường người và xe, quan sát rõ khoảng trống; không quy định quãng tiến hay hướng đánh lái cho mọi xe. Dừng hẳn trước đổi chiều.']],
   ['parking-parallel', 'parallel', ['enter', 'Ghép ngang giữa hai xe', 'Sơ đồ nhìn từ trên xuống: xe dừng song song xe trước trước khi ghép ngang.'], ['settle', 'Vị trí đỗ hoàn chỉnh', 'Sơ đồ nhìn từ trên xuống: xe nằm gọn giữa hai xe và cách lề khoảng 30 cm.']],
   ['parking-slope', 'bay', ['slope', 'Lùi chuồng trên dốc hầm', 'Sơ đồ nhìn từ trên xuống: lùi vào ô đỗ trên mặt dốc của hầm gửi xe.'], ['slope-hold', 'Giữ xe không trôi', 'Sơ đồ nhìn từ trên xuống: hướng trôi của xe khi nhả phanh trên dốc.']],
   ['parking-lowlight', 'bay', ['lowlight', 'Hầm thiếu sáng', 'Sơ đồ nhìn từ trên xuống: vùng sáng đèn xe khi lùi trong hầm thiếu sáng.'], ['lowlight-mirror', 'Quan sát bằng mắt và tai', 'Sơ đồ nhìn từ trên xuống: vùng quan sát phía sau khi hạ kính trong hầm tối.']],

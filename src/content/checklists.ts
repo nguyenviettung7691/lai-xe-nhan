@@ -25,8 +25,8 @@ export const checklists: Checklist[] = [
       { id: 'reverse-space', itemNo: 1, label: 'Ô đỗ đủ rộng và không có vật cản thấp', criticalLevel: 'must' },
       { id: 'reverse-people', itemNo: 2, label: 'Không có người hoặc xe máy phía sau', criticalLevel: 'must' },
       { id: 'reverse-mirrors', itemNo: 3, label: 'Đã quét đủ ba gương và điểm mù', criticalLevel: 'must' },
-      { id: 'reverse-camera', itemNo: 4, label: 'Camera và cảm biến hoạt động bình thường', criticalLevel: 'should', hint: 'Camera bẩn hoặc mờ thì căn bằng gương.' },
-      { id: 'reverse-speed', itemNo: 5, label: 'Sẵn sàng giữ tốc độ dưới 5 km/h', criticalLevel: 'must' }
+      { id: 'reverse-camera', itemNo: 4, label: 'Camera và cảm biến hoạt động bình thường', criticalLevel: 'should', hint: 'Camera và cảm biến chỉ hỗ trợ; kết hợp gương và quan sát trực tiếp, dừng nếu chưa rõ khoảng trống.' },
+      { id: 'reverse-speed', itemNo: 5, label: 'Sẵn sàng giữ tốc độ dưới 5 km/h', criticalLevel: 'must', hint: 'Đây là giới hạn, không phải tốc độ mục tiêu; bò chậm hơn khi cần, luôn dừng được ngay.' }
     ]
   },
   {

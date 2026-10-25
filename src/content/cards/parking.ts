@@ -94,37 +94,43 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-basics',
     topicId: 'parking',
     title: 'Chỉnh lại khi đuôi xe bị lệch',
-    context: 'Đuôi xe lệch khỏi trục ô đỗ khi mới lùi được nửa đường, hai bên không còn cân. Cố sửa lái tiếp thường làm xe lệch nặng hơn.',
-    objective: 'Đưa xe về trục ô đỗ bằng một nhịp tiến rồi lùi có kiểm soát.',
+    context: 'Xe đang lùi vào ô nhưng thân còn nghiêng hoặc lệch về một bên. Cách chỉnh phụ thuộc vị trí xe, khoảng trống và tầm nhìn; sơ đồ không phải quỹ đạo áp dụng cho mọi xe.',
+    objective: 'Đánh giá chỗ trống và chỉnh lại để xe song song vạch, nằm gọn trong ô, chỉ tiến hoặc lùi khi quan sát rõ đường đi.',
     risk: 'medium',
     difficulty: 3,
     minutes: 3,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'good', stress: 'moderate' },
     steps: [
-      { instruction: 'Dừng xe ngay khi khoảng cách hai bên chênh hơn 20 cm.', cueType: 'marker', cueText: 'Chênh lệch hơn 20 cm' },
-      { instruction: 'Về D và tiến thẳng ra lối đi đủ một thân xe.', cueType: 'marker', cueText: 'Một thân xe ra lối đi', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Trả lái thẳng bánh trước khi dừng lại lần nữa.', cueType: 'feel', cueText: 'Vô-lăng về vị trí giữa', steeringHint: 'trả lái về thẳng' },
-      { instruction: 'Cài số R và đánh lái về phía cần bù, mỗi nhịp một phần tư vòng.', cueType: 'marker', cueText: 'Một phần tư vòng mỗi nhịp', steeringHint: 'một phần tư vòng mỗi nhịp' },
-      { instruction: 'Kiểm tra gương sau mỗi nhịp lùi 50 cm cho đến khi xe vào đúng trục.', cueType: 'mirror', cueText: 'Mỗi 50 cm kiểm tra một lần' }
+      { instruction: 'Dừng hẳn và giữ phanh nếu xe đi lệch hướng dự định hoặc chưa chắc khoảng trống; không chờ tới một độ lệch cố định.', cueType: 'feel', cueText: 'Chưa chắc thì dừng, không đổi chiều khi xe còn lăn', speedHint: '0 km/h' },
+      { instruction: 'Kiểm tra dọc cả đầu và đuôi so với vạch bằng gương và quan sát trực tiếp; phân biệt thân nghiêng với thân song song nhưng lệch về một bên.', cueType: 'mirror', cueText: 'Hai khoảng trống bằng nhau chưa chứng minh thân song song' },
+      { instruction: 'Quét gương, điểm mù và nhìn trực tiếp phía trước, sau, hai bên; kiểm tra gương xe, các góc xe, cột và vật cản thấp, nhường người và xe trong lối đi trước khi tiến ra.', cueType: 'mirror', cueText: 'Camera và cảm biến chỉ hỗ trợ, không thay quan sát' },
+      { instruction: 'Chọn số tiến phù hợp khi xe đã đứng hẳn, chỉ tiến ra nếu đường đi đã rõ; bò chậm với chân sẵn trên phanh và chỉnh lái theo khoảng trống thực tế, không bắt buộc đi hết một thân xe.', cueType: 'feel', cueText: 'Quan sát liên tục cả đầu, đuôi và hai bên khi tiến', speedHint: 'tốc độ đi bộ hoặc chậm hơn', steeringHint: 'không có một góc lái chung cho mọi xe' },
+      { instruction: 'Dừng hẳn khi đã có vị trí để thử lại và giữ phanh; đánh giá lại góc vào cùng khoảng trống trước khi cài số lùi, không đổi chiều khi xe còn lăn.', cueType: 'marker', cueText: 'Nếu không đủ chỗ thì chờ hoặc chọn ô khác khi an toàn' },
+      { instruction: 'Lùi chậm, chỉnh lái từng chút theo phản ứng thực tế của xe để đưa thân về hướng vạch; liên tục quét quanh xe, nhất là vùng đầu xe quét ra khi đánh lái, không đợi hết một đoạn mới nhìn.', cueType: 'mirror', cueText: 'Dừng ngay khi có người, xe vào đường đi hoặc mất tầm nhìn', speedHint: 'luôn dừng được ngay', steeringHint: 'không dùng số vòng vô-lăng cố định' },
+      { instruction: 'Trả bánh về thẳng khi thân đã song song để lùi thẳng nếu còn đủ chỗ; dừng nếu vẫn lệch ngang, không cố lùi sâu để sửa vị trí.', cueType: 'marker', cueText: 'Song song khác nằm giữa ô; chưa phù hợp thì đánh giá lại' },
+      { instruction: 'Dừng hẳn khi toàn bộ xe nằm gọn trong ô, còn khoảng trống cho cản, gương và cửa; giữ phanh chân rồi thực hiện trình tự giữ xe theo hướng dẫn của nhà sản xuất.', cueType: 'feel', cueText: 'Phanh đỗ và P với xe tự động hoặc số đỗ phù hợp với xe số sàn' }
     ],
     mistakes: [
-      'Vừa lùi vừa đánh lái liên tục làm đuôi xe văng rộng.',
-      'Sửa lái khi xe đứng yên nên hướng xe không đổi mà lốp bị mòn.',
-      'Lùi tiếp dù đã chạm mép ô đỗ bên cạnh.'
+      'Chỉ nhìn đuôi xe hoặc camera, bỏ quên đầu xe quét ra và người trong lối đi.',
+      'Đổi chiều khi xe còn lăn hoặc áp dụng cứng một độ lệch, quãng tiến hay số vòng lái.',
+      'Cố lùi sâu để chữa lệch ngang dù khoảng trống hoặc tầm nhìn không còn bảo đảm.'
     ],
-    recovery: 'Về P rồi xuống xe quan sát thực tế nếu không chắc khoảng cách. Khi ô đỗ quá hẹp, chọn ô khác thay vì cố ghép.',
-    safety: 'Dừng hẳn nếu cảm biến báo liên tục hoặc có người đi bộ phía sau xe.',
-    mnemonic: { text: 'Lệch thì tiến ra, trả thẳng rồi lùi lại.', rhythm: 'ba-nhip' },
+    recovery: 'Dừng hẳn, giữ phanh và không tiến ra nếu chưa rõ lối đi. Nếu cần xuống kiểm tra, chỉ ra ngoài khi vị trí và giao thông cho phép: giữ xe bằng phanh đỗ, P với xe tự động hoặc số đỗ phù hợp với xe số sàn và tắt máy theo hướng dẫn của xe; nhìn gương và ngoái nhìn trước khi mở cửa. Nếu nhờ người hướng dẫn, họ phải đứng ngoài đường xe chạy và luôn trong tầm nhìn; mất liên lạc thì dừng. Chỉ thử lại khi đủ chỗ và quan sát rõ; nếu không, chờ hỗ trợ hoặc chọn ô khác khi an toàn, không dựa vào số lần thử.',
+    safety: 'Dừng ngay khi có người, xe hoặc vật cản vào đường đi, mất tầm nhìn, không chắc khoảng cách hoặc cảm biến cảnh báo; không đợi còi liên tục hay tin rằng không có còi là đủ an toàn. Quan sát liên tục cả khi tiến và lùi; dừng hẳn trước mỗi lần đổi chiều.',
+    mnemonic: { text: 'Dừng, nhìn đủ, rõ chỗ mới chỉnh.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Khi đuôi xe lệch quá 20 cm so với trục ô đỗ, nên làm gì trước tiên?', options: ['Đánh lái mạnh hơn khi đang lùi', 'Về D, tiến ra rồi trả lái thẳng', 'Tiếp tục lùi và sửa dần'], correctIndex: 1 },
-      { prompt: 'Vì sao không nên sửa lái khi xe đang đứng yên?', options: ['Vì tốn thời gian hơn', 'Vì hướng xe không đổi mà lốp bị mòn', 'Vì máy sẽ tắt'], correctIndex: 1 },
-      { prompt: 'Nếu đã sửa hai lần mà ô đỗ vẫn quá hẹp, bạn nên?', options: ['Cố ghép thêm lần nữa', 'Chọn ô đỗ khác', 'Đỗ lấn sang ô bên cạnh'], correctIndex: 1 }
+      { prompt: 'Xe đi lệch hướng dự định hoặc bạn không chắc khoảng trống, việc đầu tiên là gì?', options: ['Đánh lái mạnh hơn khi đang lùi', 'Dừng hẳn, giữ phanh và đánh giá lại trước khi đổi chiều', 'Tiếp tục tới khi cảm biến kêu liên tục'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Khi nào có thể tiến ra để tạo lại góc vào ô?', options: ['Luôn tiến đủ một thân xe vì đã bật xi-nhan', 'Khi xe đã đứng hẳn, đã nhường người và xe trong lối đi, chỉ tiến trong khoảng trống đã quan sát rõ', 'Chỉ cần camera phía sau không báo vật cản'], correctIndex: 1 },
+      { prompt: 'Thân đã song song vạch nhưng vẫn quá sát một bên, nên làm gì?', options: ['Cứ lùi sâu hơn để xe tự về giữa ô', 'Dùng đúng một phần tư vòng lái cho mọi xe', 'Dừng và đánh giá lại; chỉ chỉnh tiếp khi đủ chỗ, nếu không thì chờ hỗ trợ hoặc chọn ô khác khi an toàn'], correctIndex: 2 }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống sửa lệch khi lùi.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống sửa lệch khi lùi.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ mốc sửa lệch cố định, bổ sung quan sát và dừng trước đổi chiều, sửa hai sơ đồ và công bố chưa thẩm định độc lập.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'parking-parallel',

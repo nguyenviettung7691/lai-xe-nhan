@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.2",
+  "contentVersion": "2026.10.3",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 117.78,
+  "totalSizeKb": 118.34,
   "assets": [
     {
       "id": "parking-start-main",
@@ -68,11 +68,11 @@
       "url": "/content/svg/parking-correct-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.54,
-      "checksum": "sha256-77c4e3171a0ae942de947c837d3a3deec2fad8b26ac6626aea8118296a23bbbd",
+      "sizeKb": 3.63,
+      "checksum": "sha256-6537ab64d50f78e2e0ae13a44edb4cefd85df9d09f78df8110fde78532496ed5",
       "offlinePack": "core",
-      "caption": "Nhận biết xe bị lệch",
-      "alt": "Sơ đồ nhìn từ trên xuống: thân xe lệch so với vạch ô đỗ quá 20 cm."
+      "caption": "Dừng để phân biệt thân nghiêng và lệch ngang",
+      "alt": "Sơ đồ không theo tỷ lệ: xe đang dừng, thân nghiêng so với trục ô; đuôi ở trên, đầu hướng xuống lối đi qua cửa ô mở. Nét đứt là trục ô, không phải đường xe chạy; không có mũi tên chuyển động."
     },
     {
       "id": "parking-correct-var",
@@ -82,11 +82,11 @@
       "url": "/content/svg/parking-correct-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.4,
-      "checksum": "sha256-00312d23074acbf5f9aacdd681182a1b61e8d39ef79c81701321322e0b4b3e44",
+      "sizeKb": 3.87,
+      "checksum": "sha256-59c8cc25488a70081e19159cc6dd515dca4cdece5226efaf3460e473e2e4d18e",
       "offlinePack": "core",
-      "caption": "Tiến ra làm lại",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo tiến ra lối đi để tạo lại góc lùi."
+      "caption": "Một đoạn tiến minh họa, không phải toàn bộ cách sửa",
+      "alt": "Sơ đồ không theo tỷ lệ, cùng vị trí xe đang nghiêng: đầu xe ở dưới, mũi tên thẳng hướng về phía trước qua cửa ô mở. Chỉ tiến khi đã nhường người và xe, quan sát rõ khoảng trống; không quy định quãng tiến hay hướng đánh lái cho mọi xe. Dừng hẳn trước đổi chiều."
     },
     {
       "id": "parking-parallel-main",
