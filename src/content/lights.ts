@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'position-light',
+    icon: 'position-light',
+    name: 'Đèn vị trí / báo bật đèn',
+    english: 'Position / sidelights / lights on',
+    color: 'green',
+    severity: 'info',
+    description: 'Hai đèn đối xứng chiếu ra hai bên thường báo đèn vị trí hoặc bật đèn chung. Không xác nhận riêng chiếu gần hay đủ ánh sáng để lái ban đêm.',
+    keywords: ['đèn vị trí', 'đèn định vị', 'đèn kích thước', 'đèn đờ mi', 'position', 'sidelights', 'lights on'],
+    actions: [
+      'Xem vị trí công tắc và kiểm tra đèn thực tế, không chỉ nhìn biểu tượng xanh.',
+      'Khi cần nhìn đường trong tối, bật chiếu gần đúng quy định; đèn vị trí/DRL không đủ thay thế.',
+      'Sau khi đỗ, chọn chế độ đèn đúng sổ tay để tránh hết ắc quy; lưu ý nơi cần để đèn vị trí khi đỗ.'
+    ],
+    avoid: 'Không đi trong tối chỉ bằng đèn vị trí, không mặc định đèn chạy ban ngày luôn bật cả đèn sau.',
+    callHelp: 'Không cần hỗ trợ nếu bình thường; đèn ngoài xe không hoạt động cần sửa, không đi tiếp trong điều kiện thiếu sáng.'
+  },
+  {
     id: 'low-beam',
     icon: 'low-beam',
     name: 'Đèn chiếu gần',
