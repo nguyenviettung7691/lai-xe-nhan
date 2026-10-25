@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'charge-connector',
+    icon: 'charge-connector',
+    name: 'Cáp sạc đang kết nối',
+    english: 'Charging connector connected',
+    color: 'green',
+    severity: 'info',
+    description: 'Hình phích cắm xanh thường báo cáp sạc đã kết nối. Không tự xác nhận pin đang nhận điện hay đã sạc đầy; màu/nhịp nháy báo sạc tùy xe và trạm.',
+    keywords: ['cáp sạc', 'phích cắm', 'charging', 'connector', 'sạc pin', 'plug'],
+    actions: [
+      'Xác nhận mức pin, trạng thái và lỗi trên xe/trạm để biết có thực sự sạc.',
+      'Trước khi đi, kết thúc sạc và mở khóa/rút cáp đúng quy trình, kiểm tra cổng đã đóng.',
+      'Không rút được hoặc có báo lỗi: dừng thao tác và liên hệ trạm/hãng; nóng bất thường, khói hay mùi cháy thì tránh xa và gọi hỗ trợ.'
+    ],
+    avoid: 'Không kéo xe khi còn cắm cáp, giật đầu nối đang khóa hoặc chạm chân điện; không dùng cáp/đầu nối hỏng hay ngập nước.',
+    callHelp: 'Kết nối bình thường không cần cứu hộ; gọi trạm/hãng khi kẹt cáp hoặc không sạc, gọi khẩn cấp khi có khói/cháy.'
+  },
+  {
     id: 'ev-system',
     icon: 'ev-system',
     name: 'Lỗi hệ truyền động điện / hybrid',
