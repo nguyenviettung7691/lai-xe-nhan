@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.6'
+const CONTENT_VERSION = '2026.10.7'
 
 const W = 320
 const H = 200
@@ -180,6 +180,30 @@ const lowlightLot = () => [
   label(16, 162, 'LỐI ĐI', { size: 8 })
 ].join('')
 
+const columnLot = () => [
+  rect(0, 0, W, 174, C.asphalt),
+  rect(116, 28, 84, 90, '#31463f'),
+  '<g id="column-bay">',
+  line(116, 118, 116, 28, C.bay, 1.6),
+  line(116, 28, 200, 28, C.bay, 1.6),
+  line(200, 28, 200, 118, C.bay, 1.6),
+  '</g>',
+  `<g id="column-pillar">${rect(202, 58, 22, 56, '#7d8f88', 2)}</g>`,
+  label(232, 79, 'CỘT', { size: 9 }),
+  car(66, 74, 180, C.other, 28, 48),
+  label(16, 157, 'LỐI ĐI', { size: 8 })
+].join('')
+
+const columnCar = y => [
+  `<g id="column-car">${car(154, y, 180, C.ego, 28, 48)}`,
+  '<g id="column-mirrors">',
+  rect(137, y + 12, 4, 3, C.ego, 1),
+  rect(167, y + 12, 4, 3, C.ego, 1),
+  '</g></g>',
+  label(180, y - 18, 'ĐUÔI', { size: 8, fill: C.ego }),
+  label(180, y + 22, 'ĐẦU', { size: 8, fill: C.ego })
+].join('')
+
 const alleyLot = (wallGap = 108) => {
   const left = (W - wallGap) / 2
   return [
@@ -306,20 +330,29 @@ const templates = {
         note('Nét đứt: liên lạc minh họa, không là quỹ đạo. Mất liên lạc thì dừng.')
       ],
       column: () => [
-        bayLot(2, [1, 3]),
-        rect(148, 92, 22, 22, '#7d8f88', 3),
-        label(148, 128, 'CỘT', { size: 8 }),
-        car(250, 140, 90, C.ego),
-        trail('M236 128C218 108 208 88 200 72'),
-        gap(170, 186, 120, '60 cm'),
-        note('Cột chắn tầm nhìn: lùi từng đoạn ngắn và kiểm tra lại.')
+        columnLot(),
+        label(160, 14, 'VÍ DỤ ĐÃ THẲNG HƯỚNG VÀO Ô', { size: 9, anchor: 'middle' }),
+        columnCar(145),
+        `<g id="column-reverse">${trail('M154 117L154 44')}</g>`,
+        label(16, 44, 'HƯỚNG LÙI', { size: 8, fill: C.ego }),
+        line(88, 42, 149, 44, C.line, 1),
+        label(16, 111, 'RÕ HAI BÊN', { size: 8 }),
+        note('Không theo tỷ lệ; chỉ ví dụ lùi thẳng. Chưa rõ khoảng hở thì dừng, không chờ tiếng báo.')
       ],
       'column-gap': () => [
-        bayLot(2, [1, 3]),
-        rect(148, 92, 22, 22, '#7d8f88', 3),
-        car(202, 62, 180, C.ego),
-        gap(174, 190, 100, 'Chỗ mở cửa'),
-        note('Đỗ lệch về phía xa cột để còn chỗ mở cửa.')
+        columnLot(),
+        label(160, 14, 'ĐÃ GIỮ XE CHẮC, KIỂM TRA CỬA', { size: 9, anchor: 'middle' }),
+        columnCar(74),
+        '<g id="column-door">',
+        `<path d="M168 64A18 18 0 0 1 186 82L168 82Z" fill="${C.bike}" opacity=".25"/>`,
+        '<path d="M168 64A18 18 0 0 1 186 82" fill="none" stroke="#ffc66d" stroke-width="1.4" stroke-dasharray="3 3"/>',
+        line(168, 82, 186, 82, C.bike, 2),
+        '</g>',
+        label(234, 128, 'CỬA LÁI', { size: 8, fill: C.bike }),
+        label(234, 140, 'MINH HỌA', { size: 8, fill: C.bike }),
+        line(230, 126, 186, 82, C.bike, 1),
+        label(16, 131, 'XE TAY LÁI TRÁI', { size: 8 }),
+        note('Không theo tỷ lệ; kiểm tra cả khoảng quét cửa và lối ra thực tế, không chen sát cột.')
       ]
     }
     return (scenes[mode] ?? scenes.approach)()
@@ -719,7 +752,7 @@ const specs = [
   ['parking-parallel', 'parallel', ['enter', 'Ví dụ tiếp cận lề phải và hướng đuôi lùi ban đầu, không phải toàn quỹ đạo', 'Sơ đồ không theo tỷ lệ, đầu các xe hướng lên, lề phải ở bên phải hình; xe mình bên trái xe trước, hai đuôi ngang nhau chỉ là ví dụ. Mũi tên cong từ sau đuôi xe chỉ hướng lùi ban đầu xuống và sang phải về lề; đầu xe quét trái. Mũi tên thẳng bên trái chỉ chiều đi, không phải hướng lùi.'], ['settle', 'Ví dụ xe song song lề phải, chừa khoảng hở hai đầu; không phải mốc đo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu lên, song song lề phải ở bên phải hình, có khoảng hở với lề và cả xe trước, xe sau. Dấu ngoặc chỉ khoảng hở hai đầu, không phải số đo. Mũi tên bên trái chỉ chiều đi; xe đã đỗ không có mũi tên chuyển động.']],
   ['parking-slope', 'slopeParking', ['reverse', 'Ví dụ lùi thẳng lên dốc tại ô được phép, không phải đường dốc ra vào hầm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: phía cao ở trên, thấp ở dưới; đầu xe hướng xuống, đuôi hướng lên. Mũi tên xám bên trái chỉ chiều dốc xuống; mũi tên xanh từ sau đuôi hướng lên vào cửa ô mở chỉ hướng lùi lên dốc, không phải quỹ đạo đánh lái hay mức nhả phanh chung.'], ['hold', 'Nguy cơ trôi xuống dốc về phía đầu xe dù đã cài R', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng vị trí xe và hướng dốc: cao ở trên, thấp ở dưới, đầu xe ở dưới. Mũi tên xám bên trái chỉ dốc xuống; mũi tên đỏ nét đứt trước đầu xe chỉ nguy cơ trôi xuống nếu không giữ phanh, ngược hướng lùi lên dốc ở hình chính; không phải lệnh tiến hay trạng thái đã đỗ an toàn. Đạp phanh để dừng, không dùng P khi xe đang chuyển động.']],
   ['parking-lowlight', 'bay', ['lowlight', 'Đèn hướng trước và sau khác nhau; chỉ lùi khi thấy rõ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng xuống lối đi, đuôi hướng lên cửa ô mở. Vệt vàng trước đầu xe minh họa đèn chiếu gần; vệt nhạt sau đuôi minh họa đèn lùi, không phải phạm vi nhìn rõ hay vùng cảm biến. Mũi tên xanh từ sau đuôi hướng thẳng lên ô chỉ một hướng lùi minh họa, không là chỉ dẫn đánh lái cho mọi vị trí.'], ['lowlight-mirror', 'Xe dừng, người hướng dẫn ở bên ngoài đường xe chạy', 'Sơ đồ không theo tỷ lệ, cùng hướng xe và cửa ô mở: xe đang dừng, người hỗ trợ đứng bên phải hình, ngoài hành lang lùi thẳng minh họa, không giữa xe và vật cản. Nét đứt nối bên xe với người hỗ trợ chỉ liên lạc trong tầm nhìn, không phải quỹ đạo hay vùng quan sát bảo đảm. Vị trí thực tế phải tránh cả vùng đầu xe quét, luôn nhìn thấy nhau; mất liên lạc thì dừng ngay. Không có mũi tên chuyển động.']],
-  ['parking-column', 'bay', ['column', 'Ô đỗ sát cột bê tông', 'Sơ đồ nhìn từ trên xuống: ô đỗ có cột bê tông chắn tầm nhìn bên trái.'], ['column-gap', 'Chừa chỗ mở cửa', 'Sơ đồ nhìn từ trên xuống: xe đỗ lệch xa cột để còn khoảng trống mở cửa.']],
+  ['parking-column', 'bay', ['column', 'Ví dụ lùi thẳng cạnh cột, không phải toàn bộ quỹ đạo vào ô', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cột bên phải hình, cạnh cửa ô mở; đầu xe ở dưới, đuôi ở trên. Xe đã thẳng hướng, mũi tên từ sau đuôi hướng lên ô chỉ ví dụ lùi thẳng, không phải hướng đánh lái hay bảo đảm khoảng hở. Phải kiểm tra cả thân, gương, góc xe, hai bên và vùng đầu xe quét; chưa rõ thì dừng, không chờ cảm biến.'], ['column-gap', 'Xe đã giữ chắc; kiểm tra cửa lái và lối ra, không chỉ thân xe', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng ô và cột bên phải hình: xe đã giữ chắc, nằm trong vạch, đầu ở dưới và đuôi ở trên. Với xe tay lái trái minh họa, cửa lái ở bên phải hình; cung vàng cạnh cột chỉ khoảng quét một cánh cửa trước minh họa, không phải quỹ đạo xe hay khoảng mở bảo đảm. Kiểm tra cả hai bên, khoảng quét cửa thực tế, người xung quanh và lối ra; không chen giữa xe với cột. Không có mũi tên chuyển động.']],
   ['narrow-creep', 'alley', ['creep', 'Bò đều trong hẻm', 'Sơ đồ nhìn từ trên xuống: xe đi chậm trong hẻm hẹp có xe máy phía trước.'], ['creep-stop', 'Dừng khi có xe cắt ngang', 'Sơ đồ nhìn từ trên xuống: vùng nguy hiểm khi xe máy cắt ngang đầu xe.']],
   ['narrow-mirror', 'alley', ['mirror', 'Giữ khoảng cách gương', 'Sơ đồ nhìn từ trên xuống: khoảng cách an toàn giữa gương xe và xe máy dựng ven hẻm.'], ['mirror-fold', 'Gập gương khi hẻm quá hẹp', 'Sơ đồ nhìn từ trên xuống: hẻm hẹp dưới 2,2 m cần gập gương để đi qua.']],
   ['narrow-corner', 'alley', ['corner', 'Ôm cua rộng trong hẻm', 'Sơ đồ nhìn từ trên xuống: quỹ đạo ôm cua rộng để bánh sau không cắt góc.'], ['corner-wide', 'Lỗi bánh sau cắt góc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo sai khi vào cua sớm làm bánh sau leo lề.']],

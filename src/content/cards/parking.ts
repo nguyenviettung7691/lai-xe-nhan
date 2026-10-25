@@ -267,36 +267,42 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-underground',
     topicId: 'parking',
     title: 'Lùi vào ô đỗ sát cột bê tông',
-    context: 'Ô đỗ cuối dãy thường có cột bê tông chắn một bên và camera khó thấy chân cột. Đây là vị trí hay xảy ra va quệt nhẹ.',
-    objective: 'Lùi vào ô sát cột mà vẫn còn khoảng trống mở cửa.',
+    context: 'Bạn lái xe số tự động vào ô đỗ được phép cạnh cột bê tông; chân cột, góc xe và người phía sau cột có thể nằm ngoài tầm nhìn hoặc vùng phát hiện của camera, cảm biến. Chỉ lùi khi thấy rõ đường đi và đủ khoảng trống cho cả thân xe, gương, vùng đầu xe quét và lối ra vào xe.',
+    objective: 'Đánh giá ô sát cột có phù hợp, lùi khi quan sát rõ và giữ khoảng trống thực tế hai bên cùng lối mở cửa an toàn.',
     risk: 'medium',
     difficulty: 3,
-    minutes: 3,
+    minutes: 5,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'moderate' },
     steps: [
-      { instruction: 'Đi chậm qua ô một lượt để xác định chân cột và mép vạch.', cueType: 'marker', cueText: 'Chân cột và mép vạch', speedHint: 'dưới 10 km/h' },
-      { instruction: 'Chọn quỹ đạo lùi lệch về phía xa cột khoảng 20 cm.', cueType: 'marker', cueText: 'Lệch 20 cm khỏi phía cột' },
-      { instruction: 'Lùi từng đoạn ngắn rồi dừng kiểm tra khoảng cách tới cột.', cueType: 'mirror', cueText: 'Mỗi đoạn ngắn kiểm tra một lần', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Dừng hẳn khi cảm biến báo liên tục hoặc còn cách cột 30 cm.', cueType: 'sound', cueText: 'Cảm biến báo liên tục' },
-      { instruction: 'Kiểm tra khoảng trống mở cửa trước khi tắt máy.', cueType: 'marker', cueText: 'Đủ chỗ mở cửa phía tài' }
+      { instruction: 'Dừng ở vị trí an toàn để đánh giá ô được phép, chân cột, vật cản thấp, xe bên cạnh và lối người đi bộ; kiểm tra cả chỗ mở cửa và lối ra vào xe. Không cố đi qua để nhớ mốc rồi lùi vào vùng bị cột che khuất; nếu chưa thấy rõ, giữ xe và nhờ nhân viên bãi hỗ trợ.', cueType: 'marker', cueText: 'Chưa thấy rõ sau cột thì chưa lùi' },
+      { instruction: 'Chọn vị trí và hướng vào ô theo kích thước xe, gương, cột và khoảng trống thực tế cả hai bên; giữ xe trong vạch, không lấn ô bên cạnh hay lối đi để tránh cột. Không có khoảng lệch hoặc khoảng cách tới cột cố định dùng chung; nếu không đủ chỗ cho xe và lối mở cửa, chọn ô khác khi có đường đi an toàn.', cueType: 'marker', cueText: 'Xa cột không có nghĩa là được ép sát xe bên kia' },
+      { instruction: 'Dừng hẳn, giữ phanh chân; quan sát trực tiếp quanh xe kết hợp gương và điểm mù, kiểm tra người đi bộ, xe máy, phía sau cột và vùng đầu xe sẽ quét khi đánh lái. Chỉ chọn R và có tín hiệu lùi khi đường đi đã rõ, nhường người và xe trước khi di chuyển; camera, cảm biến chỉ hỗ trợ.', cueType: 'mirror', cueText: 'Kiểm tra cả gương, góc xe và vùng đầu quét, không chỉ đuôi' },
+      { instruction: 'Nhờ người hướng dẫn nếu cần, thống nhất tín hiệu khi xe đang dừng; họ phải ngoài đường xe chạy, vùng đầu xe quét và vùng kẹp giữa xe với cột, tường hay xe khác, luôn trong tầm nhìn của người lái. Mất dấu hoặc mất liên lạc thì dừng ngay; không cho người đứng sát cột để đo khi xe đang di chuyển.', cueType: 'marker', cueText: 'Người hướng dẫn không đứng giữa xe và cột' },
+      { instruction: 'Lùi ở tốc độ đi bộ hoặc chậm hơn, luôn dừng được trong khoảng trống nhìn rõ; liên tục quan sát trực tiếp kết hợp gương, kiểm tra thân, gương, góc xe gần cột và phía đối diện cùng vùng đầu xe quét. Dừng để kiểm tra lại bất cứ khi nào cần, không chờ hết một đoạn định trước.', cueType: 'mirror', cueText: 'Cột có thể chạm gương hoặc góc xe trước khi đuôi tới', speedHint: 'tốc độ đi bộ hoặc chậm hơn' },
+      { instruction: 'Đạp phanh dừng hẳn và giữ xe ngay khi chưa rõ khoảng hở, có cảnh báo hoặc người, xe vào đường đi; không chờ cảm biến kêu liên tục. Cảm biến im lặng không chứng minh an toàn; chỉ tiếp tục khi đã kiểm tra và thấy rõ khoảng trống thực tế.', cueType: 'sound', cueText: 'Chưa rõ thì dừng, không lùi thử để nghe cảm biến' },
+      { instruction: 'Dừng hẳn trước mỗi lần đổi R/D để sửa vị trí; kiểm tra trực tiếp, gương, điểm mù và toàn bộ đường tiến hoặc lùi mới, nhường người và xe trong lối đi. Chỉ dịch chuyển trong phần đã thấy rõ an toàn; không mặc định tiến ra hay đánh lái xa cột là an toàn cho phía đối diện. Không đủ chỗ hoặc tầm nhìn thì giữ xe, gọi hỗ trợ hoặc đổi ô khi có đường đi an toàn.', cueType: 'mirror', cueText: 'Dừng trước đổi chiều, kiểm tra lại cả đường đi mới' },
+      { instruction: 'Dừng hẳn khi đỗ xong hoặc cần xuống kiểm tra; giữ phanh chân, cài phanh đỗ và P theo hướng dẫn của xe, xác nhận xe đứng chắc trước khi nhả phanh chân. Kiểm tra trước, sau, bên mở cửa, khoảng quét cánh cửa tới cột và lối ra vào của mọi người trước khi mở cửa chậm, có kiểm soát; không ép cửa hay chen vào khe giữa xe và cột. Nếu không thể giữ xe hoặc ra ngoài an toàn, ở lại vị trí lái, giữ phanh và gọi hỗ trợ.', cueType: 'marker', cueText: 'Giữ xe chắc rồi kiểm tra cửa; không chọn P khi xe đang chuyển động' }
     ],
     mistakes: [
-      'Canh cột bằng camera trong khi chân cột nằm ngoài khung hình.',
-      'Lùi sát cột để chừa chỗ cho xe bên cạnh.',
-      'Mở cửa mạnh khi xe đã đỗ sát cột.'
+      'Dùng khoảng cách cố định, camera hoặc sự im lặng của cảm biến để kết luận không chạm cột.',
+      'Chỉ nhìn đuôi xe, bỏ sót gương, góc xe, đầu xe quét hoặc ép sát xe phía đối diện để tránh cột.',
+      'Để người hướng dẫn đứng giữa xe và cột, hoặc mở cửa, xuống xe khi chưa giữ xe chắc và kiểm tra lối ra.'
     ],
-    recovery: 'Tiến ra và chọn lại quỹ đạo lệch xa cột hơn. Nếu vẫn sát, đổi sang ô đỗ khác.',
-    safety: 'Kích thước ô đỗ mỗi hầm mỗi khác; luôn quan sát thực tế thay vì áp dụng máy móc các con số trong thẻ.',
-    mnemonic: { text: 'Xa cột một chút, còn chỗ mở cửa.', rhythm: 'doi-ve' },
+    recovery: 'Đạp phanh dừng hẳn và giữ xe; không tự động tiến ra hay đánh lái tránh cột. Trước đổi R/D, dừng hẳn, kiểm tra trực tiếp kết hợp gương, điểm mù, cả đường đi mới và vùng đầu xe quét, nhường người và xe; chỉ sửa hoặc đổi ô khi đường đi an toàn, nếu chưa rõ thì giữ xe và gọi nhân viên bãi. Nếu cần xuống kiểm tra, giữ phanh chân, cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc trước khi nhả phanh chân; quan sát trước, sau, bên mở cửa, khoảng quét cửa và lối ra, không chen giữa xe với cột. Nếu không thể giữ xe hoặc ra ngoài an toàn, ở lại vị trí lái, giữ phanh và gọi hỗ trợ; không chọn P khi xe đang chuyển động.',
+    safety: 'Chỉ lùi tại ô được phép và khi quan sát rõ đường đi; tuân thủ biển báo và quy định địa phương, không lùi vào vùng bị cột che khuất hoặc đỗ chắn lối người đi bộ, lối thoát hiểm. Kiểm tra cả thân, gương, góc xe, vùng đầu xe quét và khoảng trống phía đối diện; không có khoảng cách tới cột hay độ lệch cố định bảo đảm an toàn. Camera và cảm biến chỉ hỗ trợ, im lặng không chứng minh đường trống; dừng ngay khi chưa rõ hoặc có cảnh báo, người hay xe vào đường đi. Người hướng dẫn phải luôn trong tầm nhìn, ngoài đường xe chạy và vùng kẹp; mất liên lạc thì dừng. Dừng hẳn trước đổi R/D; trước rời xe, giữ phanh chân, cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc và kiểm tra khoảng quét cửa, người xung quanh cùng lối ra; không ra ngoài nếu chưa an toàn.',
+    mnemonic: { text: 'Rõ hai bên, dừng khi khuất, giữ lối ra.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Vì sao không nên canh khoảng cách tới cột chỉ bằng camera?', options: ['Vì camera luôn chính xác', 'Vì chân cột có thể nằm ngoài khung hình camera', 'Vì camera không hoạt động khi lùi'], correctIndex: 1 },
-      { prompt: 'Quỹ đạo lùi nên lệch bao nhiêu so với phía có cột?', options: ['Lệch khoảng 20 cm về phía xa cột', 'Áp sát cột để chừa chỗ xe bên cạnh', 'Không cần chỉnh quỹ đạo'], correctIndex: 0 },
-      { prompt: 'Khi cảm biến báo liên tục lúc gần cột, bạn nên?', options: ['Tiếp tục lùi thêm một chút', 'Dừng hẳn và kiểm tra khoảng cách thực tế', 'Tắt cảm biến vì hay báo nhầm'], correctIndex: 1 }
+      { prompt: 'Cảm biến im lặng nhưng không rõ khoảng hở của gương với cột; bạn làm gì?', options: ['Lùi thêm tới khi cảm biến kêu liên tục', 'Đạp phanh dừng hẳn và giữ xe; kiểm tra trực tiếp kết hợp gương, chỉ tiếp tục khi thấy rõ an toàn', 'Tin camera vì luôn thấy hết chân cột'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Có thể luôn lệch một khoảng cố định xa cột để mở cửa không?', options: ['Không; phải kiểm tra thân, gương, cả hai bên và khoảng quét cửa thực tế, giữ trong vạch; không đủ chỗ thì chọn ô khác khi có đường đi an toàn', 'Có, chỉ cần lệch xa cột là phía bên kia an toàn', 'Có, cảm biến im lặng là đủ chỗ mở cửa'], correctIndex: 0 },
+      { prompt: 'Cần ra ngoài kiểm tra cửa sát cột sau khi lùi; thứ tự nào phù hợp?', options: ['Chọn P khi xe còn lăn rồi mở cửa', 'Dừng hẳn, giữ phanh chân, cài phanh đỗ và P theo hướng dẫn, xác nhận xe đứng chắc; kiểm tra người, khoảng quét cửa và lối ra; chưa an toàn thì ở lại giữ phanh, gọi hỗ trợ', 'Nhờ người đứng trong khe giữa xe và cột rồi tiến ra ngay'], correctIndex: 1 }
     ],
     reviewStatus: 'draft',
-    version: '0.1.0',
-    updatedAt: '2026-09-12',
-    changelog: [{ version: '0.1.0', date: '2026-09-12', summary: 'Bản nháp chờ giáo viên đo lại khoảng cách thực tế tại hầm.', author: 'Biên tập nội dung' }]
+    version: '0.2.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '0.1.0', date: '2026-09-12', summary: 'Bản nháp chờ giáo viên đo lại khoảng cách thực tế tại hầm.', author: 'Biên tập nội dung' },
+      { version: '0.2.0', date: '2026-10-25', summary: 'Bỏ mốc khoảng cách cố định, sửa điều kiện quan sát, dừng, đổi chiều, mở cửa và hai sơ đồ sát cột; giữ bản nháp chờ thẩm định chuyên môn.', author: 'Biên tập nội dung' }
+    ]
   })
 ]

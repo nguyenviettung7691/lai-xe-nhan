@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.6",
+  "contentVersion": "2026.10.7",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 123.08,
+  "totalSizeKb": 123.88,
   "assets": [
     {
       "id": "parking-start-main",
@@ -180,11 +180,11 @@
       "url": "/content/svg/parking-column-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.83,
-      "checksum": "sha256-dfa1ff21b0d3394307a0aeca5b219d6d8c735dd395b48fe65a84ad0a442f23de",
+      "sizeKb": 3.82,
+      "checksum": "sha256-69ec9efce8efb6a60fe57a41c8a5b57768b5f6b039c6bf1b05ee3b674e9e6dfa",
       "offlinePack": "core",
-      "caption": "Ô đỗ sát cột bê tông",
-      "alt": "Sơ đồ nhìn từ trên xuống: ô đỗ có cột bê tông chắn tầm nhìn bên trái."
+      "caption": "Ví dụ lùi thẳng cạnh cột, không phải toàn bộ quỹ đạo vào ô",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cột bên phải hình, cạnh cửa ô mở; đầu xe ở dưới, đuôi ở trên. Xe đã thẳng hướng, mũi tên từ sau đuôi hướng lên ô chỉ ví dụ lùi thẳng, không phải hướng đánh lái hay bảo đảm khoảng hở. Phải kiểm tra cả thân, gương, góc xe, hai bên và vùng đầu xe quét; chưa rõ thì dừng, không chờ cảm biến."
     },
     {
       "id": "parking-column-var",
@@ -194,11 +194,11 @@
       "url": "/content/svg/parking-column-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.39,
-      "checksum": "sha256-0f0e281ab355c67307354b35b62bc21799813c3710f234ee5aaf18ebb0769f42",
+      "sizeKb": 4.2,
+      "checksum": "sha256-73270992761b373964e49c08d042b9cb4b84a63caf55fc73274c3c07a0e89df8",
       "offlinePack": "core",
-      "caption": "Chừa chỗ mở cửa",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe đỗ lệch xa cột để còn khoảng trống mở cửa."
+      "caption": "Xe đã giữ chắc; kiểm tra cửa lái và lối ra, không chỉ thân xe",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng ô và cột bên phải hình: xe đã giữ chắc, nằm trong vạch, đầu ở dưới và đuôi ở trên. Với xe tay lái trái minh họa, cửa lái ở bên phải hình; cung vàng cạnh cột chỉ khoảng quét một cánh cửa trước minh họa, không phải quỹ đạo xe hay khoảng mở bảo đảm. Kiểm tra cả hai bên, khoảng quét cửa thực tế, người xung quanh và lối ra; không chen giữa xe với cột. Không có mũi tên chuyển động."
     },
     {
       "id": "narrow-creep-main",

@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.6'
+export const CONTENT_VERSION = '2026.10.7'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -73,5 +73,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa parking-lowlight: quan sát khi thiếu sáng, điều kiện dừng, người hướng dẫn, rời xe an toàn và hai sơ đồ; bỏ thẩm định mẫu.',
     cardIds: ['parking-lowlight']
+  },
+  {
+    version: '2026.10.7',
+    date: '2026-10-25',
+    summary: 'Sửa bản nháp parking-column: bỏ mốc khoảng cách cố định, bổ sung quan sát hai bên, dừng, mở cửa an toàn và hai sơ đồ sát cột; giữ trạng thái chờ thẩm định.',
+    cardIds: ['parking-column']
   }
 ]
