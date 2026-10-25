@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'turn-signal',
+    icon: 'turn-signal',
+    name: 'Xi-nhan / báo rẽ',
+    english: 'Turn indicators',
+    color: 'green',
+    severity: 'info',
+    description: 'Mũi tên trái hoặc phải xanh lá nháy theo hướng báo rẽ; hình minh họa thể hiện cả hai hướng có thể có. Cả hai cùng nháy thường là đèn cảnh báo nguy hiểm, không phải xin đi thẳng.',
+    keywords: ['xi nhan', 'xi-nhan', 'xinhan', 'báo rẽ', 'turn signal', 'indicator', 'mũi tên'],
+    actions: [
+      'Quan sát gương/điểm mù, báo hướng kịp thời trước khi chuyển hướng hoặc chuyển làn.',
+      'Chỉ thực hiện khi có khoảng trống an toàn và đúng quy định; xi-nhan không tạo quyền ưu tiên.',
+      'Sau thao tác, kiểm tra đã tắt; nháy nhanh, không nháy hoặc không sáng cần kiểm tra đèn ngoài xe khi đã dừng.'
+    ],
+    avoid: 'Không chỉ dựa vào tiếng tách để tin đèn ngoài hoạt động, không dùng hai xi-nhan làm tín hiệu đi thẳng qua giao lộ.',
+    callHelp: 'Nháy đúng theo thao tác không cần cứu hộ; lỗi nháy/đèn ngoài cần sửa sớm, không chuyển hướng khi không thể báo hiệu an toàn.'
+  },
+  {
     id: 'rear-fog',
     icon: 'rear-fog',
     name: 'Đèn sương mù sau',
