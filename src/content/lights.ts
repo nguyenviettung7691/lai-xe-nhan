@@ -284,15 +284,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Glow plug',
     color: 'amber',
     severity: 'info',
-    description: 'Xe máy dầu đang sấy nóng buồng đốt trước khi khởi động.',
+    description: 'Cuộn dây vàng trên xe diesel thường báo sấy trước khởi động. Sáng dai dẳng hoặc nhấp nháy khi máy đã chạy có thể là lỗi sấy/quản lý động cơ tùy hãng, không chỉ do bugi sấy.',
     keywords: ['sấy', 'glow plug', 'máy dầu', 'khởi động lạnh'],
     actions: [
-      'Chờ đèn tắt rồi mới đề máy.',
-      'Trời lạnh thì để máy chạy không tải thêm 30 giây.',
-      'Nếu đèn nháy liên tục sau khi nổ máy, hẹn kiểm tra bugi sấy.'
+      'Với xe yêu cầu chờ sấy, bật nguồn và chờ đèn tắt rồi khởi động theo sổ tay; nút Start có thể tự điều khiển sấy.',
+      'Sau khởi động, chạy nhẹ theo hướng dẫn xe; không đặt thời gian nổ không tải chung cho mọi động cơ.',
+      'Nếu đèn vẫn sáng/nháy khi chạy, đọc thông báo và liên hệ xưởng; rung, mất lực hoặc có đèn đỏ thì dừng an toàn.'
     ],
-    avoid: 'Không đề máy liên tục nhiều lần khi đèn sấy chưa tắt.',
-    callHelp: 'Vào gara nếu xe khó nổ vào buổi sáng hoặc đèn nháy kéo dài.'
+    avoid: 'Không đề liên tục, dùng chất hỗ trợ nổ tùy tiện hoặc bỏ qua đèn nháy vì xe vẫn nổ được.',
+    callHelp: 'Kiểm tra sớm khi khó nổ hoặc đèn không tắt/nháy sau khởi động; cứu hộ nếu không đề được hay xe chạy không an toàn.'
   },
   {
     id: 'service',
