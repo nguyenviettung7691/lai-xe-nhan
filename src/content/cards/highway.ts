@@ -180,38 +180,43 @@ export const highwayCards: Card[] = [
     lessonId: 'highway-flow',
     topicId: 'highway',
     title: 'Vượt xe tải dài',
-    context: 'Xe container dài hơn mười lăm mét có vùng điểm mù rộng và luồng gió mạnh khi vượt. Thời gian nằm cạnh xe tải càng ngắn càng an toàn.',
-    objective: 'Vượt dứt khoát và thoát khỏi vùng điểm mù nhanh nhất có thể.',
+    context: 'Bạn đi sau xe tải dài trên cao tốc có các làn cùng chiều, dự định chuyển sang làn bên trái để đi lên trước. Xe tải che khuất đường, có điểm mù trước, sau và hai bên; gió ngang và bụi nước có thể làm việc đi cạnh xe tải khó kiểm soát, không cần vượt nếu chưa đủ điều kiện.',
+    objective: 'Chỉ đi lên trước xe tải bằng làn bên trái khi được phép và đủ an toàn trong giới hạn tốc độ; không lưu lại cạnh xe, không tạt đầu khi trở về làn phải.',
     risk: 'high',
     difficulty: 4,
-    minutes: 4,
+    minutes: 6,
     tags: { speedRange: 'highway', spaceConstraint: 'medium', visibility: 'reduced', stress: 'high' },
     steps: [
-      { instruction: 'Giữ khoảng cách đủ xa để nhìn thấy gương của xe tải.', cueType: 'mirror', cueText: 'Thấy gương xe tải' },
-      { instruction: 'Quan sát làn trái trống hẳn trước khi bật xi-nhan.', cueType: 'mirror', cueText: 'Làn trái trống hẳn' },
-      { instruction: 'Tăng tốc trước khi tiến vào vùng cạnh thùng xe.', cueType: 'feel', cueText: 'Tăng tốc trước khi áp sát' },
-      { instruction: 'Giữ ga đều và đi thẳng khi ngang thân xe tải.', cueType: 'feel', cueText: 'Ga đều khi ngang thân xe' },
-      { instruction: 'Nhìn gương phải thấy cả đầu xe tải rồi mới chuyển làn.', cueType: 'mirror', cueText: 'Thấy đầu xe tải trong gương' },
-      { instruction: 'Trở về làn phải và giữ khoảng cách ba giây.', cueType: 'timing', cueText: 'Khoảng cách ba giây' }
+      { instruction: 'Giữ cự ly sau xe tải theo biển báo, tốc độ và điều kiện đường; tăng thêm khi mưa hoặc bị che tầm nhìn. Thấy gương xe tải không bảo đảm tài xế thấy bạn và không thay thế khoảng cách an toàn.', cueType: 'mirror', cueText: 'Giãn cự ly bằng giảm tốc phù hợp, không chạy lùi; tránh bám đuôi để nhìn đường' },
+      { instruction: 'Đọc biển, vạch và phân làn; chỉ chuẩn bị đi lên trước bằng làn bên trái liền kề được phép sử dụng. Cần nhìn rõ đủ đường, chỗ trống phía trước xe tải và khả năng đi qua mà không vượt giới hạn tốc độ; nếu xe tải gần bằng tốc độ cho phép, có hàng xe chờ, mưa che tầm nhìn hoặc gió mạnh khó giữ làn thì hoãn vượt.', cueType: 'sign', cueText: 'Không đua tốc độ, không cố vượt vì xe sau thúc ép', speedHint: 'theo biển báo, loại xe, độ bám, tầm nhìn và dòng xe' },
+      { instruction: 'Bật xi-nhan trái báo trước; kiểm tra gương trong, gương trái, khoảng hở phía trước, phía sau và hai bên, nhất là xe làn trái đến nhanh. Kiểm tra lại điểm mù trái ngay trước khi dịch ngang, chỉ liếc ngắn rồi nhìn lại đường; chưa chắc an toàn thì giữ làn và chờ sau xe tải.', cueType: 'mirror', cueText: 'Xi-nhan không tạo quyền ưu tiên; cảnh báo điểm mù chỉ hỗ trợ' },
+      { instruction: 'Chuyển êm một làn liền kề qua vạch đứt được phép khi đủ khoảng hở, ổn định giữa làn trái rồi tắt xi-nhan. Điều chỉnh tốc độ để đi lên trước khi an toàn nhưng không vượt giới hạn; không áp sát đuôi xe tải lấy đà và không luồn sang phải hay dùng làn dừng khẩn cấp hoặc lề đường để vượt.', cueType: 'marker', cueText: 'Bài này minh họa đi lên trước bên trái trên đường nhiều làn cùng chiều', steeringHint: 'dịch ngang êm, không cắt nhiều làn' },
+      { instruction: 'Giữ giữa làn và khoảng hở ngang khi ngang xe tải, nhìn đường phía trước, giữ chắc vô-lăng để ứng phó gió và bụi nước; không giật lái hoặc cố giữ ga khi cần giảm tốc vì nguy hiểm. Không lưu lại cạnh xe tải; nếu không thể đi qua an toàn trong giới hạn tốc độ thì bỏ ý định vượt, không tăng tốc đua xe tải.', cueType: 'feel', cueText: 'Điểm mù thay đổi theo xe và gương; không có vùng cạnh xe nào được bảo đảm nhìn thấy' },
+      { instruction: 'Chờ đến khi đã đi hẳn lên trước, đủ cự ly với xe trước và đủ khoảng hở sau cho xe tải theo tốc độ tương đối mới chuẩn bị về làn phải. Thấy toàn bộ xe tải trong gương trong chỉ là mốc hỗ trợ, không bảo đảm đủ cự ly; không chỉ dựa vào đầu xe tải trong gương phải. Nếu gương trong bị che hoặc chưa chắc khoảng hở, không đoán để tạt vào.', cueType: 'mirror', cueText: 'Cần chừa không gian phanh cho xe tải, không lấy độ dài sơ đồ làm mét hay giây' },
+      { instruction: 'Bật xi-nhan phải báo trước, kiểm tra gương và điểm mù phải ngay trước khi về làn, nhìn lại đường; nhường xe đang ở làn nhận và chỉ chuyển êm một làn liền kề qua vạch cho phép khi đủ hở trước, sau và hai bên. Tắt xi-nhan khi ổn định; giữ cự ly với xe trước theo biển, tốc độ và điều kiện, không giảm tốc không cần thiết ngay trước đầu xe tải.', cueType: 'mirror', cueText: 'Đủ điều kiện mới về làn phải; không tạt đầu để kịp lối ra' },
+      { instruction: 'Giữ làn hiện tại nếu phải bỏ vượt khi đã ở làn trái, quan sát phía trước và xe sau, điều chỉnh tốc độ êm khi an toàn để tạo khoảng cách dọc phía sau xe tải; chỉ chuyển về phải sau khi đủ khoảng hở và kiểm tra lại gương, điểm mù. Không chạy lùi, phanh gấp chỉ để tụt lại hoặc cắt chéo sát đuôi xe tải; nếu có nguy hiểm tức thời thì phanh cần thiết để tránh va chạm.', cueType: 'timing', cueText: 'Chưa sang trái thì chờ sau; đã sang trái thì không ép về khe hẹp' }
     ],
     mistakes: [
-      'Đi song song xe tải trong nhiều giây ở vùng điểm mù.',
-      'Cắt vào ngay trước đầu xe tải khi chưa đủ khoảng cách.',
-      'Vượt khi trời mưa lớn và bụi nước che kín tầm nhìn.'
+      'Bám sát vì thấy gương xe tải, hoặc tăng quá tốc độ để cố thoát điểm mù.',
+      'Chỉ nhìn gương, bỏ điểm mù và xe sau đến nhanh; tạt đầu vì vừa thấy ca-bin trong gương phải.',
+      'Cố vượt khi mưa bụi nước, gió hoặc dòng xe không cho phép; phanh đột ngột hay cắt sát đuôi để bỏ vượt.'
     ],
-    recovery: 'Nếu tốc độ không đủ để vượt dứt điểm, nhả ga và lùi lại phía sau xe tải, chờ đoạn đường rộng hơn.',
-    safety: 'Không vượt ở nơi có vạch liền, tầm nhìn hạn chế hoặc biển cấm vượt.',
-    mnemonic: { text: 'Vượt nhanh, thoát điểm mù, về làn phải.', rhythm: 'ba-nhip' },
+    recovery: 'Chưa chuyển làn thì giữ cự ly phía sau và hoãn vượt. Đã ở cạnh xe tải mà khoảng trống đóng lại hoặc xe tải tăng tốc: không đua theo, giữ làn hiện tại, quan sát xe sau và giảm tốc êm khi an toàn để tạo khoảng cách dọc phía sau xe tải. Chỉ báo hiệu và chuyển về phải khi đủ hở trước, sau, hai bên và đã kiểm tra lại điểm mù; không cắt sát đuôi hoặc ép xe khác nhường. Không chạy lùi, dừng chờ trên làn chạy, dùng lề hay làn dừng khẩn cấp để vượt; không phanh gấp chỉ để bỏ vượt nhưng vẫn phanh cần thiết khi nguy hiểm tức thời. Xe tải bắt đầu lấn làn thì ưu tiên tránh va chạm, giảm tốc hoặc phanh theo tình huống, không giật lái sang làn chưa quan sát.',
+    safety: 'Không vượt giới hạn tốc độ để thoát điểm mù; không đủ tầm nhìn, khoảng hở hoặc không thể đi qua an toàn trong giới hạn thì hoãn hay bỏ vượt. Tuân thủ biển, vạch và làn dành cho loại xe; không cắt vạch liền hoặc dùng làn dừng khẩn cấp, lề đường để vượt. Thấy gương xe tải không bảo đảm được nhìn thấy; thấy toàn bộ xe tải trong gương trong cũng không thay thế cự ly an toàn trước, sau và hai bên. Báo hiệu, kiểm tra gương và điểm mù trước mỗi lần đổi một làn liền kề. Nếu bỏ vượt khi đã ở cạnh, giữ làn, quan sát xe sau và điều chỉnh tốc độ êm khi an toàn để tạo khoảng cách phía sau xe tải trước khi đổi làn; không chạy lùi, tạt đầu, cắt sát đuôi hay phanh gấp chỉ để tụt lại, vẫn phanh cần thiết khi nguy hiểm tức thời.',
+    mnemonic: { text: 'Đủ hở mới qua, đúng tốc độ, đủ xa mới về.', rhythm: 'ba-nhip' },
     checklistId: 'pre_highway',
     quickCheck: [
-      { prompt: 'Vì sao nên tránh đi song song lâu bên cạnh xe tải dài?', options: ['Vì tốn xăng hơn', 'Vì đó là vùng điểm mù rộng của xe tải', 'Vì luật cấm đi cạnh xe tải'], correctIndex: 1 },
-      { prompt: 'Trước khi chuyển làn để vượt xe tải, cần quan sát gì?', options: ['Chỉ cần bật xi-nhan là đủ', 'Làn trái phải trống hẳn qua gương', 'Không cần quan sát nếu đường vắng'], correctIndex: 1 },
-      { prompt: 'Khi nào không nên thực hiện việc vượt xe tải?', options: ['Khi trời mưa lớn và bụi nước che kín tầm nhìn', 'Khi xe tải đi hơi chậm', 'Khi đường có ba làn'], correctIndex: 0, isStopCondition: true }
+      { prompt: 'Trước khi chuyển sang làn trái đi lên trước xe tải, cần làm gì?', options: ['Chỉ cần thấy làn trái trống qua gương', 'Kiểm tra biển, vạch, chỗ trống để đi qua đúng giới hạn; báo hiệu, kiểm tra gương, xe sau đến nhanh và điểm mù trái, đủ hở mới chuyển một làn', 'Bật xi-nhan rồi áp sát đuôi xe tải lấy đà'], correctIndex: 1 },
+      { prompt: 'Vừa thấy đầu xe tải trong gương phải, đã được chuyển về phải chưa?', options: ['Được, chỉ cần thấy ca-bin là đủ', 'Được, rồi giảm tốc ngay để giữ ba giây', 'Chưa; phải đủ cự ly trước và sau theo tốc độ tương đối, báo hiệu và kiểm tra lại gương, điểm mù phải; thấy toàn bộ xe tải trong gương trong chỉ hỗ trợ'], correctIndex: 2 },
+      { prompt: 'Đang ở cạnh xe tải mà muốn qua phải vượt giới hạn tốc độ, bạn làm gì?', options: ['Bỏ vượt, giữ làn và quan sát xe sau, điều chỉnh tốc độ êm khi an toàn để tạo khoảng cách phía sau xe tải; đủ hở và kiểm tra lại mới chuyển về phải', 'Tăng quá giới hạn vài giây cho thoát điểm mù', 'Phanh gấp rồi cắt sát đuôi xe tải về làn phải'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng vượt xe tải dài.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng vượt xe tải dài.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Sửa điều kiện đi lên trước xe tải, giới hạn tốc độ, quan sát điểm mù, cự ly về làn và bỏ vượt; thay hai sơ đồ và bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'highway-tailgater',

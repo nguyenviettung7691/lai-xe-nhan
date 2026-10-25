@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.16",
+  "contentVersion": "2026.10.17",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 161.34,
+  "totalSizeKb": 165.68,
   "assets": [
     {
       "id": "parking-start-main",
@@ -460,11 +460,11 @@
       "url": "/content/svg/highway-overtake-truck-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.38,
-      "checksum": "sha256-04cbd606c5086bc445e03e8ee6f733def6d808f32df23a7f71419218d6f1b164",
+      "sizeKb": 4.42,
+      "checksum": "sha256-62d00e83656c1c4d02d5d2669bfe9c92f049fb5c22b959963c38495de223dfc6",
       "offlinePack": "core",
-      "caption": "Vượt xe tải bên trái",
-      "alt": "Sơ đồ nhìn từ trên xuống: quỹ đạo vượt xe tải bằng làn bên trái."
+      "caption": "Đủ điều kiện mới qua trái, không vượt giới hạn tốc độ",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải, xe tải có ca-bin ở đầu bên phải nằm trọn làn phải. Xe mình màu xanh ở sau xe tải; mũi tên từ đầu xe chuyển qua vạch đứt sang làn trái rồi đi thẳng. Vùng cam trước, sau và hai bên xe tải chỉ minh họa điểm mù thay đổi theo xe và gương, không phải ranh giới chính xác hoặc vùng ngoài đó chắc chắn được nhìn thấy. Chỉ đi khi được phép, đủ hở và không vượt giới hạn tốc độ; đường vẽ không phải quỹ đạo lái chính xác."
     },
     {
       "id": "highway-overtake-truck-var",
@@ -474,11 +474,11 @@
       "url": "/content/svg/highway-overtake-truck-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.58,
-      "checksum": "sha256-3db7d465d6518868a6e4faadc0affa77e8ba1e8846cea8427ff899511716d5d6",
+      "sizeKb": 4.88,
+      "checksum": "sha256-a0d4505ef1568ea5fd75bef2e2dca05c9d1b4adfdb5897b2d0ac3bd67f53b82a",
       "offlinePack": "core",
-      "caption": "Thời điểm về làn",
-      "alt": "Sơ đồ nhìn từ trên xuống: thời điểm về làn phải khi đã thấy đầu xe tải trong gương."
+      "caption": "Đủ cự ly trước sau, báo hiệu và kiểm tra lại mới về phải",
+      "alt": "Thời điểm sau riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình đã đi hẳn lên trước trong làn trái; xe tải nằm trong làn phải, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt rồi đi thẳng giữa làn phải, không ra lề. Dấu ngoặc hở sau nối theo phương dọc từ đầu xe tải đến đuôi xe mình, không phải số mét, giây hay khoảng cách được bảo đảm. Sơ đồ không chứng minh tầm nhìn trong gương: thấy toàn bộ xe tải trong gương trong chỉ hỗ trợ; còn phải đủ cự ly với xe trước, khoảng hở sau theo tốc độ tương đối, báo hiệu và kiểm tra lại gương, điểm mù phải trước khi về làn."
     },
     {
       "id": "highway-tailgater-main",

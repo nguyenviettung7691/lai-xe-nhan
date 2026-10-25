@@ -280,7 +280,7 @@ const complete = () => {
       </p>
       <p v-else-if="card.reviewStatus === 'published_unverified'" class="unverified-notice" role="note">
         Bài học này chưa được thẩm định độc lập bởi chuyên gia. Các mốc và sơ đồ chỉ mang tính minh họa;
-        hãy thực hành cùng giáo viên đủ chuyên môn và chỉ lùi khi quan sát rõ khoảng trống an toàn.
+        hãy thực hành cùng giáo viên đủ chuyên môn và chỉ thực hiện thao tác khi quan sát rõ, đủ điều kiện an toàn.
       </p>
       <p class="muted">{{ disclaimer.short }}</p>
     </footer>

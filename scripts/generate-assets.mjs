@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.16'
+const CONTENT_VERSION = '2026.10.17'
 
 const W = 320
 const H = 200
@@ -488,6 +488,49 @@ const mergeScene = inserted => [
   ])
 ]
 
+const overtakeScene = returning => {
+  const truckX = returning ? 76 : 146
+  return [
+    rect(0, 0, W, 174, C.kerb),
+    `<g id="overtake-road">${rect(0, 42, W, 108, C.asphalt)}</g>`,
+    `<g id="overtake-edges">${line(0, 42, W, 42, C.bay, 2)}${line(0, 150, W, 150, C.bay, 2)}</g>`,
+    `<g id="overtake-divider">${line(0, 96, W, 96, C.bay, 1.8, '10 8')}</g>`,
+    label(16, 18, returning ? 'ĐỦ XA MỚI VỀ PHẢI' : 'ĐỦ ĐIỀU KIỆN MỚI QUA TRÁI', { size: 9, fill: C.ego }),
+    label(16, 34, 'HAI LÀN CÙNG CHIỀU', { size: 8 }),
+    `<g id="overtake-direction">${arrow(260, 29, 300, 29)}${arrow(260, 139, 300, 139)}</g>`,
+    label(300, 57, 'LÀN TRÁI', { size: 8, anchor: 'end' }),
+    label(300, 111, 'LÀN PHẢI', { size: 8, anchor: 'end' }),
+    ...(!returning ? [
+      `<g id="overtake-blind-areas" opacity=".3">`,
+      rect(84, 111, 24, 24, C.hazard, 2),
+      rect(184, 111, 26, 24, C.hazard, 2),
+      rect(111, 60, 70, 48, C.hazard, 2),
+      rect(111, 138, 70, 8, C.hazard, 2),
+      '</g>'
+    ] : []),
+    `<g id="overtake-truck"><g transform="translate(${truckX} 123) rotate(90)">`,
+    rect(-12, -35, 24, 15, C.other, 3),
+    rect(-8, -32, 16, 3, '#0e1715'),
+    rect(-12, -17, 24, 52, C.truck, 2),
+    '</g></g>',
+    label(truckX, 126, 'XE TẢI', { size: 7, fill: '#e3ede7', anchor: 'middle' }),
+    `<g id="overtake-ego">${car(returning ? 210 : 36, returning ? 69 : 123, 90, C.ego, 18, 32)}</g>`,
+    label(returning ? 210 : 36, returning ? 54 : 106, 'XE MÌNH', { size: 8, fill: C.ego, anchor: 'middle' }),
+    ...(returning ? [
+      `<g id="overtake-return-path">${trail('M226 69C250 69 252 123 278 123L300 123')}</g>`,
+      `<g id="overtake-clearance">${gap(111, 194, 88, 'HỞ SAU')}</g>`,
+      `<g id="overtake-clearance-guides">${line(111, 88, 111, 109, C.accent, 1, '2 3')}${line(194, 79, 194, 88, C.accent, 1, '2 3')}</g>`,
+      label(16, 163, 'HỞ SAU: ĐẦU XE TẢI ĐẾN ĐUÔI XE MÌNH', { size: 8 }),
+      note('Không theo tỷ lệ. Gương chỉ hỗ trợ; đủ hở, báo hiệu, kiểm tra điểm mù mới về phải.')
+    ] : [
+      `<g id="overtake-left-path">${trail('M52 123C78 123 82 69 108 69L232 69')}</g>`,
+      rect(16, 155, 9, 9, C.hazard, 1, 0.5),
+      label(31, 163, 'ĐIỂM MÙ MINH HỌA, KHÔNG CỐ ĐỊNH', { size: 8 }),
+      note('Không theo tỷ lệ. Đủ hở mới đổi làn; không vượt giới hạn tốc độ để qua xe tải.')
+    ])
+  ]
+}
+
 const exitScene = missed => [
   rect(0, 0, W, 180, C.kerb),
   `<g id="exit-main-road">${rect(0, 34, W, 88, C.asphalt)}</g>`,
@@ -917,22 +960,8 @@ const templates = {
       'signs-speed': () => signsScene(true),
       gap: () => followingScene(false),
       'gap-rain': () => followingScene(true),
-      overtake: () => [
-        highwayLot(),
-        car(150, 138, 90, C.truck, 30, 74),
-        car(88, 98, 90, C.ego),
-        trail('M114 96C150 88 202 88 242 96'),
-        tag(16, 166, 'Vượt bên trái, không tạt đầu'),
-        note('Chỉ vượt bên trái khi thấy rõ đầu xe tải trong gương.')
-      ],
-      'overtake-return': () => [
-        highwayLot(),
-        car(96, 138, 90, C.truck, 30, 74),
-        car(232, 98, 90, C.ego),
-        trail('M250 106C268 120 274 130 276 140'),
-        gap(140, 218, 82, 'Thấy cả đầu xe tải'),
-        note('Về làn phải khi đã thấy đầu xe tải trong gương trong.')
-      ],
+      overtake: () => overtakeScene(false),
+      'overtake-return': () => overtakeScene(true),
       tailgate: () => [
         highwayLot(),
         car(182, 98, 90, C.ego),
@@ -1069,7 +1098,7 @@ const specs = [
   ['highway-exit', 'highway', ['exit', 'Từ làn phải vào làn giảm tốc qua vạch đứt, chỉ khi đủ khoảng hở', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe mình hướng đầu sang phải trong làn sát bên phải cao tốc. Mũi tên xanh từ trước đầu xe đi qua vạch đứt xuống làn giảm tốc bên phải, ổn định trước nhánh ra; đường nhánh và chiều đi nối liền, vùng gạch chéo nằm giữa nhánh và làn chính sau đoạn được phép vào. Đây không phải quỹ đạo lái chính xác hay mốc khoảng cách, tốc độ; vẫn giảm tốc hoặc phanh sớm khi có nguy hiểm, kể cả trên làn chính.'], ['exit-miss', 'Đã quá đoạn được phép vào: giữ làn đi tiếp, không cắt vùng gạch chéo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu sang phải, đã qua đoạn vạch đứt vào lối ra. Mũi tên xanh đi thẳng trong làn chính tới lối ra phù hợp tiếp theo. Nét đỏ cắt qua vạch liền và vùng gạch chéo sang nhánh ra bị dấu X đỏ cấm, không phải hướng nên đi. Không lùi, quay đầu, dừng để quay lại hoặc dùng làn dừng khẩn cấp hay lề đường; nếu đã vào đường nhánh thì tiếp tục theo biển, không cắt ngược về làn chính.']],
   ['highway-signs', 'highway', ['signs', 'Nhận diện tối đa và tối thiểu có điều kiện, không phải lệnh đổi làn', 'Bảng nhận diện minh họa, không theo tỷ lệ hay mô tả cách đặt biển: vòng đỏ nền trắng số đen 80 là tối đa 80 km/h; vòng xanh lam số trắng 60 là tối thiểu 60 km/h khi giao thông thuận lợi và an toàn. Gặp nguy hiểm cần giảm tốc, kể cả dưới mức tối thiểu. Phía dưới là xe hướng đầu sang phải và mũi tên đi thẳng trên mặt đường, không phải quỹ đạo chuyển làn.'], ['signs-speed', 'Giảm tốc trước vị trí giới hạn mới có hiệu lực, không chờ qua biển', 'Ví dụ riêng nhìn từ trên xuống, không theo tỷ lệ: xe hướng đầu sang phải, còn ở trước biển tối đa 60 km/h, không có biển phụ. Nét dọc mảnh nối vị trí biển với đường chỉ vị trí hiệu lực, không phải vạch đường hay lệnh dừng. Vùng sáng bên phải bắt đầu tại vị trí này: không vượt 60 từ đây, vẫn chậm hơn nếu cần an toàn. Mũi tên đi thẳng khớp đầu xe; giảm tốc êm từ sớm, không có quãng phanh hoặc tốc độ cao tốc chung được bảo đảm.']],
   ['highway-gap', 'highway', ['gap', 'Đếm đủ giây qua cùng mốc; vẫn theo biển và cự ly quy định', 'Hai thời điểm nhìn từ trên xuống, không theo tỷ lệ: xe mình màu xanh và xe trước màu xám cùng làn, đầu và mũi tên hướng sang phải. Nét dọc vàng là cùng một mốc cố định bên đường, không phải vạch dừng. Bắt đầu khi đuôi xe trước ngang mốc ở hình trên; kết thúc khi đầu xe mình ngang mốc ở hình dưới. Ít nhất ba giây chỉ là tham khảo khi khô, thuận lợi; vẫn giữ cự ly theo biển, tốc độ và điều kiện. Dấu ngoặc chỉ cự ly giữa hai cản xe, không quy đổi độ dài hình thành giây hay mét.'], ['gap-rain', 'Mưa: từ mốc ba giây khô tăng ít nhất sáu giây, có thể cần hơn', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: mưa, hai xe cùng làn hướng sang phải; xe mình màu xanh theo sau xe xám, dấu ngoặc từ đầu xe mình đến đuôi xe trước minh họa cự ly tăng, không phải quãng phanh hay số mét. Từ mốc ba giây khô tăng ít nhất sáu giây khi ướt, có thể cần hơn; tuân thủ cự ly lớn hơn biển hoặc bảng trong điều kiện xấu và giảm tốc theo độ bám, tầm nhìn. Sáu giây không bảo đảm an toàn.']],
-  ['highway-overtake-truck', 'highway', ['overtake', 'Vượt xe tải bên trái', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vượt xe tải bằng làn bên trái.'], ['overtake-return', 'Thời điểm về làn', 'Sơ đồ nhìn từ trên xuống: thời điểm về làn phải khi đã thấy đầu xe tải trong gương.']],
+  ['highway-overtake-truck', 'highway', ['overtake', 'Đủ điều kiện mới qua trái, không vượt giới hạn tốc độ', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: hai làn cùng chiều sang phải, xe tải có ca-bin ở đầu bên phải nằm trọn làn phải. Xe mình màu xanh ở sau xe tải; mũi tên từ đầu xe chuyển qua vạch đứt sang làn trái rồi đi thẳng. Vùng cam trước, sau và hai bên xe tải chỉ minh họa điểm mù thay đổi theo xe và gương, không phải ranh giới chính xác hoặc vùng ngoài đó chắc chắn được nhìn thấy. Chỉ đi khi được phép, đủ hở và không vượt giới hạn tốc độ; đường vẽ không phải quỹ đạo lái chính xác.'], ['overtake-return', 'Đủ cự ly trước sau, báo hiệu và kiểm tra lại mới về phải', 'Thời điểm sau riêng biệt nhìn từ trên xuống, không theo tỷ lệ: xe mình đã đi hẳn lên trước trong làn trái; xe tải nằm trong làn phải, cả hai hướng đầu sang phải. Mũi tên từ đầu xe mình qua vạch đứt rồi đi thẳng giữa làn phải, không ra lề. Dấu ngoặc hở sau nối theo phương dọc từ đầu xe tải đến đuôi xe mình, không phải số mét, giây hay khoảng cách được bảo đảm. Sơ đồ không chứng minh tầm nhìn trong gương: thấy toàn bộ xe tải trong gương trong chỉ hỗ trợ; còn phải đủ cự ly với xe trước, khoảng hở sau theo tốc độ tương đối, báo hiệu và kiểm tra lại gương, điểm mù phải trước khi về làn.']],
   ['highway-tailgater', 'highway', ['tailgate', 'Bị xe sau bám đuôi', 'Sơ đồ nhìn từ trên xuống: xe phía sau bám sát đuôi ở khoảng cách nguy hiểm.'], ['tailgate-let', 'Nhường đường cho xe sau', 'Sơ đồ nhìn từ trên xuống: chuyển sang làn phải để xe bám đuôi vượt lên.']],
   ['weather-downhill', 'slope', ['downhill', 'Đổ dốc dài', 'Sơ đồ cắt ngang: xe xuống dốc dài với số thấp.'], ['downhill-pulse', 'Phanh theo nhịp', 'Sơ đồ cắt ngang: các nhịp phanh ngắt quãng khi đổ dốc.']],
   ['weather-uphill-start', 'slope', ['uphill', 'Khởi hành ngang dốc', 'Sơ đồ cắt ngang: xe khởi hành trên đoạn dốc lên.'], ['uphill-hold', 'Trôi ngược khi nhả sớm', 'Sơ đồ cắt ngang: hướng trôi ngược khi nhả phanh quá sớm trên dốc.']],

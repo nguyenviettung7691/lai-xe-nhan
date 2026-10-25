@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.16'
+export const CONTENT_VERSION = '2026.10.17'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -133,5 +133,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa highway-gap: cự ly theo biển và tốc độ, đếm giây, mưa và phanh khẩn cấp; thay hai sơ đồ và bỏ thẩm định mẫu.',
     cardIds: ['highway-gap']
+  },
+  {
+    version: '2026.10.17',
+    date: '2026-10-25',
+    summary: 'Sửa highway-overtake-truck: giới hạn tốc độ, điểm mù, khoảng hở về làn và bỏ vượt; thay hai sơ đồ và bỏ thẩm định mẫu.',
+    cardIds: ['highway-overtake-truck']
   }
 ]

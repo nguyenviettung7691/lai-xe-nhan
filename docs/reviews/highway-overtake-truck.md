@@ -71,3 +71,48 @@ no unrelated card/checklist or learning-path change is required.
 
 Clean initial worktree. Content, assets and validation suites: **31 tests
 passed**. Original diagrams inspected in the lesson before implementation.
+
+## Implementation and verification results
+
+- Analysis/plan committed first as `8736f6b`. Implemented one coherent revision
+  after that plan, preserving stable card, lesson, asset and quiz identities,
+  original release/changelog history and existing checklist/path references.
+- Card **1.1.0**, content pack **2026.10.17**. Updated context/objective,
+  eight instructions with cues/hints, mistakes, recovery, safety, mnemonic and
+  all three questions/answers. Removed urgency without speed safeguards and
+  distinguished waiting, passing, safe return and conditional abandonment.
+- Mirror cues are supplementary, not guarantees. Instructions cover both
+  blind-spot checks, fast rear traffic, truck braking space, restricted
+  interior-mirror views, queues, wind/spray, legal speed and emergency braking.
+  Essential constraints remain in instructions/safety for quick/audio use.
+- Removed this lesson's sample approval; UI shows **Chưa thẩm định độc lập**.
+  Changed only the shared unverified footer's reversing-only sentence to
+  maneuver-neutral wording. Independent instructor certification is still
+  outstanding and is not claimed by this review.
+- Both diagrams now show rightward same-direction traffic and identifiable
+  cab headings, vehicles fully inside lanes and permitted dashed crossings.
+  Main starts behind the truck, depicts indicative blind areas including the
+  adjacent left lane, and ends forward in the left lane. The separate return
+  snapshot starts ahead and ends forward inside the right lane; separation
+  is measured between truck nose and ego rear, not arbitrary centers.
+- Added **13 focused tests**, including actual correct quiz answers, audible
+  safety sources, metadata, transformed vehicle footprints, sampled paths,
+  one-divider crossings, forward endpoints and bumper-based gap anchors.
+  Focused lesson/content/asset/validation run: **44 tests passed**.
+- **Lint and production build/typecheck passed**. Build reports existing
+  third-party Zod annotation warnings; these do not fail the build.
+- Browser checks at **1280 px** and **390 px**: both images decode successfully,
+  no horizontal overflow, eight steps present, unverified state visible,
+  quick mode hides recovery/variant but retains essential safety. Quiz wrong
+  selections produce **1/3, not passed**; retry with revised correct answers
+  produces **3/3, passed**. No page runtime errors in the check.
+- Inspected both final SVGs visually. All **19 SVG text elements** fit within
+  their 320 x 200 viewboxes. Initial browser image check was corrected to
+  scroll/decode the lazy-loaded variant before asserting load success; this
+  was a test-harness timing issue, not a missing image.
+- Regeneration is byte-identical for all **46 SVGs** and the manifest; only
+  the two truck-lesson SVGs differ from the baseline. Updated manifest hashes,
+  sizes, captions/alt and pack version; total core assets **165.68 KB**.
+- Existing editorial gates initially rejected conditional step starters and
+  a three-sentence context. Reworded to action-first steps and two sentences
+  without weakening safety advice; no validator relaxation was made.
