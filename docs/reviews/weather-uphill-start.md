@@ -80,4 +80,51 @@ visually inspected in the running lesson, as well as their generator source.
 
 ## Implementation and verification
 
-Pending.
+- Analysis and mitigation plan committed first as `857a8d3`.
+- Card updated to **1.1.0**, content pack to **2026.10.20**. Kept card, lesson,
+  assets, checklist and all three quiz IDs, original five step IDs and release
+  history. Added three steps to complete preparation, observation, equipment,
+  controlled launch and stop/recovery coverage.
+- Replaced the universal throttle-against-handbrake sequence with a supported
+  automatic-car example; explicitly distinguished HSA, Auto Hold, EPB and
+  mechanical parking brake procedures. Unsupported/unfamiliar equipment is a
+  reason to stay held and obtain supervised instruction, not to experiment in
+  traffic. This does not claim to teach manual clutch control.
+- Reviewed all cues, mistakes, recovery, safety, mnemonic and correct quiz
+  answers together. Removed only this card's sample approval; the rendered
+  card now visibly states that independent validation is outstanding.
+- Replaced both SVGs with the same car pose and grade, asymmetric front window
+  and front lamp, explicit heading/grade labels, tangent wheel contact and
+  unobstructed motion arrows. Forward motion is conditional; rollback is a
+  hazard, not a command to reverse. Its shaft and arrowhead share the hazard
+  colour. Desktop visual inspection caught a label/arrow overlap; moved the
+  low-side label and revalidated the final output.
+- Added **13 focused regression cases**, including actual transformed wheel
+  tangency, consistent pose/grade, arrow direction and position outside the
+  vehicle, matching hazard marker colour, correct quiz answers, temporary
+  assist limits and stop instructions present in quick/audio source fields.
+- **56/56 tests passed** across this lesson, prior downhill regressions,
+  general content, assets and validation suites. `npm run lint` and
+  `npm run build` passed, including TypeScript checking and PWA generation.
+  The build retained two non-blocking annotation warnings in the installed
+  Zod dependency, not application errors.
+- Final repeated generation yielded identical manifest and uphill SVG hashes;
+  **only these two SVGs changed** among 46 generated images. Manifest
+  checksums/size tests passed; the SVG pack is **176.45 KB**, within budget.
+  Shared checklist, renderer and other lesson content/artwork are unchanged.
+- Browser measurements found **no text outside either 320 x 200 SVG canvas**;
+  the low-side label clears the rollback path and arrowhead allowance. Both
+  images decoded successfully and were visually inspected at desktop and
+  mobile sizes. There was no horizontal overflow at **360, 390 or 1440 px**.
+- Quick mode retained all eight steps, main image and immediate rollback
+  response in safety. Learning mode displayed both images. TTS large-text
+  output includes temporary HSA limits, right-foot transfer, immediate
+  braking and the unsupported-equipment fallback; actual speech voice/quality
+  was not certified.
+- Browser quiz checks passed: wrong choices scored **0/3**, retry re-enabled
+  all buttons, and correct choices scored **3/3 (100%), pass**. A browser run
+  interrupted by asset-generation HMR was rerun after generation completed.
+  The final clean lesson reload had **no page errors or console warnings**.
+- `git diff --check` passed. The temporary preview server was stopped after
+  validation. Independent instructor certification and model-specific
+  supervised practice remain necessary; no such approval is claimed here.

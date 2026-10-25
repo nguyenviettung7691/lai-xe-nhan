@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.19",
+  "contentVersion": "2026.10.20",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 173.39,
+  "totalSizeKb": 176.45,
   "assets": [
     {
       "id": "parking-start-main",
@@ -544,11 +544,11 @@
       "url": "/content/svg/weather-uphill-start-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.67,
-      "checksum": "sha256-de05be725ec16fb258193a97e644bbcf59127fe982b232f768352e2a3e83075b",
+      "sizeKb": 3.16,
+      "checksum": "sha256-d57f81f6ba87237d30596b270db86f1fb9e2790fbdb9d9d2c12df6e810177ddc",
       "offlinePack": "core",
-      "caption": "Khởi hành ngang dốc",
-      "alt": "Sơ đồ cắt ngang: xe khởi hành trên đoạn dốc lên."
+      "caption": "Giữ chắc và quan sát; chỉ tiến lên khi đủ điều kiện theo sách xe",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ: thấp bên trái, cao bên phải; đầu xe có đèn ở bên phải hướng lên dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và lên song song dốc, chỉ hướng tiến có điều kiện, không phải xe đang tự bò hay bằng chứng hỗ trợ đã giữ. HSA, Auto Hold và phanh đỗ có giới hạn, theo sách xe; hình không quy định độ dốc, mức ga, thời gian nhả hay khoảng cách an toàn."
     },
     {
       "id": "weather-uphill-start-var",
@@ -558,11 +558,11 @@
       "url": "/content/svg/weather-uphill-start-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.8,
-      "checksum": "sha256-e624d53fa6776590150bcdf20f84edf91e000fd1507e8183ed8f196a88d6d3ff",
+      "sizeKb": 3.37,
+      "checksum": "sha256-c791a3c7b0cf12ba70d1d81e65f204e78ebea9e717e56c04638c943b5408013f",
       "offlinePack": "core",
-      "caption": "Trôi ngược khi nhả sớm",
-      "alt": "Sơ đồ cắt ngang: hướng trôi ngược khi nhả phanh quá sớm trên dốc."
+      "caption": "Nguy cơ trôi xuống sau đuôi dù đã cài D: nhả ga, đạp phanh chân",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ, cùng vị trí xe và dốc như hình chính: đầu bên phải hướng lên, đuôi bên trái, cao bên phải và thấp bên trái. Mũi tên đỏ nét đứt nằm hoàn toàn sau đuôi, hướng sang trái và xuống song song dốc, minh họa nguy cơ trôi nếu lực giữ không đủ hoặc hỗ trợ không hoạt động, không phải lệnh lùi hay lỗi chắc chắn do nhả sớm. Nhả ga, đạp phanh chân để dừng và giữ xe; không thêm ga hoặc chọn P, R khi đang trôi."
     },
     {
       "id": "weather-engine-brake-main",

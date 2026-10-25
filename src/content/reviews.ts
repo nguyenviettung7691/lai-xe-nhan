@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('weather-uphill-start', 'slope', 'Trình tự giữ phanh tay đến khi có lực kéo là cách an toàn cho tài mới.', 5, '2026-09-12'),
   review('weather-engine-brake', 'slope', 'Lưu ý đọc sách hướng dẫn của nhà sản xuất là cần thiết vì ký hiệu khác nhau.', 4, '2026-09-12'),
   review('weather-flood-cross', 'safety', 'Ngưỡng nửa bánh xe và khuyến cáo quay đầu phù hợp khuyến nghị an toàn.', 5, '2026-09-12'),
   review('weather-heavy-rain', 'safety', 'Mô tả hiện tượng trượt nước và cách xử lý chính xác.', 5, '2026-09-12')

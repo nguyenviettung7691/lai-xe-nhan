@@ -52,37 +52,43 @@ export const weatherCards: Card[] = [
     lessonId: 'weather-slope',
     topicId: 'weather',
     title: 'Khởi hành ngang dốc',
-    context: 'Xe dừng giữa dốc do kẹt đường, phía sau chỉ cách khoảng một mét. Xe dễ trôi trong khoảnh khắc chuyển chân từ phanh sang ga.',
-    objective: 'Khởi hành lên dốc mà xe không trôi về phía sau.',
+    context: 'Bạn dừng chờ trên dốc lên, có xe phía sau; ví dụ này dùng xe số tự động có chức năng hỗ trợ giữ xe mà bạn đã được hướng dẫn sử dụng theo sách xe. Xe vẫn có thể trôi khi chuyển chân từ phanh sang ga nếu hỗ trợ không hoạt động hoặc hết thời gian giữ.',
+    objective: 'Giữ xe chắc, quan sát đủ và khởi hành lên dốc có kiểm soát theo trang bị của xe, dừng ngay nếu xe trôi hoặc mất bám.',
     risk: 'high',
     difficulty: 3,
-    minutes: 3,
+    minutes: 6,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'good', stress: 'high' },
     steps: [
-      { instruction: 'Đạp phanh giữ xe đứng yên và kéo phanh tay.', cueType: 'feel', cueText: 'Xe đứng hẳn trên dốc' },
-      { instruction: 'Cài số D và giữ chân trên bàn đạp phanh.', cueType: 'feel', cueText: 'Số D, chân còn trên phanh' },
-      { instruction: 'Đặt nhẹ chân ga đến khi cảm nhận xe muốn tiến lên.', cueType: 'feel', cueText: 'Xe hơi chồm về trước' },
-      { instruction: 'Nhả phanh tay từ từ trong khi giữ đều chân ga.', cueType: 'feel', cueText: 'Phanh tay nhả dần' },
-      { instruction: 'Quan sát gương sau để chắc chắn xe không lùi lại.', cueType: 'mirror', cueText: 'Khoảng cách xe sau không đổi' }
+      { instruction: 'Đạp phanh chân để dừng hẳn và giữ xe; dùng phanh đỗ khi chờ theo sách xe, không giữ xe bằng ga. Chừa khoảng trống phía trước theo dốc, độ bám và khả năng dừng, không theo mốc một mét hay một thân xe.', cueType: 'feel', cueText: 'Xe đứng yên, dây an toàn đã cài và cửa đã đóng' },
+      { instruction: 'Cài D khi xe đứng hẳn, chân phải còn giữ phanh và hệ truyền động ở trạng thái sẵn sàng; kiểm tra đúng số trước khi đi. Không coi D là khóa chống trôi, không nhả phanh chỉ vì xe sau thúc giục.', cueType: 'marker', cueText: 'D không bảo đảm xe tự bò lên hoặc không trôi' },
+      { instruction: 'Quan sát phía trước, hai bên, gương và điểm mù; nhường người đi bộ, xe máy và xe đang đi tới. Nếu từ lề nhập dòng xe, báo hiệu khi cần và kiểm tra lại ngay trước khi đi; chưa đủ khoảng trống thì giữ phanh chờ.', cueType: 'mirror', cueText: 'Gương và camera chỉ hỗ trợ, không thay quan sát trực tiếp' },
+      { instruction: 'Xác định cách hoạt động của HSA, Auto Hold hoặc phanh đỗ trên chính xe theo sách hướng dẫn; HSA chỉ giữ tạm thời và có thể không kích hoạt, không thay phanh đỗ khi đỗ xe. Nếu không có hỗ trợ phù hợp hoặc chưa biết chắc cách dùng, giữ phanh, nhờ giáo viên hướng dẫn ở nơi tập an toàn, không tự thử giữa dòng xe.', cueType: 'marker', cueText: 'Bật Auto Hold hoặc có đèn chờ không đồng nghĩa đã giữ xe; EPB không nhả dần như cần phanh tay cơ' },
+      { instruction: 'Chuyển chân phải từ phanh sang ga chỉ khi đã sẵn sàng đi, đường trống và đáp ứng điều kiện giữ, nhả phanh theo sách xe; tăng ga êm vừa đủ để tiến, sẵn sàng trở lại phanh. Nhả phanh đỗ đúng quy trình của xe, không mặc định mọi xe cho phép đạp ga khi phanh đỗ còn giữ; không đạp đồng thời ga và phanh chân.', cueType: 'feel', cueText: 'Không có số giây chờ, mức ga hay vòng tua chung cho mọi xe' },
+      { instruction: 'Giữ hướng trong làn, nhìn phía trước là chính và xác nhận xe tiến đúng hướng bằng chuyển động thực tế; chỉ liếc gương ngắn khi an toàn, không nhìn chằm chằm gương sau để đo trôi. Kiểm tra phanh đỗ đã nhả theo chỉ báo của xe; nếu còn cảnh báo hoặc xe không tiến bình thường, nhả ga và đạp phanh dừng lại, không tăng ga để thắng phanh.', cueType: 'feel', cueText: 'Tiến êm, không chồm, không kéo lê phanh đỗ', speedHint: 'khởi hành chậm, luôn dừng được trong khoảng trống phía trước' },
+      { instruction: 'Nhả ga và đạp phanh chân ngay để dừng hẳn, giữ xe nếu xe trôi ngược, trượt bánh hoặc có người, xe đi vào đường chạy; không tăng ga để cứu trôi. Không chọn P hoặc R khi xe đang chuyển động; chỉ sau khi dừng hẳn mới giữ chắc bằng phanh đỗ theo sách xe và đánh giá lại trước khi thử tiếp.', cueType: 'feel', cueText: 'Chưa rõ nguyên nhân hoặc không đủ hở thì không khởi hành lại' },
+      { instruction: 'Dừng thử nếu trôi lặp lại, thiếu bám, có mùi khét hoặc cảnh báo phanh, hộp số; giữ xe bằng phanh và gọi hỗ trợ, không bò bằng ga để chờ trên dốc. Nếu không giữ được xe, cảnh báo người xung quanh, tiếp tục thao tác dừng theo hướng dẫn khẩn cấp của xe, không rời vị trí lái khi xe chưa được giữ chắc.', cueType: 'marker', cueText: 'Không để ai đứng phía thấp hoặc giữa xe với vật cản để chèn, đẩy xe' }
     ],
     mistakes: [
-      'Nhả phanh trước khi xe có lực kéo nên xe trôi về sau.',
-      'Đạp ga quá mạnh làm bánh trượt trên mặt dốc ẩm.',
-      'Dừng quá sát xe phía trước nên không còn chỗ xử lý.'
+      'Mặc định D hoặc HSA luôn chống trôi, nhả phanh khi chưa sẵn sàng hoặc chưa đủ khoảng trống.',
+      'Đạp ga lớn để cứu trôi, giữ xe bằng ga hoặc cố chạy khi phanh đỗ chưa nhả gây trượt bánh, quá nhiệt.',
+      'Chỉ nhìn gương sau, bỏ sót người phía trước hoặc nhả EPB như phanh tay cơ mà không theo sách xe.'
     ],
-    recovery: 'Nếu xe bắt đầu trôi, đạp phanh dứt khoát, kéo phanh tay và thực hiện lại từ đầu.',
-    safety: 'Giữ khoảng cách ít nhất một thân xe khi dừng trên dốc để có không gian xử lý.',
-    mnemonic: { text: 'Có lực kéo rồi mới nhả phanh tay.', rhythm: 'doi-ve' },
+    recovery: 'Xe trôi hoặc trượt bánh: nhả ga, đạp phanh chân ngay để dừng hẳn và giữ xe; không thêm ga hoặc chọn P, R khi còn chuyển động. Sau khi đứng hẳn, dùng phanh đỗ theo sách xe, kiểm tra khoảng trống, độ bám, số đang chọn và trạng thái hỗ trợ trước khi cân nhắc lại; không mặc định cứ làm lại là an toàn. Trôi lặp lại, cảnh báo phanh, hộp số hoặc mùi khét thì dừng thử, gọi hỗ trợ và kiểm tra xe. Nếu chưa giữ được xe, cảnh báo và thao tác dừng theo hướng dẫn khẩn cấp của xe, không rời vị trí lái; không nhờ ai đứng phía thấp, chèn hoặc đẩy xe chưa giữ chắc. Chỉ rời xe sau khi đã dừng và bảo đảm không trôi, thực hiện quy trình đỗ riêng của xe nếu phải bỏ hành trình.',
+    safety: 'Đây là ví dụ xe số tự động có hỗ trợ giữ xe, không thay bài tập côn và phanh tay của xe số sàn. HSA chỉ giữ tạm thời, có thể không kích hoạt; Auto Hold, EPB và phanh tay cơ có điều kiện giữ, nhả khác nhau, phải theo sách xe và thực hành với giáo viên trước khi dùng trên dốc đông xe. Không lấy D, đèn chờ hoặc số giây làm bảo đảm chống trôi; không giữ xe bằng ga hay đạp đồng thời ga, phanh chân. Xe trôi, trượt hoặc có vật cản: nhả ga và đạp phanh chân ngay để dừng, không chọn P hoặc R khi đang chuyển động. Sau khi dừng hẳn, giữ chắc xe, đánh giá lại; nếu lỗi lặp lại, có cảnh báo hoặc mùi khét thì dừng thử và gọi hỗ trợ. Không rời vị trí lái hoặc để người đứng phía thấp khi xe chưa được giữ chắc.',
+    mnemonic: { text: 'Giữ chắc, nhìn đủ, đi êm; trôi thì phanh.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
     quickCheck: [
-      { prompt: 'Trước khi khởi hành ngang dốc, cần giữ xe đứng yên bằng gì?', options: ['Chỉ giữ ga', 'Đạp phanh và kéo phanh tay', 'Để số N'], correctIndex: 1 },
-      { prompt: 'Nên nhả phanh tay khi nào?', options: ['Ngay khi vừa cài số D', 'Khi cảm nhận xe đã có lực kéo từ chân ga', 'Sau khi xe đã trôi lùi'], correctIndex: 1 },
-      { prompt: 'Nếu xe bắt đầu trôi ngược khi khởi hành ngang dốc, bạn phải làm gì ngay?', options: ['Tiếp tục đệm ga chờ xe tự cân bằng', 'Đạp phanh dứt khoát, kéo phanh tay và làm lại từ đầu', 'Nhả hết phanh tay để xe dễ đi'], correctIndex: 1, isStopCondition: true }
+      { prompt: 'Trước khi chuyển chân sang ga để đi lên dốc, cần làm gì?', options: ['Cài D rồi nhả phanh, xe tự động không thể trôi', 'Giữ phanh, kiểm tra đường trống và điểm mù, đúng số và điều kiện hỗ trợ theo sách xe; chưa chắc thì tiếp tục giữ xe', 'Nhìn gương sau liên tục rồi tăng ga lớn'], correctIndex: 1 },
+      { prompt: 'HSA, Auto Hold và EPB có thể dùng như nhau trên mọi xe không?', options: ['Có, tất cả giữ xe vô thời hạn rồi nhả dần như phanh tay cơ', 'Không; HSA chỉ giữ tạm thời, có thể không kích hoạt; Auto Hold và EPB theo điều kiện riêng của xe, đèn chờ không bảo đảm đang giữ', 'Có, chỉ cần đợi đúng ba giây rồi đạp ga'], correctIndex: 1 },
+      { prompt: 'Xe bắt đầu trôi hoặc trượt khi khởi hành, phải làm gì?', options: ['Tăng ga để thắng lực trôi rồi thử lại liên tục', 'Nhả ga, đạp phanh chân dừng hẳn và giữ xe; không chọn P, R khi đang chạy, chỉ đánh giá lại sau khi giữ chắc; lỗi lặp lại thì dừng thử, gọi hỗ trợ', 'Chọn P ngay khi xe còn trôi rồi rời xe nhờ người chèn bánh'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng khởi hành ngang dốc.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho kỹ năng khởi hành ngang dốc.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Làm rõ xe tự động, giới hạn HSA/Auto Hold/EPB, quan sát, chuyển chân và dừng khi trôi; sửa hai sơ đồ, bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'weather-engine-brake',
