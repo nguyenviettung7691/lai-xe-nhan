@@ -138,38 +138,43 @@ export const weatherCards: Card[] = [
     lessonId: 'weather-flood',
     topicId: 'weather',
     title: 'Quyết định khi gặp đường ngập',
-    context: 'Đường phố ngập sau cơn mưa lớn, các xe phía trước vẫn đi qua và tạo sóng nước. Nước vào họng gió có thể làm hỏng động cơ.',
-    objective: 'Đánh giá đúng mức nước và chọn phương án đi hoặc quay đầu.',
+    context: 'Đường ngập sau mưa có thể che hố sâu, nắp cống mất hoặc nền đường bị cuốn trôi dù xe trước vừa đi qua. Nước và dòng chảy đe dọa tính mạng, phanh, động cơ và hệ thống điện của cả xe xăng, hybrid lẫn xe điện.',
+    objective: 'Tránh đi vào đường ngập, chọn lối khô hợp pháp và xử lý có điều kiện nếu xe lỡ bị kẹt trong nước.',
     risk: 'high',
     difficulty: 4,
-    minutes: 4,
+    minutes: 7,
     tags: { speedRange: 'creep', spaceConstraint: 'medium', visibility: 'poor', stress: 'high' },
     steps: [
-      { instruction: 'Dừng xe ở vị trí khô ráo để quan sát mức nước.', cueType: 'marker', cueText: 'Điểm dừng khô ráo' },
-      { instruction: 'Xác định mức nước qua bánh xe của phương tiện đi trước.', cueType: 'marker', cueText: 'Nước ngập tới đâu trên bánh xe' },
-      { instruction: 'Quay đầu khi nước cao quá nửa bánh xe hoặc chảy xiết.', cueType: 'marker', cueText: 'Nước quá nửa bánh xe' },
-      { instruction: 'Chọn phần đường cao nhất, thường là giữa tim đường.', cueType: 'marker', cueText: 'Phần đường cao nhất' },
-      { instruction: 'Đi đều một mạch ở số thấp, không dừng giữa vùng ngập.', cueType: 'feel', cueText: 'Ga đều, không dừng', speedHint: 'dưới 10 km/h' },
-      { instruction: 'Rà phanh nhẹ vài lần sau khi qua khỏi vùng ngập.', cueType: 'feel', cueText: 'Phanh còn ăn trở lại' }
+      { instruction: 'Giảm tốc sớm, kiểm tra gương và dừng trước vùng ngập ở nơi khô, không gây nguy hiểm cho dòng xe; không phanh gấp chỉ để xem nước hoặc chờ ở chỗ trũng dễ bị nước dâng.', cueType: 'marker', cueText: 'Xe còn trên phần đường khô, chưa chạm nước' },
+      { instruction: 'Quan sát từ nơi khô và tránh đi vào vùng nước che khuất mặt đường; không xuống lội đo, không suy độ sâu từ bánh xe trước, camera hay xe tải vừa qua. Không có ngưỡng nửa bánh xe hoặc số xăng-ti-mét bảo đảm an toàn.', cueType: 'marker', cueText: 'Không thấy rõ nền đường và độ sâu là không thử đi qua' },
+      { instruction: 'Chọn không đi qua đường ngập, nhất là nơi có dòng chảy, nước dâng, hầm chui hoặc rào chắn; tuân theo lực lượng chức năng, không vòng rào hay đi giữa tim đường để tìm chỗ cao. Khả năng lội nước trong sách xe không bảo đảm đường ngập an toàn; xe gầm cao và xe điện cũng không được miễn rủi ro.', cueType: 'marker', cueText: 'Rào chắn, dòng chảy hoặc đường bị che khuất: không vào' },
+      { instruction: 'Quay đầu chỉ tại nơi được phép, trên nền khô, khi quan sát đủ phía trước, sau, hai bên và có khoảng trống; nhường người và xe, dừng hẳn trước đổi chiều. Không lùi mù hoặc quay vào dòng xe; nếu chưa có lối tránh khô an toàn, chờ nơi khô cao được phép hoặc nhờ hỗ trợ, không cố vượt nước.', cueType: 'marker', cueText: 'Đường tránh phải khô, hợp pháp và còn an toàn; nước dâng thì đổi nơi chờ' },
+      { instruction: 'Dừng cố tăng ga nếu xe lỡ chết máy hoặc mất khả năng chạy trong nước; không khởi động lại, không bật lại READY trên xe hybrid, xe điện, không đẩy hoặc kéo để nổ máy. Ưu tiên người, gọi cứu nạn khi có nguy hiểm, báo vị trí, số người và nước có dâng hay chảy; tắt hệ thống xe theo sách hướng dẫn nếu làm được an toàn, không chạm thiết bị điện ngập nước.', cueType: 'marker', cueText: 'Không đề lại; cứu người trước, cứu hộ xe sau' },
+      { instruction: 'Thoát tới nơi cao khô chỉ khi có lối ra rõ ràng an toàn, không phải lội hoặc bơi qua dòng nước; hỗ trợ người đi cùng theo khả năng và hướng dẫn cứu nạn, không quay lại lấy đồ. Không mặc định mở cửa bước xuống: nước có thể chảy xiết, nhiễm điện, che hố hoặc nắp cống mất.', cueType: 'marker', cueText: 'Có đường thoát khô an toàn mới rời xe theo lối đó' },
+      { instruction: 'Gọi cứu nạn và ở trong xe nếu bị kẹt giữa nước chảy xiết, không có lối thoát an toàn; làm theo lực lượng cứu nạn. Nếu nước dâng vào trong xe, tìm cách lên nóc và ra hiệu cầu cứu, không nhảy xuống dòng chảy; báo ngay người bị kẹt hoặc không tự di chuyển được.', cueType: 'marker', cueText: 'Kẹt giữa dòng xiết khác với xe còn có lối ra khô an toàn' },
+      { instruction: 'Kiểm tra xe sau khi lỡ tiếp xúc nước: chỉ thử phanh nhẹ ở tốc độ rất thấp trên nền khô, trống, không có xe sát sau và theo sách xe. Phanh bất thường, đèn cảnh báo hoặc đã ngập đáng kể thì dừng an toàn, gọi cứu hộ kiểm tra trước khi chạy tiếp; vài lần rà phanh không chứng minh hết hư hỏng, không tự khởi động xe đã chết máy trong nước.', cueType: 'feel', cueText: 'Chỉ kiểm tra khi người và xe đã ở nơi an toàn; phanh lỗi thì không chạy tiếp' }
     ],
     mistakes: [
-      'Đi theo xe tải lớn và bị sóng nước dội vào khoang máy.',
-      'Dừng giữa vùng ngập để nhường xe ngược chiều.',
-      'Khởi động lại ngay khi xe đã chết máy trong nước.'
+      'Coi nước dưới nửa bánh, xe trước đã qua hoặc xe gầm cao là bằng chứng an toàn.',
+      'Chạy giữa tim đường, vòng rào chắn hoặc lội xuống để đo nước.',
+      'Đề lại xe chết máy, bật lại READY hoặc mở cửa bước xuống dòng nước mà chưa có lối thoát an toàn.'
     ],
-    recovery: 'Xe chết máy trong vùng ngập thì giữ nguyên chìa khóa, mở cửa thoát ra nơi cao và gọi cứu hộ.',
-    safety: 'Nước chảy xiết chỉ cần sâu ba mươi xăng-ti-mét đã có thể cuốn trôi ô tô; quay đầu luôn là lựa chọn an toàn.',
-    mnemonic: { text: 'Nước quá nửa bánh, quay đầu tìm đường khác.', rhythm: 'doi-ve' },
+    recovery: 'Không khởi động lại xe chết máy trong nước, kể cả bật READY hoặc đẩy, kéo nổ; gọi cứu nạn nếu người gặp nguy hiểm, báo vị trí và người đi cùng rồi gọi cứu hộ xe. Chỉ ra nơi cao khô khi có lối an toàn, không lội vào nước; nếu kẹt giữa nước chảy xiết thì ở trong xe gọi trợ giúp, nước dâng vào xe thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy. Tuân theo cứu nạn, không quay lại lấy đồ hoặc chạm thiết bị điện ngập; xe cần được kiểm tra trước khi dùng lại.',
+    safety: 'Không có độ sâu ngập an toàn chung: không đi vào đường ngập, không lội đo nước, không vòng rào; quay đầu chỉ khi hợp pháp và an toàn. Không khởi động lại xe chết máy trong nước hay bật lại READY. Ưu tiên tính mạng: có lối khô an toàn mới thoát tới nơi cao; kẹt giữa nước chảy xiết thì ở trong xe gọi cứu nạn, nước dâng vào trong thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy. Đây không phải hướng dẫn lội nước hoặc quy trình thoát mọi loại xe chìm; làm theo cứu nạn, không dùng điện thoại khi đang điều khiển xe.',
+    mnemonic: { text: 'Gặp ngập: tránh vào; kẹt xe: gọi cứu nạn.', rhythm: 'doi-ve' },
     checklistId: 'bad_weather',
     quickCheck: [
-      { prompt: 'Cách xác định mức nước ngập trước khi quyết định đi qua là gì?', options: ['Nhìn màu nước', 'Quan sát mức nước ngập tới đâu trên bánh xe đi trước', 'Hỏi người đi đường'], correctIndex: 1 },
-      { prompt: 'Khi đi qua vùng ngập, nên giữ ga như thế nào?', options: ['Ga đều, không dừng giữa vùng ngập', 'Tăng giảm ga liên tục', 'Dừng lại giữa chừng để quan sát'], correctIndex: 0 },
-      { prompt: 'Khi nào bạn nên quay đầu thay vì đi qua vùng ngập?', options: ['Khi nước cao quá nửa bánh xe hoặc chảy xiết', 'Khi có vài chiếc xe máy đã đi qua', 'Khi nước chỉ ngập mặt đường mỏng'], correctIndex: 0, isStopCondition: true }
+      { prompt: 'Xe trước vừa qua nhưng nước che khuất mặt đường, bạn nên làm gì?', options: ['Đi theo nếu nước dưới nửa bánh xe trước', 'Không vào; tìm lối khô, chỉ quay đầu khi hợp pháp và an toàn', 'Đi giữa tim đường ở số thấp'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Xe chết máy trong nước, việc nào phù hợp?', options: ['Đề lại hoặc bật READY để thử một lần', 'Không khởi động lại; ưu tiên người, gọi cứu nạn nếu nguy hiểm và cứu hộ xe', 'Nhờ đẩy hoặc kéo cho nổ máy'], correctIndex: 1 },
+      { prompt: 'Xe kẹt giữa nước chảy xiết, không có lối ra an toàn, bạn nên làm gì?', options: ['Mở cửa bước xuống nước ngay', 'Ở trong xe gọi cứu nạn; nếu nước dâng vào thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy', 'Ngồi chờ trong xe dù nước đang dâng vào trong, không gọi trợ giúp'], correctIndex: 1, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho quyết định đi qua đường ngập.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho quyết định đi qua đường ngập.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ ngưỡng nửa bánh và công thức vượt ngập; ưu tiên đường khô, không đề lại, cứu nạn có điều kiện và kiểm tra sau tiếp xúc nước; thay hai sơ đồ, bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   }),
   defineCard({
     id: 'weather-heavy-rain',

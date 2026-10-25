@@ -99,7 +99,7 @@ describe('weather-downhill: real-world decisions', () => {
   it('aligns the linked checklist with pre-descent checks and variable wet-road spacing', () => {
     expect(card.checklistId).toBe('bad_weather')
     const checklist = getChecklist(card.checklistId)!
-    expect(checklist.items.map(item => item.id)).toEqual(['bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop'])
+    expect(checklist.items.map(item => item.id)).toEqual(['bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'])
     expect(checklist.items[2].label).toMatch(/biển, tốc độ, độ bám và tầm nhìn/)
     expect(checklist.items[2].hint).toMatch(/quy định.*tăng thêm.*4–5 giây không phải.*bảo đảm/)
     expect(checklist.items[3].hint).toMatch(/trước khi xuống dốc.*phanh mềm, giảm hiệu lực.*dừng an toàn.*không chờ hết dốc/)

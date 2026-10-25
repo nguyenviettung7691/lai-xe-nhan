@@ -37,6 +37,13 @@ instructor or emergency-rescue certification.
   Its conditional crossing advice and numerical depth guidance are not
   adopted as permission to enter unknown flooded roads. Brake testing and
   inspection after significant exposure are relevant to accidental exposure.
+- [UK Environment Agency/AA: flooded-road risk](https://www.gov.uk/government/news/driving-complacency-74-of-drivers-would-risk-life-in-flood-water):
+  warns against following others through flooded roads or judging by visible
+  kerbs; recommends rerouting rather than risking occupants' lives.
+- [Hyundai 2026 Elantra: flooded areas](https://ownersmanual.hyundai.com/full_webhelp/CN7/2026/en_US/id63653874db9.html):
+  reduced brake performance and gentle low-speed post-water brake checks.
+  Its model-specific wheel-hub language is not adopted as a generic safe
+  depth or permission to enter unknown public-road floodwater.
 - RAC page returned HTTP 403 and is not treated as checked evidence.
 
 Foreign safety references support general hazard awareness, not Vietnamese
@@ -89,4 +96,61 @@ users' browsers.
 
 ## Implementation and verification
 
-Pending.
+- Analysis/mitigation plan committed first as `80ff4a0`. Card revised to
+  **1.1.0**, pack to **2026.10.22**. Retained high risk, all lesson/card/
+  checklist/asset/quiz identities, original six step IDs, initial changelog
+  and release history; expanded to eight steps. Removed only this lesson's
+  sample approval; explicitly `published_unverified`.
+- Rewrote all editorial surfaces and three quizzes around flood avoidance,
+  legal dry diversion, no wheel-depth guarantee or generic crossing recipe,
+  no restart/READY/push-start, conditional rescue and cautious post-exposure
+  checks. Essential instructions remain in steps/safety for quick and audio.
+  This intentionally changes the lesson from recommending shallow-water
+  crossing to avoiding unknown flooded roads; it is not a fording course.
+- Main SVG now has a stationary, right-facing car with a front lamp,
+  front/rear labels and both wheel circumferences tangent to the dry road.
+  Entire vehicle is before the no-entry boundary, itself before the
+  unknown-water region. No motion/turn arrow, numerical water depth, safe
+  crossing threshold or fabricated submerged road surface.
+- Variant replaced with two conditional rescue panels, not sequential
+  instructions or an escape route. Increased panel text to 10 SVG units
+  after mobile inspection for better legibility. Both captions and alt
+  descriptions explain the drawings' limits and intended meaning.
+- Added conditional `bw-flood` checklist item and safe dry-waiting hint.
+  Original checklist IDs/order and brake/spacing checks retained. Two prior
+  lesson tests initially failed because their expected checklist ID lists
+  had exactly five entries; updated only those expectations to include the
+  deliberately appended flood item. Their content/geometry tests still pass.
+- **15 new regressions**, covering publication/history, hidden hazards,
+  stopping/diversion, measurement limits, powertrain restart restrictions,
+  rescue branches, brake faults, quick/audio sources, quiz grading,
+  checklist continuity, real wheel/road/boundary geometry and visual semantics.
+- **84/84 tests passed**, seven files:
+  `weather-flood-cross`, `weather-engine-brake`, `weather-downhill`,
+  `weather-uphill-start`, general content, assets and validation.
+  `npm run lint` passed. `npm run build` passed with TypeScript/Vue checking
+  and PWA generation; existing dependency-only Rollup annotation warnings
+  in Zod remain non-blocking.
+- Repeated final asset generation: identical hashes for all **46 SVGs and
+  manifest**. Only this lesson's two SVGs differ from the previous commit;
+  rain and all slope graphics remain unchanged. Pack **181.33 KB**, within
+  budget; manifest checksum/size tests pass. `git diff --check` passed.
+- Browser inspected both new images at desktop and mobile. Checked actual
+  **1440 px**, **390 px**, and **360 px** viewport widths with no horizontal
+  overflow; long quiz options also fit. Used device emulation after finding
+  that window resizing alone was clamped above the requested mobile width.
+  Both images decode at 320 x 200. All SVG text fits its canvas and both
+  rescue panels, including the enlarged text.
+- Quick mode: main image and all eight steps remain; recovery/variant are
+  hidden, but avoidance, no restart and both rescue branches remain visible.
+  TTS large-text output contains no wading to measure, avoidance, READY/no
+  restart, safe-exit condition, fast-current/rising-water response and
+  post-exposure brake faults. Synthesized voice quality was not evaluated.
+- Browser quiz: wrong answers **0/3**, retry re-enables all options,
+  correct answers **3/3 (100%, pass)**. Final browser console has no
+  warnings/errors. Reloaded with cache bypass after regeneration so final
+  screenshots show the revised SVGs rather than cached original images.
+
+Independent driving-instructor/rescue-specialist review remains outstanding;
+the content explicitly does not claim to teach escape from every sinking
+vehicle or replace local responders and vehicle-specific instructions.

@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.21",
+  "contentVersion": "2026.10.22",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 178.85,
+  "totalSizeKb": 181.33,
   "assets": [
     {
       "id": "parking-start-main",
@@ -600,11 +600,11 @@
       "url": "/content/svg/weather-flood-cross-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.78,
-      "checksum": "sha256-3f3202f461f2eb0c67c0bf1e9924ef2437f45fabe85361e71b4bb2f5ccc3d627",
+      "sizeKb": 3.3,
+      "checksum": "sha256-2dcf91002487f9a22a4378eb838981a30d4e1b5c9cb33ff58a4768f98a2de87c",
       "offlinePack": "core",
-      "caption": "Qua điểm ngập nông",
-      "alt": "Sơ đồ cắt ngang: xe đi qua vùng ngập dưới 25 cm với tốc độ đều."
+      "caption": "Xe dừng trên nền khô trước đường ngập; không có ngưỡng sâu an toàn",
+      "alt": "Sơ đồ nhìn ngang, không theo tỷ lệ: đầu xe hướng phải, bánh tiếp xúc nền khô; xe đứng yên hoàn toàn trước vạch minh họa không vào, nước che khuất đường ở bên phải. Không có mũi tên đi vào nước, số đo độ sâu hoặc quỹ đạo quay đầu; vạch đỏ không phải biển hay rào thật."
     },
     {
       "id": "weather-flood-cross-var",
@@ -614,11 +614,11 @@
       "url": "/content/svg/weather-flood-cross-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 1.87,
-      "checksum": "sha256-90de59470f134af58d8ce30d076fc1869acf74d512a23807ebbf411cfd475de1",
+      "sizeKb": 2.83,
+      "checksum": "sha256-bee4d71140dde00f4972502dd3c28aa5e5ee84b21725d14681054c5bbfee041e",
       "offlinePack": "core",
-      "caption": "Mức ngập phải quay đầu",
-      "alt": "Sơ đồ cắt ngang: mức nước ngập quá nửa bánh xe, cần quay đầu."
+      "caption": "Hai tình huống cứu nạn khác nhau, không phải thứ tự bắt buộc",
+      "alt": "Hai bảng điều kiện, không là bản đồ hay quy trình thoát mọi xe chìm: có lối khô an toàn thì ra nơi cao; kẹt giữa dòng xiết không có lối an toàn thì ở trong xe gọi cứu nạn, nước dâng vào xe thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy. Không đề lại hay bật READY."
     },
     {
       "id": "weather-heavy-rain-main",

@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.21'
+const CONTENT_VERSION = '2026.10.22'
 
 const W = 320
 const H = 200
@@ -693,12 +693,48 @@ const engineBrakeProcess = () => [
   note('Thứ tự kiểm tra, không là cấp số hay nhịp phanh.')
 ]
 
-const floodLot = (depth = 44) => [
-  rect(0, 0, W, 180, '#1d2a26'),
-  rect(0, 118, W, 62, C.asphalt),
-  rect(0, 180 - depth, W, depth, C.water, 0, 0.55),
-  `<path d="M0 ${180 - depth}q20 -5 40 0t40 0t40 0t40 0t40 0t40 0t40 0t40 0" stroke="${C.water}" stroke-width="2" fill="none" opacity=".9"/>`
-].join('')
+const floodAvoidScene = () => [
+  label(160, 18, 'DỪNG TRÊN NỀN KHÔ, KHÔNG VÀO NGẬP', { size: 9, anchor: 'middle', fill: C.ego, weight: 700 }),
+  '<g id="flood-unknown-water">',
+  rect(176, 56, 144, 112, C.water, 0, 0.55),
+  line(176, 56, 320, 56, C.water),
+  label(248, 80, 'ĐƯỜNG BỊ CHE', { size: 9, fill: '#ffffff', anchor: 'middle' }),
+  label(248, 101, 'Độ sâu?', { size: 10, fill: '#ffffff', anchor: 'middle' }),
+  label(248, 121, 'Hố, dòng chảy?', { size: 9, fill: '#ffffff', anchor: 'middle' }),
+  '</g>',
+  '<g id="flood-dry-road">',
+  rect(12, 132, 146, 36, C.asphalt),
+  line(12, 132, 158, 132, C.bay),
+  label(77, 153, 'NỀN KHÔ', { size: 9, fill: C.ego, anchor: 'middle' }),
+  '</g>',
+  `<g id="flood-stationary-car">${sideCar(75, 116, 0)}</g>`,
+  rect(99, 110, 3, 5, '#fff3b0', 1),
+  label(48, 84, 'ĐUÔI', { size: 8.5, anchor: 'middle' }),
+  label(102, 84, 'ĐẦU', { size: 8.5, anchor: 'middle', fill: C.ego }),
+  '<g id="flood-no-entry-boundary">',
+  line(158, 76, 158, 160, C.hazard, 3),
+  label(148, 49, 'KHÔNG VÀO', { size: 9, fill: C.hazard, anchor: 'end', weight: 700 }),
+  '</g>',
+  note('Không theo tỷ lệ; không vẽ độ sâu hay chỗ quay đầu.')
+]
+
+const floodEmergencyPanels = () => [
+  label(160, 17, 'XE KẸT: ƯU TIÊN NGƯỜI, GỌI CỨU NẠN', { size: 9, fill: C.ego, anchor: 'middle', weight: 700 }),
+  '<g id="flood-safe-exit">',
+  rect(12, 28, 296, 58, C.asphalt, 6),
+  label(22, 43, 'CÓ LỐI THOÁT KHÔ AN TOÀN', { size: 10, fill: C.ego, weight: 700 }),
+  label(22, 60, 'Ra nơi cao khô; không lội hoặc bơi qua nước.', { size: 10 }),
+  label(22, 76, 'Không quay lại lấy đồ; làm theo cứu nạn.', { size: 10 }),
+  '</g>',
+  '<g id="flood-trapped-current">',
+  rect(12, 94, 296, 74, C.asphalt, 6),
+  label(22, 109, 'KẸT GIỮA DÒNG XIẾT, KHÔNG LỐI AN TOÀN', { size: 10, fill: C.hazard, weight: 700 }),
+  label(22, 126, 'Ở trong xe, gọi cứu nạn và báo vị trí.', { size: 10 }),
+  label(22, 142, 'Nước dâng vào xe: tìm cách lên nóc, ra hiệu.', { size: 10 }),
+  label(22, 158, 'Không nhảy xuống dòng chảy.', { size: 10 }),
+  '</g>',
+  note('Không đề lại hoặc bật READY; không là sơ đồ lối thoát.')
+]
 
 const cornerScene = risk => {
   const cx = risk ? 229 : 224
@@ -1098,22 +1134,8 @@ const templates = {
   },
   flood: mode => {
     const scenes = {
-      cross: () => [
-        floodLot(46),
-        sideCar(150, 124, 0, C.ego),
-        line(58, 134, 58, 178, C.accent, 2),
-        label(64, 150, 'Mực nước dưới 25 cm', { size: 9, fill: C.accent }),
-        trail('M188 124L266 124'),
-        note('Đi số thấp, đều ga, không dừng giữa vùng ngập.')
-      ],
-      depth: () => [
-        floodLot(66),
-        sideCar(140, 120, 0, C.hazard),
-        line(246, 114, 246, 178, C.hazard, 2),
-        label(240, 106, 'Quá nửa bánh xe', { size: 9, fill: C.hazard, anchor: 'end' }),
-        `<g stroke="${C.hazard}" stroke-width="3"><path d="M266 128L288 150"/><path d="M288 128L266 150"/></g>`,
-        note('Nước ngập quá nửa bánh thì quay đầu, không thử vượt qua.')
-      ],
+      cross: () => floodAvoidScene(),
+      depth: () => floodEmergencyPanels(),
       rain: () => [
         rect(0, 0, W, 180, '#1b2b34'),
         rect(0, 118, W, 62, C.asphalt),
@@ -1170,7 +1192,7 @@ const specs = [
   ['weather-downhill', 'slope', ['downhill', 'Giảm tốc trước dốc; chọn chế độ theo xe và độ bám', 'Sơ đồ nhìn ngang, không theo tỷ lệ: phía cao bên trái, thấp bên phải; đầu xe có đèn ở bên phải, đuôi bên trái, hai bánh tiếp xúc mặt dốc. Mũi tên xanh phía trước xe đi sang phải và xuống, song song mặt đường, chỉ chiều tiến xuống dốc, không phải quỹ đạo hay độ dốc đo được. Giảm tốc trước dốc, dùng chế độ theo sách xe và giới hạn trên đường trơn; không có cấp số chung cho mọi xe.'], ['downhill-braking', 'Phanh thường khác phanh khẩn cấp với ABS, không theo nhịp cố định', 'Sơ đồ hai khung chữ, không phải biểu đồ thời gian, lực phanh hay chu kỳ đạp nhả: khung trên mô tả phanh thường tăng lực êm khi cần, nhả khi đã giảm đủ và vẫn kiểm soát tốc độ; không rà suốt dốc hoặc nhấp theo nhịp. Khung dưới mô tả khẩn cấp với ABS: đạp mạnh, giữ lực, không nhấp nhả, lái tránh trong khoảng trống an toàn; ABS không bảo đảm dừng ngắn hơn.']],
   ['weather-uphill-start', 'slope', ['uphill', 'Giữ chắc và quan sát; chỉ tiến lên khi đủ điều kiện theo sách xe', 'Sơ đồ nhìn ngang, không theo tỷ lệ: thấp bên trái, cao bên phải; đầu xe có đèn ở bên phải hướng lên dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và lên song song dốc, chỉ hướng tiến có điều kiện, không phải xe đang tự bò hay bằng chứng hỗ trợ đã giữ. HSA, Auto Hold và phanh đỗ có giới hạn, theo sách xe; hình không quy định độ dốc, mức ga, thời gian nhả hay khoảng cách an toàn.'], ['uphill-hold', 'Nguy cơ trôi xuống sau đuôi dù đã cài D: nhả ga, đạp phanh chân', 'Sơ đồ nhìn ngang, không theo tỷ lệ, cùng vị trí xe và dốc như hình chính: đầu bên phải hướng lên, đuôi bên trái, cao bên phải và thấp bên trái. Mũi tên đỏ nét đứt nằm hoàn toàn sau đuôi, hướng sang trái và xuống song song dốc, minh họa nguy cơ trôi nếu lực giữ không đủ hoặc hỗ trợ không hoạt động, không phải lệnh lùi hay lỗi chắc chắn do nhả sớm. Nhả ga, đạp phanh chân để dừng và giữ xe; không thêm ga hoặc chọn P, R khi đang trôi.']],
   ['weather-engine-brake', 'slope', ['engine', 'Hãm theo sách xe và độ bám; phanh động cơ không thay phanh chân', 'Sơ đồ nhìn ngang, không theo tỷ lệ: cao bên trái, thấp bên phải; đầu xe có đèn bên phải hướng xuống dốc, đuôi bên trái, hai bánh tiếp xúc mặt đường. Mũi tên xanh nằm trước đầu xe, hướng sang phải và xuống song song dốc, chỉ chiều tiến, không phải quỹ đạo hay lực hãm bảo đảm. Hình không mô tả vị trí lẫy, cấp số hoặc tốc độ chuẩn; chọn chế độ theo sách xe, tuân thủ hạn chế trên đường trơn và dùng phanh chân khi cần.'], ['engine-gear', 'Giảm tốc, chọn mức được phép, kiểm tra phản hồi; không có chuỗi số chung', 'Sơ đồ quy trình ba khung đọc từ trên xuống: giảm tốc theo biển, độ bám và tầm nhìn; chọn mức được phép theo sách xe, không ép số hoặc quá tua; kiểm tra phản hồi, nếu không nhận thì dừng bấm trừ và dùng phanh giảm tốc. Hai mũi tên xanh chỉ thứ tự kiểm tra, không phải hướng xe chạy, quỹ đạo, chuỗi D về 3 rồi 2, mức vòng tua hay thời gian, nhịp đạp phanh.']],
-  ['weather-flood-cross', 'flood', ['cross', 'Qua điểm ngập nông', 'Sơ đồ cắt ngang: xe đi qua vùng ngập dưới 25 cm với tốc độ đều.'], ['depth', 'Mức ngập phải quay đầu', 'Sơ đồ cắt ngang: mức nước ngập quá nửa bánh xe, cần quay đầu.']],
+  ['weather-flood-cross', 'flood', ['cross', 'Xe dừng trên nền khô trước đường ngập; không có ngưỡng sâu an toàn', 'Sơ đồ nhìn ngang, không theo tỷ lệ: đầu xe hướng phải, bánh tiếp xúc nền khô; xe đứng yên hoàn toàn trước vạch minh họa không vào, nước che khuất đường ở bên phải. Không có mũi tên đi vào nước, số đo độ sâu hoặc quỹ đạo quay đầu; vạch đỏ không phải biển hay rào thật.'], ['depth', 'Hai tình huống cứu nạn khác nhau, không phải thứ tự bắt buộc', 'Hai bảng điều kiện, không là bản đồ hay quy trình thoát mọi xe chìm: có lối khô an toàn thì ra nơi cao; kẹt giữa dòng xiết không có lối an toàn thì ở trong xe gọi cứu nạn, nước dâng vào xe thì tìm cách lên nóc ra hiệu, không nhảy xuống dòng chảy. Không đề lại hay bật READY.']],
   ['weather-heavy-rain', 'flood', ['rain', 'Mưa lớn, tầm nhìn kém', 'Sơ đồ cắt ngang: hai xe giãn khoảng cách khi trời mưa lớn.'], ['rain-stop', 'Tấp vào lề an toàn', 'Sơ đồ cắt ngang: xe tấp vào lề và bật đèn cảnh báo khi mưa quá lớn.']]
 ]
 

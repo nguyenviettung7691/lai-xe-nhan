@@ -31,6 +31,5 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('weather-flood-cross', 'safety', 'Ngưỡng nửa bánh xe và khuyến cáo quay đầu phù hợp khuyến nghị an toàn.', 5, '2026-09-12'),
   review('weather-heavy-rain', 'safety', 'Mô tả hiện tượng trượt nước và cách xử lý chính xác.', 5, '2026-09-12')
 ]
