@@ -79,16 +79,16 @@ export const dashboardLights: DashboardLight[] = [
     name: 'Ắc quy và hệ thống sạc',
     english: 'Battery / charging',
     color: 'red',
-    severity: 'warn',
-    description: 'Máy phát không sạc cho ắc quy, xe chỉ còn chạy bằng điện dự trữ.',
+    severity: 'critical',
+    description: 'Bình điện có dấu +/− báo lỗi hệ thống sạc 12 V khi máy đang chạy hoặc xe ở READY, không nhất thiết hỏng ắc quy. Xe xăng có thể lỗi máy phát/dây đai; xe điện có thể lỗi bộ DC-DC.',
     keywords: ['ắc quy', 'bình điện', 'sạc', 'máy phát', 'battery', 'điện'],
     actions: [
-      'Tắt điều hòa, âm thanh và các thiết bị điện không cần thiết.',
-      'Giữ máy nổ, đi thẳng đến gara gần nhất.',
-      'Nếu đèn pha mờ dần hoặc vô-lăng nặng, tấp vào lề khi còn điện.'
+      'Giảm tải điện không thiết yếu nhưng giữ đèn, gạt mưa và thiết bị cần cho an toàn.',
+      'Tìm nơi dừng an toàn sớm; điện có thể hết bất ngờ, không có quãng đường đến gara được bảo đảm.',
+      'Khi đã dừng, đọc sổ tay và gọi hỗ trợ; có quá nhiệt, mất trợ lực hoặc mùi cháy thì tắt xe và không khởi động lại.'
     ],
-    avoid: 'Không tắt máy ở nơi không thể khởi động lại hoặc giữa dòng xe đông.',
-    callHelp: 'Gọi cứu hộ khi xe chết máy, có mùi khét từ khoang máy hoặc dây curoa đứt.'
+    avoid: 'Không tháo cọc ắc quy khi máy đang chạy để thử máy phát, không kiểm tra dây đai gần bộ phận đang quay.',
+    callHelp: 'Gọi hỗ trợ sau khi dừng; cần cứu hộ nếu đèn vẫn sáng, xe yếu điện/chết máy, quá nhiệt hoặc mất trợ lực.'
   },
   {
     id: 'airbag',
