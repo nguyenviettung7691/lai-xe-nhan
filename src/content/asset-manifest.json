@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.11",
+  "contentVersion": "2026.10.12",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 140.29,
+  "totalSizeKb": 145.5,
   "assets": [
     {
       "id": "parking-start-main",
@@ -320,11 +320,11 @@
       "url": "/content/svg/narrow-cutoff-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.17,
-      "checksum": "sha256-16a054822bd2872be16940f149a096d7ad4a10bf84e9323327071ceafd402ab1",
+      "sizeKb": 4.46,
+      "checksum": "sha256-08ab44cd5f0c9a56562af169d1e8d6ce9b52b860a5f180f97cbc3d09bc79f7e8",
       "offlinePack": "core",
-      "caption": "Xe máy tạt đầu",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe máy cắt chéo trước đầu xe trong hẻm."
+      "caption": "Dừng trước vùng xe máy cắt ngang tại ngã ba, không nhô đầu dò vùng khuất",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: ngõ nhánh từ dưới nối đường chính hai chiều ở trên. Đầu ô tô hướng lên, gương mở; xe đang dừng trước vùng cắt ngang tô đỏ, không có mũi tên chuyển động của ô tô. Xe máy hướng sang phải trên phần đường gần miệng ngõ; mũi tên đỏ nét đứt chỉ hướng xe máy, không phải lệnh đánh lái hay khoảng cách phanh bảo đảm."
     },
     {
       "id": "narrow-cutoff-var",
@@ -334,11 +334,11 @@
       "url": "/content/svg/narrow-cutoff-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 2.37,
-      "checksum": "sha256-cb0cea3073b72a4a4a21a9204dd0decb9cc7191aaa9849a753a49e759bff720a",
+      "sizeKb": 5.29,
+      "checksum": "sha256-84b018dab1bd91d9dada8c70907d3b2c51b2e9e754bbcabdcfdf55e7deff592f",
       "offlinePack": "core",
-      "caption": "Giữ khoảng trống phía trước",
-      "alt": "Sơ đồ nhìn từ trên xuống: khoảng trống một thân xe máy phía trước đầu xe."
+      "caption": "Một xe vừa qua: vẫn giữ xe, kiểm tra xe đi tiếp và cả hai hướng",
+      "alt": "Sơ đồ không theo tỷ lệ, cùng ngã ba và vị trí ô tô đang dừng, đầu hướng lên. Xe máy đầu đã sang phải qua miệng ngõ nhưng còn xe đi tiếp từ trái và xe từ hướng đối diện trên phần đường xa hơn. Các mũi tên đỏ nét đứt khớp hướng đầu xe máy; ô tô không có mũi tên chuyển động. Giữ xe, quan sát lại cả hai hướng và người qua đường; không có mốc một thân xe máy hay khoảng trống bảo đảm để đi."
     },
     {
       "id": "highway-merge-main",

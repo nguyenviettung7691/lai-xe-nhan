@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.11'
+export const CONTENT_VERSION = '2026.10.12'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -103,5 +103,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa narrow-yield: quy tắc nhường, chỗ tránh thực tế, điều kiện lùi và xe ưu tiên; thay hai sơ đồ và bỏ thẩm định mẫu.',
     cardIds: ['narrow-yield']
+  },
+  {
+    version: '2026.10.12',
+    date: '2026-10-25',
+    summary: 'Sửa narrow-cutoff: dừng trước vùng xung đột, phanh khẩn cấp, nhường và quan sát lại; thay hai sơ đồ ngã ba và bỏ thẩm định mẫu.',
+    cardIds: ['narrow-cutoff']
   }
 ]

@@ -67,4 +67,45 @@ surfaces. No shared renderer or unrelated lesson changes are planned.
 
 ## Implementation and verification
 
-Pending.
+- Analysis/plan committed first as `44e5886`, before lesson implementation.
+- Card **1.1.0**, content pack **2026.10.12**: revised context/objective,
+  seven steps/cues/hints, mistakes, recovery, safety, mnemonic and all three
+  quizzes. Kept stable card/lesson/checklist/asset/quiz IDs and original
+  history, high risk and difficulty 3; estimate is six minutes.
+- Removed only this card's sample approval and published it as
+  **unverified**. Independent driving-instructor review remains required.
+  The generic stale-review fixture now uses unchanged `highway-merge`.
+- Replaced both SVGs at their existing URLs. The car and open mirrors fit
+  inside the branch and remain clear of the crossing area. Motorcycle fronts
+  and red dashed arrowheads agree, road edges leave a real junction opening,
+  and the variant shows following/opposite hazards after the first bike
+  clears. No ego-motion arrow, unexplained cone or fixed-distance bracket.
+  Captions/alt text explain the stationary state and schematic limits.
+- Added **12 focused regressions**, including whole-car/mirror bounds,
+  conflict clearance, road opening, motorcycle/front/arrow geometry, sampled
+  path containment, colour/marker agreement, safe restart, emergency braking,
+  priority, recovery, assessment, publication and release history.
+- The first focused run caught action-verb editorial violations in new step
+  openings and a case-sensitive test mismatch; both were corrected without
+  weakening the content gates. Final **215 tests in 23 files passed**,
+  including all **29 cutoff/asset/validation tests**. ESLint and production
+  TypeScript/Vite/PWA build passed. Build emitted only non-blocking Zod
+  dependency annotation warnings; no dependency changes were needed.
+- Regeneration repeated with SHA-256 comparison: **all 47 generated files
+  identical** (46 SVGs plus manifest). Git confirms **only the two cutoff
+  SVGs** differ from baseline. Offline SVG pack is **145.5 KB**; both assets
+  remain below the existing 60 KB per-image budget.
+- Browser verification at **1440 x 1000** and **390 x 844**: inspected both
+  diagrams, both images loaded after lazy-scroll, no horizontal overflow,
+  all SVG text bounding boxes inside the 320 x 200 viewBox. Mobile screenshots
+  confirmed complete diagrams and wrapping captions. The unverified badge
+  replaces the sample approval.
+- Quick mode retains all seven steps, emergency braking, no-blind-reverse and
+  all-directions restart guidance while hiding only the expected second
+  image/recovery surfaces. Inspected actual full-audio script and the
+  nine-entry sequence (mnemonic, seven steps, safety); emergency and
+  reversing conditions are present. Audio playback itself was not assessed.
+- Browser quiz: three correct responses yield **3/3, 100%, pass**, with nine
+  options locked and two stop-condition badges. A wrong blind-entry response
+  yields **2/3, 67%, fail**; retrying correctly yields a pass. No browser
+  runtime errors appeared in the inspected console log.

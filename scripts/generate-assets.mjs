@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.11'
+const CONTENT_VERSION = '2026.10.12'
 
 const W = 320
 const H = 200
@@ -214,6 +214,55 @@ const alleyLot = (wallGap = 108) => {
     label(12, 24, 'NHÀ DÂN', { size: 8 }),
     label(W - 12, 24, 'NHÀ DÂN', { size: 8, anchor: 'end' })
   ].join('')
+}
+
+const cutoffScene = following => {
+  const motorcycle = (id, x, y, rotation) =>
+    `<g id="${id}" transform="translate(${x} ${y}) rotate(${rotation})">${bike(0, 0, 0, C.hazard)}</g>`
+  const motion = (id, x1, y, x2) =>
+    `<path id="${id}" d="M${x1} ${y}L${x2} ${y}" fill="none" stroke="${C.hazard}" stroke-width="2.2" stroke-dasharray="4 4" marker-end="url(#cutoff-bike-tip)"/>`
+  return [
+    rect(0, 0, W, 174, C.kerb),
+    `<g id="cutoff-main-road">${rect(0, 30, W, 58, C.asphalt)}</g>`,
+    `<g id="cutoff-branch">${rect(124, 88, 80, 86, C.asphalt)}</g>`,
+    '<g id="cutoff-walls">',
+    line(0, 30, W, 30, C.bay, 2),
+    line(0, 88, 124, 88, C.bay, 2),
+    line(204, 88, W, 88, C.bay, 2),
+    line(124, 88, 124, 174, C.bay, 2),
+    line(204, 88, 204, 174, C.bay, 2),
+    '</g>',
+    `<g id="cutoff-conflict">${rect(124, 59, 80, 29, C.hazard, 0, 0.18)}</g>`,
+    '<g id="cutoff-ego" transform="translate(176 137) rotate(0)">',
+    car(0, 0, 0, C.ego),
+    `<g id="cutoff-mirrors">${rect(-17, -14, 4, 4, C.ego, 1)}${rect(13, -14, 4, 4, C.ego, 1)}</g></g>`,
+    '<defs><marker id="cutoff-bike-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">',
+    `<path d="M0 1L9 5L0 9Z" fill="${C.hazard}"/></marker></defs>`,
+    motorcycle('cutoff-crossing-bike', following ? 260 : 66, 72, 90),
+    motion('cutoff-crossing-motion', following ? 280 : 86, 72, following ? 304 : 224),
+    ...(following ? [
+      motorcycle('cutoff-following-bike', 64, 72, 90),
+      motion('cutoff-following-motion', 84, 72, 224),
+      motorcycle('cutoff-opposing-bike', 260, 44, 270),
+      motion('cutoff-opposing-motion', 240, 44, 206),
+      label(14, 111, 'XE ĐI TIẾP', { size: 8, fill: C.hazard }),
+      line(68, 103, 64, 82, C.hazard, 1)
+    ] : [
+      label(14, 111, 'VÙNG CẮT NGANG', { size: 8, fill: C.hazard }),
+      line(96, 108, 136, 83, C.hazard, 1)
+    ]),
+    label(160, 19, 'ĐƯỜNG CHÍNH: HAI CHIỀU', { size: 8, anchor: 'middle' }),
+    label(14, 145, 'NGÕ NHÁNH', { size: 8 }),
+    label(216, 117, 'ĐẦU XE', { size: 8, fill: C.ego }),
+    line(208, 114, 189, 114, C.ego, 1),
+    label(216, 145, 'XE DỪNG', { size: 8, fill: C.ego }),
+    line(210, 141, 194, 141, C.ego, 1),
+    motion('cutoff-legend', 16, 164, 34),
+    label(42, 167, 'HƯỚNG XE MÁY', { size: 8, fill: C.hazard }),
+    note(following
+      ? 'Không theo tỷ lệ. Xe vừa qua chưa đủ an toàn; giữ xe, kiểm tra lại cả hai hướng.'
+      : 'Không theo tỷ lệ. Dừng trước vùng cắt ngang; không nhô đầu xe dò vùng khuất.')
+  ]
 }
 
 const yieldVehicle = (id, x, y, rotation, fill) =>
@@ -690,21 +739,8 @@ const templates = {
       'corner-risk': () => cornerScene(true),
       yield: () => yieldScene(false),
       'yield-pocket': () => yieldScene(true),
-      cutoff: () => [
-        alleyLot(120),
-        car(160, 128, 0, C.ego),
-        bike(118, 82, 44, C.hazard),
-        `<path d="M120 86C136 94 148 100 154 106" stroke="${C.hazard}" stroke-width="2.2" stroke-dasharray="4 4" fill="none" marker-end="url(#tip)"/>`,
-        cone(160, 106, 0, 32, 54),
-        note('Xe máy tạt đầu bên trái: nhả ga, rà phanh, không đánh lái gấp.')
-      ],
-      'cutoff-stop': () => [
-        alleyLot(120),
-        car(160, 132, 0, C.ego),
-        bike(178, 66, 0),
-        gap(144, 176, 100, 'Một thân xe máy'),
-        note('Dừng thẳng bánh, chờ xe máy đi hết rồi mới đi tiếp.')
-      ]
+      cutoff: () => cutoffScene(false),
+      'cutoff-stop': () => cutoffScene(true)
     }
     return (scenes[mode] ?? scenes.creep)()
   },
@@ -927,7 +963,7 @@ const specs = [
   ['narrow-mirror', 'alley', ['mirror', 'Khoảng hở từ mép gương tới vật cản, không phải số đo hay hình phản chiếu', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: đầu xe hướng lên, đuôi ở dưới, hai gương mở nhô ngoài thân; mô tô đỗ bên phải có tay lái nhô ra. a nối tường trái với mép ngoài gương trái, b nối mép ngoài gương phải với mép gần nhất tay lái tại cùng mặt cắt; không phải số đo, mức hở an toàn chung hay vùng nhìn thấy trong gương. Không có mũi tên chuyển động.'], ['mirror-stop', 'Dừng trước chỗ tường nhô khi chưa rõ khoảng hở; không gập gương để cố lọt', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: cùng xe đầu hướng lên, hai gương vẫn mở; xe đang dừng trước đoạn tường trái nhô vào lối đi. Nét đứt đỏ ngang đoạn thắt chỉ khoảng hở chưa rõ, không phải hướng xe chạy hay bằng chứng xe lọt. Không có mũi tên tiến, lùi hoặc gập gương; chỉ đi tiếp sau khi kiểm tra rõ và đủ khoảng hở toàn xe.']],
   ['narrow-corner', 'alley', ['corner', 'Ví dụ rẽ phải: bánh sau phía trong đi hẹp hơn bánh trước', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: xe con có gương mở, đầu hướng lên rồi tiến rẽ phải trong lối hình chữ L. Vệt xanh có mũi tên là bánh trước phải, vệt vàng có mũi tên là bánh sau phải của cùng xe; bánh sau đi phía trong. Chỉ minh họa một đoạn cung quay, không phải toàn bộ vùng quét thân, gương, đầu đuôi xe, mốc đánh lái hay bảo đảm xe thực tế quay lọt.'], ['corner-risk', 'Xe dừng trước nguy cơ bánh sau cắt góc, không tự lùi ở góc khuất', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng góc tường: xe có gương mở đang dừng khi đầu hướng chéo lên phải, thân chưa chạm tường. Nét đỏ đứt dự báo bánh sau phải nếu cố tiến theo cung quay hiện tại, giao chân tường tại dấu X; không phải lệnh đi hay đường lùi. Chưa rõ khoảng hở thì giữ xe, quan sát lại và gọi hỗ trợ; không tự lùi ở góc khuất.']],
   ['narrow-yield', 'alley', ['yield', 'Hai xe dừng đánh giá; chỗ tránh phía trước bên phải xe bạn, không mặc định phải lùi.', 'Sơ đồ không theo tỷ lệ trên nền bằng: xe bạn màu xanh hướng lên, xe đối diện hướng xuống, cả hai dừng; chỗ tránh mở về phía trước bên phải xe bạn. Không vẽ quỹ đạo đánh lái.'], ['yield-pocket', 'Xe bạn giữ yên trong chỗ tránh; chờ hết xe và người, kiểm tra lại trước khi ra.', 'Sơ đồ không theo tỷ lệ: toàn xe bạn và gương nằm trong chỗ tránh bên phải, đầu hướng lên và đang dừng; xe đối diện hướng xuống với mũi tên cùng chiều. Hai trạng thái không phải quỹ đạo bảo đảm xe lọt.']],
-  ['narrow-cutoff', 'alley', ['cutoff', 'Xe máy tạt đầu', 'Sơ đồ nhìn từ trên xuống: xe máy cắt chéo trước đầu xe trong hẻm.'], ['cutoff-stop', 'Giữ khoảng trống phía trước', 'Sơ đồ nhìn từ trên xuống: khoảng trống một thân xe máy phía trước đầu xe.']],
+  ['narrow-cutoff', 'alley', ['cutoff', 'Dừng trước vùng xe máy cắt ngang tại ngã ba, không nhô đầu dò vùng khuất', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: ngõ nhánh từ dưới nối đường chính hai chiều ở trên. Đầu ô tô hướng lên, gương mở; xe đang dừng trước vùng cắt ngang tô đỏ, không có mũi tên chuyển động của ô tô. Xe máy hướng sang phải trên phần đường gần miệng ngõ; mũi tên đỏ nét đứt chỉ hướng xe máy, không phải lệnh đánh lái hay khoảng cách phanh bảo đảm.'], ['cutoff-stop', 'Một xe vừa qua: vẫn giữ xe, kiểm tra xe đi tiếp và cả hai hướng', 'Sơ đồ không theo tỷ lệ, cùng ngã ba và vị trí ô tô đang dừng, đầu hướng lên. Xe máy đầu đã sang phải qua miệng ngõ nhưng còn xe đi tiếp từ trái và xe từ hướng đối diện trên phần đường xa hơn. Các mũi tên đỏ nét đứt khớp hướng đầu xe máy; ô tô không có mũi tên chuyển động. Giữ xe, quan sát lại cả hai hướng và người qua đường; không có mốc một thân xe máy hay khoảng trống bảo đảm để đi.']],
   ['highway-merge', 'highway', ['merge', 'Nhập làn từ làn tăng tốc', 'Sơ đồ nhìn từ trên xuống: quỹ đạo nhập làn từ làn tăng tốc vào làn phải cao tốc.'], ['merge-gap', 'Chọn khoảng trống ba giây', 'Sơ đồ nhìn từ trên xuống: khoảng trống ba giây giữa hai xe trên làn chính.']],
   ['highway-exit', 'highway', ['exit', 'Thoát làn đúng lối ra', 'Sơ đồ nhìn từ trên xuống: quỹ đạo vào làn giảm tốc trước lối ra cao tốc.'], ['exit-miss', 'Lỡ lối ra', 'Sơ đồ nhìn từ trên xuống: thao tác cắt ngang gấp bị gạch bỏ khi lỡ lối ra.']],
   ['highway-signs', 'highway', ['signs', 'Biển gộp làn', 'Sơ đồ nhìn từ trên xuống: biển báo gộp làn và quỹ đạo nhập làn tương ứng.'], ['signs-speed', 'Biển đổi tốc độ', 'Sơ đồ nhìn từ trên xuống: biển giới hạn tốc độ 60 km/h và quãng giảm tốc trước biển.']],

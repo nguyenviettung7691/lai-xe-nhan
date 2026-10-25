@@ -177,36 +177,41 @@ export const narrowCards: Card[] = [
     lessonId: 'narrow-negotiation',
     topicId: 'narrow',
     title: 'Xử lý khi xe máy tạt đầu',
-    context: 'Ra khỏi ngõ ở ngã ba đông đúc, xe máy thường cắt ngang mũi xe mà không giảm tốc. Phản xạ đúng lúc này quan trọng hơn quyền ưu tiên.',
-    objective: 'Giữ khoảng trống an toàn và tránh phanh gấp bất ngờ.',
+    context: 'Ô tô con từ ngõ nhánh ra đường chính tại ngã ba, xe máy có thể cắt ngang đầu xe từ cả hai phía, kể cả khi một xe vừa đi qua. Hai hình chỉ minh họa xe đang dừng trước vùng xung đột, không theo tỷ lệ và không phải quỹ đạo rẽ hay khoảng cách dừng bảo đảm; không mặc định mọi ngõ đều là đường không ưu tiên.',
+    objective: 'Dừng trước vùng xung đột, nhường đúng quy định và phanh kịp thời khi có nguy hiểm; chỉ ra đường khi quan sát rõ và đủ khoảng trống cho toàn bộ thao tác.',
     risk: 'high',
     difficulty: 3,
-    minutes: 3,
-    tags: { speedRange: 'urban', spaceConstraint: 'tight', visibility: 'reduced', stress: 'high' },
+    minutes: 6,
+    tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'high' },
     steps: [
-      { instruction: 'Giảm tốc trước khi đầu xe nhô ra khỏi ngõ.', cueType: 'marker', cueText: 'Giảm tốc trước khi nhô ra', speedHint: 'dưới 10 km/h' },
-      { instruction: 'Nhô đầu xe từng đoạn ngắn để người đi đường nhìn thấy.', cueType: 'marker', cueText: 'Nhô từng đoạn 30 cm' },
-      { instruction: 'Quan sát hướng có xe máy đông trước, sau đó mới đến hướng còn lại.', cueType: 'marker', cueText: 'Hướng đông xe quan sát trước' },
-      { instruction: 'Phanh đều và giữ hướng thẳng khi có xe tạt đầu.', cueType: 'feel', cueText: 'Phanh đều, không đánh lái gấp' },
-      { instruction: 'Chờ khoảng trống đủ dài rồi mới hòa vào dòng xe.', cueType: 'timing', cueText: 'Khoảng trống đủ dài' }
+      { instruction: 'Quan sát phía trước và gương từ sớm, nhả ga, giảm tốc và chuẩn bị phanh trước miệng ngõ; tuân thủ người điều khiển giao thông, đèn, biển và vạch. Đi bộ hoặc chậm hơn, luôn dừng được trong phần đường nhìn rõ còn trống; dừng trước vùng người và xe cắt ngang, không để đầu xe chắn lối đi bộ.', cueType: 'marker', cueText: 'Vị trí dừng theo báo hiệu, tầm nhìn và khoảng hở thực tế, không có mốc 10 km/h luôn an toàn', speedHint: 'đi bộ hoặc chậm hơn; chưa rõ lối đi thì dừng' },
+      { instruction: 'Xác định quy tắc nhường: từ đường nhánh ra đường chính hoặc đường không ưu tiên ra đường ưu tiên phải nhường xe trên đường chính hoặc đường ưu tiên từ bất kỳ hướng nào tới. Khi rẽ, báo hướng bằng xi-nhan liên tục trong quá trình chuyển hướng, nhường người đi bộ, xe thô sơ và xe đi ngược chiều; không dùng đầu xe ép dòng xe phải nhường.', cueType: 'marker', cueText: 'Tuân thủ báo hiệu thực tế; xi-nhan không tạo quyền ưu tiên' },
+      { instruction: 'Quan sát luân phiên cả hai hướng khi đã dừng, sát trước đầu xe, hai bên, gương và điểm mù; chú ý xe máy đi sát mép, xe đạp, trẻ em và người qua đường kể cả ngoài vạch sang đường. Kiểm tra lại ngay trước khi di chuyển; không chỉ nhìn hướng đông xe hay tin rằng xe có xi-nhan chắc chắn sẽ rẽ.', cueType: 'mirror', cueText: 'Cột A, tường và xe đỗ có thể che xe máy; camera, cảm biến chỉ hỗ trợ' },
+      { instruction: 'Giữ xe đứng yên nếu bị khuất; chỉ xem xét tiến rất chậm trong phần đường đã nhìn rõ còn trống và không cản người, xe cắt ngang. Không nhô từng đoạn 30 cm để buộc người khác thấy mình. Nếu không thể lấy tầm nhìn mà không lấn vùng xung đột thì tiếp tục dừng, tìm hỗ trợ an toàn hoặc lối khác được phép; không tự lùi tại nơi đường giao nhau hay nơi tầm nhìn bị che khuất.', cueType: 'marker', cueText: 'Không lấy đầu xe dò vùng khuất; người hướng dẫn không thể bảo đảm một khoảng trống sẽ còn an toàn' },
+      { instruction: 'Nhả ga và đạp phanh ngay với lực cần thiết khi xe máy bất ngờ cắt ngang có nguy cơ va chạm, không trì hoãn chỉ để phanh êm. Với xe có ABS, đạp mạnh và giữ áp lực liên tục, không nhấp nhả phanh; làm theo hướng dẫn của xe. Giữ hướng ổn định, không đánh lái né theo phản xạ vào phần đường chưa kiểm tra hoặc làn ngược chiều; dừng hẳn và giữ xe khi lối đi chưa an toàn.', cueType: 'feel', cueText: 'Giảm tốc sớm khác với phanh khẩn cấp; ABS không bảo đảm quãng dừng ngắn hơn', steeringHint: 'không giật lái; không ép vô-lăng thẳng nếu xe đang rẽ' },
+      { instruction: 'Giữ phanh sau khi xe máy đi qua và quan sát lại cả hai hướng, sát đầu xe, hai bên, gương và điểm mù để tìm xe đi tiếp phía sau và người đang qua đường. Chỉ đi khi có đủ thời gian và khoảng trống cho toàn bộ xe hoàn tất thao tác, không buộc người khác phanh hoặc đổi hướng; chưa rõ thì tiếp tục chờ, không đi theo còi hay cái vẫy tay.', cueType: 'timing', cueText: 'Một xe vừa qua hay khoảng trống một thân xe máy không phải điều kiện đủ để đi' },
+      { instruction: 'Kiểm tra lần cuối khi đủ điều kiện, tiến và rẽ chậm theo hướng đã báo vào phần đường được phép; tiếp tục quan sát phía trước và hai bên. Nếu người hoặc xe khác xuất hiện, phanh dừng và giữ xe để nhường, không cố tăng ga vượt qua trước; không tự lùi để giải tỏa áp lực phía sau.', cueType: 'marker', cueText: 'Bị bấm còi thúc không làm lối đi an toàn hơn' }
     ],
     mistakes: [
-      'Đánh lái gấp để tránh khiến xe lấn sang làn ngược chiều.',
-      'Bấm còi dài thay vì giảm tốc và nhường đường.',
-      'Nhô cả đầu xe ra ngã ba khi chưa quan sát đủ hai hướng.'
+      'Chỉ rà phanh cho êm khi cần phanh khẩn cấp, hoặc giật lái né vào xe, người bên cạnh.',
+      'Nhô đầu xe theo mốc cố định để ép được nhường, bấm còi thay cho phanh và quan sát.',
+      'Đi ngay sau một xe máy mà bỏ sót xe đi tiếp, hướng còn lại hoặc người qua đường ngoài vạch.'
     ],
-    recovery: 'Dừng hẳn và nhường cho dòng xe máy đi qua. Chờ khoảng trống rõ ràng rồi mới ra, tránh chen ngang.',
-    safety: 'Luôn nhường người đi bộ tại nơi có vạch sang đường, kể cả khi bạn đã dừng đúng vị trí.',
-    mnemonic: { text: 'Nhô từng chút, phanh đều, không lái gấp.', rhythm: 'ba-nhip' },
+    recovery: 'Nếu đầu xe đã lấn ra, phanh dừng hẳn và giữ xe, không cố tiến hoặc tự lùi vào nguy hiểm; không lùi tại nơi đường giao nhau hoặc nơi tầm nhìn bị che khuất. Nếu đã va chạm, dừng, kiểm tra người, gọi cấp cứu khi cần và thực hiện nghĩa vụ khi xảy ra tai nạn; không tự chạy đi. Khi chưa thể ra an toàn, nhờ hỗ trợ tại chỗ hoặc lực lượng chức năng. Người hướng dẫn phải đứng ngoài đường xe chạy, vùng quét và vùng kẹp, không giữa xe với tường; luôn thấy nhau, mất liên lạc thì dừng. Nếu cần và được phép rời vị trí lái, giữ phanh chân, dùng phanh đỗ và chọn P với xe tự động sau khi xe đứng hẳn theo hướng dẫn của xe; bảo đảm xe đứng chắc, kiểm tra trước khi mở cửa. Không xuống xe chỉ để tranh luận với người thúc phía sau.',
+    safety: 'Chưa nhìn rõ hoặc có người, xe cắt ngang thì dừng hẳn và giữ xe trước vùng xung đột; nhường người đi bộ đang qua đường kể cả ngoài vạch. Khi nguy cơ va chạm xuất hiện, nhả ga và phanh ngay với lực cần thiết, không chỉ rà phanh; với ABS đạp mạnh và giữ áp lực, không nhấp nhả, theo hướng dẫn của xe. Không giật lái vào vùng chưa kiểm tra, không lấy đầu xe dò vùng khuất và không tự lùi tại nơi đường giao nhau hoặc nơi tầm nhìn bị che khuất. Chỉ đi tiếp sau khi quan sát lại cả hai hướng, điểm mù và xe đi tiếp phía sau xe vừa qua, đủ thời gian và khoảng trống cho toàn xe mà không ép người khác phanh hay đổi hướng. Còi chỉ dùng cảnh báo mất an toàn theo quy định, không thay phanh, quan sát hay nhường đường; không bấm liên tục, không dùng từ 22 giờ đến 05 giờ trong khu đông dân cư, khu vực cơ sở khám bệnh, chữa bệnh, trừ xe ưu tiên.',
+    mnemonic: { text: 'Chưa rõ thì dừng, nguy hiểm phanh ngay, nhìn lại mới đi.', rhythm: 'ba-nhip' },
     checklistId: 'pre_drive',
     quickCheck: [
-      { prompt: 'Khi ra khỏi ngõ tại ngã ba đông xe máy, nên nhô đầu xe như thế nào?', options: ['Nhô hết cả xe ra một lần', 'Nhô từng đoạn ngắn để người khác nhìn thấy', 'Không cần giảm tốc trước khi nhô'], correctIndex: 1 },
-      { prompt: 'Khi có xe máy tạt đầu bất ngờ, phản ứng đúng là gì?', options: ['Đánh lái gấp sang làn ngược chiều', 'Phanh đều và giữ hướng thẳng', 'Bấm còi thật to và tăng tốc'], correctIndex: 1 },
-      { prompt: 'Khi nào bạn phải nhường và không nên ra khỏi ngõ dù đã quan sát?', options: ['Khi có người đi bộ đang qua vạch sang đường', 'Khi ngõ có bóng đèn màu vàng', 'Khi xe máy đi rất chậm phía xa'], correctIndex: 0, isStopCondition: true }
+      { prompt: 'Từ ngõ nhánh ra đường chính nhưng tường che khuất, chưa thể nhìn rõ mà không lấn lối xe máy, bạn nên?', options: ['Nhô từng đoạn 30 cm để buộc xe máy thấy và nhường', 'Dừng trước vùng xung đột, không lấn dò; tìm hỗ trợ an toàn hoặc lối khác được phép', 'Bấm còi rồi đi dưới 10 km/h'], correctIndex: 1, isStopCondition: true },
+      { prompt: 'Xe máy cắt ngang sát đầu xe, nguy cơ va chạm tức thời; ô tô có ABS, bạn nên?', options: ['Chỉ rà phanh để tránh dừng đột ngột', 'Nhả ga, đạp phanh mạnh và giữ áp lực theo hướng dẫn xe; giữ hướng ổn định, không giật lái vào vùng chưa kiểm tra', 'Nhấp nhả phanh liên tục và né sang làn ngược chiều'], correctIndex: 1 },
+      { prompt: 'Một xe máy vừa qua miệng ngõ, còn xe đi tiếp phía sau và người đang qua đường ngoài vạch, bạn nên?', options: ['Giữ xe đứng yên, nhường; quan sát lại cả hai hướng và điểm mù, chỉ đi khi đủ thời gian và khoảng trống cho toàn xe', 'Đi ngay vì đã nhường một xe và không có vạch sang đường', 'Chỉ cần chừa một thân xe máy rồi đi theo cái vẫy tay'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.0.0',
-    updatedAt: '2026-09-11',
-    changelog: [{ version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống xe máy tạt đầu.', author: 'Biên tập nội dung' }]
+    reviewStatus: 'published_unverified',
+    version: '1.1.0',
+    updatedAt: '2026-10-25',
+    changelog: [
+      { version: '1.0.0', date: '2026-09-11', summary: 'Thẻ mới cho tình huống xe máy tạt đầu.', author: 'Biên tập nội dung' },
+      { version: '1.1.0', date: '2026-10-25', summary: 'Bỏ nhô đầu xe theo mốc và phanh êm mặc định; bổ sung phanh khẩn cấp, nhường và quan sát lại; thay hai sơ đồ ngã ba, bỏ thẩm định mẫu.', author: 'Biên tập nội dung' }
+    ]
   })
 ]
