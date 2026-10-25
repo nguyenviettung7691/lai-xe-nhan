@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.09.1",
+  "contentVersion": "2026.10.1",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 117.6,
+  "totalSizeKb": 118.11,
   "assets": [
     {
       "id": "parking-start-main",
@@ -12,11 +12,11 @@
       "url": "/content/svg/parking-start-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.64,
-      "checksum": "sha256-63c6c2497d35083e26244528ef7e0f7816826e27ed01d35c1cb90bc1d6d7d84e",
+      "sizeKb": 3.93,
+      "checksum": "sha256-b5247e34daf1f2986fcf35ead2d80ea0b031cbee62a26713c2b68fc3846573c9",
       "offlinePack": "core",
-      "caption": "Canh vai xe trước khi lùi",
-      "alt": "Sơ đồ nhìn từ trên xuống: xe dừng ngang mép ô đỗ trước khi cài số lùi."
+      "caption": "Vị trí dừng và hướng lùi minh họa",
+      "alt": "Sơ đồ nhìn từ trên xuống: xe dừng trước ô đỗ; mũi tên chỉ đầu xe và hướng lùi tham khảo."
     },
     {
       "id": "parking-start-var",
@@ -26,11 +26,11 @@
       "url": "/content/svg/parking-start-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.5,
-      "checksum": "sha256-abfdfa2d6758b9d9c3ffce612f79b988f92724c5a1437f7c518a34d17956fb95",
+      "sizeKb": 3.72,
+      "checksum": "sha256-df32a40accf17a90f1f2f797998a97ab4bbc90e53d491a16765bab36e0ada036",
       "offlinePack": "core",
-      "caption": "Góc vào hẹp trong hầm",
-      "alt": "Sơ đồ nhìn từ trên xuống: góc vào hẹp, quỹ đạo lùi chia thành nhiều nhịp."
+      "caption": "Góc tiếp cận thay đổi",
+      "alt": "Sơ đồ nhìn từ trên xuống: xe ở góc tiếp cận khác; mũi tên chỉ đầu xe và một quỹ đạo lùi minh họa."
     },
     {
       "id": "parking-align-main",

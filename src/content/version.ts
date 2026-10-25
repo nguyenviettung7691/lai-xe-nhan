@@ -1,8 +1,8 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.09.1'
-export const CONTENT_GENERATED_AT = '2026-09-13'
+export const CONTENT_VERSION = '2026.10.1'
+export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
 /** Lịch sử phát hành nội dung, dùng cho delta update và audit trail. */
@@ -37,5 +37,11 @@ export const contentReleases: ContentRelease[] = [
       'weather-flood-cross',
       'weather-heavy-rain'
     ]
+  },
+  {
+    version: '2026.10.1',
+    date: '2026-10-25',
+    summary: 'Làm rõ hướng dẫn lùi chuồng, trạng thái thẩm định và sơ đồ minh họa cho bài parking-start.',
+    cardIds: ['parking-start']
   }
 ]

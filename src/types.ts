@@ -2,7 +2,7 @@ export type Risk = 'low' | 'medium' | 'high'
 export type Severity = 'info' | 'warn' | 'critical'
 
 /** Trạng thái duyệt nội dung theo lớp B (Expert Validation Layer). */
-export type ReviewStatus = 'draft' | 'in_review' | 'needs_revision' | 'approved'
+export type ReviewStatus = 'draft' | 'in_review' | 'needs_revision' | 'approved' | 'published_unverified'
 export type ReviewDecision = 'approved' | 'needs_revision' | 'rejected'
 export type ConfidenceScore = 1 | 2 | 3 | 4 | 5
 export type Difficulty = 1 | 2 | 3 | 4 | 5

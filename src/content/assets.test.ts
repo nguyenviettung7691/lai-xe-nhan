@@ -47,6 +47,19 @@ describe('sơ đồ SVG tự tạo', () => {
     }
   })
 
+  it('sơ đồ parking-start phân biệt đầu xe và hướng lùi, không tuyên bố nhiều nhịp', () => {
+    const main = getAsset('parking-start-main')
+    const variant = getAsset('parking-start-var')
+    expect(main?.caption).toMatch(/hướng lùi/i)
+    expect(main?.alt).toMatch(/đầu xe/i)
+    expect(variant?.alt).toMatch(/một quỹ đạo lùi minh họa/i)
+    expect(variant?.alt).not.toMatch(/nhiều nhịp/i)
+    expect(readAsset(main!.url)).toContain('HƯỚNG LÙI')
+    expect(readAsset(main!.url)).toContain('ĐẦU XE')
+    expect(readAsset(variant!.url)).toContain('HƯỚNG LÙI')
+    expect(readAsset(variant!.url)).toContain('ĐẦU XE')
+  })
+
   it('gói offline nằm trong ngân sách dung lượng', () => {
     expect(offlineSizeKb).toBeLessThanOrEqual(CORE_PACK_BUDGET_KB)
     expect(assetManifest.totalSizeKb).toBeCloseTo(offlineSizeKb, 1)

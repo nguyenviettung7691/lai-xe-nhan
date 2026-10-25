@@ -8,40 +8,42 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-basics',
     topicId: 'parking',
     title: 'Chọn điểm bắt đầu lùi',
-    context: 'Hầm trung tâm thương mại đông xe, ô đỗ chỉ rộng hơn thân xe khoảng một mét. Điểm dừng trước khi cài số lùi quyết định cả pha lùi.',
-    objective: 'Tạo góc lùi đủ rộng để đuôi xe vào ô đỗ trong một nhịp.',
+    context: 'Trong hầm gửi xe, bạn chuẩn bị lùi vào một ô đỗ. Kích thước xe, góc tiếp cận và vật cản làm mốc canh thay đổi; sơ đồ chỉ mang tính minh họa.',
+    objective: 'Chọn vị trí bắt đầu phù hợp và chỉ lùi khi tầm nhìn cùng khoảng trống cho phép thao tác chậm, có thể dừng ngay.',
     risk: 'medium',
     difficulty: 2,
     minutes: 3,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'good', stress: 'moderate' },
     steps: [
-      { instruction: 'Bật xi-nhan về phía ô đỗ và dừng hẳn xe.', cueType: 'marker', cueText: 'Xi-nhan bật trước khi dừng', speedHint: '0 km/h' },
-      { instruction: 'Canh vai xe ngang mép đầu ô đỗ, cách xe bên cạnh một cánh tay.', cueType: 'marker', cueText: 'Vai xe ngang mép ô đỗ' },
-      { instruction: 'Quét đủ ba gương rồi ngoái nhìn qua vai phải một nhịp.', cueType: 'mirror', cueText: 'Ba gương và một nhịp ngoái đầu' },
-      { instruction: 'Cài số R và nhả phanh cho xe bò chậm.', cueType: 'feel', cueText: 'Xe tự bò khi nhả phanh', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Đánh lái hết về phía ô đỗ khi vai xe vượt qua mốc.', cueType: 'marker', cueText: 'Vai xe vượt mép ô đỗ', steeringHint: 'đánh hết lái một bên' },
-      { instruction: 'Nhìn gương đối diện để giữ đuôi xe cách cột ít nhất 60 cm.', cueType: 'mirror', cueText: 'Gương đối diện thấy mép ô' }
+      { instruction: 'Bật xi-nhan về phía ô đỗ và dừng hẳn ở nơi an toàn, không cản lối đi.', cueType: 'marker', cueText: 'Xe đứng hẳn, lối đi thông thoáng', speedHint: '0 km/h' },
+      { instruction: 'Đánh giá khi còn đứng yên xem ô đỗ, lối đi và khoảng trống quanh xe có đủ rõ ràng hay không; chọn ô khác nếu chưa chắc.', cueType: 'marker', cueText: 'Nhìn rõ toàn bộ khoảng trống cần thiết' },
+      { instruction: 'Chọn mốc trên xe của bạn như gợi ý tham khảo, không áp dụng một mốc vai xe hay khoảng cách cố định cho mọi xe.', cueType: 'marker', cueText: 'Mốc canh phù hợp xe và vị trí thực tế' },
+      { instruction: 'Quét gương và quan sát trực tiếp xung quanh xe; chỉ dùng camera như công cụ hỗ trợ.', cueType: 'mirror', cueText: 'Quan sát quanh xe, không chỉ nhìn camera' },
+      { instruction: 'Giữ chân sẵn trên phanh, cài số R khi xe đứng hẳn rồi nhả phanh từ từ để xe chỉ bò.', cueType: 'feel', cueText: 'Xe bò chậm, luôn dừng được ngay', speedHint: 'tốc độ đi bộ' },
+      { instruction: 'Lùi chậm và điều chỉnh lái từ từ theo khoảng trống thực tế; dừng ngay nếu có người, xe hoặc vật cản vào đường đi.', cueType: 'mirror', cueText: 'Liên tục quan sát quanh xe và đường lùi', steeringHint: 'điều chỉnh nhẹ, không áp dụng một góc lái cố định' },
+      { instruction: 'Dừng hẳn nếu không còn chắc về khoảng cách; chỉ tiến ra để căn lại khi lối đi phía trước và hai bên đã rõ.', cueType: 'feel', cueText: 'Dừng khi tầm nhìn hoặc khoảng cách không chắc' }
     ],
     mistakes: [
-      'Đánh lái quá sớm làm đầu xe quét sang ô bên cạnh.',
-      'Chỉ nhìn camera lùi mà bỏ quên hai gương.',
-      'Lùi nhanh rồi phanh gấp khi thấy vật cản.'
+      'Áp dụng một mốc vai xe hoặc khoảng cách giống nhau cho mọi mẫu xe.',
+      'Chỉ nhìn camera lùi mà bỏ quên gương và quan sát trực tiếp.',
+      'Tiếp tục lùi khi không nhìn rõ khoảng trống hoặc có người đi vào đường lùi.'
     ],
-    recovery: 'Dừng xe, về D và tiến thẳng ra lối đi một nhịp, sau đó tạo lại góc lùi mới. Không sửa lái khi xe đang sát vật cản.',
-    safety: 'Có người hoặc xe máy cắt ngang phía sau thì dừng ngay, chờ đường trống rồi mới lùi tiếp.',
-    mnemonic: { text: 'Chậm, thẳng, đủ góc rồi mới đánh lái.', rhythm: 'ba-nhip' },
+    recovery: 'Dừng hẳn và giữ phanh. Chỉ về D để tiến ra khi lối đi phía trước và hai bên đã quan sát rõ; nếu không, giữ nguyên vị trí và chọn ô khác khi có thể.',
+    safety: 'Không bắt đầu nếu không nhìn rõ lối đi hoặc khoảng trống quanh xe. Dừng ngay khi có người, xe hay vật cản xuất hiện; không dựa riêng vào camera hoặc mốc minh họa.',
+    mnemonic: { text: 'Rõ chỗ, chậm xe, chưa chắc thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Khi nào nên bắt đầu đánh hết lái khi lùi vào ô đỗ?', options: ['Ngay khi vừa cài số R', 'Khi vai xe vượt qua mép ô đỗ', 'Khi đã lùi được nửa xe'], correctIndex: 1 },
-      { prompt: 'Trước khi lùi, bạn cần làm gì với gương và tầm nhìn?', options: ['Chỉ cần xem camera lùi', 'Quét đủ ba gương và ngoái nhìn qua vai', 'Nhìn thẳng phía trước là đủ'], correctIndex: 1 },
-      { prompt: 'Có xe máy cắt ngang phía sau khi đang lùi, bạn nên làm gì?', options: ['Đạp phanh dừng ngay, chờ đường trống', 'Đánh lái nhanh để tránh', 'Tăng tốc lùi cho nhanh xong'], correctIndex: 0 }
+      { prompt: 'Mốc vai xe và khoảng cách trong sơ đồ có áp dụng y hệt cho mọi ô tô không?', options: ['Có, luôn dùng một mốc và khoảng cách cố định', 'Không, chỉ là minh họa; cần đánh giá theo xe và vị trí thực tế', 'Có, nếu xe dùng camera lùi'], correctIndex: 1 },
+      { prompt: 'Khi lùi, camera có thay thế việc quan sát gương và trực tiếp xung quanh xe không?', options: ['Có, chỉ cần nhìn camera', 'Không, camera chỉ hỗ trợ; cần tiếp tục quan sát xung quanh', 'Có, nếu lùi thật chậm'], correctIndex: 1 },
+      { prompt: 'Nếu không nhìn rõ khoảng trống hoặc có người đi vào đường lùi, bạn nên làm gì?', options: ['Dừng hẳn và chỉ tiếp tục khi đã an toàn, nếu không thì chọn ô khác', 'Đánh lái nhanh để tránh', 'Lùi tiếp thật chậm'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.1.0',
-    updatedAt: '2026-09-10',
+    reviewStatus: 'published_unverified',
+    version: '1.2.0',
+    updatedAt: '2026-10-25',
     changelog: [
       { version: '1.0.0', date: '2026-08-20', summary: 'Bản đầu tiên của thẻ chọn điểm lùi.', author: 'Biên tập nội dung' },
-      { version: '1.1.0', date: '2026-09-10', summary: 'Thay mô tả mơ hồ bằng mốc canh đo được và bổ sung sơ đồ biến thể.', author: 'Biên tập nội dung' }
+      { version: '1.1.0', date: '2026-09-10', summary: 'Thay mô tả mơ hồ bằng mốc canh đo được và bổ sung sơ đồ biến thể.', author: 'Biên tập nội dung' },
+      { version: '1.2.0', date: '2026-10-25', summary: 'Làm rõ điều kiện dừng, quan sát liên tục, mốc canh tùy xe và trạng thái chưa được thẩm định độc lập.', author: 'Biên tập nội dung' }
     ]
   }),
   defineCard({

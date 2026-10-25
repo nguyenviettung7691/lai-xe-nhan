@@ -60,6 +60,16 @@ describe('cổng chất lượng nội dung', () => {
     expect(errors.some(issue => issue.message.includes('thiếu hồ sơ thẩm định'))).toBe(true)
   })
 
+  it('cho phép trạng thái công bố chưa thẩm định chỉ khi không có hồ sơ duyệt', () => {
+    const card = clone(validationInput.cards.find(item => item.id === 'parking-start')!)
+    const issues = validateExpert({ ...validationInput, cards: [card], reviews: [] })
+    expect(issues.filter(issue => issue.id === card.id)).toEqual([])
+
+    const staleReview = { ...validationInput.reviews[0], cardId: card.id }
+    const issuesWithReview = validateExpert({ ...validationInput, cards: [card], reviews: [staleReview] })
+    expect(issuesWithReview.some(issue => issue.id === card.id && issue.message.includes('không được gắn hồ sơ duyệt'))).toBe(true)
+  })
+
   it('chặn nội dung hướng dẫn hành vi không an toàn', () => {
     const card = clone(validationInput.cards[0])
     card.steps[1].instruction = 'Đi tiếp và bỏ qua gương để tiết kiệm thời gian.'
@@ -74,7 +84,7 @@ describe('cổng chất lượng nội dung', () => {
   })
 
   it('cảnh báo khi thẻ được sửa sau lần duyệt gần nhất', () => {
-    const card = clone(validationInput.cards[0])
+    const card = clone(validationInput.cards.find(item => item.id === 'parking-align')!)
     card.updatedAt = '2099-01-01'
     const issues = validateExpert(withCard(card))
     expect(issues.some(issue => issue.severity === 'error' && issue.message.includes('duyệt lại'))).toBe(true)

@@ -37,12 +37,20 @@ describe('gói nội dung offline', () => {
     }
   })
 
-  it('chỉ phát hành thẻ đã được thẩm định', () => {
+  it('chỉ phát hành thẻ đã duyệt hoặc được gắn nhãn chưa thẩm định', () => {
     expect(allCards.length).toBeGreaterThan(publishedCards.length)
-    expect(publishedCards.every(card => card.reviewStatus === 'approved')).toBe(true)
+    expect(publishedCards.every(card => card.reviewStatus === 'approved' || card.reviewStatus === 'published_unverified')).toBe(true)
     expect(getCardById('parking-column')).toBeUndefined()
     expect(getCardById('highway-tailgater')).toBeUndefined()
     expect(getCardById('parking-start')?.title).toBe('Chọn điểm bắt đầu lùi')
+  })
+
+  it('giữ parking-start ở trạng thái công bố chưa được thẩm định, không gắn hồ sơ mẫu', () => {
+    const card = getCardById('parking-start')
+    expect(card?.reviewStatus).toBe('published_unverified')
+    expect(getReview('parking-start')).toBeUndefined()
+    expect(card?.steps.some(step => /không áp dụng.*cố định/i.test(step.instruction))).toBe(true)
+    expect(card?.quickCheck.some(question => question.isStopCondition)).toBe(true)
   })
 
   it('giữ nguyên mã bài học cũ để không mất tiến độ đã lưu', () => {
@@ -58,7 +66,8 @@ describe('gói nội dung offline', () => {
   })
 
   it('thẻ đã duyệt luôn kèm hồ sơ thẩm định', () => {
-    expect(publishedCards.every(card => getReview(card.id)?.decision === 'approved')).toBe(true)
+    expect(publishedCards.filter(card => card.reviewStatus === 'approved').every(card => getReview(card.id)?.decision === 'approved')).toBe(true)
+    expect(publishedCards.filter(card => card.reviewStatus === 'published_unverified').every(card => getReview(card.id) === undefined)).toBe(true)
     expect(getReview('highway-tailgater')?.decision).toBe('needs_revision')
     expect(getReview('parking-column')).toBeUndefined()
   })

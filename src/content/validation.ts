@@ -152,7 +152,7 @@ export const validateTechnical = (input: ValidationInput): ValidationIssue[] => 
   return issues
 }
 
-/** Cổng 3 — chuyên gia: chỉ thẻ đã duyệt mới được phát hành. */
+/** Cổng 3 — chuyên gia: kiểm tra hồ sơ duyệt và trạng thái công bố của từng thẻ. */
 export const validateExpert = (input: ValidationInput): ValidationIssue[] => {
   const issues: ValidationIssue[] = []
   const reviewByCard = new Map(input.reviews.map((review) => [review.cardId, review]))
@@ -168,7 +168,11 @@ export const validateExpert = (input: ValidationInput): ValidationIssue[] => {
 
   for (const card of input.cards) {
     const review = reviewByCard.get(card.id)
-    if (card.reviewStatus === 'approved') {
+    if (card.reviewStatus === 'published_unverified') {
+      if (review) {
+        issues.push(issue('expert', 'error', 'card', card.id, 'Thẻ công bố chưa thẩm định không được gắn hồ sơ duyệt.'))
+      }
+    } else if (card.reviewStatus === 'approved') {
       if (!review) {
         issues.push(issue('expert', 'error', 'card', card.id, 'Thẻ đã duyệt nhưng thiếu hồ sơ thẩm định.'))
         continue

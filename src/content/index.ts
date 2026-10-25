@@ -17,8 +17,10 @@ import { assetManifest, assets, getAsset, getCardAssets, offlineSizeKb } from '.
 import { errorsOf, validateContent, warningsOf } from './validation'
 import { learningPaths, getLearningPath } from './learning-paths'
 
-/** Chỉ thẻ đã qua thẩm định mới được phát hành cho người học. */
-export const publishedCards: Card[] = allCards.filter((card) => card.reviewStatus === 'approved')
+/** Chỉ phát hành thẻ đã duyệt hoặc được gắn nhãn chưa thẩm định rõ ràng. */
+export const publishedCards: Card[] = allCards.filter(
+  (card) => card.reviewStatus === 'approved' || card.reviewStatus === 'published_unverified'
+)
 
 /** Cây nội dung mặc định của ứng dụng, đã lọc theo trạng thái duyệt. */
 export const topics: Topic[] = buildTopics(publishedCards)

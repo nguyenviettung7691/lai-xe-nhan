@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const RiskSchema = z.enum(['low', 'medium', 'high'])
 export const SeveritySchema = z.enum(['info', 'warn', 'critical'])
-export const ReviewStatusSchema = z.enum(['draft', 'in_review', 'needs_revision', 'approved'])
+export const ReviewStatusSchema = z.enum(['draft', 'in_review', 'needs_revision', 'approved', 'published_unverified'])
 export const ReviewDecisionSchema = z.enum(['approved', 'needs_revision', 'rejected'])
 export const ConfidenceScoreSchema = z.union([
   z.literal(1),

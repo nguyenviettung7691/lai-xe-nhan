@@ -31,7 +31,6 @@ const review = (
 })
 
 export const expertReviews: ExpertReview[] = [
-  review('parking-start', 'urban', 'Mốc canh vai xe khớp với cách dạy trong sân tập; đã kiểm tra lại trên hai mẫu xe phổ thông.', 5, '2026-09-12'),
   review('parking-align', 'urban', 'Bước so hai vạch trong gương dễ thực hiện cho học viên mới.', 4, '2026-09-12'),
   review('parking-correct', 'urban', 'Nhấn mạnh tiến ra rồi lùi lại là cách sửa lệch an toàn nhất trong hầm.', 4, '2026-09-12'),
   review('parking-parallel', 'urban', 'Khoảng cách 80 cm và mốc ngang đuôi xe trước phù hợp với xe hạng B.', 4, '2026-09-12'),

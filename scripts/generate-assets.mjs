@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.09.1'
+const CONTENT_VERSION = '2026.10.1'
 
 const W = 320
 const H = 200
@@ -64,6 +64,9 @@ const bike = (x, y, rot = 0, fill = C.bike) =>
 
 const trail = (d, stroke = C.accent, dash = '7 5') =>
   `<path d="${d}" fill="none" stroke="${stroke}" stroke-width="2.4" stroke-dasharray="${dash}" stroke-linecap="round" marker-end="url(#tip)"/>`
+
+const arrow = (x1, y1, x2, y2) =>
+  `<path d="M${num(x1)} ${num(y1)}L${num(x2)} ${num(y2)}" fill="none" stroke="${C.ego}" stroke-width="1.8" marker-end="url(#tip)"/>`
 
 const cone = (x, y, rot, spread = 26, len = 62, fill = C.hazard) =>
   `<g transform="translate(${num(x)} ${num(y)}) rotate(${rot})" opacity=".28">` +
@@ -162,18 +165,21 @@ const templates = {
       approach: () => [
         bayLot(2),
         car(250, 132, 90, C.ego),
+        arrow(270, 132, 296, 132),
+        label(270, 117, 'ĐẦU XE', { size: 7.5, fill: C.ego }),
         trail('M236 120C214 96 206 84 200 70'),
-        pin(190, 104, '1'),
-        tag(196, 150, 'Vai xe ngang mép ô'),
-        note('Dừng khi vai xe ngang mép ô đỗ, giữ cách 1 cánh tay.')
+        pin(284, 157, '1'),
+        tag(154, 145, 'HƯỚNG LÙI'),
+        note('1. Dừng hẳn; nét đứt minh họa hướng lùi, không là mốc cố định.')
       ],
       'approach-angle': () => [
         bayLot(2),
         car(254, 140, 72, C.ego),
+        arrow(274, 133, 292, 127),
+        label(267, 116, 'ĐẦU XE', { size: 7.5, fill: C.ego }),
         trail('M238 126C216 104 204 86 198 70', C.accent, '5 5'),
-        cone(254, 128, 200, 20, 52),
-        pin(212, 118, '2'),
-        note('Góc vào hẹp thì lùi chậm và sửa lái từng nhịp nhỏ.')
+        tag(154, 145, 'HƯỚNG LÙI'),
+        note('Góc tiếp cận khác nhau; dừng nếu khoảng trống chưa rõ.')
       ],
       align: () => [
         bayLot(2),
@@ -577,7 +583,7 @@ const render = ({ template, mode, title }) => [
 
 // Mỗi thẻ học có 1 sơ đồ chính + 1 sơ đồ biến thể (chuẩn nội dung mục 5.1).
 const specs = [
-  ['parking-start', 'bay', ['approach', 'Canh vai xe trước khi lùi', 'Sơ đồ nhìn từ trên xuống: xe dừng ngang mép ô đỗ trước khi cài số lùi.'], ['approach-angle', 'Góc vào hẹp trong hầm', 'Sơ đồ nhìn từ trên xuống: góc vào hẹp, quỹ đạo lùi chia thành nhiều nhịp.']],
+  ['parking-start', 'bay', ['approach', 'Vị trí dừng và hướng lùi minh họa', 'Sơ đồ nhìn từ trên xuống: xe dừng trước ô đỗ; mũi tên chỉ đầu xe và hướng lùi tham khảo.'], ['approach-angle', 'Góc tiếp cận thay đổi', 'Sơ đồ nhìn từ trên xuống: xe ở góc tiếp cận khác; mũi tên chỉ đầu xe và một quỹ đạo lùi minh họa.']],
   ['parking-align', 'bay', ['align', 'Căn đều hai bên ô đỗ', 'Sơ đồ nhìn từ trên xuống: xe nằm giữa ô đỗ với khoảng cách hai bên bằng nhau.'], ['align-mirror', 'Soi gương kiểm tra vạch', 'Sơ đồ nhìn từ trên xuống: vùng quan sát của hai gương chiếu hậu khi căn vạch.']],
   ['parking-correct', 'bay', ['correct', 'Nhận biết xe bị lệch', 'Sơ đồ nhìn từ trên xuống: thân xe lệch so với vạch ô đỗ quá 20 cm.'], ['correct-out', 'Tiến ra làm lại', 'Sơ đồ nhìn từ trên xuống: quỹ đạo tiến ra lối đi để tạo lại góc lùi.']],
   ['parking-parallel', 'parallel', ['enter', 'Ghép ngang giữa hai xe', 'Sơ đồ nhìn từ trên xuống: xe dừng song song xe trước trước khi ghép ngang.'], ['settle', 'Vị trí đỗ hoàn chỉnh', 'Sơ đồ nhìn từ trên xuống: xe nằm gọn giữa hai xe và cách lề khoảng 30 cm.']],

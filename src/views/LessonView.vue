@@ -138,7 +138,10 @@ const complete = () => {
       <span class="risk" :class="card.risk">{{ riskLabel }}</span>
       <span>{{ card.minutes }} phút</span>
       <span>Độ khó {{ card.difficulty }}/5</span>
-      <span v-if="review" class="review-chip" :title="review.notes">✓ Đã thẩm định</span>
+      <span v-if="card.reviewStatus === 'published_unverified'" class="review-chip unverified" role="status">
+        ⚠ Chưa thẩm định độc lập
+      </span>
+      <span v-else-if="review" class="review-chip" :title="review.notes">✓ Đã thẩm định</span>
     </div>
 
     <div class="mode-toggle" role="radiogroup" aria-label="Chế độ hiển thị bài học">
@@ -275,6 +278,10 @@ const complete = () => {
       <p v-if="review">
         Thẩm định: {{ review.reviewer }} — {{ review.credential }} · độ tin cậy {{ review.confidenceScore }}/5 ({{ review.reviewedAt }})
       </p>
+      <p v-else-if="card.reviewStatus === 'published_unverified'" class="unverified-notice" role="note">
+        Bài học này chưa được thẩm định độc lập bởi chuyên gia. Các mốc và sơ đồ chỉ mang tính minh họa;
+        hãy thực hành cùng giáo viên đủ chuyên môn và chỉ lùi khi quan sát rõ khoảng trống an toàn.
+      </p>
       <p class="muted">{{ disclaimer.short }}</p>
     </footer>
   </div>
@@ -311,5 +318,16 @@ const complete = () => {
   text-decoration: none;
   text-align: center;
 }
-</style>
 
+.review-chip.unverified,
+.unverified-notice {
+  color: var(--status-warn-border);
+}
+
+.unverified-notice {
+  padding: 0.75rem;
+  border: 1px solid var(--status-warn-border);
+  border-radius: var(--radius-md);
+  background: var(--status-warn-bg);
+}
+</style>
