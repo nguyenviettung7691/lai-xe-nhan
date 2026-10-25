@@ -6,6 +6,23 @@ import type { DashboardLight, LightColor, Severity } from '../types'
  */
 export const dashboardLights: DashboardLight[] = [
   {
+    id: 'master',
+    icon: 'master',
+    name: 'Cảnh báo tổng quát',
+    english: 'Master warning',
+    color: 'amber',
+    severity: 'warn',
+    description: 'Tam giác có chấm than vàng (có xe đỏ) yêu cầu đọc thông báo đi kèm. Có thể từ cảm biến bị che tới lỗi nghiêm trọng, không xác định được nguyên nhân hay mức độ chỉ bằng tam giác.',
+    keywords: ['tam giác chấm than', 'cảnh báo tổng', 'master warning', 'general warning'],
+    actions: [
+      'Giữ kiểm soát xe và tìm nơi an toàn để đọc đầy đủ thông báo, không tra điện thoại khi đang lái.',
+      'Ưu tiên chỉ dẫn STOP/đỏ hoặc phanh, lái, quá nhiệt; dừng an toàn ngay khi có yêu cầu hoặc xe bất thường.',
+      'Ghi lại thông báo, đối chiếu sổ tay và xử lý đúng nguyên nhân; nếu không hiểu, liên hệ hỗ trợ trước khi tiếp tục.'
+    ],
+    avoid: 'Không mặc định tam giác vàng là lỗi nhẹ, không chỉ bấm xóa thông báo rồi tiếp tục chuyến đi.',
+    callHelp: 'Cứu hộ khi có STOP, đèn đỏ nghiêm trọng hoặc xe không an toàn; thông báo ít khẩn cấp hơn vẫn cần xử lý theo sổ tay.'
+  },
+  {
     id: 'hazard',
     icon: 'hazard',
     name: 'Đèn cảnh báo nguy hiểm',
