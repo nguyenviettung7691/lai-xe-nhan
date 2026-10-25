@@ -114,15 +114,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Seat belt reminder',
     color: 'red',
     severity: 'warn',
-    description: 'Có người trên xe chưa cài dây an toàn hoặc khóa dây chưa ăn khớp.',
+    description: 'Đèn người có đai chéo nhắc có vị trí ghế chưa cài dây, có thể kèm còi và sơ đồ từng ghế. Đồ vật trên ghế hoặc cảm biến/khóa lỗi cũng có thể gây báo.',
     keywords: ['dây an toàn', 'dây đai', 'seat belt', 'belt'],
     actions: [
-      'Dừng hẳn xe ở nơi an toàn trước khi chỉnh dây.',
-      'Cài lại dây cho từng người, nghe rõ tiếng khóa "tách".',
-      'Kiểm tra đồ nặng đặt trên ghế vì cảm biến có thể nhận nhầm.'
+      'Trước khi chạy, kiểm tra mọi người đã cài dây; đang chạy thì dừng an toàn trước khi chỉnh.',
+      'Đai ngang ôm thấp qua hông, đai chéo qua vai/ngực, không xoắn; trẻ nhỏ dùng ghế phù hợp và hướng dẫn xe.',
+      'Nếu vẫn báo, kiểm tra đúng khóa ghế và đồ trên ghế; khóa không giữ chắc thì không dùng vị trí đó.'
     ],
-    avoid: 'Không luồn dây sau lưng hay dùng chốt giả để tắt tiếng cảnh báo.',
-    callHelp: 'Vào gara khi dây đã cài đúng mà đèn vẫn sáng — khóa dây có thể hỏng.'
+    avoid: 'Không luồn dây sau lưng/dưới nách, dùng chốt giả hoặc cho hai người dùng chung một dây.',
+    callHelp: 'Sửa ngay khi khóa/đai không giữ hoặc không thu hồi; đèn còn báo dù cài đúng cần kiểm tra cảm biến, không vô hiệu hóa cảnh báo.'
   },
   {
     id: 'door',
