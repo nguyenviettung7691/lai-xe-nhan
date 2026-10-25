@@ -199,15 +199,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'EPS / Power steering',
     color: 'amber',
     severity: 'warn',
-    description: 'Trợ lực lái điện bị lỗi, vô-lăng có thể nặng đột ngột.',
+    description: 'Vô-lăng kèm dấu chấm than hoặc chữ EPS/MDPS báo lỗi trợ lực; có xe dùng màu đỏ. Lực lái có thể thay đổi đột ngột, không phải cảnh báo nhắc giữ vô-lăng của hỗ trợ làn.',
     keywords: ['trợ lực', 'vô lăng', 'lái nặng', 'eps', 'power steering'],
     actions: [
-      'Giữ chắc vô-lăng bằng hai tay và giảm tốc.',
-      'Thử tấp vào lề, tắt máy 30 giây rồi khởi động lại.',
-      'Nếu vô-lăng vẫn nặng, chỉ đi chậm đoạn ngắn đến gara.'
+      'Giữ vô-lăng bằng hai tay, giảm tốc êm và tìm nơi dừng an toàn.',
+      'Nếu vô-lăng nặng, giật, khó giữ hướng hoặc đèn đỏ: không đi tiếp, gọi cứu hộ.',
+      'Khi đã dừng, đọc sổ tay và liên hệ xưởng; chỉ khởi động lại nếu được hướng dẫn, đèn tắt không chứng minh đã sửa lỗi.'
     ],
-    avoid: 'Không lái một tay hoặc chạy tốc độ cao khi trợ lực đang lỗi.',
-    callHelp: 'Gọi cứu hộ nếu vô-lăng nặng bất thường hoặc trả lái không tự về.'
+    avoid: 'Không tắt nguồn khi xe còn chạy, không giữ lái sát hết hành trình hoặc cố lái đến gara khi không kiểm soát chắc.',
+    callHelp: 'Gọi cứu hộ khi lực lái bất thường, có đèn đỏ hoặc không giữ được hướng; đèn vàng còn sáng dù lái bình thường vẫn cần kiểm tra sớm.'
   },
   {
     id: 'esp-active',
