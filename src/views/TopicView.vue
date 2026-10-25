@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { getLessonMastery, topics } from '../content'
@@ -17,7 +18,7 @@ const mastery = (lessonId: string) => {
 
 <template>
   <div v-if="topic" class="topic-detail">
-    <div class="topic-intro" :style="{ '--accent': topic.color }"><span class="topic-icon">{{ topic.icon }}</span><p>{{ topic.description }}</p></div>
+    <div class="topic-intro" :style="{ '--accent': topic.color }"><span class="topic-icon" aria-hidden="true"><AppIcon :name="topic.icon" /></span><p>{{ topic.description }}</p></div>
     <section v-for="lesson in topic.lessons" :key="lesson.id" class="lesson-group">
       <div class="section-head">
         <div><p class="eyebrow">{{ lesson.cards.length }} THẺ · {{ lesson.estMinutes }} PHÚT</p><h2>{{ lesson.title }}</h2></div>

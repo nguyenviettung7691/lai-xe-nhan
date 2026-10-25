@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { isDashboardIconName } from '../../content/light-icons'
+import { isAppIconName } from '../../features/icons/icons'
 
 export const RiskSchema = z.enum(['low', 'medium', 'high'])
 export const SeveritySchema = z.enum(['info', 'warn', 'critical'])
@@ -137,7 +138,9 @@ export const TopicSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(2),
   description: z.string(),
-  icon: z.string(),
+  icon: z.custom<import('../../features/icons/icons').AppIconName>(isAppIconName, {
+    message: 'Unknown topic icon'
+  }),
   color: z.string(),
   sortOrder: z.number().int(),
   isActive: z.boolean(),

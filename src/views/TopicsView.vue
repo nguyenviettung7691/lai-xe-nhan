@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { RouterLink } from 'vue-router'
 import { topics } from '../content'
 
@@ -11,7 +12,7 @@ const cardCount = (topic: (typeof topics)[number]) => topic.lessons.reduce((sum,
     <div class="topic-grid">
       <RouterLink v-for="(topic, index) in topics" :key="topic.id" :to="`/topics/${topic.id}`" class="topic-card large" :style="{ '--accent': topic.color }">
         <span class="topic-number">0{{ index + 1 }}</span>
-        <span class="topic-icon">{{ topic.icon }}</span>
+        <span class="topic-icon" aria-hidden="true"><AppIcon :name="topic.icon" /></span>
         <h2>{{ topic.title }}</h2>
         <p>{{ topic.description }}</p>
         <small>{{ cardCount(topic) }} bài học · 3–5 phút/bài</small>

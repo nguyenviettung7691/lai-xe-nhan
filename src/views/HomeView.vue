@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { publishedCards, topics } from '../content'
@@ -16,7 +17,7 @@ const cardCount = (topic: (typeof topics)[number]) => topic.lessons.reduce((sum,
     <div class="hero-art" aria-hidden="true"><div class="road"><span class="dash one" /><span class="dash two" /><span class="dash three" /></div><div class="car"><img src="/favicon.svg" alt="" /></div><span class="spark">✦</span></div>
   </section>
   <section class="section-head"><div><p class="eyebrow">KHÁM PHÁ</p><h2>Học theo tình huống</h2></div><RouterLink to="/topics" class="text-link">Xem tất cả →</RouterLink></section>
-  <div class="topic-grid compact"><RouterLink v-for="topic in topics" :key="topic.id" :to="`/topics/${topic.id}`" class="topic-card" :style="{ '--accent': topic.color }"><span class="topic-icon">{{ topic.icon }}</span><strong>{{ topic.title }}</strong><small>{{ cardCount(topic) }} bài học</small></RouterLink></div>
+  <div class="topic-grid compact"><RouterLink v-for="topic in topics" :key="topic.id" :to="`/topics/${topic.id}`" class="topic-card" :style="{ '--accent': topic.color }"><span class="topic-icon" aria-hidden="true"><AppIcon :name="topic.icon" /></span><strong>{{ topic.title }}</strong><small>{{ cardCount(topic) }} bài học</small></RouterLink></div>
   <section class="quick-row"><RouterLink to="/checklist" class="quick-card"><span class="quick-icon green">✓</span><div><strong>Checklist trước khi lái</strong><small>Rà soát khi xe đã dừng an toàn</small></div><span>→</span></RouterLink><RouterLink to="/lights" class="quick-card"><span class="quick-icon red">!</span><div><strong>Đèn cảnh báo</strong><small>Tra cứu nhanh khi cần</small></div><span>→</span></RouterLink></section>
   <p class="progress-note">Bạn đã hoàn thành <b>{{ store.progress }}</b> / {{ total }} bài học · Nội dung đã sẵn sàng offline.</p>
 </template>

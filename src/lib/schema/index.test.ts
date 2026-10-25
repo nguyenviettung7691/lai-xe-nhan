@@ -32,6 +32,11 @@ describe('Zod Schema Validation Layer (Data Contracts)', () => {
     }
   })
 
+  it('rejects topics whose icon is not a drawn app icon', () => {
+    expect(TopicSchema.safeParse({ ...contentPack.topics[0], icon: '☔' }).success).toBe(false)
+    expect(new Set(contentPack.topics.map((topic) => topic.icon)).size).toBe(contentPack.topics.length)
+  })
+
   it('validates individual cards and their steps', () => {
     for (const topic of contentPack.topics) {
       for (const lesson of topic.lessons) {

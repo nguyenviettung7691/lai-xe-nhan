@@ -141,7 +141,7 @@ export interface Topic {
   slug: string
   title: string
   description: string
-  icon: string
+  icon: import('./features/icons/icons').AppIconName
   color: string
   sortOrder: number
   isActive: boolean
