@@ -6,6 +6,8 @@ interface SignalDrawing {
 const brakeCircle = 'M16 13a24 24 0 0 0 0 38M48 13a24 24 0 0 1 0 38M50 32a18 18 0 1 1-36 0 18 18 0 0 1 36 0'
 const exclamation = 'M32 21v13m0 8v1'
 const car = 'M22 14h20l5 13v18H17V27l5-13Zm-5 13h30M22 45v5m20-5v5M23 35h2m14 0h2'
+/** Side-view silhouette for EV/immobilizer telltales: no beltline, so the inner symbol stays clear. */
+const sideCar = 'M13 44H6V35l7-4 8-11h20l10 11 7 2v11h-6M24 44h17M24 44a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0Zm28 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0Z'
 const skidCar = 'M23 7h18l5 12v16H18V19l5-12Zm-5 12h28M23 35v3m18-3v3M23 26h2m14 0h2'
 const skidTracks = 'M23 41c-12 5 10 8-2 14M41 41c-12 5 10 8-2 14'
 const lampLeft = 'M36 17v30c19 0 19-30 0-30Z'
@@ -34,9 +36,9 @@ export const lightIcons = {
     airbag: 'M54 27a12 12 0 1 1-24 0 12 12 0 0 1 24 0'
   } },
   seatbelt: { paths: {
-    person: 'M37 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0M23 24l-5 17 8 5-4 13m19-35 5 17-8 5 4 13M23 24h18',
-    diagonalBelt: 'M43 21 23 45',
-    lapBelt: 'M20 40l24 6'
+    person: 'M37 11a5 5 0 1 1-10 0 5 5 0 0 1 10 0M22 41V27c0-5 4-8 10-8s10 3 10 8v14M15 22v24h34V22M24 46v12m16-12v12',
+    diagonalBelt: 'M41 23 24 40',
+    lapBelt: 'M22 41h20'
   } },
   door: { paths: {
     car: 'M23 9h18l5 12v33H18V21l5-12Zm0 13h18v19H23Zm-5 25h28',
@@ -58,8 +60,8 @@ export const lightIcons = {
   'esp-active': { paths: { car: skidCar, skidTracks } },
   'esp-off': { paths: { car: skidCar, skidTracks: 'M23 39c-8 3 4 5 0 7M41 39c-8 3 4 5 0 7' },
     text: [{ value: 'OFF', x: 32, y: 58, size: 12 }] },
-  immobilizer: { paths: { car,
-    key: 'M35 31a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm0 0h8m-3 0v4'
+  immobilizer: { paths: { car: sideCar,
+    key: 'M28 31a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0h17m-4 0v5m-5-5v4'
   } },
   dpf: { paths: {
     filter: 'M17 15h30v34H17ZM5 27h12m30 10h12',
@@ -135,7 +137,7 @@ export const lightIcons = {
     turtle: 'M15 36a17 17 0 0 1 34 0v8H15v-8Zm0 2-7-3v8l7-2m34-12h5a6 6 0 0 1 0 12h-5M21 44v8m20-8v8',
     shell: 'M23 22 32 30l9-8M32 30v14M15 36h34'
   } },
-  'ev-system': { paths: { car, exclamation: 'M32 23v10m0 6v1' } },
+  'ev-system': { paths: { car: sideCar, exclamation: 'M32 24v9m0 5v1' } },
   'charge-connector': { paths: {
     plug: 'M20 13v12m16-12v12M14 25h28v11a14 14 0 0 1-28 0V25ZM28 50v7h22V43'
   } },

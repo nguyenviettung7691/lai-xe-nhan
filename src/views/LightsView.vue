@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '../features/icons/AppIcon.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import {
   findLights,
@@ -96,13 +97,16 @@ const setColor = (value: LightColor | 'all') => {
       ưu tiên dừng an toàn và gọi hỗ trợ.
     </p>
 
-    <input
-      v-model="query"
-      class="search"
-      type="search"
-      aria-label="Tìm đèn cảnh báo theo từ khóa"
-      placeholder="⌕  Tìm đèn: phanh, động cơ, ắc quy..."
-    />
+    <div class="search-field">
+      <span class="search-icon" aria-hidden="true"><AppIcon name="search" /></span>
+      <input
+        v-model="query"
+        class="search"
+        type="search"
+        aria-label="Tìm đèn cảnh báo theo từ khóa"
+        placeholder="Tìm đèn: phanh, động cơ, ắc quy..."
+      />
+    </div>
 
     <div class="filters" role="group" aria-label="Lọc theo mức độ">
       <button
@@ -161,7 +165,7 @@ const setColor = (value: LightColor | 'all') => {
         tabindex="-1"
         :aria-label="selected.name"
       >
-        <button class="close" aria-label="Đóng" @click="acknowledge">×</button>
+        <button class="close" aria-label="Đóng" @click="acknowledge"><AppIcon name="close" /></button>
         <span class="light-symbol large" :class="[selected.severity, `color-${selected.color}`]" aria-hidden="true">
           <DashboardLightIcon :name="selected.icon" />
         </span>
