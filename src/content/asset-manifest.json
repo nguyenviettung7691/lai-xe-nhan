@@ -1,8 +1,8 @@
 {
-  "contentVersion": "2026.10.4",
+  "contentVersion": "2026.10.5",
   "generator": "scripts/generate-assets.mjs",
   "license": "Tài sản tự tạo cho dự án Lái Xe Nhàn.",
-  "totalSizeKb": 121.66,
+  "totalSizeKb": 122.06,
   "assets": [
     {
       "id": "parking-start-main",
@@ -124,11 +124,11 @@
       "url": "/content/svg/parking-slope-main.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 4.05,
-      "checksum": "sha256-d6dabadffee28dc4b80d2c8983e070a881625404be197e6a34642fe9cbda08ec",
+      "sizeKb": 4,
+      "checksum": "sha256-a178801bb542e1a05a310bbba529290b96434602e045599d26715127800c2ee8",
       "offlinePack": "core",
-      "caption": "Lùi chuồng trên dốc hầm",
-      "alt": "Sơ đồ nhìn từ trên xuống: lùi vào ô đỗ trên mặt dốc của hầm gửi xe."
+      "caption": "Ví dụ lùi thẳng lên dốc tại ô được phép, không phải đường dốc ra vào hầm",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: phía cao ở trên, thấp ở dưới; đầu xe hướng xuống, đuôi hướng lên. Mũi tên xám bên trái chỉ chiều dốc xuống; mũi tên xanh từ sau đuôi hướng lên vào cửa ô mở chỉ hướng lùi lên dốc, không phải quỹ đạo đánh lái hay mức nhả phanh chung."
     },
     {
       "id": "parking-slope-var",
@@ -138,11 +138,11 @@
       "url": "/content/svg/parking-slope-var.svg",
       "width": 320,
       "height": 200,
-      "sizeKb": 3.67,
-      "checksum": "sha256-a1e1f2d6ace54b834a81b75b7fe6660758502c4df8da01f06ae7736a61da5b9f",
+      "sizeKb": 4.12,
+      "checksum": "sha256-ba5f61527dfb765138177692ea7a8420f6e5dc651fbbcfbed3a7c1296f11f322",
       "offlinePack": "core",
-      "caption": "Giữ xe không trôi",
-      "alt": "Sơ đồ nhìn từ trên xuống: hướng trôi của xe khi nhả phanh trên dốc."
+      "caption": "Nguy cơ trôi xuống dốc về phía đầu xe dù đã cài R",
+      "alt": "Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng vị trí xe và hướng dốc: cao ở trên, thấp ở dưới, đầu xe ở dưới. Mũi tên xám bên trái chỉ dốc xuống; mũi tên đỏ nét đứt trước đầu xe chỉ nguy cơ trôi xuống nếu không giữ phanh, ngược hướng lùi lên dốc ở hình chính; không phải lệnh tiến hay trạng thái đã đỗ an toàn. Đạp phanh để dừng, không dùng P khi xe đang chuyển động."
     },
     {
       "id": "parking-lowlight-main",

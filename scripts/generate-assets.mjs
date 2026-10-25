@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const outDir = join(root, 'public', 'content', 'svg')
 const manifestFile = join(root, 'src', 'content', 'asset-manifest.json')
-const CONTENT_VERSION = '2026.10.4'
+const CONTENT_VERSION = '2026.10.5'
 
 const W = 320
 const H = 200
@@ -89,13 +89,13 @@ const wrapNote = (value, max = 48) => {
   return lines
 }
 
-const note = value => {
+const note = (value, lineHeight = 10) => {
   const lines = wrapNote(value)
-  const height = lines.length * 10 + 6
+  const height = lines.length * lineHeight + 6
   const top = H - height
   return (
     rect(0, top, W, height, C.kerb, 0, 0.92) +
-    lines.map((text, index) => label(16, top + 11 + index * 10, text, { size: 8.8 })).join('')
+    lines.map((text, index) => label(16, top + 11 + index * lineHeight, text, { size: 8.8 })).join('')
   )
 }
 
@@ -258,21 +258,6 @@ const templates = {
         label(192, 151, 'TIẾN', { size: 8, fill: C.ego }),
         note('Mũi tên: tiến thẳng minh họa, không theo tỷ lệ. Dừng hẳn trước đổi chiều.')
       ],
-      slope: () => [
-        bayLot(2, [0, 1, 3]),
-        `<g opacity=".45">${line(22, 118, 42, 130, C.bike, 2)}${line(42, 130, 22, 142, C.bike, 2)}${line(52, 118, 72, 130, C.bike, 2)}${line(72, 130, 52, 142, C.bike, 2)}</g>`,
-        car(250, 132, 90, C.ego),
-        trail('M236 120C216 98 206 84 200 70'),
-        tag(18, 166, 'Dốc xuống 8%'),
-        note('Giữ phanh chân, nhả từng chút để xe bò đều xuống dốc.')
-      ],
-      'slope-hold': () => [
-        bayLot(2, [0, 1, 3]),
-        car(200, 78, 180, C.ego),
-        `<path d="M200 108L200 140" stroke="${C.hazard}" stroke-width="2.4" stroke-dasharray="4 4" fill="none" marker-end="url(#tip)"/>`,
-        tag(108, 166, 'Xe trôi khi nhả phanh'),
-        note('Về P và kéo phanh tay ngay khi xe đứng hẳn trong ô.')
-      ],
       lowlight: () => [
         bayLot(2, [0, 3]),
         rect(0, 0, W, 180, '#050a08', 0, 0.42),
@@ -307,6 +292,49 @@ const templates = {
       ]
     }
     return (scenes[mode] ?? scenes.approach)()
+  },
+  slopeParking: mode => {
+    const base = [
+      '<defs>',
+      '<marker id="slope-grade-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">',
+      `<path d="M0 1L9 5L0 9Z" fill="${C.text}"/></marker>`,
+      '<marker id="slope-roll-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">',
+      `<path d="M0 1L9 5L0 9Z" fill="${C.hazard}"/></marker></defs>`,
+      rect(0, 0, W, 174, C.asphalt),
+      rect(120, 26, 80, 60, '#31463f'),
+      '<g id="slope-bay">',
+      line(120, 26, 120, 86, C.bay, 1.6),
+      line(200, 26, 200, 86, C.bay, 1.6),
+      line(120, 26, 200, 26, C.bay, 1.6),
+      '</g>',
+      label(218, 43, 'Ô ĐỖ', { size: 9 }),
+      label(218, 55, 'ĐƯỢC PHÉP', { size: 8 }),
+      label(44, 34, 'CAO', { size: 9, anchor: 'middle' }),
+      '<g id="slope-grade">',
+      `<path d="M44 48L44 134" fill="none" stroke="${C.text}" stroke-width="1.8" marker-end="url(#slope-grade-tip)"/>`,
+      '</g>',
+      label(44, 151, 'THẤP', { size: 9, anchor: 'middle' }),
+      label(60, 92, 'DỐC', { size: 8 }),
+      label(60, 104, 'XUỐNG', { size: 8 }),
+      `<g id="slope-car">${car(160, 112, 180, C.ego)}</g>`,
+      label(184, 96, 'ĐUÔI', { size: 8, fill: C.ego }),
+      label(184, 133, 'ĐẦU', { size: 8, fill: C.ego })
+    ]
+    return mode === 'reverse' ? [
+      ...base,
+      label(160, 13, 'VÍ DỤ LÙI THẲNG LÊN DỐC', { size: 9, anchor: 'middle' }),
+      `<g id="slope-reverse">${trail('M160 84L160 36')}</g>`,
+      label(218, 72, 'HƯỚNG LÙI', { size: 8, fill: C.ego }),
+      note('Không theo tỷ lệ; không có mức nhả phanh chung. Chỉ lùi khi giữ được xe.', 12)
+    ] : [
+      ...base,
+      label(160, 13, 'NGUY CƠ NẾU KHÔNG GIỮ PHANH', { size: 9, fill: C.hazard, anchor: 'middle' }),
+      '<g id="slope-roll">',
+      `<path d="M160 140L160 163" fill="none" stroke="${C.hazard}" stroke-width="2.4" stroke-dasharray="4 4" marker-end="url(#slope-roll-tip)"/>`,
+      '</g>',
+      label(178, 155, 'TRÔI XUỐNG', { size: 8, fill: C.hazard }),
+      note('Không theo tỷ lệ; R vẫn có thể trôi xuống. Đạp phanh, không dùng P để dừng.', 12)
+    ]
   },
   parallel: mode => {
     const base = [
@@ -658,7 +686,7 @@ const specs = [
   ['parking-align', 'bay', ['align', 'Phân biệt song song vạch và khoảng trống hai bên', 'Sơ đồ không theo tỷ lệ: xe lùi vào ô, đầu xe hướng ra lối đi ở dưới; thân song song hai vạch, a và b chỉ khoảng trống từ thân xe tới vạch, không phải mốc đo cố định.'], ['align-mirror', 'Hướng nhìn qua gương, không phải đường xe chạy', 'Sơ đồ nhìn từ trên xuống: đầu xe ở dưới, đuôi ở trên; nét đứt từ hai gương hướng về vạch phía sau chỉ minh họa hướng nhìn, không mô tả đầy đủ vùng thấy hay thay thế quan sát trực tiếp.']],
   ['parking-correct', 'bay', ['correct', 'Dừng để phân biệt thân nghiêng và lệch ngang', 'Sơ đồ không theo tỷ lệ: xe đang dừng, thân nghiêng so với trục ô; đuôi ở trên, đầu hướng xuống lối đi qua cửa ô mở. Nét đứt là trục ô, không phải đường xe chạy; không có mũi tên chuyển động.'], ['correct-out', 'Một đoạn tiến minh họa, không phải toàn bộ cách sửa', 'Sơ đồ không theo tỷ lệ, cùng vị trí xe đang nghiêng: đầu xe ở dưới, mũi tên thẳng hướng về phía trước qua cửa ô mở. Chỉ tiến khi đã nhường người và xe, quan sát rõ khoảng trống; không quy định quãng tiến hay hướng đánh lái cho mọi xe. Dừng hẳn trước đổi chiều.']],
   ['parking-parallel', 'parallel', ['enter', 'Ví dụ tiếp cận lề phải và hướng đuôi lùi ban đầu, không phải toàn quỹ đạo', 'Sơ đồ không theo tỷ lệ, đầu các xe hướng lên, lề phải ở bên phải hình; xe mình bên trái xe trước, hai đuôi ngang nhau chỉ là ví dụ. Mũi tên cong từ sau đuôi xe chỉ hướng lùi ban đầu xuống và sang phải về lề; đầu xe quét trái. Mũi tên thẳng bên trái chỉ chiều đi, không phải hướng lùi.'], ['settle', 'Ví dụ xe song song lề phải, chừa khoảng hở hai đầu; không phải mốc đo', 'Sơ đồ không theo tỷ lệ: xe mình hướng đầu lên, song song lề phải ở bên phải hình, có khoảng hở với lề và cả xe trước, xe sau. Dấu ngoặc chỉ khoảng hở hai đầu, không phải số đo. Mũi tên bên trái chỉ chiều đi; xe đã đỗ không có mũi tên chuyển động.']],
-  ['parking-slope', 'bay', ['slope', 'Lùi chuồng trên dốc hầm', 'Sơ đồ nhìn từ trên xuống: lùi vào ô đỗ trên mặt dốc của hầm gửi xe.'], ['slope-hold', 'Giữ xe không trôi', 'Sơ đồ nhìn từ trên xuống: hướng trôi của xe khi nhả phanh trên dốc.']],
+  ['parking-slope', 'slopeParking', ['reverse', 'Ví dụ lùi thẳng lên dốc tại ô được phép, không phải đường dốc ra vào hầm', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ: phía cao ở trên, thấp ở dưới; đầu xe hướng xuống, đuôi hướng lên. Mũi tên xám bên trái chỉ chiều dốc xuống; mũi tên xanh từ sau đuôi hướng lên vào cửa ô mở chỉ hướng lùi lên dốc, không phải quỹ đạo đánh lái hay mức nhả phanh chung.'], ['hold', 'Nguy cơ trôi xuống dốc về phía đầu xe dù đã cài R', 'Sơ đồ nhìn từ trên xuống, không theo tỷ lệ, cùng vị trí xe và hướng dốc: cao ở trên, thấp ở dưới, đầu xe ở dưới. Mũi tên xám bên trái chỉ dốc xuống; mũi tên đỏ nét đứt trước đầu xe chỉ nguy cơ trôi xuống nếu không giữ phanh, ngược hướng lùi lên dốc ở hình chính; không phải lệnh tiến hay trạng thái đã đỗ an toàn. Đạp phanh để dừng, không dùng P khi xe đang chuyển động.']],
   ['parking-lowlight', 'bay', ['lowlight', 'Hầm thiếu sáng', 'Sơ đồ nhìn từ trên xuống: vùng sáng đèn xe khi lùi trong hầm thiếu sáng.'], ['lowlight-mirror', 'Quan sát bằng mắt và tai', 'Sơ đồ nhìn từ trên xuống: vùng quan sát phía sau khi hạ kính trong hầm tối.']],
   ['parking-column', 'bay', ['column', 'Ô đỗ sát cột bê tông', 'Sơ đồ nhìn từ trên xuống: ô đỗ có cột bê tông chắn tầm nhìn bên trái.'], ['column-gap', 'Chừa chỗ mở cửa', 'Sơ đồ nhìn từ trên xuống: xe đỗ lệch xa cột để còn khoảng trống mở cửa.']],
   ['narrow-creep', 'alley', ['creep', 'Bò đều trong hẻm', 'Sơ đồ nhìn từ trên xuống: xe đi chậm trong hẻm hẹp có xe máy phía trước.'], ['creep-stop', 'Dừng khi có xe cắt ngang', 'Sơ đồ nhìn từ trên xuống: vùng nguy hiểm khi xe máy cắt ngang đầu xe.']],

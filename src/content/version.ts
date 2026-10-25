@@ -1,7 +1,7 @@
 import type { ContentRelease } from '../types'
 
 /** Phiên bản content pack theo định dạng YYYY.MM.patch (mục 6.6 kế hoạch dữ liệu). */
-export const CONTENT_VERSION = '2026.10.4'
+export const CONTENT_VERSION = '2026.10.5'
 export const CONTENT_GENERATED_AT = '2026-10-25'
 export const CONTENT_LOCALE = 'vi-VN' as const
 
@@ -61,5 +61,11 @@ export const contentReleases: ContentRelease[] = [
     date: '2026-10-25',
     summary: 'Sửa hướng dẫn ghép ngang parking-parallel, quy định đỗ sát lề, hai sơ đồ lề phải và trạng thái chưa thẩm định độc lập.',
     cardIds: ['parking-parallel']
+  },
+  {
+    version: '2026.10.5',
+    date: '2026-10-25',
+    summary: 'Sửa hướng dẫn parking-slope, kiểm soát phanh và giữ xe trên dốc, hai sơ đồ hướng dốc và trạng thái chưa thẩm định độc lập.',
+    cardIds: ['parking-slope']
   }
 ]

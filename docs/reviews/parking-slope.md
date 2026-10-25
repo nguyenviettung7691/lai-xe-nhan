@@ -76,4 +76,49 @@ Both original illustrations were inspected in the rendered lesson.
 
 ## Verification results
 
-Pending implementation.
+- Analysis/plan committed first as `91da50e`, before implementation.
+- Revised card **1.2.0**, content pack **2026.10.5**. Preserved lesson,
+  asset, checklist and quiz IDs and all historical releases. All eight steps,
+  cues, mistakes, recovery, safety, mnemonic and quiz content were reviewed
+  together. No renderer or shared-checklist changes were needed.
+- Removed only this lesson's sample approval; confirmed the rendered warning
+  says it has not been independently validated and no sample reviewer appears.
+- Replaced both SVGs with a consistent high-to-low axis, labelled front/rear,
+  an uphill reverse arrow and an opposite, conditional downhill hazard arrow.
+  The bay has an open entrance and positive body clearance for the illustrated
+  straight example; this is not proof of real-vehicle swept-path feasibility.
+- Added **15 regression cases** for safe site selection, uphill/downhill
+  distinction, observation, brake control, assist limits, direction changes,
+  parking/exit, quiz answers, review/release metadata, bay geometry, arrow
+  direction and matching marker colours, plus footer spacing.
+- Final focused run: **78 tests passed** across seven content test files.
+  The initial geometric run caught a new template-name collision with an
+  existing downhill-driving template; renamed the parking template and
+  regenerated before proceeding. All subsequent focused runs passed.
+- Final deterministic generation: manifest and all 46 SVGs were byte-identical
+  on repeat generation. Only the two slope artworks changed from the baseline;
+  **44 unrelated artworks are unchanged**. Checksum, size and offline-budget
+  tests pass; the full SVG pack is **122.06 KB**.
+- Inspected both figures in the app at desktop **1136 × 1099** and mobile
+  **390 × 844**. No horizontal overflow. Browser-measured bounds exposed
+  overlapping font boxes in the two footer lines; increased line spacing only
+  for this lesson while preserving the shared helper's existing default.
+  Final measurements: **24 SVG text elements, zero out-of-bounds text and
+  zero text-to-text overlaps**. Moved the reverse label outside the bay wall.
+- Exercised the quiz: deliberately choosing the unsafe P-while-moving answer
+  produced **2/3, failed**; retrying with all correct answers produced
+  **3/3, passed**. Quick mode retains all eight steps, safety guidance and
+  unverified notice, hides the variant as designed, and has no horizontal
+  overflow. Restored full learning mode afterward.
+- Reviewed TTS data derivation: full and stepwise scripts use the revised
+  instructions/cues and safety field. Audio playback itself was not tested.
+- Final **lint, TypeScript checking and production/PWA build passed**.
+  Build output contains non-blocking third-party Zod annotation warnings.
+
+## Remaining limits
+
+The lesson deliberately does not teach a universal pedal position, hill-assist
+hold duration, gradient limit or manual-transmission clutch technique. Readers
+must follow their vehicle manual and practise with a qualified instructor.
+Independent driving-instructor validation remains outstanding; the app now
+states that explicitly instead of presenting seed data as certification.

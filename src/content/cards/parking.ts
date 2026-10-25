@@ -180,40 +180,43 @@ export const parkingCards: Card[] = [
     lessonId: 'parking-underground',
     topicId: 'parking',
     title: 'Lùi xe trên dốc hầm',
-    context: 'Dốc hầm thương mại dài và hay ẩm nên xe dễ trôi khi chuyển chân từ phanh sang ga. Bạn phải lùi vào ô ngay trên đoạn dốc này.',
-    objective: 'Giữ xe bò đều khi lùi trên dốc và không để xe trôi tự do.',
+    context: 'Bạn dùng xe số tự động tại khu đỗ xe có độ dốc, chỉ thao tác ở ô đỗ được phép lùi và còn đủ khoảng trống, không trên đường dốc ra vào hầm. Lùi có thể lên hoặc xuống dốc; sơ đồ chỉ minh họa lùi thẳng lên dốc, không phải mốc áp dụng cho mọi xe.',
+    objective: 'Nhận biết hướng dốc, kiểm soát xe lùi thật chậm và dừng, giữ xe an toàn thay vì để trôi hoặc cố vào ô không phù hợp.',
     risk: 'high',
     difficulty: 3,
     minutes: 4,
     tags: { speedRange: 'creep', spaceConstraint: 'tight', visibility: 'reduced', stress: 'high' },
     steps: [
-      { instruction: 'Đạp phanh giữ xe đứng yên một nhịp trước khi cài số R.', cueType: 'feel', cueText: 'Xe đứng hẳn mới chuyển số' },
-      { instruction: 'Bật đèn chiếu gần và quan sát điểm mù hai bên.', cueType: 'mirror', cueText: 'Điểm mù hai bên đã trống' },
-      { instruction: 'Nhả phanh khoảng một phần ba hành trình để xe bò xuống.', cueType: 'feel', cueText: 'Một phần ba hành trình phanh', speedHint: 'dưới 5 km/h' },
-      { instruction: 'Giữ vô-lăng ổn định và chỉ sửa lái từng nhịp nhỏ theo gương.', cueType: 'mirror', cueText: 'Sửa lái theo mép ô trong gương', steeringHint: 'sửa nhỏ từng nhịp' },
-      { instruction: 'Đạp phanh dứt khoát nếu xe tăng tốc ngoài ý muốn.', cueType: 'feel', cueText: 'Xe tăng tốc là dấu hiệu trôi' },
-      { instruction: 'Về P và kéo phanh tay ngay khi xe đã đứng hẳn trong ô.', cueType: 'feel', cueText: 'Xe đứng hẳn trong ô đỗ' }
+      { instruction: 'Chọn ô được phép đỗ và lùi; xác định phía cao, phía thấp, độ bám và khoảng trống cả đầu, đuôi xe; chọn chỗ bằng phẳng khác nếu dốc trơn, thiếu tầm nhìn hoặc chưa tự tin giữ xe.', cueType: 'marker', cueText: 'Không coi đường dốc ra vào hầm là ô đỗ' },
+      { instruction: 'Quét gương, điểm mù và nhìn trực tiếp hai bên, phía sau cùng vùng đầu xe có thể quét ra; nhường người đi bộ, xe máy và xe khác, chỉ bắt đầu khi đường đi rõ.', cueType: 'mirror', cueText: 'Camera và cảm biến chỉ hỗ trợ quan sát' },
+      { instruction: 'Dừng hẳn, giữ phanh chân rồi cài R, có tín hiệu lùi và bật đèn chiếu gần khi thiếu sáng; đọc hướng dẫn của xe về phanh đỗ điện tử, Auto Hold và hỗ trợ khởi hành ngang dốc trước khi thao tác.', cueType: 'feel', cueText: 'R không ngăn xe trôi xuống dốc; hỗ trợ không thay phanh đỗ', speedHint: '0 km/h' },
+      { instruction: 'Giữ xe bằng phanh cho tới khi sẵn sàng: nếu lùi xuống dốc, giảm lực phanh có kiểm soát theo tốc độ thực tế, không nhả hết cho xe trôi; nếu lùi lên dốc, dùng cách khởi hành theo hướng dẫn của xe và đã được tập cùng giáo viên, không mặc định nhả phanh là xe sẽ lùi.', cueType: 'feel', cueText: 'Không có hành trình nhả phanh chung; không dùng ga để giữ xe đứng yên', speedHint: 'tốc độ đi bộ hoặc chậm hơn' },
+      { instruction: 'Lùi thật chậm, liên tục kết hợp gương với quan sát trực tiếp quanh xe; chỉnh lái theo khoảng trống thực tế, kiểm tra cả vùng đầu xe quét ra, không bám riêng camera hay một mốc lái cố định.', cueType: 'mirror', cueText: 'Sẵn sàng đạp phanh, chưa chắc thì dừng', steeringHint: 'sơ đồ lùi thẳng, không mô phỏng quỹ đạo vào ô khi đánh lái' },
+      { instruction: 'Đạp phanh để dừng hẳn và giữ xe ngay khi xe tăng tốc, trôi sai hướng, có người hoặc xe vào đường đi, cảm biến cảnh báo hay không chắc khoảng cách; không chọn P khi đang chuyển động, chỉ đổi R/D sau khi đứng hẳn và quan sát lại.', cueType: 'feel', cueText: 'Hỗ trợ khởi hành chỉ giữ tạm thời và có thể không kích hoạt' },
+      { instruction: 'Dừng hẳn trong ô, giữ phanh chân và thực hiện trình tự đỗ theo hướng dẫn của xe: cài phanh đỗ và chọn P trước khi nhả phanh chân; không dựa riêng vào P hoặc Auto Hold để đỗ trên dốc.', cueType: 'feel', cueText: 'Phanh chân giữ xe trong suốt quá trình cài phanh đỗ và P' },
+      { instruction: 'Kiểm tra xe đã được giữ chắc bằng cách giảm lực phanh chân thận trọng khi vẫn ngồi ở vị trí lái, đạp giữ lại ngay nếu xe dịch chuyển; chỉ tắt máy, rời xe và mở cửa sau khi xe đã an toàn, quan sát trước, sau và bên mở cửa.', cueType: 'feel', cueText: 'Đỗ dốc trên đường bộ phải đánh lái về phía lề và chèn bánh; không ra khỏi xe chưa được giữ chắc' }
     ],
     mistakes: [
-      'Đệm ga để thắng độ dốc làm xe lao về phía sau.',
-      'Quay đầu nhìn liên tục nên mất kiểm soát hướng lái.',
-      'Tiếp tục lùi khi gương bị xe khác che khuất.'
+      'Nhả phanh theo một tỷ lệ hành trình cố định hoặc nghĩ cài R thì xe không thể trôi về phía trước khi lùi lên dốc.',
+      'Dùng ga để giữ xe đứng yên trên dốc hoặc tin hỗ trợ khởi hành và Auto Hold luôn giữ xe vô thời hạn.',
+      'Chỉ nhìn gương hoặc camera, bỏ sót quan sát trực tiếp và vùng đầu xe quét ra khi đánh lái.'
     ],
-    recovery: 'Đạp phanh, chờ xe đứng hẳn rồi về P. Bật đèn cảnh báo và chạy một vòng khác nếu góc lùi không an toàn.',
-    safety: 'Không lùi khi mặt dốc đọng nước, tầm nhìn bị che hoặc có người đứng phía sau xe.',
-    mnemonic: { text: 'Giữ phanh, nhìn gương, lùi đều từng nhịp.', rhythm: 'ba-nhip' },
+    recovery: 'Đạp phanh dừng hẳn và giữ xe, không dùng P làm phanh dừng. Nếu cần bỏ ô, chỉ chọn D và tiến ra sau khi đứng hẳn, nhường người và xe, quan sát rõ phía trước, hai bên và vùng đuôi xe quét; nếu không thể đi an toàn, tiếp tục giữ xe và nhờ nhân viên bãi hỗ trợ. Khi cần đỗ chờ, giữ phanh chân trong lúc cài phanh đỗ và P theo hướng dẫn của xe; nếu xe vẫn dịch chuyển, đạp giữ phanh, không rời vị trí lái và gọi hỗ trợ. Không tự bước ra sau hoặc xuống phía thấp của xe chưa được giữ chắc để chèn bánh; nếu cần người hướng dẫn, họ phải đứng ngoài đường xe chạy, luôn trong tầm nhìn, mất liên lạc thì dừng.',
+    safety: 'Không lùi trên đường dốc ra vào hầm, nơi không được phép, đường một chiều, khu vực cấm dừng, chỗ người đi bộ qua đường, nơi giao nhau, giao cắt đường sắt, nơi khuất tầm nhìn, hầm đường bộ hoặc cao tốc. Dừng ngay nếu mặt dốc trơn, đọng nước, có người hoặc xe vào đường đi, không rõ khoảng cách hay xe trôi ngoài ý muốn; giữ phanh chân, không chọn P khi xe còn chuyển động. Không rời xe chưa được giữ chắc bằng phanh đỗ và P theo hướng dẫn của xe; đỗ dốc trên đường bộ phải đánh lái về phía lề và chèn bánh, không đứng phía thấp của xe chưa được giữ chắc. Ví dụ dành cho xe số tự động, không thay bài tập côn và số đỗ cho xe số sàn.',
+    mnemonic: { text: 'Rõ dốc, giữ phanh, chưa chắc thì dừng.', rhythm: 'ba-nhip' },
     checklistId: 'pre_reverse',
     quickCheck: [
-      { prompt: 'Khi lùi trên dốc hầm, nên nhả phanh bao nhiêu để xe bò xuống?', options: ['Nhả hết phanh cho xe tự trôi', 'Nhả khoảng một phần ba hành trình phanh', 'Không nhả phanh, chỉ dùng ga'], correctIndex: 1 },
-      { prompt: 'Dấu hiệu nào cho thấy xe đang bị trôi ngoài ý muốn trên dốc?', options: ['Xe tăng tốc dù không đạp ga', 'Vô-lăng nhẹ hơn bình thường', 'Đèn pha sáng hơn'], correctIndex: 0 },
-      { prompt: 'Bạn không nên tiếp tục lùi trên dốc hầm khi nào?', options: ['Khi mặt dốc đọng nước hoặc tầm nhìn bị che khuất', 'Khi hầm hơi tối một chút', 'Khi có một xe khác đỗ cách xa phía trước'], correctIndex: 0, isStopCondition: true }
+      { prompt: 'Với xe số tự động lùi xuống dốc tại ô được phép, nên kiểm soát phanh thế nào?', options: ['Nhả hết phanh để xe tự trôi vào ô', 'Điều chỉnh lực phanh theo tốc độ thực tế, bò thật chậm và luôn dừng được ngay', 'Về N để xe dễ lăn xuống'], correctIndex: 1 },
+      { prompt: 'Khi lùi lên dốc, cài R và hỗ trợ khởi hành có bảo đảm xe không trôi xuống không?', options: ['Không; hỗ trợ chỉ tạm thời, có thể không kích hoạt; giữ xe bằng phanh và dùng cách khởi hành theo hướng dẫn của xe', 'Có, R luôn khóa xe không cho trôi về phía trước', 'Có, chỉ cần dùng ga để giữ xe đứng yên'], correctIndex: 0 },
+      { prompt: 'Xe bất ngờ trôi hoặc có người vào đường đi khi đang lùi trên dốc, bạn làm gì?', options: ['Đạp phanh dừng hẳn, giữ xe và chỉ đi tiếp khi an toàn; nếu đỗ chờ, cài phanh đỗ và P theo hướng dẫn trước khi nhả phanh chân', 'Chọn P ngay khi xe đang trôi để khóa bánh', 'Lùi nhanh cho xong rồi mới kiểm tra'], correctIndex: 0, isStopCondition: true }
     ],
-    reviewStatus: 'approved',
-    version: '1.1.0',
-    updatedAt: '2026-09-10',
+    reviewStatus: 'published_unverified',
+    version: '1.2.0',
+    updatedAt: '2026-10-25',
     changelog: [
       { version: '1.0.0', date: '2026-08-20', summary: 'Bản đầu tiên của thẻ lùi xe trên dốc hầm.', author: 'Biên tập nội dung' },
-      { version: '1.1.0', date: '2026-09-10', summary: 'Thêm mốc đo hành trình phanh và bước về P sau khi dừng.', author: 'Biên tập nội dung' }
+      { version: '1.1.0', date: '2026-09-10', summary: 'Thêm mốc đo hành trình phanh và bước về P sau khi dừng.', author: 'Biên tập nội dung' },
+      { version: '1.2.0', date: '2026-10-25', summary: 'Bỏ tỷ lệ nhả phanh cố định; phân biệt lùi lên, xuống dốc, giữ xe an toàn và sửa hai sơ đồ; công bố chưa thẩm định độc lập.', author: 'Biên tập nội dung' }
     ]
   }),
   defineCard({
