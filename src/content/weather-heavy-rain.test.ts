@@ -133,14 +133,18 @@ describe('weather-heavy-rain: real-world decisions', () => {
 
   it('preserves all shared checklist identities and prior flood/brake rules with rain-specific hints', () => {
     const items = getChecklist(card.checklistId)!.items
-    expect(items.map(item => item.id)).toEqual(['bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'])
-    expect(items.map(item => item.itemNo)).toEqual([1, 2, 3, 4, 5, 6])
-    expect(items[0].hint).toMatch(/đèn hậu.*AUTO.*đèn ban ngày.*sấy kính/)
-    expect(items[1].hint).toMatch(/dừng trong khoảng thấy rõ.*không có tỷ lệ.*cruise hoặc ACC/)
-    expect(items[2].hint).toMatch(/4–5 giây không phải.*bảo đảm/)
-    expect(items[3].hint).toContain('không chờ hết dốc')
-    expect(items[4].hint).toMatch(/khô cao.*không chờ ở chỗ trũng.*làn khẩn cấp cao tốc.*cảnh báo/)
-    expect(items[5].hint).toMatch(/Không dựa vào nửa bánh.*không lội đo hoặc vòng rào/)
+    const item = (id: string) => items.find(candidate => candidate.id === id)!
+    expect(items.map(candidate => candidate.id)).toEqual([
+      'bw-visibility', 'bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'
+    ])
+    expect(items.map(candidate => candidate.itemNo)).toEqual([1, 2, 3, 4, 5, 6, 7])
+    expect(item('bw-visibility').hint).toMatch(/gạt mưa\/sấy kính/)
+    expect(item('bw-lights').hint).toMatch(/đèn hậu.*AUTO.*đèn ban ngày/)
+    expect(item('bw-speed').hint).toMatch(/dừng trong khoảng thấy rõ.*không có tỷ lệ.*cruise hoặc ACC/)
+    expect(item('bw-gap').hint).toMatch(/4–5 giây không phải.*bảo đảm/)
+    expect(item('bw-brake').hint).toContain('không chờ hết dốc')
+    expect(item('bw-stop').hint).toMatch(/làn khẩn cấp cao tốc làm chỗ nghỉ.*gọi hỗ trợ/)
+    expect(item('bw-flood').hint).toMatch(/Không dựa vào nửa bánh.*không lội đo hoặc vượt rào chắn/)
   })
 })
 

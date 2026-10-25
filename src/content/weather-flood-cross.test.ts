@@ -125,12 +125,16 @@ describe('weather-flood-cross: real-world flood decisions', () => {
 
   it('adds conditional flood avoidance to the existing checklist without losing its other checks', () => {
     const items = getChecklist(card.checklistId)!.items
-    expect(items.map(item => item.id)).toEqual(['bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'])
-    expect(items.map(item => item.itemNo)).toEqual([1, 2, 3, 4, 5, 6])
-    expect(items[5].criticalLevel).toBe('must')
-    expect(items[5].label).toMatch(/Gặp đường ngập: không vào.*khô hợp pháp/)
-    expect(items[5].hint).toMatch(/Không dựa vào nửa bánh.*không lội đo hoặc vòng rào.*chỉ quay đầu khi quan sát đủ/i)
-    expect(items[4].hint).toMatch(/khô cao.*không chờ ở chỗ trũng.*nước dâng/)
+    expect(items.map(item => item.id)).toEqual([
+      'bw-visibility', 'bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'
+    ])
+    expect(items.map(item => item.itemNo)).toEqual([1, 2, 3, 4, 5, 6, 7])
+    const flood = items.find(item => item.id === 'bw-flood')!
+    const stop = items.find(item => item.id === 'bw-stop')!
+    expect(flood.criticalLevel).toBe('must')
+    expect(flood.label).toMatch(/Gặp đường ngập: không đi vào.*khô hợp pháp/)
+    expect(flood.hint).toMatch(/Không dựa vào nửa bánh.*không lội đo hoặc vượt rào chắn.*chỉ quay đầu khi quan sát đủ/i)
+    expect(stop.hint).toMatch(/Tránh chỗ trũng.*nước dâng quanh xe.*gọi cứu hộ/)
   })
 })
 

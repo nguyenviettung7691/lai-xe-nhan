@@ -125,7 +125,7 @@ describe('weather-uphill-start: real-world operation', () => {
     expect(card.mnemonic.text).toMatch(/trôi thì phanh/)
     expect(card.checklistId).toBe('bad_weather')
     expect(getChecklist(card.checklistId)?.items.map(item => item.id)).toEqual([
-      'bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'
+      'bw-visibility', 'bw-lights', 'bw-speed', 'bw-gap', 'bw-brake', 'bw-stop', 'bw-flood'
     ])
   })
 })
