@@ -46,15 +46,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Coolant temperature',
     color: 'red',
     severity: 'critical',
-    description: 'Nước làm mát quá nóng, động cơ có nguy cơ bó máy.',
+    description: 'Nhiệt kế đỏ trên sóng nước báo nước làm mát/động cơ quá nóng. Một số xe có cùng hình màu xanh dương lúc máy lạnh; đó không phải cảnh báo quá nhiệt.',
     keywords: ['nhiệt độ', 'nước làm mát', 'quá nhiệt', 'coolant', 'nóng máy'],
     actions: [
-      'Tắt điều hòa, bật quạt gió nóng để giải nhiệt và tấp vào lề.',
-      'Tắt máy, mở nắp capo cho thoáng nhưng không mở nắp két nước.',
-      'Chờ ít nhất 30 phút cho nguội rồi kiểm tra mức nước làm mát.'
+      'Tắt điều hòa, giảm tải và dừng an toàn; không cố chạy để làm mát.',
+      'Làm theo thông báo/sổ tay về tắt máy; có hơi nước, rò rỉ hoặc tiếng bất thường thì tắt động cơ và tránh xa hơi nóng.',
+      'Chỉ kiểm tra bình nước khi máy đã nguội hoàn toàn theo sổ tay; không có thời gian chờ cố định bảo đảm an toàn.'
     ],
-    avoid: 'Không mở nắp két nước khi động cơ còn nóng, hơi nước sẽ phun ra gây bỏng.',
-    callHelp: 'Gọi cứu hộ nếu nước làm mát cạn, có hơi trắng bốc lên hoặc đèn sáng lại sau khi châm nước.'
+    avoid: 'Không mở nắp két nước/bình chịu áp khi nóng, không mở capo lúc hơi nước đang phun; tránh quạt có thể tự quay.',
+    callHelp: 'Gọi cứu hộ khi có hơi nước, rò nước, bình cạn hoặc cảnh báo tái diễn; không châm nước rồi tiếp tục chạy khi chưa rõ nguyên nhân.'
   },
   {
     id: 'transmission',
