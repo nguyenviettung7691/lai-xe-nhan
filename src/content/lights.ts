@@ -182,15 +182,15 @@ export const dashboardLights: DashboardLight[] = [
     english: 'Tire pressure (TPMS)',
     color: 'amber',
     severity: 'warn',
-    description: 'Một hoặc nhiều lốp non hơi so với mức khuyến nghị.',
+    description: 'Hình tiết diện lốp có dấu chấm than: sáng liên tục thường báo áp suất thấp; nháy rồi sáng liên tục thường là lỗi TPMS. Hệ thống không thay việc kiểm tra lốp và không luôn báo kịp thủng đột ngột.',
     keywords: ['lốp', 'vỏ xe', 'áp suất lốp', 'tpms', 'non hơi', 'xịt lốp'],
     actions: [
-      'Giảm tốc từ từ, tránh phanh gấp và tìm chỗ dừng bằng phẳng.',
-      'Xem nhanh bốn lốp, tìm vết đinh, phồng hoặc rách.',
-      'Bơm lại đúng áp suất ghi trên khung cửa phía lái.'
+      'Giảm tốc từ từ, giữ lái và dừng an toàn; không phanh/đánh lái đột ngột khi nghi xẹp lốp.',
+      'Kiểm tra hư hỏng và đo áp suất các lốp; lốp xẹp, rách hay phồng thì không tiếp tục chạy.',
+      'Bơm theo nhãn xe cho lốp nguội và tải thực tế; nếu lốp nóng, không xả về trị số nguội. Reset/học lại chỉ theo sổ tay sau khi xử lý.'
     ],
-    avoid: 'Không chạy tốc độ cao trên cao tốc khi lốp đang non hơi.',
-    callHelp: 'Gọi cứu hộ nếu lốp xẹp hẳn, phồng thành lốp hoặc xe bị kéo lệch lái.'
+    avoid: 'Không dùng áp suất tối đa trên hông lốp thay nhãn xe, không reset để che cảnh báo hoặc tin lốp đủ hơi chỉ vì đèn tắt.',
+    callHelp: 'Gọi cứu hộ nếu lốp xẹp/hỏng hoặc xe mất ổn định; TPMS nháy rồi sáng dù áp suất đúng cần kiểm tra hệ thống sớm.'
   },
   {
     id: 'eps',

@@ -10,6 +10,7 @@ import {
 import { DashboardLightSchema } from '../lib/schema'
 
 const reviewedSignals: [string, string[], string[]][] = [
+  ['tpms', ['nháy rồi sáng', 'lốp nguội', 'hông lốp', 'không xả'], ['Bơm lại đúng áp suất ghi']],
   ['abs', ['kèm phanh đỏ', 'phân phối lực phanh', 'không đi tiếp'], ['trong vài ngày tới', 'ít nhất 4 giây']],
   ['engine', ['Sáng liên tục và nhấp nháy', 'bộ xúc tác', 'sổ tay cho phép'], ['đi chậm đến gara gần nhất']],
   ['door', ['hình riêng', 'không đi tiếp', 'không chốt chắc'], ['cho đến khi đèn tắt']],
