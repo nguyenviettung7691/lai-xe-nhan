@@ -296,3 +296,4 @@ body {
 .step-speak{display:inline-grid;place-items:center;font-size:18px}
 :root[data-theme='light'] .info-box.recovery > span{color:var(--accent-text)}
 .search-field{position:relative;margin:18px 0}.search-field .search{margin:0;padding-left:46px}.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:grid;color:var(--muted);font-size:18px;pointer-events:none}.close{display:grid;place-items:center;font-size:22px}
+.top-actions a.icon-button{display:grid;place-items:center}

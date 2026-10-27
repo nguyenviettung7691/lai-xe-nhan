@@ -67,6 +67,16 @@ const title = computed(() =>
         >
           <AppIcon name="contrast" />
         </button>
+        <a
+          class="icon-button"
+          href="https://github.com/nguyenviettung7691/lai-xe-nhan"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Mã nguồn Lái Xe Nhàn trên GitHub (mở tab mới)"
+          title="Mã nguồn trên GitHub"
+        >
+          <AppIcon name="github" />
+        </a>
       </div>
     </header>
 
