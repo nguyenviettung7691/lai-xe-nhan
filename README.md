@@ -1,5 +1,7 @@
 # 🚗 Lái Xe Nhàn
 
+![Giao diện trang chủ Lái Xe Nhàn](docs/homepage.png)
+
 > Ứng dụng PWA học kỹ năng lái xe thực tế với 23 thẻ học, hỗ trợ offline-first, đọc to giọng nói, chế độ ban đêm và khẩu quyết an toàn cho lái xe.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
