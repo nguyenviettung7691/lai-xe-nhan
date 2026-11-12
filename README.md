@@ -1,14 +1,25 @@
 # 🚗 Lái Xe Nhàn
 
-![Giao diện trang chủ Lái Xe Nhàn](docs/homepage.png)
-
 > Ứng dụng PWA học kỹ năng lái xe thực tế với 23 thẻ học, hỗ trợ offline-first, đọc to giọng nói, chế độ ban đêm và khẩu quyết an toàn cho lái xe.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/Node.js-18%2B-brightgreen)](https://nodejs.org/)
-[![Vue.js Version](https://img.shields.io/badge/Vue.js-3.4%2B-brightgreen)](https://vuejs.org/)
+[![GitHub Stars](https://img.shields.io/github/stars/nguyenviettung7691/lai-xe-nhan)](https://github.com/nguyenviettung7691/lai-xe-nhan/stargazers)
+[![Total Commits](https://img.shields.io/github/commit-activity/t/nguyenviettung7691/lai-xe-nhan?label=commits)](https://github.com/nguyenviettung7691/lai-xe-nhan/commits)
+[![Last Commit](https://img.shields.io/github/last-commit/nguyenviettung7691/lai-xe-nhan)](https://github.com/nguyenviettung7691/lai-xe-nhan/commits)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](https://github.com/nguyenviettung7691/lai-xe-nhan/blob/main/LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-lai--xe--nhan.nguyenviettung.id.vn-222222?logo=githubpages&logoColor=white)](https://lai-xe-nhan.nguyenviettung.id.vn/)
 
----
+![Vue 3](https://img.shields.io/badge/Vue-3-4FC08D?logo=vuedotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Pinia](https://img.shields.io/badge/Pinia-FFD859?logo=pinia&logoColor=black)
+![Vue Router](https://img.shields.io/badge/Vue%20Router-4FC08D?logo=vuedotjs&logoColor=white)
+![Vite PWA](https://img.shields.io/badge/Vite%20PWA-5A0FC8?logo=pwa&logoColor=white)
+![Workbox](https://img.shields.io/badge/Workbox-FFA000)
+![idb](https://img.shields.io/badge/idb-3B82F6)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?logo=zod&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=white)
+![Web Vitals](https://img.shields.io/badge/Web%20Vitals-4285F4?logo=googlechrome&logoColor=white)
+
+![Giao diện trang chủ Lái Xe Nhàn](docs/homepage.png)
 
 ## 🎯 Tính năng chính
 
